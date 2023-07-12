@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>後台管理</title>
+
+	<!-- 整體CSS -->
+	<link rel="stylesheet" href="./CSS/admin.css">
+	<!-- 影片管理CSS -->
+	<link rel="stylesheet" href="./CSS/tab1.css">
+	<!-- table CSS -->
+	<link rel="stylesheet" href="./CSS/tab3.css">
+	<!-- 管理員CSS -->
+	<link rel="stylesheet" href="./CSS/tab8.css">
+	<style>
+
+	</style>
+</head>
+
+<body>
+	<header>
+		<img alt="" src="./logo.png">
+		<h1>Ocean</h1>
+		<nav>
+			<ul>
+				<li class="dropdown" style="float:right;"><a href="#">管理員</a>
+					<div class="dropdown-content">
+						<a href="#">登出</a>
+					</div>
+				</li>
+			</ul>
+		</nav>
+	</header>
+
+	<h2 style="color: white;">後臺管理</h2>
+
+	<div class="sidebar">
+		<ul>
+			<li class="bordered"><a href="#" class="tab-link" data-tab="tab1">影片管理</a></li>
+			<!-- <li><a href="#" class="tab-link" data-tab="tab2">領域管理</a></li> -->
+			<li><a href="#" class="tab-link" data-tab="tab3">首頁設定</a></li>
+			<li><a href="#" class="tab-link" data-tab="tab4">商品/景點審核</a></li>
+			<li><a href="#" class="tab-link" data-tab="tab5">會員管理</a></li>
+			<li><a href="#" class="tab-link" data-tab="tab6">成就管理</a></li>
+			<li><a href="#" class="tab-link" data-tab="tab7">廠商管理</a></li>
+			<li><a href="#" class="tab-link" data-tab="tab8">管理員帳號</a></li>
+		</ul>
+	</div>
+
+
+	<div class="main-content">
+		<!-- 影片管理功能 -->
+		<div id="tab1" class="tab-content">
+			<button class="btn_manage" id="m_upload">上架</button>
+			<button class="btn_manage" id="m_update">修改</button>
+			<button class="btn_manage" id="m_remove">下架</button>
+			<form>
+
+				<!-- 上架 -->
+				<div id="upload_div" class="video_manage">
+					<form action="">
+						<p style="color: white;">請選擇影片</p>
+						<div class="video-selection">
+
+							<input type="file" style="color: white;" accept="video/mp4" title="請選擇影片">
+						</div><br>
+						<p style="color: white;">請選擇圖片</p>
+						<div class="video-selection">
+
+							<input type="file" style="color: white;" accept="image/*" title="請選擇圖片" multiple>
+						</div>
+						<div class="tab">
+							<button class="movie_or_drama active">電影</button>
+							<button class="movie_or_drama">影集</button>
+						</div><br><br>
+						<div class="input-section">
+							<label for="title" class="info">片名：<input type="text" id="title"></label>
+							<div>
+								<label for="category" class="label-white">領域：
+									<select name="field">
+										<option value="" selected>請選擇</option>
+										<option value="喜劇">喜劇</option>
+										<option value="卡通">卡通</option>
+										<option value="動漫">動漫</option>
+										<option value="驚悚劇">驚悚劇</option>
+										<option value="愛情劇">愛情劇</option>
+										<option value="科幻劇">科幻劇</option>
+										<option value="懸疑劇">懸疑劇</option>
+										<option value="科幻劇">科幻劇</option>
+										<option value="動作劇">動作劇</option>
+										<option value="紀錄片">紀錄片</option>
+									</select>
+								</label>
+							</div>
+							<div class="container">
+								<div class="row">
+									<br><br>
+									<div>
+										<label for="year" class="label-white">年份：
+											<input type="text" id="year" class="input-field">
+										</label>
+
+										<label for="region" class="label-white">地區：
+											<input type="text" id="region" class="input-field">
+										</label>
+
+									</div>
+									<div>
+										<label for="director" class="label-white">導演：
+											<input type="text" id="director" class="input-field">
+										</label>
+
+										<label for="actor" class="label-white">主演：
+											<input type="text" id="actor" class="input-field">
+										</label>
+									</div>
+									<div>
+										<label for="season" class="label-white">季數：
+											<input type="text" id="season" class="input-field">
+										</label>
+
+										<label for="episode" class="label-white">集數：
+											<input type="text" id="episode" class="input-field">
+										</label>
+
+									</div>
+
+								</div>
+							</div>
+							<label for="description" class="info">簡介：</label>
+							<textarea class="description"></textarea>
+						</div><br>
+					</form>
+					<div align="center">
+						<button class="clearAll">清空</button>
+						<button type="submit" id="submit" class="active">上架</button>
+
+					</div>
+				</div>
+				<!-- 修改 -->
+				<div id="update_div" class="video_manage" style="display: none;">
+					<form action="#">
+						<div id="update_serch_bar">
+							<label for="serch" style="color: white;">選擇影片:
+								<input type="text" name="serch" id="serch">
+								<button type="submit">搜尋</button>
+							</label>
+						</div>
+					</form>
+
+					<form action="">
+						<div id="video_info_area">
+						</div>
+					</form>
+				</div>
+				<!-- 下架 -->
+				<div id="remove_div" class="video_manage" style="display: none;">
+					<form action="">
+						<div id="update_serch_bar">
+							<label for="serch" style="color: white;">選擇影片:
+								<input type="text" name="serch" id="serch">
+								<button type="submit">搜尋</button><br>
+							</label>
+						</div>
+
+					</form>
+
+					<form action="">
+						<div id="remove_video_name">
+						</div><br>
+
+					</form>
+					<div style=" display: flex; justify-content: center;">
+						<button id="cancel">取消</button>
+						<button type="submit" style="background-color: red;color: white;" id="remove_enter">刪除</button>
+						<label style="color: white;" id="status">狀態</label>
+					</div>
+				</div>
+			</form>
+		</div>
+		<!-- 領域管理 -->
+		<!-- <div id="tab2" class="tab-content">
+			<button>新增</button><br>
+			<label for="">輸入領域名稱:
+				<input type="text">
+				<button style="width: auto;">確定新增</button>
+				<button>取消</button>
+			</label><br><br>
+			<table>
+				<tr>
+					<th>編號</th>
+					<th>領域名稱</th>
+					<th></th>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>喜劇</td>
+					<td><button>移除</button></td>
+				</tr>
+			</table><br>
+		</div> -->
+		<!-- 首頁設定內容 -->
+		<div id="tab3" class="tab-content">
+			<!-- <button class="home_lab active" id="top">置頂</button>
+			<button class="home_lab">熱門</button>
+			<button class="home_lab">最新</button>
+			<button class="home_lab">推薦</button> -->
+			<!-- <form action="#"> -->
+			<div>
+				<div style="border: 1px solid white;"><label for="" style="color: white;">置頂</label></div>
+				<div id="">
+					<label for="homeTop_serch" style="color: white;">搜尋影片:
+						<input type="text" name="homeTop_serch" id="homeTop_serch">
+						<button type="submit">搜尋</button>
+					</label><br>
+					<label for="" style="color: white;">搜尋後列出選單，點擊後加入</label><br>
+					<label for="" style="color: white;">已選擇的影片</label><label for="" style="color: red;">✕</label><br>
+					<label for="" style="color: white;">已選擇的影片</label><label for="" style="color: red;">✕</label><br>
+					<label for="" style="color: white;">已選擇的影片</label><label for="" style="color: red;">✕</label><br>
+					<label for="" style="color: white;">已選擇的影片</label><label for="" style="color: red;">✕</label><br>
+					<label for="" style="color: white;">已選擇的影片</label><label for="" style="color: red;">✕</label><br>
+					<button class="active" style="width: auto;">完成設定</button>
+				</div>
+			</div>
+			<div>
+				<div style="border: 1px solid white;"><label for="" style="color: white;">推薦</label></div><br>
+				<div id="">
+					<label for="homeTop_serch" style="color: white;">搜尋影片:
+						<input type="text" name="homeTop_serch" id="homeTop_serch">
+						<button type="submit">搜尋</button>
+					</label><br>
+					<label for="" style="color: white;">搜尋後列出選單，點擊後加入</label><br>
+					<label for="" style="color: white;">已選擇的影片</label><label for="" style="color: red;">✕</label><br>
+					<label for="" style="color: white;">已選擇的影片</label><label for="" style="color: red;">✕</label><br>
+					<label for="" style="color: white;">已選擇的影片</label><label for="" style="color: red;">✕</label><br>
+					<label for="" style="color: white;">已選擇的影片</label><label for="" style="color: red;">✕</label><br>
+					<label for="" style="color: white;">已選擇的影片</label><label for="" style="color: red;">✕</label><br>
+
+				</div>
+				<button class="active" style="width: auto;">完成設定</button>
+			</div>
+			<!-- 
+					<label for="image-file">選擇圖片:</label>
+					<input type="file" id="image-file" name="image">
+					<button type="submit">儲存</button>
+				 -->
+			<!-- </form> -->
+			<!-- 
+				<div id="image-preview">
+					<img id="preview-image" src="" alt="圖片預覽">
+				</div>
+			 -->
+		</div>
+		<!-- 商品審核的内容 -->
+		<div id="tab4" class="tab-content">
+			<button class="btn_review active" id="review_pr">商品</button>
+			<button class="btn_review" style="font-size: 9px; width: auto;">商品/景點置入</button>
+			<!-- <button class="btn_review">景點</button> -->
+			<!-- 商品審核 -->
+			<div class="review">
+				<form action="">
+					<div class="product-container">
+						<div class="image-container">
+							<img src="" alt="Product Image">
+						</div>
+						<div class="info-container">
+							<h3 style="color: white;">商品名稱</h3>
+							<p style="color: white;">商品描述</p>
+						</div>
+						<div class="button-container">
+							<button class="not-passed-button" style="background-color: pink;">未通過</button>
+							<button class="passed-button" style="background-color: #11DFBA;">通過</button>
+						</div>
+					</div>
+					<div class="product-container">
+						<div class="image-container">
+							<img src="" alt="Product Image">
+						</div>
+						<div class="info-container">
+							<h3 style="color: white;">商品名稱</h3>
+							<p style="color: white;">商品描述</p>
+						</div>
+						<div class="button-container">
+							<button class="not-passed-button" style="background-color: pink;">未通過</button>
+							<button class="passed-button" style="background-color: #11DFBA;">通過</button>
+						</div>
+					</div>
+				</form>
+			</div>
+
+			<!-- 商品/景點置入 -->
+			<div class="review">
+				<form action="">
+					<div class="product-container">
+						<section class="video-container">
+							<video src=""></video>
+						</section>
+						<section>
+							<div class="info-container">
+								<h3 style="color: white;">商品名稱</h3>
+								<p style="color: white;">置入片名:玩命關頭10</p>
+								<p style="color: white;">時間點:</p>
+								<div class="button-container">
+									<button class="not-passed-button" style="background-color: pink;">未通過</button>
+									<button class="passed-button" style="background-color: #11DFBA;">通過</button>
+								</div>
+							</div>
+							<div class="info-container">
+								<h3 style="color: white;">景點名稱</h3>
+								<p style="color: white;">景點位置</p>
+								<div class="button-container">
+									<button class="not-passed-button" style="background-color: pink;">未通過</button>
+									<button class="passed-button" style="background-color: #11DFBA;">通過</button>
+								</div>
+							</div>
+						</section>
+					</div>
+					<div class="product-container">
+						<section class="video-container">
+							<video src=""></video>
+						</section>
+						<section>
+							<div class="info-container">
+								<h3 style="color: white;">商品名稱</h3>
+								<p style="color: white;">置入片名:玩命關頭10</p>
+								<p style="color: white;">時間點:</p>
+								<div class="button-container">
+									<button class="not-passed-button" style="background-color: pink;">未通過</button>
+									<button class="passed-button" style="background-color: #11DFBA;">通過</button>
+								</div>
+							</div>
+							<div class="info-container">
+								<h3 style="color: white;">景點名稱</h3>
+								<p style="color: white;">景點位置</p>
+								<div class="button-container">
+									<button class="not-passed-button" style="background-color: pink;">未通過</button>
+									<button class="passed-button" style="background-color: #11DFBA;">通過</button>
+								</div>
+							</div>
+
+						</section>
+					</div>
+				</form>
+			</div>
+
+			<!-- 景點審核 -->
+			<!-- <div class="review">
+				<form action="">
+					<div class="product-container">
+						<div class="video-container">
+							<video src=""></video>
+						</div><br>
+						<div class="info-container">
+							<h3 style="color: white;">景點名稱</h3>
+							<p style="color: white;">景點位置</p>
+						</div>
+						<div class="button-container">
+							<button class="not-passed-button" style="background-color: pink;">未通過</button>
+							<button class="passed-button" style="background-color: #11DFBA;">通過</button>
+						</div>
+					</div>
+					<div class="product-container">
+						<div class="video-container">
+							<video src=""></video>
+						</div><br>
+						<div class="info-container">
+							<h3 style="color: white;">景點名稱</h3>
+							<p style="color: white;">景點位置</p>
+						</div>
+						<div class="button-container">
+							<button class="not-passed-button" style="background-color: pink;">未通過</button>
+							<button class="passed-button" style="background-color: #11DFBA;">通過</button>
+						</div>
+					</div>
+				</form>
+			</div> -->
+		</div>
+
+		<!-- 會員管理的内容 -->
+		<div id="tab5" class="tab-content">
+			<div id="user_serch_bar">
+				<label for="user_serch" style="color: white;">搜尋會員:
+					<input type="text" name="user_serch" id="user_serch">
+					<button type="submit">搜尋</button>
+				</label>
+			</div><br>
+			<form action="">
+				<div style="display: flex;">
+					<div style="border: 1px white solid; width: 200px; height: 100px;">
+						<label for="" style="color: white;">客服信箱</label>
+					</div>
+					<div style="border: 1px white solid; width: 200px; height: 100px;">
+						<label for="" style="color: white;">成員異動</label>
+					</div>
+				</div>
+				<br>
+				<div style="overflow-x: auto;">
+					<table class="user_info_table">
+						<tr>
+							<th>會員編號</th>
+							<th>會員名稱</th>
+							<th>地址</th>
+							<th>電話</th>
+							<th>email</th>
+							<th>成就</th>
+							<th>訂單</th>
+							<th>訂閱日期</th>
+							<th>到期日期</th>
+							<th>預期未續約</th>
+							<th>會員資格</th>
+						</tr>
+						<tr>
+							<td>1111111111</td>
+							<td>22222</td>
+							<td>台北市XX區XX路XXX號</td>
+							<td>09xxxxxxxx</td>
+							<td>abc123@gmail.com</td>
+							<td>666</td>
+							<td>777</td>
+							<td>2023/07/01</td>
+							<td>2024/01/01</td>
+							<td>10</td>
+							<td>11</td>
+						</tr>
+						<tr>
+							<td>1111111111</td>
+							<td>22222</td>
+							<td>台北市XX區XX路XXX號</td>
+							<td>09xxxxxxxx</td>
+							<td>abc123@gmail.com</td>
+							<td>666</td>
+							<td>777</td>
+							<td>2023/07/01</td>
+							<td>2024/01/01</td>
+							<td>10</td>
+							<td>11</td>
+						</tr>
+						<tr>
+							<td>1111111111</td>
+							<td>22222</td>
+							<td>台北市XX區XX路XXX號</td>
+							<td>09xxxxxxxx</td>
+							<td>abc123@gmail.com</td>
+							<td>666</td>
+							<td>777</td>
+							<td>2023/07/01</td>
+							<td>2024/01/01</td>
+							<td>10</td>
+							<td>11</td>
+						</tr>
+					</table>
+				</div>
+				<p style="color: white;">備註:點擊會員後列出成員</p>
+				<div style="overflow-x: auto;">
+					<table class="member_info_table">
+						<tr>
+							<th>成員編號</th>
+							<th>成員名稱</th>
+							<th>會員帳號</th>
+							<th>兒童使用者</th>
+						</tr>
+						<tr>
+							<td>1111111111</td>
+							<td>22222</td>
+							<td>abcd1234</td>
+							<td>是</td>
+						</tr>
+						<tr>
+							<td>222222222</td>
+							<td>33333</td>
+							<td>abcd1234</td>
+							<td>否</td>
+						</tr>
+						<tr>
+							<td>333333333</td>
+							<td>44444</td>
+							<td>abcd1234</td>
+							<td>是</td>
+						</tr>
+					</table>
+				</div><br>
+				<div style="border: 1px white solid;">
+					<label for="" style="color: white;">訂閱會員總數:xxxx</label>
+				</div>
+				<div style="border: 1px white solid;">
+					<label for="" style="color: white;">成員總數:xxxx</label>
+				</div>
+				<div style="border: 1px white solid;">
+					<label for="" style="color: white;">本月到期會員數量:xxx</label>
+					<button style="width: auto; height: auto; float:right;">續訂通知</button>
+				</div>
+				<div style="border: 1px white solid;">
+					<label for="" style="color: white;">本月加入訂閱數量:xxx</label>
+				</div>
+				<div style="border: 1px white solid;">
+					<label for="" style="color: white;">非訂閱會員總數:xxxx</label>
+				</div>
+
+			</form>
+		</div>
+		<!-- 成就管理 -->
+		<div id="tab6" class="tab-content">
+			<button>新增</button><br>
+			<div>
+				<label for="">輸入成就名稱:
+					<input type="text">
+				</label>
+				<label for="">領域:
+					<select name="field">
+						<option value="" selected>請選擇</option>
+						<option value="喜劇">喜劇</option>
+						<option value="卡通">卡通</option>
+						<option value="動漫">動漫</option>
+						<option value="驚悚劇">驚悚劇</option>
+						<option value="愛情劇">愛情劇</option>
+						<option value="科幻劇">科幻劇</option>
+						<option value="懸疑劇">懸疑劇</option>
+						<option value="科幻劇">科幻劇</option>
+						<option value="動作劇">動作劇</option>
+						<option value="紀錄片">紀錄片</option>
+					</select>
+				</label>
+				<label for="">時數:
+					<input type="text">
+				</label>
+				<button style="width: auto;">確定新增</button>
+				<button>取消</button>
+			</div>
+			<br><br>
+			<table>
+				<tr>
+					<th>編號</th>
+					<th>成就名稱</th>
+					<th>領域</th>
+					<th>門檻時數</th>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>喜劇大神</td>
+					<td>喜劇</td>
+					<td>500</td>
+				</tr>
+			</table>
+		</div>
+		<!-- 廠商管理的内容 -->
+		<div id="tab7" class="tab-content">
+			<form action="">
+				<div id="user_serch_bar">
+					<label for="user_serch" style="color: white;">搜尋廠商:
+						<input type="text" name="user_serch" id="user_serch">
+						<button type="submit">搜尋</button>
+					</label>
+				</div><br>
+				<div style="display: flex;">
+					<div style="border: 1px white solid; width: 200px; height: 100px;">
+						<label for="" style="color: white;">廠商來信</label>
+					</div>
+				</div><br>
+				<div style="overflow-x: auto;">
+					<table class="user_info_table">
+						<tr>
+							<th>廠商編號</th>
+							<th>廠商帳號</th>
+							<th>權限</th>
+							<th>匯款帳戶</th>
+							<th>統一編號</th>
+							<th>註冊地址</th>
+							<th>手機</th>
+							<th>email</th>
+							<th>負責人</th>
+							<th>匯款銀行戶號</th>
+							<th></th>
+						</tr>
+						<tr>
+							<td>11111111</td>
+							<td>zxc1234</td>
+							<td>1</td>
+							<td>9999111222333</td>
+							<td>11111111</td>
+							<td>台北市XX區XX路XXX號</td>
+							<td>0912345678</td>
+							<td>zxc1234@gmail.com</td>
+							<td>帥氣小金髮</td>
+							<td>010</td>
+							<td><button>修改權限</button></td>
+						</tr>
+						<tr>
+							<td>22222222</td>
+							<td>zxc1234</td>
+							<td>0</td>
+							<td>9999111222333</td>
+							<td>22222222</td>
+							<td>台北市XX區XX路XXX號</td>
+							<td>0912345678</td>
+							<td>zxc1234@gmail.com</td>
+							<td>美艷小紅髮</td>
+							<td>010</td>
+							<td><button>修改權限</button></td>
+						</tr>
+						<tr>
+							<td>33333333</td>
+							<td>zxc1234</td>
+							<td>1</td>
+							<td>9999111222333</td>
+							<td>33333333</td>
+							<td>台北市XX區XX路XXX號</td>
+							<td>0912345678</td>
+							<td>zxc1234@gmail.com</td>
+							<td>神奇小捲毛</td>
+							<td>010</td>
+							<td><button>修改權限</button></td>
+						</tr>
+					</table>
+				</div><br>
+				<div style="border: 1px white solid;">
+					<label for="" style="color: white;">廠商總數:xxxx</label>
+				</div>
+			</form>
+		</div>
+		<!-- 管理員帳號 -->
+		<div id="tab8" class="tab-content">
+			<button id="add_admin">新增</button><br><br>
+			<div class="add_admin_insert">
+				<label for="admin_name" style="color: white;">名稱:<input type="text" name="admin_name"
+						id="admin_name"></label><br>
+				<label for="admin_account" style="color: white;">帳號:<input type="text" name="admin_account"
+						id="admin_account"></label><br>
+				<label for="admin_password" style="color: white;">密碼:<input type="text" name="admin_password"
+						id="admin_password">
+					<button style="width: auto;" onclick="submit_add_admin()">確定新增</button>
+					<button style="width: auto;" id="cancel_add_admin">取消</button>
+				</label>
+			</div><br><br>
+
+			<table id="admin_info">
+				<!-- 動態生成管理員資料 -->
+			</table>
+
+		</div>
+	</div>
+
+	<!-- 管理頁面設定 -->
+	<script src="./JS/admin.js"></script>
+
+	<script src="./JS/tab1.js"></script>
+	<!-- <script src="./js/tab2.js"></script> -->
+	<script src="./JS/tab3.js"></script>
+	<script src="./JS/tab8.js"></script>
+	<!-- <script src="./js/tab4.js"></script>
+	<script src="./js/tab5.js"></script> -->
+</body>
+
+</html>
