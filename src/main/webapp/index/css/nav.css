@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+body {
+	background-color: black;
+	color: aqua;
+}
+
+h1 {
+	color: aqua;
+}
+
+#Ocaen_input {
+	color: white;
+}
+
+.input_text {
+	outline: none;
+	border: none;
+	border-bottom: 1px solid white;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	font-size: 10px;
+	background-color: black;
+	color: white;
+}
+
+#input_div {
+	margin: 500px 0px 0px 0px;
+	text-align: center;
+	/* border: 1px solid white; */
+}
+
+.hide {
+	display: none;
+}
