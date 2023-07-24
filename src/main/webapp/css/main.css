@@ -117,6 +117,10 @@ html {
     html {
       font-size: 31.25%; } }
       
+      
+.global-search form {
+    position: relative;
+    background-color: #fff; }     
 
 body {
   font-size: 16px;

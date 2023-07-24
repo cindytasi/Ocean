@@ -22,12 +22,14 @@
 <!-- ************************* CSS Files ************************* -->
 
 <!-- Vendor CSS -->
-
+	
 <link rel="stylesheet" href="<c:url value="/css/vendor.css"/>">
 
 <!-- style css -->
 
 <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
+
+
 
 </head>
 
@@ -313,8 +315,8 @@
 													<div class="zakas-product">
 														<div class="product-inner">
 															<figure class="product-image">
-																<a href="product-details.html"> <img
-																	src="<c:url value="/img/products/prod-1.jpg"/>"
+																<a href="product-details.html"> <img																
+																	src="<c:url value="/ImageSevlet?id=${brand.productImgId}"/>"
 																	alt="Products">
 																</a>
 																<span class="product-badge">New</span>
@@ -327,9 +329,7 @@
 																<div class="product-price-wrapper mb--30">
 																	<span class="money">NT.${brand.price}</span>
 																</div>
-																<a href="cart.html"
-																	class="btn btn-small btn-bg-sand btn-color-dark">Add
-																	To Cart</a>
+																
 															</div>
 														</div>
 													</div>

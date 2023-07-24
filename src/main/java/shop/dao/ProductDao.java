@@ -35,22 +35,18 @@ public class ProductDao  {
 		}
 	}
 	
-	//==========sql語法================
-	// 查詢home最新商品限12筆
-	final private String getNewAll = "SELECT distinct productName, colorType, addedTime, price FROM ProductInformation order by addedTime desc limit 12;";
-	// 查詢所有商品
-	final private String getAll = "SELECT distinct productName, colorType, addedTime, price FROM ProductInformation order by addedTime desc;";
-	// 查詢男or女全部商品
-	final private String allGender = "Select distinct productName, specType, colorType, price ,addedTime from ProductInformation where gender = ?;";
-	// 以性別篩選是上衣or褲or鞋子
-	final private String GenderClothing = "Select distinct productName, specType, colorType, price ,addedTime from ProductInformation where gender = ? and specType = ?;"; 
-	// 以商品種類查詢是鞋子or飾品or其他
-	final private String typeOfAcc = "SELECT distinct productName, colorType, addedTime, price FROM ProductInformation where specType = ?;";
 
 
-	// 拿到主頁下方bar的所有照片和商品名 (根據不同顏色會得到相應的照片和商品名)
+	// 拿到Mainhome最新商品限12筆所有照片和商品名 (根據不同顏色會得到相應的照片和商品名)
 	public List<Product> getNewAll() {
 		List<Product> result = new ArrayList<Product>();
+		String getNewAll = """
+				SELECT productName, colorType, productImgId, price
+				FROM ProductInformation
+				GROUP BY productName, colorType, productImgId, price
+				ORDER BY MAX(addedTime) DESC
+				LIMIT 12;
+				""";
 		String columns[] = {"productId"};
 	
 		try (Connection conn = dataSource.getConnection(); 
@@ -67,11 +63,11 @@ public class ProductDao  {
 //				product.setSizeType(rs.getString("sizeType"));
 				product.setColorType(rs.getString("colorType"));
 //				product.setComId(rs.getInt("comId"));			
-				product.setAddedTime(rs.getObject("addedTime",LocalDateTime.class));
+				//product.setAddedTime(rs.getObject("addedTime",LocalDateTime.class));
 				//product.setReviewTime(rs.getObject("reviewTime",LocalDateTime.class));
 				product.setPrice(rs.getDouble("price"));
 				//product.setVideoName(rs.getString("videoName"));
-				//product.setProductId(rs.getInt("productImgId"));
+				product.setProductImgId(rs.getInt("productImgId"));
 				//product.setInStock(rs.getInt("inStock"));
 				//product.setGender(rs.getInt("gender"));
 				result.add(product);
@@ -83,21 +79,29 @@ public class ProductDao  {
 		return result;
 	}
 	
+	// 查詢所有商品  依照最新新增順序排列
 	public List<Product> getAll() {
 		List<Product> result = new ArrayList<Product>();
-		String columns[] = {"productId"};
+		String getAll = """
+				SELECT productName, colorType, productImgId, price
+				FROM ProductInformation
+				GROUP BY productName, colorType, productImgId, price
+				ORDER BY MAX(addedTime) DESC;
+				""";
+		
 	
 		try (Connection conn = dataSource.getConnection(); 
-			PreparedStatement ps = conn.prepareStatement(getAll,columns);) {			
+			PreparedStatement ps = conn.prepareStatement(getAll);) {			
 			ResultSet rs = ps.executeQuery();
-//			ResultSet id = ps.getGeneratedKeys(); //拿到productId的自動編號
+			
 			
 			while (rs.next()) {
 				Product product = new Product();
 				product.setProductName(rs.getString("productName"));
 				product.setColorType(rs.getString("colorType"));		
-				product.setAddedTime(rs.getObject("addedTime",LocalDateTime.class));
+				//product.setAddedTime(rs.getObject("addedTime",LocalDateTime.class));
 				product.setPrice(rs.getDouble("price"));
+				product.setProductImgId(rs.getInt("productImgId"));
 				result.add(product);
 				
 			}
@@ -106,11 +110,17 @@ public class ProductDao  {
 		}
 		return result;
 	}
-	
-	
-	
+		
+	// 查詢男or女全部商品
 	public List<Product> allGender(int gender) {
 		List<Product> result = new ArrayList<Product>();
+		
+		String allGender = """
+				SELECT productName, colorType,  productImgId, price from (
+				SELECT * from ProductInformation where gender = ?
+				) genderInfo GROUP BY productName, colorType,  productImgId, price
+				ORDER BY MAX(addedTime) DESC;
+			""";
 		
 		try (Connection conn = dataSource.getConnection(); 
 			PreparedStatement ps = conn.prepareStatement(allGender);) {	
@@ -119,10 +129,10 @@ public class ProductDao  {
 			
 			while (rs.next()) {
 				Product product = new Product();
-				product.setProductName(rs.getString("productName"));
+				product.setProductName(rs.getString("productName"));				
 				product.setColorType(rs.getString("colorType"));		
-				product.setAddedTime(rs.getObject("addedTime",LocalDateTime.class));			
 				product.setPrice(rs.getDouble("price"));
+				product.setProductImgId(rs.getInt("productImgId"));				
 				result.add(product);				
 			}
 		} catch (SQLException e) {		
@@ -131,8 +141,19 @@ public class ProductDao  {
 		return result;
 	}
 	
+	// 查詢男or女細部分類(上衣或褲子或鞋子)
 	public List<Product> GenderClothes(int gender, int specType ) {
 		List<Product> result = new ArrayList<Product>();
+		
+		// 以性別篩選是上衣or褲or鞋子
+		String GenderClothing = """
+				select productName, colorType,  productImgId, price from (
+				select * from ProductInformation where gender = ? and specType = ?
+				) specTypeInfo group by productName, colorType,  productImgId, price
+				ORDER BY MAX(addedTime) DESC;
+				""";
+
+		
 		
 		try (Connection conn = dataSource.getConnection(); 
 			PreparedStatement ps = conn.prepareStatement(GenderClothing);) {
@@ -143,9 +164,9 @@ public class ProductDao  {
 			while (rs.next()) {
 				Product product = new Product();
 				product.setProductName(rs.getString("productName"));
-				product.setColorType(rs.getString("colorType"));		
-				product.setAddedTime(rs.getObject("addedTime",LocalDateTime.class));			
+				product.setColorType(rs.getString("colorType"));						
 				product.setPrice(rs.getDouble("price"));
+				product.setProductImgId(rs.getInt("productImgId"));
 				result.add(product);				
 			}
 		} catch (SQLException e) {		
@@ -154,8 +175,16 @@ public class ProductDao  {
 		return result;
 	}
 	
+	// 查詢產品種類(鞋子或飾品或其他)
 	public List<Product> typeOfAcc(int specType ) {
 		List<Product> result = new ArrayList<Product>();
+		
+		String typeOfAcc = """
+		select productName, colorType,  productImgId, price from (
+				SELECT * from ProductInformation where specType = ?
+				) specTypeInfo GROUP BY productName, colorType,  productImgId, price
+				ORDER BY MAX(addedTime) DESC;
+				""";
 		
 		try (Connection conn = dataSource.getConnection(); 
 			PreparedStatement ps = conn.prepareStatement(typeOfAcc);) {		
@@ -164,10 +193,10 @@ public class ProductDao  {
 			
 			while (rs.next()) {
 				Product product = new Product();
-				product.setProductName(rs.getString("productName"));
-				product.setColorType(rs.getString("colorType"));		
-				product.setAddedTime(rs.getObject("addedTime",LocalDateTime.class));			
+				product.setProductName(rs.getString("productName"));				
+				product.setColorType(rs.getString("colorType"));				
 				product.setPrice(rs.getDouble("price"));
+				product.setProductImgId(rs.getInt("productImgId"));
 				result.add(product);				
 			}
 		} catch (SQLException e) {		

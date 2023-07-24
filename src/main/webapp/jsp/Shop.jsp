@@ -19,12 +19,59 @@
 <link rel="apple-touch-icon" href="<c:url value="/img/icon.png"/>">
 
 <!-- ************************* CSS Files ************************* -->
-
+<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'></link>	
 <!-- Vendor CSS -->
 <link rel="stylesheet" href="<c:url value="/css/vendor.css"/>">
 
 <!-- style css -->
 <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
+
+
+<style>
+.global-search{
+    margin: 0;
+    flex-grow: 1;
+}
+
+.global-search input  {
+    margin: 20PX 0 0 80%;
+    width: 200px;
+    padding: 9px 21px;
+    border: 1px solid #dcdcdc;
+    color: #656565;
+    -webkit-border-radius: 30px;
+    border-radius: 30px;
+    background: #f5f5f5;
+    font-size: 15px;
+    line-height: 14px;
+    height: 34px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background-color: #fff;   
+}
+
+.submit-search{
+  visibility: hidden;
+}
+
+
+.fa-search::before{
+
+  visibility:visible;
+  font-weight: Thin; 
+  font-size: 25px;
+  display: flex;
+  position:absolute;
+  top: 82px;
+  color:#656565;
+  right: 10%;
+}
+
+
+</style>
+
+
+
 
 </head>
 
@@ -153,9 +200,23 @@
 								<li class="header-toolbar__item d-lg-none"><a href="#"
 									class="header-toolbar__btn menu-btn"> <i class="fa fa-bars"></i>
 								</a></li>
+								
+								
+	<div class="global-search">
+      <form id="search-Form" action="#">
+        <input placeholder="輸入關鍵字" type="text" class="hot-input">
+        <button class="submit-search">
+          <i class="fa fa-search"></i>
+        </button>
+      </form>
+    </div>
+    
+    
 							</ul>
 						</div>
 					</div>
+		
+			
 					<div class="row">
 						<div class="col-12">
 							<div class="mobile-menu"></div>
@@ -204,7 +265,7 @@
 											<div class="product-inner">
 												<figure class="product-image">
 													<a href="product-details.html"> <img
-														src="<c:url value="/img/products/prod-13.jpg"/>"
+														src="<c:url value="/ImageSevlet?id=${brand.productImgId}"/>"
 														alt="Products">
 													</a>
 													<span class="product-badge">New</span>
@@ -217,9 +278,7 @@
 													<div class="product-price-wrapper mb--30">
 														<span class="money">NT.${brand.price}</span>
 													</div>
-													<a href="cart.html"
-														class="btn btn-small btn-bg-sand btn-color-dark">Add
-														To Cart</a>
+													
 												</div>
 											</div>
 										</div>

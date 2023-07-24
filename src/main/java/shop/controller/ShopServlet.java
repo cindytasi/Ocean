@@ -24,9 +24,9 @@ public class ShopServlet extends HttpServlet {
     
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-		String type = (String)req.getParameter("type");
-		
+		String type = (String)req.getParameter("type");	
 		List<Product> list = productService.getTopBarData(type);
+		
 		req.setAttribute("product", list);	
 		req.getRequestDispatcher("/jsp/Shop.jsp").forward(req, res);
 
