@@ -1,5 +1,7 @@
-package login.controller;
+package web.controller;
 
+import static core.util.CommonUtil.json2Pojo;
+//import static core.util.CommonUtil.writePojo2Json;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -11,25 +13,27 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
-import login.service.LoginService;
-import login.service.imp.LoginServiceImp;
-import login.vo.Res;
-import login.vo.LoginVo;
+import web.service.UserService;
+import web.service.imp.UserServiceImpl;
+import web.vo.UserVo;
 
-@WebServlet("/login/controller/loginController")
+
+@WebServlet("/web/controller/LoginController")
 public class LoginController extends HttpServlet {
 
-	private LoginService loginservice;
+	
+//	private static final long serialVersionUID = 1L;
+	private UserService userservice;
 
 	@Override
 	public void init() throws ServletException {
-		loginservice = new LoginServiceImp();
+		userservice = new UserServiceImpl();
 	}
 
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		doPost(req, resp);
-	}
+//	@Override
+//	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//		doPost(req, resp);
+//	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -40,16 +44,18 @@ public class LoginController extends HttpServlet {
 
 			req.setCharacterEncoding("UTF-8");
 
-			Gson gson = new Gson();
+			System.out.println("LoginController");
+//			Gson gson = new Gson();
 //			建立 Gson 物件，用於序列化和反序列化 JSON 格式資料
-			LoginVo vo = gson.fromJson(req.getReader(), LoginVo.class);
+//			UserVo vo = gson.fromJson(req.getReader(), UserVo.class);
+			UserVo vo = json2Pojo(req, UserVo.class);
 //			從請求的輸入流中讀取 JSON 格式的資料，並將其反序列化成 loginVo 物件
 			String email = vo.getEmail();
 			String password = vo.getPassword();
 			System.out.println(email);
 			System.out.println(password);
 
-			String username = loginservice.login(email, password);
+			String username = userservice.login(email, password);
 //			使用 loginService 的 login 方法來驗證使用者，並獲取認證結果
 
 			System.out.println(username);
@@ -77,3 +83,4 @@ public class LoginController extends HttpServlet {
 	}
 
 }
+

@@ -7,7 +7,7 @@
 	const errMsg = document.querySelector('#errMsg');
 	console.log(email.value);
 	console.log(password.value);
-		fetch('/Ocean/login/controller/loginController', {
+		fetch('/Ocean/web/controller/LoginController', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({
@@ -19,11 +19,12 @@
 			.then(body => {
 //				errMsg.textContent = '';
 				const { successful, message } = body;
+				console.log(successful);
 				if (successful) {
-					const { id, nickname, roleId } = body;
-					sessionStorage.setItem('id', id);
-					sessionStorage.setItem('nickname', nickname);
-					sessionStorage.setItem('roleId', roleId);
+//					const { id, nickname, roleId } = body;
+//					sessionStorage.setItem('id', id);
+//					sessionStorage.setItem('nickname', nickname);
+//					sessionStorage.setItem('roleId', roleId);
 					location.href = 'http://localhost:8080/Ocean/index.html';
 				} else {
 					errMsg.textContent = message;

@@ -1,9 +1,8 @@
-
-package login.vo;
+package web.vo;
 
 import java.sql.Timestamp;
 
-public class LoginVo {
+public class UserVo {
 
 	private Integer userId;
 	private String userName;
@@ -15,6 +14,9 @@ public class LoginVo {
 	private Timestamp achievementTime;
 	private byte[] profilePicture;
 	private Boolean statusCode;
+	
+	private boolean successful;
+	private String message;
 
 	public Integer getUserId() {
 		return userId;
@@ -96,4 +98,25 @@ public class LoginVo {
 		this.statusCode = statusCode;
 	}
 
+	public boolean isSuccessful() {
+		return successful;
+	}
+
+	
+	
+	public void setSuccessful(boolean successful) {
+		this.successful = successful;
+	}
+
+	
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	
+	
 }

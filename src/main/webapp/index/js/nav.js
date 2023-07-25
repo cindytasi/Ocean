@@ -7,7 +7,7 @@
 		<div class="collapse navbar-collapse" id="navbarScroll">
 			<ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
 				<li id="register" class="nav-item">
-					<a href="${getContextPath()}/register.html" class="nav-link active" aria-current="page">註冊</a>
+					<a href="${getContextPath()}/register/register.html" class="nav-link active" aria-current="page">註冊</a>
 				</li>
 				<li id="edit" class="nav-item">
 					<a href="${getContextPath()}/edit.html" class="nav-link active" aria-current="page">編輯會員資訊</a>
