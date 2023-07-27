@@ -2,6 +2,8 @@ package common;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
@@ -26,10 +28,13 @@ public class ImageSevlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String imageIdstr = request.getParameter("id");
-		Image image = productService.getImageById(Integer.valueOf(imageIdstr));
+		String data = request.getParameter("photo_data");//判斷第幾張照片
+		InputStream image = productService.getImageById(Integer.parseInt(imageIdstr) ,Integer.parseInt(data));
+		
+		
 		response.setContentType("image/jpg");
         ServletOutputStream out = response.getOutputStream();
-        BufferedInputStream in = new BufferedInputStream(image.getImg1());
+        BufferedInputStream in = new BufferedInputStream(image);
         byte[] buf = new byte[4 * 1024]; // 4K buffer
         int len;
         while ((len = in.read(buf)) != -1) {

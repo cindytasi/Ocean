@@ -34,20 +34,21 @@ public class ImageDao {
 
 	public Image getImageById(int id) {
 
-		String getImageById = "SELECT img1 FROM ProductImg where productImgId = ?;";
+		String getImageById = "SELECT img1, img2, img3, img4 FROM ProductImg where productImgId = ?;";
 
 		Image img = null;
-		
-
 		try (Connection conn = dataSource.getConnection();
 				PreparedStatement ps = conn.prepareStatement(getImageById);) {
+			
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 
-
-			if (rs.next()) {
+			while (rs.next()) {
 				img = new Image();
 				img.setImg1(rs.getBinaryStream("img1"));
+				img.setImg2(rs.getBinaryStream("img2"));
+				img.setImg3(rs.getBinaryStream("img3"));
+				img.setImg4(rs.getBinaryStream("img4"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

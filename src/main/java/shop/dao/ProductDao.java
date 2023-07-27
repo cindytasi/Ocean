@@ -204,5 +204,54 @@ public class ProductDao  {
 		}
 		return result;
 	}
+	
+	
+	
+	//關鍵字查詢
+	 	public List<Product> selectKeyWord(String msg ) {
+	 		
+	 		
+			return null;
+	 			 		
+	 	}
+	 	
+	 	
+	//查詢所有細項 
+	 	public List<Product> getDetailAll(String productName, String color) {
+			List<Product> result = new ArrayList<Product>();
+			String getDetailAll = """
+					SELECT * FROM ProductInformation where productName = ? and ColorType =?;
+					""";			
+			try (Connection conn = dataSource.getConnection(); 
+				PreparedStatement ps = conn.prepareStatement(getDetailAll);) {	
+				ps.setString(1, productName);
+				ps.setString(2, color);
+				ResultSet rs = ps.executeQuery();
+				while (rs.next()) {
+					Product product = new Product();
+					product.setProductId(rs.getInt("productId"));
+					product.setProductName(rs.getString("productName"));
+					product.setSpecType(rs.getInt("specType"));
+					product.setSpecInfo(rs.getString("specInfo"));
+					product.setSizeType(rs.getString("sizeType"));
+					product.setColorType(rs.getString("colorType"));
+					product.setComId(rs.getInt("comId"));			
+					product.setAddedTime(rs.getObject("addedTime",LocalDateTime.class));
+					product.setReviewTime(rs.getObject("reviewTime",LocalDateTime.class));
+					product.setPrice(rs.getDouble("price"));
+					product.setVideoName(rs.getString("videoName"));
+					product.setProductImgId(rs.getInt("productImgId"));
+					product.setInStock(rs.getInt("inStock"));
+					product.setGender(rs.getInt("gender"));
+					result.add(product);
+					
+				}
+			} catch (SQLException e) {		
+				e.printStackTrace();
+			}
+			return result;
+		}
 
 }
+
+    

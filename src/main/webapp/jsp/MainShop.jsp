@@ -315,8 +315,8 @@
 													<div class="zakas-product">
 														<div class="product-inner">
 															<figure class="product-image">
-																<a href="product-details.html"> <img																
-																	src="<c:url value="/ImageSevlet?id=${brand.productImgId}"/>"
+																<a href="<c:url value="/ShopDetailServlet?productName=${brand.productName}&color=${brand.colorType}"/>"> <img																
+																	src="<c:url value="/ImageSevlet?id=${brand.productImgId}&photo_data=1"/>"																	
 																	alt="Products">
 																</a>
 																<span class="product-badge">New</span>
@@ -324,7 +324,7 @@
 															<div class="product-info">
 																<h3 class="product-title mb--15">
 																	<a
-																		href="/Ocean/ShopDetailServlet?productName=${brand.productName}&color=${brand.colorType}">${brand.productName}</a>
+																		href="<c:url value="/ShopDetailServlet?productName=${brand.productName}&color=${brand.colorType}"/>">${brand.productName}</a>
 																</h3>
 																<div class="product-price-wrapper mb--30">
 																	<span class="money">NT.${brand.price}</span>
