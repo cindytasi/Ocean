@@ -30,10 +30,6 @@
 			return;
 		}
 		
-//		if (unameLength < 6 || unameLength > 10) {
-//			msg.textContent = 'username未輸入';
-//			return;
-//		}
 
 		const telLength = telephone.value.length;
 		if (telLength == 0) {
@@ -85,18 +81,17 @@
 		})
 			.then(resp => resp.json())
 			.then(body => {
-				const { successful, errormessage, message } = body;
-				console.log(errormessage);
+				const { successful, message } = body;
 				if (successful) {
 					for (let input of inputs) {
 						input.disabled = true;
 					}
 					btn1.disabled = true;
-					msg.className = 'info';
-					msg.textContent = '註冊成功';
+//					msg.className = 'info';
+					msg.textContent = message;
 				} else {
-					msg.className = 'error';
-					msg.textContent = '註冊失敗';
+//					msg.className = 'error';
+					msg.textContent = message;
 				}
 			});
 	});

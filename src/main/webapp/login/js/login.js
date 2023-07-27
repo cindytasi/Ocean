@@ -5,8 +5,8 @@
 	const email = document.querySelector('#email');
 	const password = document.querySelector('#password');
 	const errMsg = document.querySelector('#errMsg');
-	console.log(email.value);
-	console.log(password.value);
+//	console.log(email.value);
+//	console.log(password.value);
 		fetch('/Ocean/web/controller/LoginController', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },

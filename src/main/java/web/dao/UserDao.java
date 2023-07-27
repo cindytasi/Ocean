@@ -6,6 +6,8 @@ public interface UserDao {
 
 	int insert(UserVo userVo);
 
+	boolean selectByEmail(String email);
+
 	String selectForLogin(String email, String password);
 //	UserVo selectForLogin(String email, String password);
 

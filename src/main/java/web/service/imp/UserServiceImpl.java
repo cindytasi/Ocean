@@ -12,20 +12,33 @@ public class UserServiceImpl implements UserService {
 	public UserServiceImpl() {
 		userdao = new UserDaoImpl();
 	}
-	
+
 	@Override
+	
+	public boolean duplicateregister(String email) {
+		if (userdao.selectByEmail(email)) {
+			return true;
+		}
+		return false;
+	}
+	
 	public UserVo register(UserVo userVo) {
 		
-		
-		final int resultCount = userdao.insert(userVo);
-		if (resultCount < 1) {
-			userVo.setMessage("註冊錯誤，請聯絡管理員!");
+		if(duplicateregister(userVo.getEmail())) {
+			userVo.setMessage("帳號重複");
+			userVo.setSuccessful(false);
+			return  userVo;
+		}else {
+			
+			if(userdao.insert(userVo) > 1) {
+				userVo.setMessage("註冊成功");
+				userVo.setSuccessful(false);
+				return userVo;
+			}
+			userVo.setMessage("註冊失敗");
 			userVo.setSuccessful(false);
 			return userVo;
 		}
-		userVo.setMessage("註冊成功");
-		userVo.setSuccessful(true);
-		return userVo;
 	}
 
 	public String login(String email, String password) {

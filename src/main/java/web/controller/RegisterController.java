@@ -35,18 +35,14 @@ public class RegisterController extends HttpServlet {
 
 		System.out.println("RegisterController");
 		UserVo userVo = json2Pojo(req, UserVo.class);
-		System.out.println(userVo.getEmail());
-		System.out.println(userVo.getUserName());
-		System.out.println(userVo.getTelephone());
-		System.out.println(userVo.getPassword());
-		System.out.println(userVo.getAddress());
-//		if (userVo== null) {
-//			userVo = new UserVo();
-//			userVo.setMessage("無會員資訊");
-//			userVo.setSuccessful(false);
-//			writePojo2Json(resp, userVo);
-//			return;
-//		}
+		
+		if (userVo== null) {
+			userVo = new UserVo();
+			userVo.setMessage("無會員資訊");
+			userVo.setSuccessful(false);
+			writePojo2Json(resp, userVo);
+			return ;
+		}
 
 		userVo = userservice.register(userVo);
 		resp.setCharacterEncoding("UTF-8");
