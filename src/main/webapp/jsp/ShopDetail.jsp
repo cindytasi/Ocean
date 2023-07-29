@@ -263,7 +263,7 @@
                                 </div>
                                 <form action="#" class="variation-form mb--20">
                                     <div class="product-size-variations d-flex align-items-center mb--15">
-                                        <p class="variation-label">Size:</p>   
+                                        <p class="variation-label">尺寸:</p>   
                                         <div class="product-size-variation variation-wrapper">
                                         	<c:forEach var="prodSizeStock" items="${detail.prodSizeStockList}">
 												<div class="variation">
@@ -277,7 +277,7 @@
                                         </div>                                 
                                     </div>
                                     <div class="product-size-variations d-flex align-items-center mb--15">
-                                        <p class="variation-label">Color:</p>   
+                                        <p class="variation-label">顏色:</p>   
                                         <div class="product-size-variation variation-wrapper">
                                         	
 												<div class="variation">
@@ -293,7 +293,7 @@
                                 </form>
                                 <div class="product-action d-flex flex-sm-row align-items-sm-center flex-column align-items-start mb--30">
                                     <div class="quantity-wrapper d-flex align-items-center mr--30 mr-xs--0 mb-xs--30">
-                                        <label class="quantity-label" for="qty">Quantity:</label>
+                                        <label class="quantity-label" for="qty">件數:</label>
                                         <div class="quantity">
                                             <input type="number" class="quantity-input" name="qty" id="qty" value="1" min="1">
                                         </div>
@@ -302,14 +302,7 @@
                                         Add To Cart
                                     </button>
                                 </div>  
-                                <div class="product-footer-meta">
-                                    <p><span>Category:</span> 
-                                        <a href="shop.html">Full Sweater</a>,
-                                        <a href="shop.html">SweatShirt</a>,
-                                        <a href="shop.html">Jacket</a>,
-                                        <a href="shop.html">Blazer</a>
-                                    </p>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>

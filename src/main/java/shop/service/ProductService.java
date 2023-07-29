@@ -2,11 +2,14 @@ package shop.service;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import shop.dao.ImageDao;
 import shop.dao.ProductDao;
 import shop.vo.Image;
+import shop.vo.ProdColor;
 import shop.vo.ProdSizeStock;
 import shop.vo.Product;
 import shop.vo.ProductDetail;
@@ -98,9 +101,11 @@ public class ProductService {
 
 
 	//拿各別產品細項資料
-	public ProductDetail getDetailAll(String productName, String color){
-		List<Product> result = productDao.getDetailAll(productName ,color);
+	public ProductDetail getDetailAll(String productName,String color){
+		//拿到所有同名的物件
+		List<Product> result = productDao.getDetailAll(productName,color);
 		
+		//將重複的物件取出第一個保持唯一
 		String displayProdName = result.get(0).getProductName();
 		Integer specType = result.get(0).getSpecType();
 		String specInfo = result.get(0).getSpecInfo();
@@ -108,16 +113,19 @@ public class ProductService {
 		Integer comId = result.get(0).getComId();;
 		Double price = result.get(0).getPrice();
 		Integer productImgId =result.get(0).getProductImgId();;
-		
-		List<ProdSizeStock> prodSizeStockList = new ArrayList<>();
+
+		//不重複的尺寸 產品id 庫存用list裝起來
+		List<ProdSizeStock> prodSizeStockList = new ArrayList<ProdSizeStock>();
 		for(Product product : result) {
 			ProdSizeStock prodSizeStock = new ProdSizeStock();
 			prodSizeStock.setProductId(product.getProductId());
 			prodSizeStock.setSizeType(product.getSizeType());
 			prodSizeStock.setInStock(product.getInStock());
-			prodSizeStockList.add(prodSizeStock);
+			prodSizeStockList.add(prodSizeStock);	
 		}
 		
+		
+		//把拿出來的物件塞到統一封裝的ProductDetailVO裡
 		ProductDetail productDetail = new ProductDetail();
 		productDetail.setDisplayProdName(displayProdName);
 		productDetail.setSpecType(specType);
@@ -127,6 +135,7 @@ public class ProductService {
 		productDetail.setPrice(price);
 		productDetail.setProductImgId(productImgId);
 		productDetail.setProdSizeStockList(prodSizeStockList);
+		
 		
 		return productDetail;		
 	}
