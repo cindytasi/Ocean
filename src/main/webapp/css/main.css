@@ -17069,10 +17069,10 @@ a, button, .user-info-menu, .banner-box .banner-info, .banner-box .banner-hover-
   background-color: #ffffff; }
 
 .user-info-menu li a:hover, .footer-menu li a:hover, .footer .copyright-text a, .banner-badge, .blog-meta-btn i, .single-post-details .entry-meta.category-link a, .btn-no-bg:hover, .btn-close:hover, .slick-btn:hover, .accordion-slider__btn:hover, .accordion-click-slider__btn:hover, .product-slide-nav.slick-vertical .slick-btn:hover i, .product-slide-nav.slick-vertical .accordion-slider__btn:hover i, .product-slide-nav.slick-vertical .accordion-click-slider__btn:hover i, .comment-author a:hover, .cart-form__btn:hover, .custom-close:hover i, .mini-cart__product .remove:hover, .mini-cart__product__title:hover, .product-title > a:hover, .product-summary .product-navigation a:hover, .product-summary .product-title a:hover, .variation-form .product-size-variations .product-size-variation-btn:hover, .variation-form .product-size-variations .product-size-variation-btn.selected, .table tbody td.product-remove a, .table.compare-table tbody .remove a, .table.shop_attributes th a:hover, .table.shop_attributes td a:hover, .method-box-2 i, .message-box a:hover, .error h1 {
-  color: #c2080f; }
+  color: black; }
 
 .header-toolbar__btn.mini-cart-btn .mini-cart-count, .btn:hover, .btn:hover:after, .btn-bg-red, .btn-bg-red:after, .btn-submit:hover, .nav-hover-2 .slick-btn:hover, .nav-hover-2 .accordion-slider__btn:hover, .nav-hover-2 .accordion-click-slider__btn:hover, .comment .reply:hover, .newsletter-form__submit, .product-badge, .zakas-product:hover .btn, .zakas-product:hover .btn:after, .tab-style-1 .nav-link:after, .tab-style-1 .nav-link.active, .user-dashboard-tab__head .nav-link.active, .user-dashboard-tab__head .nav-link:hover {
-  background-color: #c2080f; }
+  background-color: #3f9891; }
 
 .nav-hover-2 .slick-btn:hover, .nav-hover-2 .accordion-slider__btn:hover, .nav-hover-2 .accordion-click-slider__btn:hover, .comment .reply:hover {
   border-color: #c2080f; }

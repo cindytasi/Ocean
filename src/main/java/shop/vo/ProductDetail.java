@@ -10,7 +10,7 @@ public class ProductDetail {
 	private Integer comId;
 	private Double price;
 	private Integer productImgId;
-	private List<ProdSizeStock> prodSizeStockList;
+	
 	
 	public String getDisplayProdName() {
 		return displayProdName;
@@ -54,10 +54,5 @@ public class ProductDetail {
 	public void setProductImgId(Integer productImgId) {
 		this.productImgId = productImgId;
 	}
-	public List<ProdSizeStock> getProdSizeStockList() {
-		return prodSizeStockList;
-	}
-	public void setProdSizeStockList(List<ProdSizeStock> prodSizeStockList) {
-		this.prodSizeStockList = prodSizeStockList;
-	}
+	
 }

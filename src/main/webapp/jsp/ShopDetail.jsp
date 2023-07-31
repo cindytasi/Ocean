@@ -7,8 +7,13 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
 
+<script type="text/javascript">
+	var mappingJson = '${mappingJson}';
+</script>
+
 <head>
     <meta charset="utf-8">
+	<jsp:include page="/jsp/pluginsJs.jsp"></jsp:include>
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Zakas - Fashion eCommerce Bootstrap 4 Template</title>
     <meta name="description" content="">
@@ -18,14 +23,24 @@
     <link rel="apple-touch-icon" href="<c:url value="/img/icon.png"/>">
 
     <!-- ************************* CSS Files ************************* -->
-
+	
     <!-- Vendor CSS -->
    
     <link rel="stylesheet" href=" <c:url value="/css/vendor.css"/>">
 
     <!-- style css -->     
     <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
+  	
+    <script type="text/javascript" src="<c:url value="/js/shopdetail.js"/>"></script>
+	
+	
+	<style type="text/css">
+		.checked {
+      	background-color:gainsboro;
+      	
+    	}
 
+	</style>
 </head>
 
 <body>
@@ -216,25 +231,25 @@
                                 <div class="product-gallery">
                                     <div class="product-gallery__large-image">
                                         <div class="product-gallery__wrapper">
-                                            <div class="row grid-space-10">
+                                            <div id="imageDiv" class="row grid-space-10">
                                                 <div class="col-12 mb--10">
-                                                    <figure class="product-gallery__image">                                                    
-                                                        <img src="<c:url value="/ImageSevlet?id=${detail.productImgId}&photo_data=1"/>" alt="Product">
+                                                    <figure class="product-gallery__image">                                             
+                                                        <img src="<c:url value="/ImageSevlet?id=${detail.defaultImgId}&photo_data=1"/>" alt="Product">
                                                     </figure>
                                                 </div>
                                                 <div class="col-6 mb--10">
                                                     <figure class="product-gallery__image">                                                    
-                                                        <img src="<c:url value="/ImageSevlet?id=${detail.productImgId}&photo_data=2"/>" alt="Product">
+                                                        <img src="<c:url value="/ImageSevlet?id=${detail.defaultImgId}&photo_data=2"/>" alt="Product">
                                                     </figure>
                                                 </div>
                                                 <div class="col-6 mb--10">
                                                     <figure class="product-gallery__image">                                                    
-                                                        <img src="<c:url value="/ImageSevlet?id=${detail.productImgId}&photo_data=3"/>" alt="Product">
+                                                        <img src="<c:url value="/ImageSevlet?id=${detail.defaultImgId}&photo_data=3"/>" alt="Product">
                                                     </figure>
                                                 </div>
                                                 <div class="col-12 mb--10">
                                                     <figure class="product-gallery__image">                                                    
-                                                        <img src="<c:url value="/ImageSevlet?id=${detail.productImgId}&photo_data=4"/>" alt="Product">
+                                                        <img src="<c:url value="/ImageSevlet?id=${detail.defaultImgId}&photo_data=4"/>" alt="Product">
                                                     </figure>
                                                 </div>
                                             </div>
@@ -245,7 +260,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <span class="product-badge sale">Sale</span>
+                                
                             </div>
                         </div>
                         <div class="col-xl-4 offset-xl-1 col-lg-5 product-main-details mt-md--40" id="sticky-sidebar">
@@ -265,10 +280,11 @@
                                     <div class="product-size-variations d-flex align-items-center mb--15">
                                         <p class="variation-label">尺寸:</p>   
                                         <div class="product-size-variation variation-wrapper">
-                                        	<c:forEach var="prodSizeStock" items="${detail.prodSizeStockList}">
+                                        	<c:forEach var="size" items="${detail.sizeSet}">
+                                        	
 												<div class="variation">
-	                                                <a class="product-size-variation-btn selected sizeBtn" data-toggle="tooltip" data-placement="top" stock="${prodSizeStock.inStock}" productId="${prodSizeStock.productId}">
-	                                                    <span class="product-size-variation-label">${prodSizeStock.sizeType}</span>
+	                                                <a class="product-size-variation-btn selected sizeBtn" data-toggle="tooltip" data-placement="top">
+	                                                    <span class="product-size-variation-label">${size}</span>
 	                                                </a>
 	                                            </div>
                                         	</c:forEach>
@@ -279,13 +295,16 @@
                                     <div class="product-size-variations d-flex align-items-center mb--15">
                                         <p class="variation-label">顏色:</p>   
                                         <div class="product-size-variation variation-wrapper">
+                                        	<c:forEach var="color" items="${detail.colorSet}">
                                         	
-												<div class="variation">
-	                                                <a class="product-size-variation-btn selected sizeBtn" data-toggle="tooltip" data-placement="top">
-	                                                    <span class="product-size-variation-label">${detail.colorType}</span>
+                                        		
+												<div class="variation colorCheck <c:if test="${defaultColorType.equals(color)}">checked</c:if>">
+	                                                <a class="product-size-variation-btn selected colorBtn" data-toggle="tooltip" data-placement="top" color="${color}">
+	                                                    <span class="product-color-variation-label">${color}</span>
+	                                                    <c:set var="color" value="${defaultColorType}" />
 	                                                </a>
 	                                            </div>
-                                        	
+                                        	</c:forEach>
 
                                           
                                         </div>                                 
@@ -895,7 +914,7 @@
                                         <img src="<c:url value="/img/products/prod-9-1.jpg"/>" alt="Product Image" class="primary-image">
                                     </a>
                                 </div>
-                                <span class="product-badge sale">sale</span>
+                                
                             </div>
                             <div class="product-image">
                                 <div class="product-image--holder">

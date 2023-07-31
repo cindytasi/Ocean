@@ -319,7 +319,7 @@
 																	src="<c:url value="/ImageSevlet?id=${brand.productImgId}&photo_data=1"/>"																	
 																	alt="Products">
 																</a>
-																<span class="product-badge">New</span>
+																
 															</figure>
 															<div class="product-info">
 																<h3 class="product-title mb--15">

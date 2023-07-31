@@ -9,9 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import shop.service.ProductService;
+import shop.vo.ProdIdSizeColorImgStock;
 import shop.vo.Product;
-import shop.vo.ProductDetail;
+import shop.vo.ProductDetail2;
 
 
 @WebServlet("/ShopDetailServlet")
@@ -27,8 +30,14 @@ public class ShopDetailServlet extends HttpServlet {
 		String productName = req.getParameter("productName");
 		String color = req.getParameter("color");
 		
-		ProductDetail result = productService.getDetailAll(productName, color);
+		ProductDetail2 result = productService.getDetailAll(productName, color);
+
+		Gson gson = new Gson();
+		String mappingJson = gson.toJson(result.getProdIdSizeColorImgStockList());
+		
 		req.setAttribute("detail", result);
+		req.setAttribute("defaultColorType", color);
+		req.setAttribute("mappingJson", mappingJson);
 		req.getRequestDispatcher("/jsp/ShopDetail.jsp").forward(req, res);
 		
 	}

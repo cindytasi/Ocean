@@ -217,15 +217,15 @@ public class ProductDao  {
 	 	
 	 	
 	//查詢所有細項 
-	 	public List<Product> getDetailAll(String productName, String color) {
+	 	public List<Product> getDetailAll(String productName) {
 			List<Product> result = new ArrayList<Product>();
 			String getDetailAll = """
-					SELECT * FROM ProductInformation where productName = ? and ColorType =?;
+					SELECT * FROM ProductInformation where productName = ?;
 					""";			
 			try (Connection conn = dataSource.getConnection(); 
 				PreparedStatement ps = conn.prepareStatement(getDetailAll);) {	
 				ps.setString(1, productName);
-				ps.setString(2, color);
+				//ps.setString(2, color);
 				ResultSet rs = ps.executeQuery();
 				while (rs.next()) {
 					Product product = new Product();
