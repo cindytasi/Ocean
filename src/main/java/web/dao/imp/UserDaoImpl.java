@@ -44,12 +44,57 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
+	public int updata(UserVo userVo) {
+
+		final String sql = "update User set password = ?,userName = ?,telephone = ?,address = ?  where email = ?;";
+
+		try (Connection conn = ds.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, userVo.getPassword());
+			pstmt.setString(2, userVo.getUserName());
+			pstmt.setString(3, userVo.getTelephone());
+			pstmt.setString(4, userVo.getAddress());
+			pstmt.setString(5, userVo.getEmail());
+			System.out.println("aaa");
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+
+	@Override
+	public UserVo selectByEmailFromEdit(String email) {
+
+		final String sql = "select * FROM User WHERE email=? ";
+		try (Connection connection = ds.getConnection(); 
+				PreparedStatement pstm = connection.prepareStatement(sql);) {
+			pstm.setString(1, email);
+			ResultSet rs = pstm.executeQuery();
+			System.out.println("Dao selectByEmailFromEdit");
+			UserVo userVo = new UserVo();
+			if (rs.next()) {
+
+				userVo.setUserName(rs.getString("userName"));
+				userVo.setEmail(rs.getString("email"));
+				userVo.setPassword(rs.getString("password"));
+				userVo.setTelephone(rs.getString("telephone"));
+				userVo.setAddress(rs.getString("address"));
+
+			}
+			return userVo;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
 	public boolean selectByEmail(String email) {
 		String username = null;
 
 		final String sql = "select * FROM User WHERE email=? ";
-		try (Connection connection = ds.getConnection(); 
-				PreparedStatement pstm = connection.prepareStatement(sql)) {
+		try (Connection connection = ds.getConnection(); PreparedStatement pstm = connection.prepareStatement(sql)) {
 			pstm.setString(1, email);
 			ResultSet rs = pstm.executeQuery();
 			int count = 0;
@@ -65,26 +110,46 @@ public class UserDaoImpl implements UserDao {
 		return false;
 	}
 
-	public String selectForLogin(String email, String password) {
-		String username = null;
-		final String login = "select userName FROM User WHERE email=? && password=?";
+	public UserVo selectForLogin(String email, String password) {
+//		String username = null;
+		final String login = "select * FROM User WHERE email=? && password=?";
 
 		// 宣告一個用於存放使用者名稱的變數，初始值為 null，對應loginController的if...else
-		try (Connection connection = ds.getConnection(); 
-				PreparedStatement pstm = connection.prepareStatement(login);) {
-			System.out.println("Dao selectForLogin");
+//		try (Connection connection = ds.getConnection();
+//				PreparedStatement pstm = connection.prepareStatement(login);) {
+//			System.out.println("Dao selectForLogin");
+//			pstm.setString(1, email);
+//			pstm.setString(2, password);
+//			ResultSet rs = pstm.executeQuery();
+//			if (rs.next()) {
+//				// 如果結果集中有資料
+//				username = rs.getString("userName");
+//				// 從結果集中取得使用者名稱
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		try (Connection connection = ds.getConnection(); PreparedStatement pstm = connection.prepareStatement(login);) {
 			pstm.setString(1, email);
 			pstm.setString(2, password);
 			ResultSet rs = pstm.executeQuery();
+			System.out.println("Dao selectForLogin");
+			UserVo userVo = new UserVo();
 			if (rs.next()) {
-				// 如果結果集中有資料
-				username = rs.getString("userName");
-				// 從結果集中取得使用者名稱
+
+				userVo.setUserName(rs.getString("userName"));
+				userVo.setEmail(rs.getString("email"));
+				userVo.setPassword(rs.getString("password"));
+				userVo.setTelephone(rs.getString("telephone"));
+				userVo.setAddress(rs.getString("address"));
+
 			}
+			return userVo;
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return username;
+		return null;
 	}
 
 }

@@ -1,12 +1,10 @@
-	
-	
-	
-	document.getElementById('login_button').addEventListener('click', () => {
+(() => {
 	const email = document.querySelector('#email');
 	const password = document.querySelector('#password');
 	const errMsg = document.querySelector('#errMsg');
-//	console.log(email.value);
-//	console.log(password.value);
+	document.getElementById('login_button').addEventListener('click', () => {
+		//	console.log(email.value);
+		//	console.log(password.value);
 		fetch('/Ocean/web/controller/LoginController', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
@@ -17,20 +15,20 @@
 		})
 			.then(resp => resp.json())
 			.then(body => {
-//				errMsg.textContent = '';
+				errMsg.textContent = '';
 				const { successful, message } = body;
 				console.log(successful);
 				if (successful) {
-//					const { id, nickname, roleId } = body;
+					const { userName } = body;
 //					sessionStorage.setItem('id', id);
-//					sessionStorage.setItem('nickname', nickname);
+					sessionStorage.setItem('userName', userName);
+//					console.log(sessionStorage.getItem('userName'));
 //					sessionStorage.setItem('roleId', roleId);
 					location.href = 'http://localhost:8080/Ocean/index.html';
 				} else {
 					errMsg.textContent = message;
 				}
 			});
-			
-	});
 
-	
+	});
+})();

@@ -4,10 +4,14 @@ import web.vo.UserVo;
 
 public interface UserService {
 
-	public String login(String email, String password);
+//	String login(String email, String password);
 	
-	public boolean duplicateregister(String email) ;
+	 UserVo login(UserVo userVo);
+	
+	boolean duplicateregister(String email) ;
 
 	UserVo register(UserVo userVo);
+	
+	UserVo edit(UserVo userVo);
 	
 }

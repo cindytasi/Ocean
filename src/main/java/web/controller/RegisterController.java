@@ -33,7 +33,7 @@ public class RegisterController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		System.out.println("RegisterController");
+//		System.out.println("RegisterController");
 		UserVo userVo = json2Pojo(req, UserVo.class);
 		
 		if (userVo== null) {

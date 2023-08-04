@@ -10,7 +10,7 @@
 					<a href="${getContextPath()}/register/register.html" class="nav-link active" aria-current="page">註冊</a>
 				</li>
 				<li id="edit" class="nav-item">
-					<a href="${getContextPath()}/edit.html" class="nav-link active" aria-current="page">編輯會員資訊</a>
+					<a href="${getContextPath()}/edit/edit.html" class="nav-link active" aria-current="page">編輯會員資訊</a>
 				</li>
                 <li id="manage" class="nav-item">
 					<a href="${getContextPath()}/manage" class="nav-link active" aria-current="page">會員管理</a>
@@ -31,20 +31,22 @@
 	const body = document.querySelector('body');
 	body.insertBefore(nav, body.firstChild);
 
-	const nickname = sessionStorage.getItem('nickname');
-	const roleId = sessionStorage.getItem('roleId');
+	const userName = sessionStorage.getItem('userName');
+//	const roleId = sessionStorage.getItem('roleId');
 	const register = document.querySelector('#register');
 	const edit = document.querySelector('#edit');
 	const manage = document.querySelector('#manage');
 	const login = document.querySelector('#login');
 	const logout = document.querySelector('#logout');
-	if (nickname) {
+	if (userName) {
+		console.log(userName);
+		
 		register.classList.add('hide');
 		edit.classList.remove('hide');
-		roleId == 1 ? manage.classList.remove('hide') : manage.classList.add('hide');
+//		roleId == 1 ? manage.classList.remove('hide') : manage.classList.add('hide');
 		login.classList.add('hide');
 		logout.classList.remove('hide');
-		document.querySelector('#currentUser').textContent = nickname;
+		document.querySelector('#currentUser').textContent = userName;
 	} else {
 		register.classList.remove('hide');
 		edit.classList.add('hide');
@@ -54,9 +56,9 @@
 	}
 
 	logout.addEventListener('click', () => {
-		sessionStorage.removeItem('nickname');
-		fetch('member/logout');
-		location.href = "${getContextPath()}/index.html";
+		sessionStorage.removeItem('userName');
+		fetch('/Ocean/web/controller/LogoutContorller"');
+		location.href = 'http://localhost:8080/Ocean/index.html';
 	});
 
 	function getContextPath() {

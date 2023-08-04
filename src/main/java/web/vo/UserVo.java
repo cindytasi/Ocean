@@ -1,8 +1,11 @@
 package web.vo;
 
 import java.sql.Timestamp;
+import java.util.Arrays;
 
-public class UserVo {
+import core.vo.CoreVo;
+
+public class UserVo extends CoreVo{
 
 	private Integer userId;
 	private String userName;
@@ -14,9 +17,26 @@ public class UserVo {
 	private Timestamp achievementTime;
 	private byte[] profilePicture;
 	private Boolean statusCode;
+
 	
-	private boolean successful;
-	private String message;
+
+	public UserVo() {
+
+	}
+
+	public UserVo(Integer userId, String userName, String address, String telephone, String email, String account,
+			String password, Timestamp achievementTime, Boolean statusCode) {
+
+		this.userId = userId;
+		this.userName = userName;
+		this.address = address;
+		this.telephone = telephone;
+		this.email = email;
+		this.account = account;
+		this.password = password;
+		this.achievementTime = achievementTime;
+		this.statusCode = statusCode;
+	}
 
 	public Integer getUserId() {
 		return userId;
@@ -98,25 +118,5 @@ public class UserVo {
 		this.statusCode = statusCode;
 	}
 
-	public boolean isSuccessful() {
-		return successful;
-	}
 
-	
-	
-	public void setSuccessful(boolean successful) {
-		this.successful = successful;
-	}
-
-	
-
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
-	
-	
 }

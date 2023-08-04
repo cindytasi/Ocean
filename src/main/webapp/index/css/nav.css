@@ -1,9 +1,18 @@
 @charset "UTF-8";
 
+/* body { */
+/* 	background-color: black; */
+/* 	color: aqua; */
+/* } */
+
 body {
-	background-color: black;
-	color: aqua;
-}
+        background: #000;
+        background-image: url("../img/waves_4.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+		color: aqua;
+/*         background-position: center center; */
+    }
 
 h1 {
 	color: aqua;
@@ -25,7 +34,7 @@ h1 {
 }
 
 #input_div {
-	margin: 500px 0px 0px 0px;
+	margin: 150px 0px 0px 0px;
 	text-align: center;
 	/* border: 1px solid white; */
 }
