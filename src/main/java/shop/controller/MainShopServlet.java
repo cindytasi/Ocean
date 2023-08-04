@@ -25,7 +25,7 @@ public class MainShopServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
 		List<Product> list = productService.getNewAll();
-		req.setAttribute("product", list);		
+		req.setAttribute("main", list);		
 		req.getRequestDispatcher("/jsp/MainShop.jsp").forward(req, res);
 
 	}

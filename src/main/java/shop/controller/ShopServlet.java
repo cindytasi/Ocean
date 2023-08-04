@@ -7,6 +7,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
+
 import shop.service.ProductService;
 import shop.vo.Product;
 
@@ -23,13 +26,10 @@ public class ShopServlet extends HttpServlet {
 	
     
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-
 		String type = (String)req.getParameter("type");	
 		List<Product> list = productService.getTopBarData(type);
-		
 		req.setAttribute("product", list);	
 		req.getRequestDispatcher("/jsp/Shop.jsp").forward(req, res);
-
 	}
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

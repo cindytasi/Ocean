@@ -21,8 +21,18 @@ public class Product {
 	private Integer productImgId;
 	private Integer inStock;
 	private Integer gender;
+	private String msg;
+	private String type;
 	
 	
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
 	public Product() {
 		
 	}
@@ -45,9 +55,18 @@ public class Product {
 		this.productImgId = productImgId;
 		this.inStock = inStock;
 		this.gender = gender;
-		
-		
+	
 	}
+	
+	
+	public String getMsg() {
+		return msg;
+	}
+
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
+
 	public Integer getProductId() {
 		return productId;
 	}

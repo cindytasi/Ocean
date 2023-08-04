@@ -32,13 +32,63 @@
     <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
   	
     <script type="text/javascript" src="<c:url value="/js/shopdetail.js"/>"></script>
-	
+	<script type="text/javascript" src="<c:url value="/js/keyword.js"/>"></script>
 	
 	<style type="text/css">
 		.checked {
-      	background-color:gainsboro;
-      	
+      		background-color:gainsboro;
     	}
+    	.selected-color {
+			background-color: gainsboro; /* 设置选中标签的背景颜色为红色，你可以根据需要更改颜色 */
+   			color: #FFFFFF; /* 设置选中标签的文本颜色为白色，你可以根据需要更改颜色 */  			
+		}
+		        :root {
+            --bs-blue: #81D8D0;
+        }
+
+        /* 頁面背景色 */
+        .list {
+            background: #000;
+        }
+
+        /* 清單 */
+        .navbar-dark .navbar-nav .nav-link:focus,
+        .navbar-dark .navbar-nav .nav-link:hover {
+            color: var(--bs-blue)
+        }
+
+        .navbar {
+            background: #000;
+        }
+
+        /* search */
+        .bi {
+            color: #fff;
+            font-size: 25px;
+        }
+
+        .bi:hover {
+            color: #81D8D0;
+        }
+
+        /* 下拉選單 */
+        .dropdown-item:hover {
+            font-size: 20px;
+            color: rgb(9, 163, 130);
+        }
+
+        .dropdown-menu.show {
+            opacity: 65%;
+        }
+        
+        .errMsg {
+  			position: absolute;
+  			right: 0;
+  			/* 使用 absolute 定位，並設定 right 為 0 */
+  			transform: translateX(100%);
+  			/* 將元素右偏移自身寬度的 100%，這將將元素移到最右邊 */
+		}
+
 
 	</style>
 </head>
@@ -57,170 +107,7 @@
 
     <!-- Main Wrapper Start -->
     <div class="wrapper">
-        <!-- Header Start -->
-        <header class="header">
-            <div class="header-inner fixed-header">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-xl-10 col-lg-9 col-3">
-                            <nav class="main-navigation">
-                                <div class="site-branding">
-                                    <a href="index.html" class="logo">
-                                        <figure class="logo--transparent">                                        
-                                            <img src="<c:url value="/img/logo/logo-white.png"/>" alt="Logo">
-                                        </figure>
-                                        <figure class="logo--normal">                                        
-                                            <img src="<c:url value="/img/logo/logo.png"/>" alt="Logo">
-                                        </figure>
-                                    </a>
-                                </div>
-                                
-                                <div class="mainmenu-nav d-none d-lg-block">
-									<ul class="mainmenu">
-										<li class="mainmenu__item menu-item-has-children"><a
-											href="<c:url value="/ShopServlet?type=AllProduct"/>"
-											class="mainmenu__link"> <span class="mm-text">所有商品</span>
-										</a></li>
-
-										<li class="mainmenu__item menu-item-has-children"><a
-											href="<c:url value="/ShopServlet?type=Women"/>"
-											class="mainmenu__link"> <span class="mm-text">女裝</span>
-										</a>
-											<ul class="sub-menu"">
-												<li><a
-													href="<c:url value="/ShopServlet?type=WomenTop"/>"> <span
-														class="mm-text">上衣 Top</span>
-												</a></li>
-												<li><a
-													href="<c:url value="/ShopServlet?type=WomenBottom"/>">
-														<span class="mm-text">下身 Bottom</span>
-												</a></li>
-											</ul></li>
-
-										<li class="mainmenu__item menu-item-has-children"><a
-											href="<c:url value="/ShopServlet?type=Men"/>"
-											class="mainmenu__link"> <span class="mm-text">男裝</span>
-										</a>
-											<ul class="sub-menu">
-												<li><a href="<c:url value="/ShopServlet?type=MenTop"/>">
-														<span class="mm-text">上衣 Top</span>
-												</a></li>
-												<li><a
-													href="<c:url value="/ShopServlet?type=MenBottom"/>"> <span
-														class="mm-text">下身 Bottom</span>
-												</a></li>
-											</ul></li>
-
-
-										<li class="mainmenu__item menu-item-has-children"><a
-											href="<c:url value="/ShopServlet?type=Shoes"/>"
-											class="mainmenu__link"> <span class="mm-text">鞋子</span>
-										</a>
-											<ul class="sub-menu">
-												<li><a
-													href="<c:url value="/ShopServlet?type=WomenShoes"/>"> <span
-														class="mm-text">女鞋 women's shoes</span>
-												</a></li>
-												<li><a
-													href="<c:url value="/ShopServlet?type=MenShoes"/>"> <span
-														class="mm-text">男鞋 Men's shoes</span>
-												</a></li>
-											</ul></li>
-										<li class="mainmenu__item menu-item-has-children"><a
-											href="<c:url value="/ShopServlet?type=Accessories"/>"
-											class="mainmenu__link"> <span class="mm-text">飾品</span>
-										</a></li>
-										<li class="mainmenu__item menu-item-has-children"><a
-											href="<c:url value="/ShopServlet?type=Others"/>"
-											class="mainmenu__link"> <span class="mm-text">其他周邊</span>
-										</a></li>
-									</ul>
-								</div>
-                                
-                                
-                                
-                               
-                            </nav>
-                        </div>
-                        <div class="col-xl-2 col-lg-3 col-9 text-right">
-                            <ul class="header-toolbar">
-                                <li class="header-toolbar__item">
-                                    <a href="wishlist.html" class="header-toolbar__btn">
-                                        <i class="flaticon flaticon-like"></i>
-                                    </a>
-                                </li>
-                                <li class="header-toolbar__item mini-cart-item">
-                                    <a href="#miniCart" class="header-toolbar__btn toolbar-btn mini-cart-btn">
-                                        <i class="flaticon flaticon-shopping-cart"></i>
-                                        <sup class="mini-cart-count">2</sup>
-                                    </a>
-                                </li>
-                                <li class="header-toolbar__item user-info">
-                                    <a href="" class="header-toolbar__btn">
-                                        <i class="flaticon flaticon-user"></i>
-                                    </a>
-                                    <ul class="user-info-menu">
-                                        <li>
-                                            <a href="my-account.html">My Account</a>
-                                        </li>
-                                        <li>
-                                            <a href="cart.html">Shopping Cart</a>
-                                        </li>
-                                        <li>
-                                            <a href="checkout.html">Check Out</a>
-                                        </li>
-                                        <li>
-                                            <a href="wishlist.html">Wishlist</a>
-                                        </li>
-                                        <li>
-                                            <a href="order-tracking.html">Order tracking</a>
-                                        </li>
-                                        <li>
-                                            <a href="compare.html">compare</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="header-toolbar__item">
-                                    <a href="#searchForm" class="header-toolbar__btn toolbar-btn">
-                                        <i class="flaticon flaticon-search"></i>
-                                    </a>
-                                </li>
-                                <li class="header-toolbar__item d-lg-none">
-                                    <a href="#" class="header-toolbar__btn menu-btn">
-                                        <i class="fa fa-bars"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="mobile-menu"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <!-- Header End -->
-
-        <!-- Breadcrumb area Start -->
-        <div class="breadcrumb-area bg-color ptb--90" data-bg-color="#f6f6f6">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="d-flex justify-content-between align-items-center flex-sm-row flex-column">
-                            <h1 class="page-title">Shop</h1>
-                            <ul class="breadcrumb">
-                                <li><a href="<c:url value="/MainShopServlet"/>">Home</a></li>
-                                <li class="current"><span>Product Details</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Breadcrumb area End -->
-
+    <jsp:include page="/jsp/SelectBar.jsp"></jsp:include>
         <!-- Main Content Wrapper Start -->
         <div class="main-content-wrapper">
             <div class="page-content-inner ptb--80">
@@ -272,7 +159,7 @@
                                    
                                 </div>
                                 <h3 class="product-title mb--20">${detail.displayProdName}</h3>
-                                <p class="product-short-description mb--20">Donec accumsan auctor iaculis. Sed suscipit arcu ligula, at egestas magna molestie a. Proin ac ex maximus, ultrices justo eget, sodales orci. Aliquam egestas libero ac turpis pharetra, in vehicula lacus scelerisque. Vestibulum ut sem laoreet, feugiat tellus at, hendrerit arcu.</p>
+                                
                                 <div class="product-price-wrapper mb--25">
                                     <span class="money">NT.${detail.price}</span>
                                 </div>
@@ -298,7 +185,7 @@
                                         	<c:forEach var="color" items="${detail.colorSet}">
                                         	
                                         		
-												<div class="variation colorCheck <c:if test="${defaultColorType.equals(color)}">checked</c:if>">
+												<div id="btn1" class="variation colorCheck <c:if test="${defaultColorType.equals(color)}">checked</c:if>">
 	                                                <a class="product-size-variation-btn selected colorBtn" data-toggle="tooltip" data-placement="top" color="${color}">
 	                                                    <span class="product-color-variation-label">${color}</span>
 	                                                    <c:set var="color" value="${defaultColorType}" />
@@ -317,10 +204,16 @@
                                             <input type="number" class="quantity-input" name="qty" id="qty" value="1" min="1">
                                         </div>
                                     </div>
+                                    
+                                </div>  
+                             <div>
+                                    <button type="button" class="btn btn-small btn-bg-red btn-color-white btn-hover-2" onclick="window.location.href='cart.html'">
+                                        WIST LIST
+                                    </button>
                                     <button type="button" class="btn btn-small btn-bg-red btn-color-white btn-hover-2" onclick="window.location.href='cart.html'">
                                         Add To Cart
                                     </button>
-                                </div>  
+                                    </div>
                                 
                             </div>
                         </div>
@@ -813,18 +706,7 @@
         </footer>
         <!-- Footer End-->
 
-        <!-- Searchform Popup Start -->
-        <div class="searchform__popup" id="searchForm">
-            <a href="#" class="btn-close"><i class="flaticon flaticon-cross"></i></a>
-            <div class="searchform__body">
-                <p>Start typing and press Enter to search</p>
-                <form class="searchform">
-                    <input type="text" name="popup-search" id="popup-search" class="searchform__input" placeholder="Search Entire Store...">
-                    <button type="submit" class="searchform__submit"><i class="flaticon flaticon-magnifying-glass-icon"></i></button>
-                </form>
-            </div>
-        </div>
-        <!-- Searchform Popup End -->
+        
 
         <!-- Mini Cart Start -->
         <aside class="mini-cart" id="miniCart">

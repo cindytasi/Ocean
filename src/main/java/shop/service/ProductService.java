@@ -16,6 +16,7 @@ import shop.vo.ProductDetail;
 import shop.vo.ProductDetail2;
 
 public class ProductService {
+	
 
 	private static ProductDao productDao;
 	private static ImageDao imageDao;
@@ -72,7 +73,10 @@ public class ProductService {
 		default:
 			List<Product> othersResult = productDao.typeOfAcc(5);
 			return othersResult;
+
 		}
+		
+		
 
 	}
 
@@ -97,6 +101,8 @@ public class ProductService {
 		}
 
 	}
+	
+	
 
 	// 拿各別產品細項資料
 	public ProductDetail2 getDetailAll(String productName, String color) {
@@ -160,6 +166,18 @@ public class ProductService {
 		return productDetail;
 
 	
+	}
+	
+	//拿收尋bar後的關鍵字資料
+	public List<Product> selectKeyWord(String msg){
+		List<Product> result = productDao.getKeyWord(msg);
+		if(result == null) {
+			System.out.println("找不到此商品，請重新輸入");
+			
+			return null;
+		}
+		return result;		
+		
 	}
 
 }
