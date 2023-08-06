@@ -8,7 +8,13 @@
 <html class="no-js" lang="zxx">
 
 <script type="text/javascript">
-	var mappingJson = '${mappingJson}';
+
+	var PageConfig = {
+		price :	"${detail.price}",
+		prodName: "${detail.displayProdName}",
+ 		mappingJson:'${mappingJson}'
+	};
+		
 </script>
 
 <head>
@@ -32,69 +38,102 @@
     <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
   	
     <script type="text/javascript" src="<c:url value="/js/shopdetail.js"/>"></script>
-	<script type="text/javascript" src="<c:url value="/js/keyword.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/js/delAddRedis.js"/>"></script>
 	
-	<style type="text/css">
-		.checked {
-      		background-color:gainsboro;
-    	}
-    	.selected-color {
-			background-color: gainsboro; /* 设置选中标签的背景颜色为红色，你可以根据需要更改颜色 */
-   			color: #FFFFFF; /* 设置选中标签的文本颜色为白色，你可以根据需要更改颜色 */  			
-		}
-		        :root {
-            --bs-blue: #81D8D0;
-        }
+	
 
-        /* 頁面背景色 */
-        .list {
-            background: #000;
-        }
-
-        /* 清單 */
-        .navbar-dark .navbar-nav .nav-link:focus,
-        .navbar-dark .navbar-nav .nav-link:hover {
-            color: var(--bs-blue)
-        }
-
-        .navbar {
-            background: #000;
-        }
-
-        /* search */
-        .bi {
-            color: #fff;
-            font-size: 25px;
-        }
-
-        .bi:hover {
-            color: #81D8D0;
-        }
-
-        /* 下拉選單 */
-        .dropdown-item:hover {
-            font-size: 20px;
-            color: rgb(9, 163, 130);
-        }
-
-        .dropdown-menu.show {
-            opacity: 65%;
-        }
-        
-        .errMsg {
-  			position: absolute;
-  			right: 0;
-  			/* 使用 absolute 定位，並設定 right 為 0 */
-  			transform: translateX(100%);
-  			/* 將元素右偏移自身寬度的 100%，這將將元素移到最右邊 */
-		}
-
-
-	</style>
 </head>
 
 <body>
+	<input id="productName" type="hidden" value="${detail.displayProdName}"/>
+	<input id="price" type="hidden" value="${detail.price}"/>
+	<!-- Header Start -->
+	<header class="header">
+<jsp:include page="/jsp/SelectBar.jsp"></jsp:include>
+	<div class="header-inner fixed-header"
+		style="background-color: #deefed;">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-xl-10 col-lg-9 col-3">
+					<nav class="main-navigation">
+						<div class="mainmenu-nav d-none d-lg-block">
+							<ul class="mainmenu">
+								<li class="mainmenu__item menu-item-has-children"><a
+									href="<c:url value="/ShopServlet?type=AllProduct"/>"
+									class="mainmenu__link"> <span class="mm-text">所有商品</span>
+								</a></li>
 
+								<li class="mainmenu__item menu-item-has-children"><a
+									href="<c:url value="/ShopServlet?type=Women"/>"
+									class="mainmenu__link"> <span class="mm-text">女裝</span>
+								</a>
+									<ul class="sub-menu"">
+										<li><a href="<c:url value="/ShopServlet?type=WomenTop"/>">
+												<span class="mm-text">上衣 Top</span>
+										</a></li>
+										<li><a
+											href="<c:url value="/ShopServlet?type=WomenBottom"/>"> <span
+												class="mm-text">下身 Bottom</span>
+										</a></li>
+									</ul></li>
+
+								<li class="mainmenu__item menu-item-has-children"><a
+									href="<c:url value="/ShopServlet?type=Men"/>"
+									class="mainmenu__link"> <span class="mm-text">男裝</span>
+								</a>
+									<ul class="sub-menu">
+										<li><a href="<c:url value="/ShopServlet?type=MenTop"/>">
+												<span class="mm-text">上衣 Top</span>
+										</a></li>
+										<li><a
+											href="<c:url value="/ShopServlet?type=MenBottom"/>"> <span
+												class="mm-text">下身 Bottom</span>
+										</a></li>
+									</ul></li>
+
+
+								<li class="mainmenu__item menu-item-has-children"><a
+									href="<c:url value="/ShopServlet?type=Shoes"/>"
+									class="mainmenu__link"> <span class="mm-text">鞋子</span>
+								</a>
+									<ul class="sub-menu">
+										<li><a
+											href="<c:url value="/ShopServlet?type=WomenShoes"/>"> <span
+												class="mm-text">女鞋 women's shoes</span>
+										</a></li>
+										<li><a href="<c:url value="/ShopServlet?type=MenShoes"/>">
+												<span class="mm-text">男鞋 Men's shoes</span>
+										</a></li>
+									</ul></li>
+								<li class="mainmenu__item menu-item-has-children"><a
+									href="<c:url value="/ShopServlet?type=Accessories"/>"
+									class="mainmenu__link"> <span class="mm-text">飾品</span>
+								</a></li>
+								<li class="mainmenu__item menu-item-has-children"><a
+									href="<c:url value="/ShopServlet?type=Others"/>"
+									class="mainmenu__link"> <span class="mm-text">其他周邊</span>
+								</a></li>
+								<div class="errMsg" style="display: inline-block">
+									<ul class="breadcrumb">								
+									
+										<li><a href="<c:url value="/MainShopServlet"/>">Home</a></li>
+										<li class="current"><span>Product Detail</span></li>
+									</ul>
+								</div>
+							</ul>
+						</div>
+					</nav>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12">
+					<div class="mobile-menu"></div>
+				</div>
+			</div>
+		</div>
+	</div>	
+</header>
+<!-- Header End -->
     <!-- Preloader Start -->
     <div class="zakas-preloader active">
         <div class="zakas-preloader-inner h-100 d-flex align-items-center justify-content-center">
@@ -107,7 +146,7 @@
 
     <!-- Main Wrapper Start -->
     <div class="wrapper">
-    <jsp:include page="/jsp/SelectBar.jsp"></jsp:include>
+
         <!-- Main Content Wrapper Start -->
         <div class="main-content-wrapper">
             <div class="page-content-inner ptb--80">
@@ -167,7 +206,7 @@
                                     <div class="product-size-variations d-flex align-items-center mb--15">
                                         <p class="variation-label">尺寸:</p>   
                                         <div class="product-size-variation variation-wrapper">
-                                        	<c:forEach var="size" items="${detail.sizeSet}">
+                                        	<c:forEach var="size" items="${detail.sizeList}">
                                         	
 												<div class="variation">
 	                                                <a class="product-size-variation-btn selected sizeBtn" data-toggle="tooltip" data-placement="top">
@@ -181,12 +220,12 @@
                                     </div>
                                     <div class="product-size-variations d-flex align-items-center mb--15">
                                         <p class="variation-label">顏色:</p>   
-                                        <div class="product-size-variation variation-wrapper">
+                                        <div id="colorbtnList" class="product-size-variation variation-wrapper">
                                         	<c:forEach var="color" items="${detail.colorSet}">
                                         	
                                         		
-												<div id="btn1" class="variation colorCheck <c:if test="${defaultColorType.equals(color)}">checked</c:if>">
-	                                                <a class="product-size-variation-btn selected colorBtn" data-toggle="tooltip" data-placement="top" color="${color}">
+												<div class="variation colorCheck colorbtn">
+	                                                <a class="product-size-variation-btn selected colorBtn <c:if test="${defaultColorType.equals(color)}">checked</c:if>" data-toggle="tooltip" data-placement="top" color="${color}">
 	                                                    <span class="product-color-variation-label">${color}</span>
 	                                                    <c:set var="color" value="${defaultColorType}" />
 	                                                </a>
@@ -199,7 +238,7 @@
                                 </form>
                                 <div class="product-action d-flex flex-sm-row align-items-sm-center flex-column align-items-start mb--30">
                                     <div class="quantity-wrapper d-flex align-items-center mr--30 mr-xs--0 mb-xs--30">
-                                        <label class="quantity-label" for="qty">件數:</label>
+                                        <label class="quantity-label" for="qty" style="font-size:16px">件數:</label>
                                         <div class="quantity">
                                             <input type="number" class="quantity-input" name="qty" id="qty" value="1" min="1">
                                         </div>
@@ -207,10 +246,10 @@
                                     
                                 </div>  
                              <div>
-                                    <button type="button" class="btn btn-small btn-bg-red btn-color-white btn-hover-2" onclick="window.location.href='cart.html'">
+                                    <button id="wishlistbtn" type="button" class="btn btn-small btn-bg-red btn-color-white btn-hover-2" onclick="window.location.href='cart.html'">
                                         WIST LIST
                                     </button>
-                                    <button type="button" class="btn btn-small btn-bg-red btn-color-white btn-hover-2" onclick="window.location.href='cart.html'">
+                                    <button id="shopCartbtn" type="button" class="btn btn-small btn-bg-red btn-color-white btn-hover-2">
                                         Add To Cart
                                     </button>
                                     </div>
@@ -708,67 +747,10 @@
 
         
 
-        <!-- Mini Cart Start -->
-        <aside class="mini-cart" id="miniCart">
-            <div class="mini-cart-wrapper">
-                <a href="" class="btn-close"><i class="flaticon flaticon-cross"></i></a>
-                <div class="mini-cart-inner">
-                    <h3 class="mini-cart__heading mb--40 mb-lg--30">Shopping Cart</h3>
-                    <div class="mini-cart__content">
-                        <ul class="mini-cart__list">
-                            <li class="mini-cart__product">
-                                <a href="#" class="remove-from-cart remove">
-                                    <i class="flaticon flaticon-cross"></i>
-                                </a>
-                                <div class="mini-cart__product__image">                                
-                                    <img src="<c:url value="/img/products/prod-1-100x100.jpg"/>" alt="products">
-                                </div>
-                                <div class="mini-cart__product__content">
-                                    <a class="mini-cart__product__title" href="product-details.html">Chain print bermuda shorts  </a>
-                                    <span class="mini-cart__product__quantity">1 x $49.00</span>
-                                </div>
-                            </li>
-                            <li class="mini-cart__product">
-                                <a href="#" class="remove-from-cart remove">
-                                    <i class="flaticon flaticon-cross"></i>
-                                </a>
-                                <div class="mini-cart__product__image">                                
-                                    <img src="<c:url value="/img/products/prod-2-100x100.jpg"/>" alt="products">
-                                </div>
-                                <div class="mini-cart__product__content">
-                                    <a class="mini-cart__product__title" href="product-details.html">Waxed-effect pleated skirt</a>
-                                    <span class="mini-cart__product__quantity">1 x $49.00</span>
-                                </div>
-                            </li>
-                            <li class="mini-cart__product">
-                                <a href="#" class="remove-from-cart remove">
-                                    <i class="flaticon flaticon-cross"></i>
-                                </a>
-                                <div class="mini-cart__product__image">                               
-                                    <img src=" <c:url value="/img/products/prod-5-100x100.jpg"/>" alt="products">
-                                </div>
-                                <div class="mini-cart__product__content">
-                                    <a class="mini-cart__product__title" href="product-details.html">Waxed-effect pleated skirt</a>
-                                    <span class="mini-cart__product__quantity">1 x $49.00</span>
-                                </div>
-                            </li>
-                        </ul>
-                        <div class="mini-cart__total">
-                            <span>Subtotal</span>
-                            <span class="ammount">$98.00</span>
-                        </div>
-                        <div class="mini-cart__buttons">
-                            <a href="cart.html" class="btn btn-fullwidth btn-bg-sand mb--20">View Cart</a>
-                            <a href="checkout.html" class="btn btn-fullwidth btn-bg-sand">Checkout</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </aside>
-        <!-- Mini Cart End -->
+        
 
         <!-- Global Overlay Start -->
-        <div class="zakas-global-overlay"></div>
+        <div ></div>
         <!-- Global Overlay End -->
 
         <!-- Qicuk View Modal Start -->

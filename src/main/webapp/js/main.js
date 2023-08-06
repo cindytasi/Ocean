@@ -174,6 +174,7 @@
 	*Header Toolbar Sidenav Expand
 	***********************/
 
+	
 	$('.toolbar-btn').on('click', function(e){
 		e.preventDefault();
 		e.stopPropagation();
@@ -189,8 +190,6 @@
 			$($overlay).removeClass('overlay-open');
 		}
 	});
-
-	
 
 	/**********************
 	*Click on Documnet

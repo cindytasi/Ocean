@@ -14,8 +14,8 @@ public class Product {
 	private String sizeType;
 	private String colorType;
 	private Integer comId;
-	private LocalDateTime addedTime;
-	private LocalDateTime reviewTime;
+	private Date addedTime;
+	private Date reviewTime;
 	private Double price;
 	private String videoName;
 	private Integer productImgId;
@@ -37,9 +37,12 @@ public class Product {
 		
 	}
 	
+
+	
+	
 	public Product(Integer productId, String productName, Integer specType, String specInfo, String sizeType,
-			String colorType, Integer comId, LocalDateTime addedTime, LocalDateTime reviewTime, Double price, String videoName,
-			Integer productImgId, Integer inStock, Integer gender) {
+			String colorType, Integer comId, Date addedTime, Date reviewTime, Double price, String videoName,
+			Integer productImgId, Integer inStock, Integer gender, String msg, String type) {
 		super();
 		this.productId = productId;
 		this.productName = productName;
@@ -55,10 +58,10 @@ public class Product {
 		this.productImgId = productImgId;
 		this.inStock = inStock;
 		this.gender = gender;
-	
+		this.msg = msg;
+		this.type = type;
 	}
-	
-	
+
 	public String getMsg() {
 		return msg;
 	}
@@ -109,18 +112,23 @@ public class Product {
 	public void setComId(Integer comId) {
 		this.comId = comId;
 	}
-	public LocalDateTime getAddedTime() {
+
+	public Date getAddedTime() {
 		return addedTime;
 	}
-	public void setAddedTime(LocalDateTime addedTime) {
+
+	public void setAddedTime(Date addedTime) {
 		this.addedTime = addedTime;
 	}
-	public LocalDateTime getReviewTime() {
+
+	public Date getReviewTime() {
 		return reviewTime;
 	}
-	public void setReviewTime(LocalDateTime reviewTime) {
+
+	public void setReviewTime(Date reviewTime) {
 		this.reviewTime = reviewTime;
 	}
+
 	public Double getPrice() {
 		return price;
 	}

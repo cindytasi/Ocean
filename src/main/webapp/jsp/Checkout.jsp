@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=BIG5"
+	pageEncoding="BIG5"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 
 
 <!doctype html>
@@ -10,7 +9,6 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<!-- æŠŠjQureyçµ±ä¸€åŒ¯é€²ä¾† -->
 <jsp:include page="/jsp/pluginsJs.jsp"></jsp:include>
 <title>Zakas - Fashion eCommerce Bootstrap 4 Template</title>
 <meta name="description" content="">
@@ -19,82 +17,52 @@
 <!-- Favicons -->
 <link rel="shortcut icon" href="<c:url value="/img/favicon.ico"/>"
 	type="image/x-icon">
-<link rel="apple-touch-icon" href="/img/icon.png">
+<link rel="apple-touch-icon" href="<c:url value="/img/icon.png"/>">
 
 <!-- ************************* CSS Files ************************* -->
 
 <!-- Vendor CSS -->
-
 <link rel="stylesheet" href="<c:url value="/css/vendor.css"/>">
 
 <!-- style css -->
-
 <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
 
-
-<style type="text/css">
-.checked {
-	background-color: gainsboro;
+<style>
+.cart-section {
+	padding: 64px 0 40px
 }
 
-.selected-color {
-	background-color: gainsboro; /* è®¾ç½®é€‰ä¸­æ ‡ç­¾çš„èƒŒæ™¯é¢œè‰²ä¸ºçº¢è‰²ï¼Œä½ å¯ä»¥æ ¹æ®éœ€è¦æ›´æ”¹é¢œè‰² */
-	color: #FFFFFF; /* è®¾ç½®é€‰ä¸­æ ‡ç­¾çš„æ–‡æœ¬é¢œè‰²ä¸ºç™½è‰²ï¼Œä½ å¯ä»¥æ ¹æ®éœ€è¦æ›´æ”¹é¢œè‰² */
+select {
+	margin: 0;
+	padding: 0 8px 0 3px;
+	height: 30px;
+	border: 1px solid #c5c5c5;
+	color: #656565;
+	background-color: #fff;
+	vertical-align: top;
+	text-align: center;
+	box-sizing: border-box;
 }
 
-:root {
-	--bs-blue: #81D8D0;
+.selection {
+	position: relative;
+	display: inline-block;
+	vertical-align: top;
 }
 
-/* é é¢èƒŒæ™¯è‰² */
-.list {
-	background: #000;
+.form__label {
+	color: #707070;
+	font-size: 16px;
+	font-weight: 500;
 }
 
-/* æ¸…å–® */
-.navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover
-	{
-	color: var(--bs-blue)
-}
 
-.navbar {
-	background: #000;
-}
-
-/* search */
-.bi {
-	color: #fff;
-	font-size: 25px;
-}
-
-.bi:hover {
-	color: #81D8D0;
-}
-
-/* ä¸‹æ‹‰é¸å–® */
-.dropdown-item:hover {
-	font-size: 20px;
-	color: rgb(9, 163, 130);
-}
-
-.dropdown-menu.show {
-	opacity: 65%;
-}
-
-.errMsg {
-	position: absolute;
-	right: 0;
-	/* ä½¿ç”¨ absolute å®šä½ï¼Œä¸¦è¨­å®š right ç‚º 0 */
-	transform: translateX(100%);
-	/* å°‡å…ƒç´ å³åç§»è‡ªèº«å¯¬åº¦çš„ 100%ï¼Œé€™å°‡å°‡å…ƒç´ ç§»åˆ°æœ€å³é‚Š */
-}
 </style>
-
 
 </head>
 
 <body>
-	<!-- Header Start -->
+<!-- Header Start -->
 	<header class="header">
 		<jsp:include page="/jsp/SelectBar.jsp"></jsp:include>
 		<div class="header-inner fixed-header"
@@ -107,60 +75,60 @@
 								<ul class="mainmenu">
 									<li class="mainmenu__item menu-item-has-children"><a
 										href="<c:url value="/ShopServlet?type=AllProduct"/>"
-										class="mainmenu__link"> <span class="mm-text">æ‰€æœ‰å•†å“</span>
+										class="mainmenu__link"> <span class="mm-text">©Ò¦³°Ó«~</span>
 									</a></li>
 
 									<li class="mainmenu__item menu-item-has-children"><a
 										href="<c:url value="/ShopServlet?type=Women"/>"
-										class="mainmenu__link"> <span class="mm-text">å¥³è£</span>
+										class="mainmenu__link"> <span class="mm-text">¤k¸Ë</span>
 									</a>
 										<ul class="sub-menu"">
 											<li><a
 												href="<c:url value="/ShopServlet?type=WomenTop"/>"> <span
-													class="mm-text">ä¸Šè¡£ Top</span>
+													class="mm-text">¤W¦ç Top</span>
 											</a></li>
 											<li><a
 												href="<c:url value="/ShopServlet?type=WomenBottom"/>"> <span
-													class="mm-text">ä¸‹èº« Bottom</span>
+													class="mm-text">¤U¨­ Bottom</span>
 											</a></li>
 										</ul></li>
 
 									<li class="mainmenu__item menu-item-has-children"><a
 										href="<c:url value="/ShopServlet?type=Men"/>"
-										class="mainmenu__link"> <span class="mm-text">ç”·è£</span>
+										class="mainmenu__link"> <span class="mm-text">¨k¸Ë</span>
 									</a>
 										<ul class="sub-menu">
 											<li><a href="<c:url value="/ShopServlet?type=MenTop"/>">
-													<span class="mm-text">ä¸Šè¡£ Top</span>
+													<span class="mm-text">¤W¦ç Top</span>
 											</a></li>
 											<li><a
 												href="<c:url value="/ShopServlet?type=MenBottom"/>"> <span
-													class="mm-text">ä¸‹èº« Bottom</span>
+													class="mm-text">¤U¨­ Bottom</span>
 											</a></li>
 										</ul></li>
 
 
 									<li class="mainmenu__item menu-item-has-children"><a
 										href="<c:url value="/ShopServlet?type=Shoes"/>"
-										class="mainmenu__link"> <span class="mm-text">é‹å­</span>
+										class="mainmenu__link"> <span class="mm-text">¾c¤l</span>
 									</a>
 										<ul class="sub-menu">
 											<li><a
 												href="<c:url value="/ShopServlet?type=WomenShoes"/>"> <span
-													class="mm-text">å¥³é‹ women's shoes</span>
+													class="mm-text">¤k¾c women's shoes</span>
 											</a></li>
 											<li><a
 												href="<c:url value="/ShopServlet?type=MenShoes"/>"> <span
-													class="mm-text">ç”·é‹ Men's shoes</span>
+													class="mm-text">¨k¾c Men's shoes</span>
 											</a></li>
 										</ul></li>
 									<li class="mainmenu__item menu-item-has-children"><a
 										href="<c:url value="/ShopServlet?type=Accessories"/>"
-										class="mainmenu__link"> <span class="mm-text">é£¾å“</span>
+										class="mainmenu__link"> <span class="mm-text">¹¢«~</span>
 									</a></li>
 									<li class="mainmenu__item menu-item-has-children"><a
 										href="<c:url value="/ShopServlet?type=Others"/>"
-										class="mainmenu__link"> <span class="mm-text">å…¶ä»–å‘¨é‚Š</span>
+										class="mainmenu__link"> <span class="mm-text">¨ä¥L©PÃä</span>
 									</a></li>
 
 									<div class="errMsg" style="display: inline-block">
@@ -202,293 +170,347 @@
 
 	<!-- Main Wrapper Start -->
 	<div class="wrapper">
+		
+		
+		
+
+		<!-- Breadcrumb area Start -->
+		<div class="breadcrumb-area bg-color ptb--90" data-bg-color="#f6f6f6">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div
+							class="d-flex justify-content-between align-items-center flex-sm-row flex-column">
+							<h1 class="page-title">Checkout</h1>
+							<ul class="breadcrumb">
+								<li><a href="index.html">Home</a></li>
+								<li class="current"><span>Checkout</span></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Breadcrumb area End -->
 
 		<!-- Main Content Wrapper Start -->
 		<div class="main-content-wrapper">
-			<!-- Slider area Start -->
-			<section class="homepage-slider-wrapper mb--95">
-				<div class="zakas-element-carousel homepage-slider"
-					data-slick-options='{
-                    "arrows": true,
-                    "isCustomArrow": true,
-                    "prevArrow": {"buttonClass": "slick-btn slick-prev", "iconClass": "fa fa-angle-double-left" },
-                    "nextArrow": {"buttonClass": "slick-btn slick-next", "iconClass": "fa fa-angle-double-right" },
-                    "appendArrows": ".slick-btn-wrapper"
-                }'>
-
-					<c:forEach begin="1" end="3" var="brand" items="${main}">
-						<div
-							class="single-slide slider-height bg-style d-flex align-items-center"
-							style="background-image: url(<c:url value="/ImageSevlet?id=${brand.productImgId}&photo_data=1"/>);">
-							<div class="container">
-								<div class="row">
-									<div class="col-xl-6 col-md-7 col-sm-8">
-										<div class="slider-content bg-shape text-center ptb--100">
-											<h1 class="heading__primary mb--30">
-												<span class="heading__primary--sub"
-													data-animation="fadeInUp" data-duration=".4s"
-													data-delay=".7s">Ocean-2023</span> <span
-													class="heading__primary--main" data-animation="fadeInUp"
-													data-duration=".4s" data-delay="1s">Be Shopaholic!</span>
-											</h1>
-											<a href="<c:url value="/ShopServlet?type=AllProduct"/>"
-												class="btn" data-animation="fadeInUp" data-duration=".4s"
-												data-delay="1.2s">Shop Now <i
-												class="fa fa-angle-double-right"></i></a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</c:forEach>
-					<div
-						class="single-slide slider-height bg-style d-flex align-items-center"
-						style="background-image: url(<c:url value="/img/slider/slider-2.jpg"/>);">
-						<div class="container">
-							<div class="row">
-								<div class="col-xl-6 col-md-7 col-sm-8">
-									<div class="slider-content bg-shape text-center ptb--100">
-										<h1 class="heading__primary mb--30">
-											<span class="heading__primary--sub" data-animation="fadeInUp"
-												data-duration=".4s" data-delay=".7s">Ocean-2023</span> <span
-												class="heading__primary--main" data-animation="fadeInUp"
-												data-duration=".4s" data-delay="1s">Be Shopaholic!</span>
-										</h1>
-										<a href="shop.html" class="btn" data-animation="fadeInUp"
-											data-duration=".4s" data-delay="1.2s">Shop Now <i
-											class="fa fa-angle-double-right"></i></a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div
-						class="single-slide slider-height bg-style d-flex align-items-center"
-						style="background-image: url(<c:url value="/img/slider/slider-3.jpg"/>);">
-						<div class="container">
-							<div class="row">
-								<div class="col-xl-6 col-md-7 col-sm-8">
-									<div class="slider-content bg-shape text-center ptb--100">
-										<h1 class="heading__primary mb--30">
-											<span class="heading__primary--sub" data-animation="fadeInUp"
-												data-duration=".4s" data-delay=".7s">Ocean-2023</span> <span
-												class="heading__primary--main" data-animation="fadeInUp"
-												data-duration=".4s" data-delay="1s">Be Shopaholic!</span>
-										</h1>
-										<a href="shop.html" class="btn" data-animation="fadeInUp"
-											data-duration=".4s" data-delay="1.2s">Shop Now <i
-											class="fa fa-angle-double-right"></i></a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+			<div class="page-content-inner">
 				<div class="container">
-					<div class="row">
+					<div class="row pt--50 pt-md--40 pt-sm--20">
 						<div class="col-12">
-							<div class="slick-btn-wrapper"></div>
-						</div>
-					</div>
-				</div>
-			</section>
-			<!-- Slider area End -->
-			<div class="banner-area">
-				<div class="container-fluid p-0">
-					<div class="row no-gutters">
-						<div class="col-md-6">
-							<div class="banner-box">
-								<div
-									class="banner-inner banner-hover-2 banner-info-over-img banner-info-center">
-									<figure class="banner-image">
-										<img src="<c:url value="/img/banner/banner-24.jpg"/>"
-											alt="Banner">
-									</figure>
-									<div class="banner-info">
-										<div class="banner-info--inner text-center">
-											<h2 class="heading__primary color--white mb--20">
-												<span class="heading__primary--main">For Women</span>
-											</h2>
-											<a href="<c:url value="/ShopServlet?type=Women"/>">Shop
-												Now <i class="fa fa-angle-double-right"></i>
-											</a>
+							<!-- User Action Start -->
+							<div class="user-actions user-actions__coupon">
+								<div class="message-box mb--30">
+									<p>
+										<i class="fa fa-exclamation-circle"></i> Have A Coupon? <a
+											class="expand-btn" href="#coupon_info">Click Here To
+											Enter Your Code.</a>
+									</p>
+								</div>
+								<div id="coupon_info" class="user-actions__form hide-in-default">
+									<form action="#" class="form">
+										<p>If you have a coupon code, please apply it below.</p>
+										<div class="form__group d-sm-flex">
+											<input type="text" name="coupon" id="coupon"
+												class="form__input form__input--2 mr--20 mr-xs--0"
+												placeholder="Coupon Code">
+											<button type="submit"
+												class="btn btn-small btn-bg-red btn-color-white btn-hover-2">Apply
+												Coupon</button>
 										</div>
-									</div>
-									<a href="<c:url value="/ShopServlet?type=Women"/>"
-										class="banner-link"></a>
+									</form>
 								</div>
 							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="banner-box">
-								<div
-									class="banner-inner banner-hover-2 banner-info-over-img banner-info-center">
-									<figure class="banner-image">
-										<img src="<c:url value="/img/banner/banner-23.jpg"/>"
-											alt="Banner">
-									</figure>
-									<div class="banner-info">
-										<div class="banner-info--inner text-center">
-											<h2 class="heading__primary color--white mb--20">
-												<span class="heading__primary--main">For Men</span>
-											</h2>
-											<a href="<c:url value="/ShopServlet?type=Men"/>">Shop Now
-												<i class="fa fa-angle-double-right"></i>
-											</a>
-										</div>
-									</div>
-									<a href="<c:url value="/ShopServlet?type=Men"/>"
-										class="banner-link"></a>
-								</div>
-							</div>
+							<!-- User Action End -->
 						</div>
 					</div>
-				</div>
-			</div>
-			<!-- Product Tab area Start -->
-			<section class="product-tab-area mb--50">
-				<div class="container">
-					<div class="row justify-content-center mb--45"></div>
-					<div class="row">
-						<div class="col-12">
-							<div class="product-tab tab-style-1">
-								<div class="tab-content" id="new-arrival-tab-content">
-									<div class="tab-pane fade show active" id="new-all"
-										role="tabpanel" aria-labelledby="new-all-tab">
-										<div class="row">
+					<div class="row pb--80 pb-md--60 pb-sm--40">
+						<!-- Checkout Area Start -->
+						<div class="col-lg-6">
+							<div class="checkout-title mt--10">
+								<h2>¶ñ¼g¹B°e¸ê®Æ</h2>
+							</div>
+							<div class="checkout-form">
+								<form action="#" class="form form--checkout">
+									<div class="form-row mb--20">
+										<div class="form__group col-md-6 mb-sm--30">
+											<label for="billing_fname" class="form__label form__label--2">©m¦W<span
+												class="required">*</span></label> <input type="text"
+												name="billing_fname" id="billing_fname"
+												class="form__input form__input--2">
+										</div>
+
+									</div>
+									<div class="form-row mb--20">
+										<div class="form__group col-12">
+											<label for="billing_phone" class="form__label form__label--2">¤â¾÷<span
+												class="required">*</span></label> <input type="text"
+												name="billing_phone" id="billing_phone"
+												class="form__input form__input--2">
+										</div>
+									</div>
+									<li style="list-style-type: none;"><label
+										for="billing_phone" class="form__label form__label--2">¦a§}<span
+											class="required">*</span></label>
+										<div>
+											<div class="clearfix">
+												<div class="float-left mb-2 mr-2">
+													<div class="controls-float">
+														<select name="city" aria-invalid="false"
+															style="color: #707070"
+															class="floatLabel text select-icon valid form__input form__input--2">
+															<option value="»O¥_¥«">»O¥_¥«</option>
+															<option value="°ò¶©¥«">°ò¶©¥«</option>
+															<option value="·s¥_¥«">·s¥_¥«</option>
+															<option value="©yÄõ¿¤">©yÄõ¿¤</option>
+															<option value="·s¦Ë¥«">·s¦Ë¥«</option>
+															<option value="·s¦Ë¿¤">·s¦Ë¿¤</option>
+															<option value="®ç¶é¥«">®ç¶é¥«</option>
+															<option value="­]®ß¿¤">­]®ß¿¤</option>
+															<option value="»O¤¤¥«">»O¤¤¥«</option>
+															<option value="¹ü¤Æ¿¤">¹ü¤Æ¿¤</option>
+															<option value="«n§ë¿¤">«n§ë¿¤</option>
+															<option value="¹Å¸q¥«">¹Å¸q¥«</option>
+															<option value="¹Å¸q¿¤">¹Å¸q¿¤</option>
+															<option value="¶³ªL¿¤">¶³ªL¿¤</option>
+															<option value="»O«n¥«">»O«n¥«</option>
+															<option value="°ª¶¯¥«">°ª¶¯¥«</option>
+															<option value="¼ê´ò¿¤">¼ê´ò¿¤</option>
+															<option value="«ÌªF¿¤">«ÌªF¿¤</option>
+															<option value="»OªF¿¤">»OªF¿¤</option>
+															<option value="ªá½¬¿¤">ªá½¬¿¤</option>
+															<option value="ª÷ªù¿¤">ª÷ªù¿¤</option>
+															<option value="³s¦¿¿¤">³s¦¿¿¤</option>
+														</select>
+													</div>
+												</div>
+												<div class="float-left mb-2">
+													<div class="controls-float">
+														<select name="district" aria-invalid="false"
+															style="color: #707070"
+															class="floatLabel text select-icon valid  form__input form__input--2"><option
+																value="¸U¨½°Ï">207 ¸U¨½°Ï</option>
+															<option value="ª÷¤s°Ï">208 ª÷¤s°Ï</option>
+															<option value="ªO¾ô°Ï">220 ªO¾ô°Ï</option>
+															<option value="¦Á¤î°Ï">221 ¦Á¤î°Ï</option>
+															<option value="²`§|°Ï">222 ²`§|°Ï</option>
+															<option value="¥ÛŞä°Ï">223 ¥ÛŞä°Ï</option>
+															<option value="·çªÚ°Ï">224 ·çªÚ°Ï</option>
+															<option value="¥­·Ë°Ï">226 ¥­·Ë°Ï</option>
+															<option value="Âù·Ë°Ï">227 Âù·Ë°Ï</option>
+															<option value="°^¼d°Ï">228 °^¼d°Ï</option>
+															<option value="·s©±°Ï">231 ·s©±°Ï</option>
+															<option value="©WªL°Ï">232 ©WªL°Ï</option>
+															<option value="¯Q¨Ó°Ï">233 ¯Q¨Ó°Ï</option>
+															<option value="¥Ã©M°Ï">234 ¥Ã©M°Ï</option>
+															<option value="¤¤©M°Ï">235 ¤¤©M°Ï</option>
+															<option value="¤g«°°Ï">236 ¤g«°°Ï</option>
+															<option value="¤T®l°Ï">237 ¤T®l°Ï</option>
+															<option value="¾ğªL°Ï">238 ¾ğªL°Ï</option>
+															<option value="Åaºq°Ï">239 Åaºq°Ï</option>
+															<option value="¤T­«°Ï">241 ¤T­«°Ï</option>
+															<option value="·s²ø°Ï">242 ·s²ø°Ï</option>
+															<option value="®õ¤s°Ï">243 ®õ¤s°Ï</option>
+															<option value="ªL¤f°Ï">244 ªL¤f°Ï</option>
+															<option value="Äª¬w°Ï">247 Äª¬w°Ï</option>
+															<option value="¤­ªÑ°Ï">248 ¤­ªÑ°Ï</option>
+															<option value="¤K¨½°Ï">249 ¤K¨½°Ï</option>
+															<option value="²H¤ô°Ï">251 ²H¤ô°Ï</option>
+															<option value="¤TªÛ°Ï">252 ¤TªÛ°Ï</option>
+															<option value="¥Ûªù°Ï">253 ¥Ûªù°Ï</option></select>
+													</div>
+													<input name="zipcode" placeholder="¶l»¼°Ï¸¹" type="hidden"
+														value="221">
+												</div>
+											</div>
+											<div class="clearfix">
+												<div>
+													<div class="controls-float">
+														<input type="text" name="address" placeholder="½Ğ¿é¤J¦a§}"
+															required="required" class="form__input form__input--2">
+														<label for="address"></label>
+													</div>
+												</div>
+											</div>
+										</div></li>
 
 
 
-											<c:forEach var="brand" items="${main}">
-												<div class="col-xl-3 col-md-4 col-sm-6 mb--50">
-													<div class="zakas-product">
-														<div class="product-inner">
-															<figure class="product-image">
-																<a
-																	href="<c:url value="/ShopDetailServlet?productName=${brand.productName}&color=${brand.colorType}"/>">
-																	<img
-																	src="<c:url value="/ImageSevlet?id=${brand.productImgId}&photo_data=1"/>"
-																	alt="Products">
-																</a>
+									<div class="form-row mb--20">
+										<div class="form__group col-12">
+											<label for="billing_email" class="form__label form__label--2">Email</label>
+											<input type="email" name="billing_email" id="billing_email"
+												class="form__input form__input--2">
+										</div>
+									</div>
 
-															</figure>
-															<div class="product-info">
-																<h3 class="product-title mb--15">
-																	<a
-																		href="<c:url value="/ShopDetailServlet?productName=${brand.productName}&color=${brand.colorType}"/>">${brand.productName}</a>
-																</h3>
-																<div class="product-price-wrapper mb--30">
-																	<span class="money">NT.${brand.price}</span>
+
+									<div class="cart-section">
+										<div class="checkout-title mt--10">
+											<h2>°t°e¸ê°T</h2>
+										</div>										
+										<ul class="formstyle--horizontal formstyle">
+											<li><label class="title">°t°e®É¬q</label> <select
+												name="ArriveTime"
+												class="floatLabel form-control select-icon valid form__input form__input--2"
+												aria-invalid="false"><option value="0"
+														selected="selected">¤£«ü©w</option>
+													<option value="1">8~13®É</option>
+													<option value="2">14~18®É</option></select></li>
+											<li>
+												<!---->
+											</li>
+											<li><label class="title ">µo²¼</label>
+												<div class="row with-small-gap">
+													<div class="col">
+														<div class="controls-float">
+															<select id="invoice-chose" name="InvoiceType"
+																class="floatLabel form-control select-icon valid form__input form__input--2"
+																aria-invalid="false"><option index="0"
+																	value="1">¹q¤lµo²¼ E-invoice</option>
+																<option index="1" value="2">¹q¤lµo²¼(¤â¾÷¸ü¨ã)
+																	E-Invoice carrier</option>
+																<option index="2" value="3">®½ÃØµo²¼ Donation
+																	Invoice</option>
+																<option index="3" value="4">²Î½s(¤½¥q¤á)µo²¼ Company
+																	Tax ID number Invoice</option></select>
+														</div>
+														<div id="invoice-selected" class="h6">
+															<!---->
+															<div>
+																<div class="mt-2">
+																	<input id="invoice-mobile-code"
+																		name="InvoiceMobileCode" type="text" class="text form__input form__input--2">
 																</div>
-
+															</div>
+															<!---->
+															<!---->
+															<div class="pt-2 lh-15">
+																®Ö­ã¤å¸¹¡G¥_°Ï°êµ|¥_¿¤¤T¦r²Ä1050754970¸¹ <br>¡°¨Ì²Î¤@µo²¼¨Ï¥Î¿ìªk³W©w¡Gµo²¼¤@¸g¶}¥ß¤£±o¥ô·N§ó§ï©Î§ï¶}µo²¼¡C
 															</div>
 														</div>
 													</div>
-												</div>
-											</c:forEach>
-										</div>
+												</div></li>
+										</ul>
 									</div>
-								</div>
-							</div>
-						</div>
-			</section>
-			<!-- Product Tab area End -->
 
-			<!-- Banner Area Start -->
-			<div class="banner-area home_01_banner_01 position-relative">
-				<div class="conntainer-fluid p-0">
-					<div class="row no-gutters">
-						<div class="col-md-6">
-							<div class="banner-box">
-								<div
-									class="banner-inner banner-bg-shape banner-info-over-img banner-info-center">
-									<figure class="banner-image">
-										<img src="<c:url value="/img/banner/banner-1.jpg"/>"
-											alt="Banner">
-									</figure>
-									<div class="banner-info">
-										<div class="banner-info--inner text-center">
-											<p class="banner-title-1 color--white">Up Coming Discount</p>
-											<p class="banner-title-2 color--white mb--20 mb-lg--10">On
-												Winter Clothing</p>
-											<a href="shop.html" class="btn banner-btn">Shop Now <i
-												class="fa fa-angle-double-right"></i></a>
+
+
+
+								</form>
+							</div>
+						</div>
+						<div class="col-xl-5 offset-xl-1 col-lg-6 mt-md--40">
+							<div class="order-details">
+								<div class="checkout-title mt--10">
+									<h2>­q³æ©ú²Ó</h2>
+								</div>
+								<div class="table-content table-responsive mb--30">
+									<table class="table order-table order-table-2">
+										<thead>
+											<tr>
+												<th >°Ó«~¸ê°T</th>
+												<th>ÃC¦â</th>
+												<th>¤Ø¤o</th>
+												<th>¼Æ¶q</th>
+												<th class="text-right">ª÷ÃB</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<th>µÎ¾A¥é³Â¦è¸Ë¥~®M</th>
+												<th>§ö</th>
+												<th>S</th>
+												<th>1</th>
+												<td class="text-right">NT.1280.0</td>
+											</tr>
+											<tr>
+												<th>³y«¬«e¶}Ğ®ª½µ©¤û¥J¿Ç <strong><span>&#10005;</span>1</strong>
+												</th>
+												<td class="text-right">NT.1680.0</td>
+											</tr>
+										</tbody>
+										<tfoot>
+											<tr class="cart-subtotal">
+												<th>Subtotal</th>
+												<td class="text-right">$56.00</td>
+											</tr>
+											<tr class="shipping">
+												<th>Shipping</th>
+												<td class="text-right"><span>Flat Rate; $20.00</span></td>
+											</tr>
+											<tr class="order-total">
+												<th>Order Total</th>
+												<td class="text-right"><span
+													class="order-total-ammount">$56.00</span></td>
+											</tr>
+										</tfoot>
+									</table>
+								</div>
+								<div class="checkout-payment">
+									<form action="#" class="payment-form">
+										<div class="payment-group mb--10">
+											<div class="payment-radio">
+												<input type="radio" value="bank" name="payment-method"
+													id="bank" checked> <label class="payment-label"
+													for="cheque">Direct Bank Transfer</label>
+											</div>
+											<div class="payment-info" data-method="bank">
+												<p>Make your payment directly into our bank account.
+													Please use your Order ID as the payment reference. Your
+													order will not be shipped until the funds have cleared in
+													our account.</p>
+											</div>
 										</div>
-									</div>
-									<a href="shop.html" class="banner-link"></a>
+										<div class="payment-group mb--10">
+											<div class="payment-radio">
+												<input type="radio" value="cheque" name="payment-method"
+													id="cheque"> <label class="payment-label"
+													for="cheque"> cheque payments </label>
+											</div>
+											<div class="payment-info cheque hide-in-default"
+												data-method="cheque">
+												<p>Please send a check to Store Name, Store Street,
+													Store Town, Store State / County, Store Postcode.</p>
+											</div>
+										</div>
+										<div class="payment-group mb--10">
+											<div class="payment-radio">
+												<input type="radio" value="cash" name="payment-method"
+													id="cash"> <label class="payment-label" for="cash">
+													CASH ON DELIVERY </label>
+											</div>
+											<div class="payment-info cash hide-in-default"
+												data-method="cash">
+												<p>Pay with cash upon delivery.</p>
+											</div>
+										</div>
+										<div class="payment-group mt--20">
+											<p class="mb--15">Your personal data will be used to
+												process your order, support your experience throughout this
+												website, and for other purposes described in our privacy
+												policy.</p>
+											<button type="submit"
+												class="btn btn-fullwidth btn-bg-red btn-color-white btn-hover-2">Place
+												Order</button>
+										</div>
+									</form>
 								</div>
 							</div>
 						</div>
-						<div class="col-md-6">
-							<div class="banner-box">
-								<div
-									class="banner-inner banner-bg-shape banner-info-over-img banner-info-center">
-									<figure class="banner-image">
-										<img src="<c:url value="/img/banner/banner-2.jpg"/>"
-											alt="Banner">
-									</figure>
-									<div class="banner-info">
-										<div class="banner-info--inner text-center">
-											<p class="banner-title-1 color--white">Up Coming Discount</p>
-											<p class="banner-title-2 color--white mb--20 mb-lg--10">On
-												Winter Clothing</p>
-											<a href="shop.html" class="btn banner-btn">Shop Now <i
-												class="fa fa-angle-double-right"></i></a>
-										</div>
-									</div>
-									<a href="shop.html" class="banner-link"></a>
-								</div>
-							</div>
+						<!-- Checkout Area End -->
+						<div class="cart-buttons">
+							<a class="btn btn--l" href="/zh-tw/checkout"><span
+								class="d-inline-block align-middle">PREV</span></a> <input
+								class="btn btn--black btn--l btn-next" id="btn-go-checkoutbtn"
+								type="submit" value="NEXT >">
 						</div>
 					</div>
 				</div>
 			</div>
-			<!-- Banner Area End -->
-
-			<!-- Method area Start -->
-			<section class="method-area bg-color ptb--80 mb--95"
-				data-bg-color="#f6f6f6">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-3 col-sm-6 mb-md--50">
-							<div class="method-box">
-								<i class="flaticon flaticon-two-circling-arrows"></i>
-								<h4>90 days return</h4>
-								<p>3 days for free return</p>
-							</div>
-						</div>
-						<div class="col-lg-3 col-sm-6 mb-md--50">
-							<div class="method-box">
-								<i class="flaticon flaticon-paper-plane"></i>
-								<h4>Free Shipping</h4>
-								<p>Free shipping on order</p>
-							</div>
-						</div>
-						<div class="col-lg-3 col-sm-6 mb-xs--50">
-							<div class="method-box">
-								<i class="flaticon flaticon-support"></i>
-								<h4>Proffesional Support</h4>
-								<p>info@company.com</p>
-							</div>
-						</div>
-						<div class="col-lg-3 col-sm-6">
-							<div class="method-box">
-								<i class="flaticon flaticon-present"></i>
-								<h4>Gift Card</h4>
-								<p>Gift Card On Purchage</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-			<!-- Method area End -->
-
-			<!-- Newsletter Area Start -->
-
-			<!-- Newsletter Area End -->
 		</div>
-		<!-- Main Content Wrapper End -->
+		<!-- Main Content Wrapper Start -->
 
 		<!-- Footer Start-->
 		<footer class="footer">
@@ -557,7 +579,21 @@
 		</footer>
 		<!-- Footer End-->
 
-
+		<!-- Searchform Popup Start -->
+		<div class="searchform__popup" id="searchForm">
+			<a href="#" class="btn-close"><i class="flaticon flaticon-cross"></i></a>
+			<div class="searchform__body">
+				<p>Start typing and press Enter to search</p>
+				<form class="searchform">
+					<input type="text" name="popup-search" id="popup-search"
+						class="searchform__input" placeholder="Search Entire Store...">
+					<button type="submit" class="searchform__submit">
+						<i class="flaticon flaticon-magnifying-glass-icon"></i>
+					</button>
+				</form>
+			</div>
+		</div>
+		<!-- Searchform Popup End -->
 
 		<!-- Mini Cart Start -->
 		<aside class="mini-cart" id="miniCart">
@@ -649,7 +685,7 @@
 									<div class="product-image">
 										<div class="product-image--holder">
 											<a href="product-details.html"> <img
-												src="<c:url value="/img/products/prod-9-1.jpg"/>"
+												src=" <c:url value="/img/products/prod-9-1.jpg"/>"
 												alt="Product Image" class="primary-image">
 											</a>
 										</div>
@@ -791,16 +827,11 @@
 	<!-- ************************* JS Files ************************* -->
 
 	<!-- jQuery JS -->
-
 	<script src="<c:url value="/js/vendor.js"/>"></script>
+
 
 	<!-- Main JS -->
 	<script src="<c:url value="/js/main.js"/>"></script>
-
-
-
-
-
 
 </body>
 

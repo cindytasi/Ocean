@@ -10,16 +10,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import common.Constant;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+import redis.util.JedisUtil;
 import shop.service.ProductService;
 import shop.vo.ProdIdSizeColorImgStock;
 import shop.vo.Product;
 import shop.vo.ProductDetail2;
+import shop.vo.ShopCartVo;
 
 
 @WebServlet("/ShopDetailServlet")
 public class ShopDetailServlet extends HttpServlet {
-	
 	private ProductService productService;
 	
 	public void init() {
@@ -27,6 +32,12 @@ public class ShopDetailServlet extends HttpServlet {
     }  
      
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+	
+		
+		
+		
+		
+		
 		String productName = req.getParameter("productName");
 		String color = req.getParameter("color");
 		

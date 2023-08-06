@@ -7,7 +7,16 @@ public class ProdIdSizeColorImgStock {
 	private String colorType;
 	private Integer productImgId;
 	private Integer inStock;
+	private Integer comId;
 	
+	
+	
+	public Integer getComId() {
+		return comId;
+	}
+	public void setComId(Integer comId) {
+		this.comId = comId;
+	}
 	public Integer getProductId() {
 		return productId;
 	}

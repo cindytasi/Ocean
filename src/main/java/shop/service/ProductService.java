@@ -2,6 +2,8 @@ package shop.service;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -125,6 +127,27 @@ public class ProductService {
 			imgIdSet.add(product.getProductImgId());
 			sizeSet.add(product.getSizeType());
 		}
+		
+		 ArrayList<String> sizeList = new ArrayList<>(sizeSet);
+	       // 將過濾掉的sizeSet，自定義Comparator，實現特定順序排序
+	        Comparator<String> customComparator = (s1, s2) -> {
+	            if (s1.equals("S") && s2.equals("M")) {
+	                return -1;
+	            } else if (s1.equals("S") && s2.equals("L")) {
+	                return -1;
+	            } else if (s1.equals("M") && s2.equals("L")) {
+	                return -1;
+	            } else if (s1.equals(s2)) {
+	                return 0;
+	            } else {
+	                return 1;
+	            }
+	        };
+
+	        // 使用自定義Comparator進行排序
+	        Collections.sort(sizeList, customComparator);
+	        
+	        
 
 		List<ProdIdStock> inStock = new ArrayList();
 		for (Product product : result) {
@@ -144,6 +167,7 @@ public class ProductService {
 			prodIdSizeColorImgStock.setColorType(product.getColorType());
 			prodIdSizeColorImgStock.setInStock(product.getInStock());
 			prodIdSizeColorImgStock.setProductImgId(product.getProductImgId());
+			prodIdSizeColorImgStock.setComId(product.getComId());
 			prodIdSizeColorImgStockList.add(prodIdSizeColorImgStock);
 			
 			if(defaultImgId == null && color.equals(product.getColorType())) {
@@ -159,7 +183,7 @@ public class ProductService {
 		productDetail.setPrice(price);
 		productDetail.setIdStock(inStock);
 		productDetail.setColorSet(colorSet);
-		productDetail.setSizeSet(sizeSet);
+		productDetail.setSizeList(sizeList);
 		productDetail.setImgIdSet(imgIdSet);
 		productDetail.setProdIdSizeColorImgStockList(prodIdSizeColorImgStockList);
 		productDetail.setDefaultImgId(defaultImgId);

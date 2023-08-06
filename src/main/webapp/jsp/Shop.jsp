@@ -147,7 +147,93 @@
 </head>
 
 <body>
+<!-- Header Start -->
+	<header class="header">
+<jsp:include page="/jsp/SelectBar.jsp"></jsp:include>
+	<div class="header-inner fixed-header"
+		style="background-color: #deefed;">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-xl-10 col-lg-9 col-3">
+					<nav class="main-navigation">
+						<div class="mainmenu-nav d-none d-lg-block">
+							<ul class="mainmenu">
+								<li class="mainmenu__item menu-item-has-children"><a
+									href="<c:url value="/ShopServlet?type=AllProduct"/>"
+									class="mainmenu__link"> <span class="mm-text">所有商品</span>
+								</a></li>
 
+								<li class="mainmenu__item menu-item-has-children"><a
+									href="<c:url value="/ShopServlet?type=Women"/>"
+									class="mainmenu__link"> <span class="mm-text">女裝</span>
+								</a>
+									<ul class="sub-menu"">
+										<li><a href="<c:url value="/ShopServlet?type=WomenTop"/>">
+												<span class="mm-text">上衣 Top</span>
+										</a></li>
+										<li><a
+											href="<c:url value="/ShopServlet?type=WomenBottom"/>"> <span
+												class="mm-text">下身 Bottom</span>
+										</a></li>
+									</ul></li>
+
+								<li class="mainmenu__item menu-item-has-children"><a
+									href="<c:url value="/ShopServlet?type=Men"/>"
+									class="mainmenu__link"> <span class="mm-text">男裝</span>
+								</a>
+									<ul class="sub-menu">
+										<li><a href="<c:url value="/ShopServlet?type=MenTop"/>">
+												<span class="mm-text">上衣 Top</span>
+										</a></li>
+										<li><a
+											href="<c:url value="/ShopServlet?type=MenBottom"/>"> <span
+												class="mm-text">下身 Bottom</span>
+										</a></li>
+									</ul></li>
+
+
+								<li class="mainmenu__item menu-item-has-children"><a
+									href="<c:url value="/ShopServlet?type=Shoes"/>"
+									class="mainmenu__link"> <span class="mm-text">鞋子</span>
+								</a>
+									<ul class="sub-menu">
+										<li><a
+											href="<c:url value="/ShopServlet?type=WomenShoes"/>"> <span
+												class="mm-text">女鞋 women's shoes</span>
+										</a></li>
+										<li><a href="<c:url value="/ShopServlet?type=MenShoes"/>">
+												<span class="mm-text">男鞋 Men's shoes</span>
+										</a></li>
+									</ul></li>
+								<li class="mainmenu__item menu-item-has-children"><a
+									href="<c:url value="/ShopServlet?type=Accessories"/>"
+									class="mainmenu__link"> <span class="mm-text">飾品</span>
+								</a></li>
+								<li class="mainmenu__item menu-item-has-children"><a
+									href="<c:url value="/ShopServlet?type=Others"/>"
+									class="mainmenu__link"> <span class="mm-text">其他周邊</span>
+								</a></li>
+								<div class="errMsg" style="display: inline-block">
+									<ul class="breadcrumb">								
+									
+										<li><a href="<c:url value="/MainShopServlet"/>">Home</a></li>
+										<li class="current"><span>Product Shop</span></li>
+									</ul>
+								</div>
+							</ul>
+						</div>
+					</nav>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12">
+					<div class="mobile-menu"></div>
+				</div>
+			</div>
+		</div>
+	</div>	
+</header>
+<!-- Header End -->
 	<!-- Preloader Start -->
 	<div class="zakas-preloader active">
 		<div
@@ -162,7 +248,7 @@
 	
 	<!-- Main Wrapper Start -->
 	<div class="wrapper">
-       <jsp:include page="/jsp/SelectBar.jsp"></jsp:include>	
+      
 		<!-- Main Content Wrapper Start -->
 		<div class="main-content-wrapper">
 			<div class="shop-page-wrapper ptb--80">

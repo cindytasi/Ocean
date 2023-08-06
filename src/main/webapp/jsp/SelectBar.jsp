@@ -2,9 +2,74 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-
+<jsp:include page="/jsp/pluginsJs.jsp"></jsp:include>
+<script type="text/javascript" src="<c:url value="/js/shopdetail.js"/>"></script>
 <!-- Header Start -->
-<header class="header">
+
+<style>
+.mini-cart-count {
+	color: white;
+	background-color: #3f9891;
+}
+
+.checked {
+	background-color: gainsboro;
+}
+
+.selected-color {
+	background-color: gainsboro; /* 设置选中标签的背景颜色为红色，你可以根据需要更改颜色 */
+	color: #FFFFFF; /* 设置选中标签的文本颜色为白色，你可以根据需要更改颜色 */
+}
+
+:root {
+	--bs-blue: #81D8D0;
+}
+
+/* 頁面背景色 */
+.list {
+	background: #000;
+}
+
+/* 清單 */
+.navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover
+	{
+	color: var(--bs-blue)
+}
+
+.navbar {
+	background: #000;
+}
+
+/* search */
+.bi {
+	color: #fff;
+	font-size: 25px;
+}
+
+.bi:hover {
+	color: #81D8D0;
+}
+
+/* 下拉選單 */
+.dropdown-item:hover {
+	font-size: 20px;
+	color: rgb(9, 163, 130);
+}
+
+.dropdown-menu.show {
+	opacity: 65%;
+}
+
+.errMsg {
+	position: absolute;
+	right: 0;
+	/* 使用 absolute 定位，並設定 right 為 0 */
+	transform: translateX(100%);
+	/* 將元素右偏移自身寬度的 100%，這將將元素移到最右邊 */
+}
+</style>
+
+
 	<div class="navAndMovie sticky-top">
 		<!-- navbar -->
 		<nav class="navbar navbar-expand-lg navbar-dark">
@@ -43,20 +108,21 @@
 										href="wishlist.html" class="header-toolbar__btn"> <i
 											class="flaticon flaticon-like"></i>
 									</a></li>
-									<li class="header-toolbar__item mini-cart-item my-auto"><a
-										href="#miniCart"
-										class="header-toolbar__btn toolbar-btn mini-cart-btn"> <i
-											class="flaticon flaticon-shopping-cart"></i> <sup
-											class="mini-cart-count">2</sup>
+
+									<li class="header-toolbar__item my-auto"><a
+										href="<c:url value="/ShopCartDetailServlet"/>" class="header-toolbar__btn mini-cart-btn"> <i
+											class="flaticon flaticon-shopping-cart"></i><sup
+											class="mini-cart-count">${cartSize}</sup>
 									</a></li>
+	
 									<li class="header-toolbar__item my-auto"><a
 										href="#searchForm" class="header-toolbar__btn toolbar-btn">
 											<i class="flaticon flaticon-search"></i>
 									</a></li>
 									<li class="header-toolbar__item user-info"><a href=""
-										class="header-toolbar__btn"> <!--                                         <i class="flaticon flaticon-user"></i> -->
+										class="header-toolbar__btn"> <!--<i class="flaticon flaticon-user"></i> -->
 											<img src="<c:url value="img/logo/user.webp"/>"
-											style="width: 100%; height: 100%" />
+											style="width: 85%; height: 100%;"/>
 									</a>
 										<ul class="user-info-menu">
 											<li><a href="my-account.html">My Account</a></li>
@@ -79,96 +145,17 @@
 			</div>
 		</nav>
 	</div>
-	<div class="header-inner fixed-header"
-		style="background-color: #deefed;">
-		<div class="container">
-			<div class="row align-items-center">
-				<div class="col-xl-10 col-lg-9 col-3">
-					<nav class="main-navigation">
-						<div class="mainmenu-nav d-none d-lg-block">
-							<ul class="mainmenu">
-								<li class="mainmenu__item menu-item-has-children"><a
-									href="<c:url value="/ShopServlet?type=AllProduct"/>"
-									class="mainmenu__link"> <span class="mm-text">所有商品</span>
-								</a></li>
+	
 
-								<li class="mainmenu__item menu-item-has-children"><a
-									href="<c:url value="/ShopServlet?type=Women"/>"
-									class="mainmenu__link"> <span class="mm-text">女裝</span>
-								</a>
-									<ul class="sub-menu"">
-										<li><a href="<c:url value="/ShopServlet?type=WomenTop"/>">
-												<span class="mm-text">上衣 Top</span>
-										</a></li>
-										<li><a
-											href="<c:url value="/ShopServlet?type=WomenBottom"/>"> <span
-												class="mm-text">下身 Bottom</span>
-										</a></li>
-									</ul></li>
+<Style>
+.mini-cart-count:not(:empty) {
+  display: inline-block; /* 顯示圖案 */
+}
 
-								<li class="mainmenu__item menu-item-has-children"><a
-									href="<c:url value="/ShopServlet?type=Men"/>"
-									class="mainmenu__link"> <span class="mm-text">男裝</span>
-								</a>
-									<ul class="sub-menu">
-										<li><a href="<c:url value="/ShopServlet?type=MenTop"/>">
-												<span class="mm-text">上衣 Top</span>
-										</a></li>
-										<li><a
-											href="<c:url value="/ShopServlet?type=MenBottom"/>"> <span
-												class="mm-text">下身 Bottom</span>
-										</a></li>
-									</ul></li>
-
-
-								<li class="mainmenu__item menu-item-has-children"><a
-									href="<c:url value="/ShopServlet?type=Shoes"/>"
-									class="mainmenu__link"> <span class="mm-text">鞋子</span>
-								</a>
-									<ul class="sub-menu">
-										<li><a
-											href="<c:url value="/ShopServlet?type=WomenShoes"/>"> <span
-												class="mm-text">女鞋 women's shoes</span>
-										</a></li>
-										<li><a href="<c:url value="/ShopServlet?type=MenShoes"/>">
-												<span class="mm-text">男鞋 Men's shoes</span>
-										</a></li>
-									</ul></li>
-								<li class="mainmenu__item menu-item-has-children"><a
-									href="<c:url value="/ShopServlet?type=Accessories"/>"
-									class="mainmenu__link"> <span class="mm-text">飾品</span>
-								</a></li>
-								<li class="mainmenu__item menu-item-has-children"><a
-									href="<c:url value="/ShopServlet?type=Others"/>"
-									class="mainmenu__link"> <span class="mm-text">其他周邊</span>
-								</a></li>
-
-								<div class="errMsg" style="display: inline-block">
-									<ul class="breadcrumb">
-									
-									
-										<li><a href="<c:url value="/MainShopServlet"/>">Home</a></li>
-										<li class="current"><span>Ocean</span></li>
-										
-										
-										
-									</ul>
-								</div>
-							</ul>
-						</div>
-					</nav>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-12">
-					<div class="mobile-menu"></div>
-				</div>
-			</div>
-		</div>
-	</div>
-</header>
-<!-- Header End -->
-
+.mini-cart-count:empty {
+  display: none; /* 數字小於1時隱藏圖案 */
+}
+</Style>
 
 <!-- Searchform Popup Start -->
 <div class="searchform__popup" id="searchForm">

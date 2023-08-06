@@ -13,7 +13,7 @@ public class ProductDetail2 {
 	private Double price;
 	private List<ProdIdStock> idStock;
 	private Set<String> colorSet;
-	private Set<String> sizeSet;
+	private List<String> sizeList;
 	private Set<Integer> imgIdSet;	
 	private List<ProdIdSizeColorImgStock> prodIdSizeColorImgStockList;
 	private Integer defaultImgId;
@@ -39,11 +39,11 @@ public class ProductDetail2 {
 	public void setColorSet(Set<String> colorSet) {
 		this.colorSet = colorSet;
 	}
-	public Set<String> getSizeSet() {
-		return sizeSet;
+	public List<String> getSizeList() {
+		return sizeList;
 	}
-	public void setSizeSet(Set<String> sizeSet) {
-		this.sizeSet = sizeSet;
+	public void setSizeList(List<String> sizeList) {
+		this.sizeList = sizeList;
 	}
 	public Set<Integer> getImgIdSet() {
 		return imgIdSet;

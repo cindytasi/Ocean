@@ -248,8 +248,8 @@ public class ProductDao {
 				product.setSizeType(rs.getString("sizeType"));
 				product.setColorType(rs.getString("colorType"));
 				product.setComId(rs.getInt("comId"));
-				product.setAddedTime(rs.getObject("addedTime", LocalDateTime.class));
-				product.setReviewTime(rs.getObject("reviewTime", LocalDateTime.class));
+				product.setAddedTime(rs.getDate("addedTime"));
+				product.setReviewTime(rs.getDate("reviewTime"));
 				product.setPrice(rs.getDouble("price"));
 				product.setVideoName(rs.getString("videoName"));
 				product.setProductImgId(rs.getInt("productImgId"));
