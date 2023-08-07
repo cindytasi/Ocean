@@ -206,42 +206,42 @@
                                                 <c:forEach var="prod" items="${prod}">
                                                
                                                     <tr class="productInfo">
-                                                     <input id="productId" type="hidden" value="${prod.productId}"/>
-                                               		 <input id="productcomId" type="hidden" value="${prod.productcomId}"/>
-                                                	 <input id="inStock" type="hidden" value="${prod.inStock}"/>
-                                                        <td class="product-remove text-left"><a href=""><i class="flaticon flaticon-cross" id="delete"></i></a></td>
+                                                     <input class="productId" type="hidden" value="${prod.productId}"/>
+                                               		 <input class="productcomId" type="hidden" value="${prod.productcomId}"/>
+                                                	 <input class="inStock" type="hidden" value="${prod.inStock}"/>
+                                                        <td class="product-remove text-left"><a href=""><i class="flaticon flaticon-cross toDoAction" type="delete"></i></a></td>
                                                         <td class="product-thumbnail text-left">                                                        
-                                                            <img src="<c:url value="/ImageSevlet?id=${prod.productImgId}&photo_data=1"/>" alt="Product Thumnail">
+                                                            <img class="productImgId" value="${prod.productImgId}" src="<c:url value="/ImageSevlet?id=${prod.productImgId}&photo_data=1"/>" alt="Product Thumnail">
                                                         </td>
                                                         <td class="product-name text-left wide-column">
                                                             <h3>
-                                                                <a href="product-details.html">${prod.prodName}</a>
+                                                                <a class="prodName" value="${prod.prodName}" href="product-details.html">${prod.prodName}</a>
                                                             </h3>
                                                         </td>
                                                               <td class="product-price">
                                                             <span class="product-price-wrapper">
-                                                                <span class="color">${prod.selectedColor}</span>
+                                                                <span class="color selectedColor" data-value="${prod.selectedColor}">${prod.selectedColor}</span>
                                                             </span>
                                                           </td>
                                                           <td class="product-price">
                                                             <span class="product-price-wrapper">
-                                                                <span class="size">${prod.selectedSize}</span>
+                                                                <span class="size selectedSize" data-value="${prod.selectedSize}">${prod.selectedSize}</span>
                                                             </span>
                                                         </td>
                                                         <td class="product-price">
                                                             <span class="product-price-wrapper">
-                                                                <span class="money">${prod.price}</span>
+                                                                <span class="money price" data-value="${prod.price}">${prod.price}</span>
                                                             </span>
                                                         </td>
                                                         <td class="product-quantity">
                                                             <div class="quantity">
-                                                                <input type="number" class="quantity-input" name="qty" id="qty-1" value="${prod.quantityValue}" min="1">
+                                                                <input type="number" class="quantity-input quantityValue" name="qty" value="${prod.quantityValue}" min="1">
                                                             </div>
                                                         </td>
-                                                        
+                                                       
                                                         <td class="product-total-price">
                                                             <span class="product-price-wrapper">
-                                                                <span class="money">${prod.price}</span>
+                                                                <span class="money total" data-value="${prod.price}">${prod.price}</span>
                                                             </span>
                                                         </td>
                                                     </tr>
