@@ -204,7 +204,11 @@
                                                 <tbody>
                                                 
                                                 <c:forEach var="prod" items="${prod}">
-                                                    <tr>
+                                               
+                                                    <tr class="productInfo">
+                                                     <input id="productId" type="hidden" value="${prod.productId}"/>
+                                               		 <input id="productcomId" type="hidden" value="${prod.productcomId}"/>
+                                                	 <input id="inStock" type="hidden" value="${prod.inStock}"/>
                                                         <td class="product-remove text-left"><a href=""><i class="flaticon flaticon-cross" id="delete"></i></a></td>
                                                         <td class="product-thumbnail text-left">                                                        
                                                             <img src="<c:url value="/ImageSevlet?id=${prod.productImgId}&photo_data=1"/>" alt="Product Thumnail">
