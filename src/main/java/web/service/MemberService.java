@@ -1,0 +1,10 @@
+package web.service;
+
+import web.dao.MemberDao;
+import web.vo.MemberVo;
+import web.vo.UserVo;
+
+public interface MemberService {
+
+	MemberVo addNewMember(MemberVo memberVo);
+}

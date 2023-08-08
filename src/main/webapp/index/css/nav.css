@@ -20,6 +20,8 @@ h1 {
 
 #Ocaen_input {
 	color: white;
+	/* left: 0%; */
+	text-align: center
 }
 
 .input_text {

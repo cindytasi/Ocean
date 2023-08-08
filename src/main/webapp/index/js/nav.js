@@ -32,6 +32,7 @@
 	body.insertBefore(nav, body.firstChild);
 
 	const userName = sessionStorage.getItem('userName');
+	const userId = sessionStorage.getItem('userId');
 //	const roleId = sessionStorage.getItem('roleId');
 	const register = document.querySelector('#register');
 	const edit = document.querySelector('#edit');
@@ -46,7 +47,7 @@
 //		roleId == 1 ? manage.classList.remove('hide') : manage.classList.add('hide');
 		login.classList.add('hide');
 		logout.classList.remove('hide');
-		document.querySelector('#currentUser').textContent = userName;
+		document.querySelector('#currentUser').textContent = userName+userId;
 	} else {
 		register.classList.remove('hide');
 		edit.classList.add('hide');

@@ -19,12 +19,13 @@
 				const { successful, message } = body;
 				console.log(successful);
 				if (successful) {
-					const { userName } = body;
+					const { userName , userId} = body;
 //					sessionStorage.setItem('id', id);
 					sessionStorage.setItem('userName', userName);
+					sessionStorage.setItem('userId', userId);
 //					console.log(sessionStorage.getItem('userName'));
 //					sessionStorage.setItem('roleId', roleId);
-					location.href = 'http://localhost:8080/Ocean/index.html';
+					location.href = 'http://localhost:8080/Ocean/member/member.html';
 				} else {
 					errMsg.textContent = message;
 				}

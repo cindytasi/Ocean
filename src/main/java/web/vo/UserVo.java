@@ -15,7 +15,7 @@ public class UserVo extends CoreVo{
 	private String account;
 	private String password;
 	private Timestamp achievementTime;
-	private byte[] profilePicture;
+//	private byte[] profilePicture;
 	private Boolean statusCode;
 
 	
@@ -102,13 +102,13 @@ public class UserVo extends CoreVo{
 		this.achievementTime = achievementTime;
 	}
 
-	public byte[] getProfilePicture() {
-		return profilePicture;
-	}
-
-	public void setProfilePicture(byte[] profilePicture) {
-		this.profilePicture = profilePicture;
-	}
+//	public byte[] getProfilePicture() {
+//		return profilePicture;
+//	}
+//
+//	public void setProfilePicture(byte[] profilePicture) {
+//		this.profilePicture = profilePicture;
+//	}
 
 	public Boolean getStatusCode() {
 		return statusCode;
