@@ -2,9 +2,12 @@ package shop.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,9 +39,6 @@ public class ShopCartDetailServlet extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		
-
-		BaseAPIResult<Map> result = new BaseAPIResult();
 		JedisPool pool = JedisUtil.getJedisPool(); 
 		try (Jedis jedis = pool.getResource();){
 			
@@ -49,25 +49,30 @@ public class ShopCartDetailServlet extends HttpServlet {
 			Gson gson = new Gson();
 			List<ShopCartVo> shopCartVoList = gson.fromJson(cart, new TypeToken<List<ShopCartVo>>(){}.getType());
 			
-		
-			req.setAttribute("prod", shopCartVoList);
-			req.getRequestDispatcher("/jsp/Cart.jsp").forward(req, res);
+			
 
+			Set<String> productcomIdSet = new HashSet<String>();
+			for(ShopCartVo shopcart : shopCartVoList) {
+				productcomIdSet.add(shopcart.getProductcomId());
+			}
 			
+			List<List<ShopCartVo>> result = new ArrayList<>();
+			for(String productcomId : productcomIdSet) {
+				List<ShopCartVo> shopCartGroupByComIdList = new ArrayList<>();
+				for(ShopCartVo shopcart : shopCartVoList) {
+					if(shopcart.getProductcomId().equals(productcomId)) {
+						shopCartGroupByComIdList.add(shopcart);
+					}
+				}
+				
+				result.add(shopCartGroupByComIdList);
+			}
 			
-			
-			
+			req.setAttribute("prod", result);
+			req.getRequestDispatcher("/jsp/Cart.jsp").forward(req, res);
 		} catch (Exception e) {
 			e.printStackTrace();
-			result.setStatus(ApiConstants.STATUS_FAIL);
 		} 
-
-		
-
-	
-
-		
-		
 	}
 
 }

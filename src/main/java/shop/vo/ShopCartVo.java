@@ -5,20 +5,24 @@ import java.util.List;
 public class ShopCartVo {
 	private String selectedSize;
 	private String selectedColor;
-	private String quantityValue;
+	private int quantityValue;
 	private String prodName;  
 	private String productId;
 	private String productcomId; 
-	private String inStock;      
-	private String price;        
+	private int inStock;      
 	private String productImgId;
+	private double price;
 	
 	
 	
 	
 	
-	
-	
+	public double getPrice() {
+		return price;
+	}
+	public void setPrice(double price) {
+		this.price = price;
+	}
 	public String getSelectedSize() {
 		return selectedSize;
 	}
@@ -31,10 +35,10 @@ public class ShopCartVo {
 	public void setSelectedColor(String selectedColor) {
 		this.selectedColor = selectedColor;
 	}
-	public String getQuantityValue() {
+	public int getQuantityValue() {
 		return quantityValue;
 	}
-	public void setQuantityValue(String quantityValue) {
+	public void setQuantityValue(int quantityValue) {
 		this.quantityValue = quantityValue;
 	}
 	public String getProdName() {
@@ -55,17 +59,11 @@ public class ShopCartVo {
 	public void setProductcomId(String productcomId) {
 		this.productcomId = productcomId;
 	}
-	public String getInStock() {
+	public int getInStock() {
 		return inStock;
 	}
-	public void setInStock(String inStock) {
+	public void setInStock(int inStock) {
 		this.inStock = inStock;
-	}
-	public String getPrice() {
-		return price;
-	}
-	public void setPrice(String price) {
-		this.price = price;
 	}
 	public String getProductImgId() {
 		return productImgId;
@@ -73,6 +71,19 @@ public class ShopCartVo {
 	public void setProductImgId(String productImgId) {
 		this.productImgId = productImgId;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

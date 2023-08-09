@@ -89,13 +89,13 @@ $(document).ready(function() {
 					price: price, //要放入購物車的價格
 					productImgId: productImgId //要放入購物車的照片id
 				},
-				success: function(data) {
-					console.log(data);
-					var cartSize = data.data.shopcartSize;
+				success: function(response) {
+					console.log(response);
+					var cartSize = response.data.shopcartSize;
 					console.log('Cart Size: ' + cartSize);
 				$(".mini-cart-count")[0].innerText = cartSize;
 					
-				var cartSize = data.data.shopcartSize;
+				var cartSize = response.data.shopcartSize;
 
 				// 檢查數字是否小於1，如果是，隱藏綠色圖案
 				if (cartSize < 1) {

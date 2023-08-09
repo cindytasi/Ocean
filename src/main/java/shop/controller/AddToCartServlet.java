@@ -44,12 +44,12 @@ public class AddToCartServlet extends HttpServlet {
 
 		String selectedSize = request.getParameter("selectedSize");
 		String selectedColor = request.getParameter("selectedColor");
-		String quantityValue = request.getParameter("quantityValue");
+		int quantityValue = Integer.valueOf(request.getParameter("quantityValue"));
 		String prodName = request.getParameter("prodName");
 		String productId = request.getParameter("productId");
 		String productcomId = request.getParameter("productcomId");
-		String inStock = request.getParameter("inStock");
-		String price = request.getParameter("price");
+		int inStock = Integer.valueOf(request.getParameter("inStock"));
+		double price = Double.valueOf(request.getParameter("price"));
 		String productImgId = request.getParameter("productImgId");
 
 		BaseAPIResult<Map> result = new BaseAPIResult();
@@ -80,6 +80,9 @@ public class AddToCartServlet extends HttpServlet {
 				shopCartVo.setProductImgId(productImgId);
 				shopCartVoList.add(shopCartVo);
 				
+				
+
+				
 				jedis.set(shopCartRedisKey + ":" + userId, new Gson().toJson(shopCartVoList));
 				
 	
@@ -94,9 +97,9 @@ public class AddToCartServlet extends HttpServlet {
 				for (ShopCartVo prod : shopCartVoList) {
 				    if (prod.getProductId().equals(productId)) {
 				        // 找到相同產品，則對該產品做加總
-				        int currentQuantity = Integer.parseInt(prod.getQuantityValue());
-				        int newQuantity = currentQuantity + Integer.parseInt(quantityValue);
-				        prod.setQuantityValue(String.valueOf(newQuantity));
+				        int currentQuantity = prod.getQuantityValue();
+				        int newQuantity = currentQuantity + quantityValue;
+				        prod.setQuantityValue(newQuantity);
 				        foundSameProduct = true;
 				        break;
 				    }

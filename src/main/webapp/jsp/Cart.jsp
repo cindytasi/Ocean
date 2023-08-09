@@ -201,52 +201,75 @@
                                                         <th style="font-size:15px">小計</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody class="productAll">
                                                 
-                                                <c:forEach var="prod" items="${prod}">
-                                               
-                                                    <tr class="productInfo">
-                                                     <input class="productId" type="hidden" value="${prod.productId}"/>
-                                               		 <input class="productcomId" type="hidden" value="${prod.productcomId}"/>
-                                                	 <input class="inStock" type="hidden" value="${prod.inStock}"/>
-                                                        <td class="product-remove text-left"><a href=""><i class="flaticon flaticon-cross toDoAction" type="delete"></i></a></td>
-                                                        <td class="product-thumbnail text-left">                                                        
-                                                            <img class="productImgId" value="${prod.productImgId}" src="<c:url value="/ImageSevlet?id=${prod.productImgId}&photo_data=1"/>" alt="Product Thumnail">
-                                                        </td>
-                                                        <td class="product-name text-left wide-column">
-                                                            <h3>
-                                                                <a class="prodName" value="${prod.prodName}" href="product-details.html">${prod.prodName}</a>
-                                                            </h3>
-                                                        </td>
-                                                              <td class="product-price">
-                                                            <span class="product-price-wrapper">
-                                                                <span class="color selectedColor" data-value="${prod.selectedColor}">${prod.selectedColor}</span>
-                                                            </span>
-                                                          </td>
-                                                          <td class="product-price">
-                                                            <span class="product-price-wrapper">
-                                                                <span class="size selectedSize" data-value="${prod.selectedSize}">${prod.selectedSize}</span>
-                                                            </span>
-                                                        </td>
-                                                        <td class="product-price">
-                                                            <span class="product-price-wrapper">
-                                                                <span class="money price" data-value="${prod.price}">${prod.price}</span>
-                                                            </span>
-                                                        </td>
-                                                        <td class="product-quantity">
-                                                            <div class="quantity">
-                                                                <input type="number" class="quantity-input quantityValue" name="qty" value="${prod.quantityValue}" min="1">
-                                                            </div>
-                                                        </td>
-                                                       
-                                                        <td class="product-total-price">
-                                                            <span class="product-price-wrapper">
-                                                                <span class="money total" data-value="${prod.price}">${prod.price}</span>
-                                                            </span>
-                                                        </td>
-                                                    </tr>
-												</c:forEach>
- 
+                                                <c:forEach var="shopCartGroupByComIdList" items="${prod}">
+                                               	  
+                                               		<tr class="comIdOne" data-comid="${shopCartGroupByComIdList[0].productcomId}">
+                                               			<td colspan="8"><hr></td>	
+                                               		</tr>
+                                               		 <tr class="comIdOne" data-comid="${shopCartGroupByComIdList[0].productcomId}">
+        												<td colspan="1">
+            												<div class="seller-box">
+                											<span class="seller-label">廠商:${shopCartGroupByComIdList[0].productcomId}</span> 
+           									 				</div>
+        												</td>
+    												</tr>
+    												
+                                               		 <c:forEach var="shopCart" items="${shopCartGroupByComIdList}">
+                                               		 
+															<tr class="productInfo">
+																<input class="productId" type="hidden"
+																	value="${shopCart.productId}" />
+																<input class="productcomId" type="hidden"
+																	value="${shopCart.productcomId}" />
+																<input class="inStock" type="hidden"
+																	value="${shopCart.inStock}" />
+																<td class="product-remove text-left"><a><i
+																		class="flaticon flaticon-cross toDoAction"
+																		type="delete"></i></a></td>
+																<td class="product-thumbnail text-left"><img
+																	class="productImgId" value="${shopCart.productImgId}"
+																	src="<c:url value="/ImageSevlet?id=${shopCart.productImgId}&photo_data=1"/>"
+																	alt="Product Thumnail"></td>
+																<td class="product-name text-left wide-column">
+																	<h3>
+																		<a class="prodName" value="${shopCart.prodName}"
+																			href="product-details.html">${shopCart.prodName}</a>
+																	</h3>
+																</td>
+																<td class="product-price"><span
+																	class="product-price-wrapper"> <span
+																		class="color selectedColor"
+																		data-value="${shopCart.selectedColor}">${shopCart.selectedColor}</span>
+																</span></td>
+																<td class="product-price"><span
+																	class="product-price-wrapper"> <span
+																		class="size selectedSize"
+																		data-value="${shopCart.selectedSize}">${shopCart.selectedSize}</span>
+																</span></td>
+																<td class="product-price"><span
+																	class="product-price-wrapper"> <span
+																		class="money price" data-value="${shopCart.price}">${shopCart.price}</span>
+																</span></td>
+																<td class="product-quantity">
+																	<div class="quantity">
+																		<input type="number"
+																			class="quantity-input quantityValue" name="qty"
+																			value="${shopCart.quantityValue}" min="1">
+																	</div>
+																</td>
+
+																<td class="product-total-price"><span
+																	class="product-price-wrapper"> <span
+																		class="money total"
+																		data-value="${shopCart.price*shopCart.quantityValue}">${shopCart.price*shopCart.quantityValue}</span>
+																</span></td>
+															</tr>
+															
+														</c:forEach>
+                                                </c:forEach>
+ 											
                                                 </tbody>
                                             </table>
                                         </div>  
@@ -257,8 +280,7 @@
                                         
                                     </div>
                                     <div class="col-sm-6 text-sm-right">
-                                        <button type="submit" class="cart-form__btn">清空購物車</button>
-                                       
+                                        <button type="submit" class="cart-form__btn" data-type="Alldelete">清空購物車</button>                                       
                                     </div>
                                 </div>
                             </form>
