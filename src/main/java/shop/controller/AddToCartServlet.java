@@ -51,7 +51,6 @@ public class AddToCartServlet extends HttpServlet {
 		int inStock = Integer.valueOf(request.getParameter("inStock"));
 		double price = Double.valueOf(request.getParameter("price"));
 		String productImgId = request.getParameter("productImgId");
-
 		BaseAPIResult<Map> result = new BaseAPIResult();
 
 //===================用try-with-resources 可以自動關閉=============

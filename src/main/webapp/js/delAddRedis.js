@@ -4,46 +4,70 @@ $(document).ready(function() {
 	
 	$(".quantity").append('<div class="dec qtybutton" type="minus">-</div><div class="inc qtybutton" type="add">+</div>');
 	
+//--------------------------------------點擊新增或減少按鈕並發送ajax----------------------------------------------------------------------------//
 
+$(".qtybutton").on("click", function() {
+    var $button = $(this);
+    var $quantityInput = $button.parent().find(".quantity-input");
+    var oldValue = parseFloat($quantityInput.val());
 
-		// 給加減按鈕綁定點擊事件
-		$(".qtybutton").on("click", function() {
-        var $button = $(this);
-        var $quantityInput = $button.parent().find(".quantity-input");
-        var oldValue = parseFloat($quantityInput.val());
+    var newVal;
+    if ($button.hasClass("inc")) {
+        newVal = oldValue + 1;
+    } else {
+        newVal = oldValue > 1 ? oldValue - 1 : 1;
+    }
 
-        if ($button.hasClass("inc")) {
-            var newVal = oldValue + 1;
-        } else {
-            if (oldValue > 1) {
-                var newVal = oldValue - 1;
+    var $productInfo = $button.closest('.productInfo');
+    var productId = $productInfo.find('.productId').val();
+    var productcomId = $productInfo.find('.productcomId').val();
+    var inStock = $productInfo.find('.inStock').val();
+    var productImgId = $productInfo.find('.productImgId').attr('value');
+    var prodName = $productInfo.find('.prodName').attr('value');
+    var selectedColor = $productInfo.find('.color.selectedColor').attr('data-value');
+    var selectedSize = $productInfo.find('.size.selectedSize').attr('data-value');
+    var price = parseFloat($productInfo.find('.money.price').attr('data-value'));
+    var type = $button.attr("type");
+    var quantityValue = newVal; // Update quantity value
+
+    $.ajax({
+        url: "/Ocean/DelAddRedisServlet",
+        method: "POST",
+        data: {
+            productId: productId,
+            productcomId: productcomId,
+            inStock: inStock,
+            productImgId: productImgId,
+            prodName: prodName,
+            selectedColor: selectedColor,
+            selectedSize: selectedSize,
+            quantityValue: quantityValue,
+            price: price,
+            type: type
+        },
+        success: function(response) {
+            console.log("有成功執行");
+            if (response.status === 1) {
+                if (response.data.type === "add" || response.data.type === "minus") {
+                    $quantityInput.val(newVal);
+                    var $row = $button.closest(".productInfo");
+                    var unitPrice = parseFloat($row.find('.money.price').attr('data-value'));
+                    var newSubtotal = unitPrice * newVal;
+                    $row.find('.money.total').text(newSubtotal.toFixed(1));
+                    updateCartTotals();
+                }
             } else {
-                newVal = 1;
+                console.error("新增或減少操作失敗：" + response.data.message);
             }
+        },
+        error: function(xhr, status, error) {
+            console.error("沒有收到回應:" + error);
         }
-        
-//        $quantityInput.val(newVal);
-//        var $row = $button.closest(".productInfo");
-//        var unitPrice = parseFloat($row.find('.money.price').attr('data-value'));
-//        var newSubtotal = unitPrice * newVal;
-//        $row.find('.money.total').text(newSubtotal.toFixed(1));
-//		updateCartTotals();
-
-        var $productInfo = $button.closest('.productInfo');
-        var productId = $productInfo.find('.productId').val();
-        var productcomId = $productInfo.find('.productcomId').val();
-        var inStock = $productInfo.find('.inStock').val();
-        var productImgId = $productInfo.find('.productImgId').attr('value');
-        var prodName = $productInfo.find('.prodName').attr('value');
-        var selectedColor = $productInfo.find('.color.selectedColor').attr('data-value');
-        var selectedSize = $productInfo.find('.size.selectedSize').attr('data-value');
-        var type = $button.attr("type");
-
-        updateRedisFunction($productInfo, productId, productcomId, inStock, productImgId, prodName, selectedColor, selectedSize, newVal, type);
     });
+});
 	
 	
-	
+//------------------------------------------刪除單筆資料------------------------------------------------------------------------//	
 	
 	
 	//刪除資料
@@ -59,11 +83,12 @@ $(".toDoAction").on("click", function() {
     var productImgId = $row.find('.productImgId').attr('value');
     var prodName = $row.find('.prodName').attr('value');
     var selectedColor = $row.find('.color.selectedColor').attr('data-value');
-    var selectedSize = $row.find('.size.selectedSize').attr('data-value');
+    var selectedSize = $row.find('.size.selectedSize').attr('data-value');	 
     var quantityValue = $row.find('.quantityValue').val();
+    var price = parseFloat($row.find('.money.price').attr('data-value'));
 
 //  $row.remove();
-
+//
 //	if ($comRow.nextUntil(".comIdOne", ".productInfo").length === 0) {
 //		var comId = $comRow.data("comid");
 //		if (comId !== undefined) {
@@ -72,18 +97,12 @@ $(".toDoAction").on("click", function() {
 //	}
 //	updateCartTotals();
 
-        updateRedisFunction($row,productId, productcomId, inStock, productImgId, prodName, selectedColor, selectedSize, quantityValue, type);
-    });
-    
-    
-    
-    
-  
-function updateRedisFunction($row, productId, productcomId, inStock, productImgId, prodName, selectedColor, selectedSize, quantityValue, type) {
+
 	$.ajax({
-		url: 'your_server_url_here',
-		method: 'POST',
+		url: "/Ocean/DelAddRedisServlet",
+		method: "POST",
 		data: {
+
 			productId: productId,
 			productcomId: productcomId,
 			inStock: inStock,
@@ -92,44 +111,39 @@ function updateRedisFunction($row, productId, productcomId, inStock, productImgI
 			selectedColor: selectedColor,
 			selectedSize: selectedSize,
 			quantityValue: quantityValue,
+			price: price,
 			type: type
 		},
 		success: function(response) {
-			if(response.data.status === 1){
+			console.log("有成功執行");
+			if (response.status === 1) {
 				//要是點擊增加或減少按鈕則執行
-				if(type === "add" || type === "minus"){
-					$quantityInput.val(newVal);
-					var $row = $button.closest(".productInfo");
-					var unitPrice = parseFloat($row.find('.money.price').attr('data-value'));
-					var newSubtotal = unitPrice * newVal;
-					$row.find('.money.total').text(newSubtotal.toFixed(1));
-					updateCartTotals();
-					//刪除單筆資料包含，如是單筆則包含廠商
-				} else if(type === "delete"){
-			        $row.remove();
+				if (response.data.type === "delete") {
+					$row.remove();
+
 					if ($comRow.nextUntil(".comIdOne", ".productInfo").length === 0) {
 						var comId = $comRow.data("comid");
-							if (comId !== undefined) {
-								$("tr.comIdOne[data-comid='" + comId + "']").remove();
-							}
+						if (comId !== undefined) {
+							$("tr.comIdOne[data-comid='" + comId + "']").remove();
+						}
 					}
 					updateCartTotals();
-					// 清空購物車
-				}	else if(type === "Alldelete"){	
-                    $("tbody.productAll").remove();
-                    updateCartTotals();
 				}
-			
+
 			} else {
-				console.error("操作失敗：" + response.data.message);
+				console.error("刪除操作失敗：" + response.data.message);
 			}
-			
+
 		},
 		error: function(xhr, status, error) {
-			console.error("沒有收到回應:"+ error);
+			console.error("沒有收到回應:" + error);
 		}
 	});
-} 
+});
+
+
+    
+
 
 
 	//清空購物車
@@ -141,11 +155,112 @@ function updateRedisFunction($row, productId, productcomId, inStock, productImgI
 		if (confirmed) {
 			// 刪除所有動態生成的商品列			
 			//$("tbody.productAll").remove();
-            var type = $(this).data("type");
-			updateRedisFunction(null, null, null, null, null, null, null, null, "Alldelete");	
+            var type = $(this).data("type");			
 		}
-		updateCartTotals();
+		
+		$.ajax({
+		url: "/Ocean/DelAddRedisServlet",
+		method: "POST",
+		data: {
+			
+//			productId: productId,
+//			productcomId: productcomId,
+//			inStock: inStock,
+//			productImgId: productImgId,
+//			prodName: prodName,
+//			selectedColor: selectedColor,
+//			selectedSize: selectedSize,
+//			quantityValue: quantityValue,
+//			price:price,
+			type: type
+		},
+		success: function(response) {
+			console.log("有成功執行");
+			if(response.status === 1){
+				//要是點擊增加或減少按鈕則執行
+				if(response.data.type === "Alldelete"){
+					$("tbody.productAll").remove();                
+				} 
+			updateCartTotals();
+			} else {
+				console.error("清空購物車操作失敗：" + response.data.message);
+			}
+			
+		},
+		error: function(xhr, status, error) {
+			console.error("沒有收到回應:"+ error);
+		}
 	});
+		
+		
+		
+		
+		
+	});    
+    
+    
+    
+    
+ // 生成一个随机参数
+ 
+  
+//function updateRedisFunction($row, productId, productcomId, inStock, productImgId, prodName, selectedColor, selectedSize, quantityValue,price, type) {
+//	
+//	$.ajax({
+//		url: "/Ocean/DelAddRedisServlet",
+//		method: "POST",
+//		data: {
+//			
+//			productId: productId,
+//			productcomId: productcomId,
+//			inStock: inStock,
+//			productImgId: productImgId,
+//			prodName: prodName,
+//			selectedColor: selectedColor,
+//			selectedSize: selectedSize,
+//			quantityValue: quantityValue,
+//			price:price,
+//			type: type
+//		},
+//		success: function(response) {
+//			console.log("有成功執行");
+//			if(response.status === 1){
+//				//要是點擊增加或減少按鈕則執行
+//				if(response.data.type === "add" || response.data.type === "minus"){
+//					$quantityInput.val(newVal);
+//					var $row = $button.closest(".productInfo");
+//					var unitPrice = parseFloat($row.find('.money.price').attr('data-value'));
+//					var newSubtotal = unitPrice * newVal;
+//					$row.find('.money.total').text(newSubtotal.toFixed(1));
+//					updateCartTotals();
+//					//刪除單筆資料包含，如是單筆則包含廠商
+//				} else if(response.data.typetype === "delete"){
+//			        $row.remove();
+//					if ($comRow.nextUntil(".comIdOne", ".productInfo").length === 0) {
+//						var comId = $comRow.data("comid");
+//							if (comId !== undefined) {
+//								$("tr.comIdOne[data-comid='" + comId + "']").remove();
+//							}
+//					}
+//					updateCartTotals();
+//					// 清空購物車
+//				}	else if(type === "Alldelete"){	
+//                    $("tbody.productAll").remove();
+//                    updateCartTotals();
+//				}
+//			
+//			} else {
+//				console.error("操作失敗：" + response.data.message);
+//			}
+//			
+//		},
+//		error: function(xhr, status, error) {
+//			console.error("沒有收到回應:"+ error);
+//		}
+//	});
+//} 
+
+
 
 
 	
