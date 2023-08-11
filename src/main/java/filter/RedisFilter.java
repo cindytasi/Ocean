@@ -1,6 +1,7 @@
 package filter;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.Filter;
@@ -45,9 +46,15 @@ public class RedisFilter implements Filter {
 //			}
 			String userId = "1";	
 			String cart = jedis.get(Constant.shopCartRedisKey + ":" + userId);
-			Gson gson = new Gson();
-			List<ShopCartVo> shopCartVoList = gson.fromJson(cart, new TypeToken<List<ShopCartVo>>(){}.getType());
-			int cartSize = shopCartVoList.size();
+			int cartSize = 0;
+			if(cart == null) {
+				List<ShopCartVo> newList = new ArrayList<ShopCartVo>();
+				jedis.set(Constant.shopCartRedisKey  + ":" + userId, new Gson().toJson(newList));
+			}else {
+				Gson gson = new Gson();
+				List<ShopCartVo> shopCartVoList = gson.fromJson(cart, new TypeToken<List<ShopCartVo>>(){}.getType());
+				cartSize = shopCartVoList.size();
+			}
 			request.setAttribute("cartSize", cartSize);
 		} catch (Exception e) {
 			e.printStackTrace();

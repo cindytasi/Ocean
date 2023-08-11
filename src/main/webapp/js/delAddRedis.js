@@ -4,6 +4,9 @@ $(document).ready(function() {
 	
 	$(".quantity").append('<div class="dec qtybutton" type="minus">-</div><div class="inc qtybutton" type="add">+</div>');
 	
+
+	
+	
 //--------------------------------------點擊新增或減少按鈕並發送ajax----------------------------------------------------------------------------//
 
 $(".qtybutton").on("click", function() {
@@ -57,7 +60,7 @@ $(".qtybutton").on("click", function() {
                     updateCartTotals();
                 }
             } else {
-                console.error("新增或減少操作失敗：" + response.data.message);
+               alert("刪除操作失敗：" + response.description);
             }
         },
         error: function(xhr, status, error) {
@@ -144,7 +147,7 @@ $(".toDoAction").on("click", function() {
 				}
 
 			} else {
-				console.error("刪除操作失敗：" + response.data.message);
+				alert("刪除操作失敗：" + response.description);
 			}
 
 		},
@@ -268,17 +271,30 @@ $(".toDoAction").on("click", function() {
 			price:0,
 			type: type
 		},
-		success: function(response) {
-			console.log("有成功進來Alldelete");
-			if(response.status === 1){
-				
-				if(response.data.type === "Alldelete"){
-					$("tbody.productAll").remove();    
-					console.log("有成功進來並要執行remove()");            
-				} 
-			updateCartTotals();
+			success: function(response) {
+				console.log("有成功進來Alldelete");
+				if (response.status === 1) {
+
+					if (response.data.type === "Alldelete") {
+						$("tbody.productAll").remove();
+						console.log("有成功進來並要執行remove()");
+					}
+					var cartSize = response.data.shopcartSize;
+					console.log('Cart Size: ' + cartSize);
+					$(".mini-cart-count")[0].innerText = cartSize;
+
+					var cartSize = response.data.shopcartSize;
+
+					// 檢查數字是否小於1，如果是，隱藏綠色圖案
+					if (cartSize < 1) {
+						$(".mini-cart-count").css("display", "none");
+					}
+
+
+					updateCartTotals();
+
 			} else {
-				console.error("清空購物車操作失敗：" + response.data.message);
+				alert("刪除操作失敗：" + response.description);
 			}
 			
 		},

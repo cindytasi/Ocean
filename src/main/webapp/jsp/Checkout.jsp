@@ -199,34 +199,60 @@ select {
 				<div class="container">
 					<div class="row pt--50 pt-md--40 pt-sm--20">
 						<div class="col-12">
-							<!-- User Action Start -->
-							<div class="user-actions user-actions__coupon">
-								<div class="message-box mb--30">
-									<p>
-										<i class="fa fa-exclamation-circle"></i> Have A Coupon? <a
-											class="expand-btn" href="#coupon_info">Click Here To
-											Enter Your Code.</a>
-									</p>
-								</div>
-								<div id="coupon_info" class="user-actions__form hide-in-default">
-									<form action="#" class="form">
-										<p>If you have a coupon code, please apply it below.</p>
-										<div class="form__group d-sm-flex">
-											<input type="text" name="coupon" id="coupon"
-												class="form__input form__input--2 mr--20 mr-xs--0"
-												placeholder="Coupon Code">
-											<button type="submit"
-												class="btn btn-small btn-bg-red btn-color-white btn-hover-2">Apply
-												Coupon</button>
-										</div>
-									</form>
-								</div>
-							</div>
-							<!-- User Action End -->
+							
 						</div>
 					</div>
 					<div class="row pb--80 pb-md--60 pb-sm--40">
 						<!-- Checkout Area Start -->
+						<div class="col-xl-5 offset-xl-1 col-lg-6 mt-md--40">
+							<div class="order-details">
+								<div class="checkout-title mt--10">
+									<h2>訂單明細</h2>
+								</div>
+								<div class="table-content table-responsive mb--30">
+									<table class="table order-table order-table-2">
+										<thead>
+											<tr>
+												<th >商品資訊</th>
+												<th>顏色</th>
+												<th>尺寸</th>
+												<th>數量</th>
+												<th class="text-right">金額</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<th>舒適仿麻西裝外套</th>
+												<th>杏</th>
+												<th>S</th>
+												<th>1</th>
+												<td class="text-right">NT.1280.0</td>
+											</tr>
+											<tr>
+												<th>造型前開衩直筒牛仔褲 <strong><span>&#10005;</span>1</strong>
+												</th>
+												<td class="text-right">NT.1680.0</td>
+											</tr>
+										</tbody>
+										<tfoot>
+											<tr class="cart-subtotal">
+												<th>Subtotal</th>
+												<td class="text-right">$56.00</td>
+											</tr>
+											<tr class="shipping">
+												<th>Shipping</th>
+												<td class="text-right"><span>Flat Rate; $20.00</span></td>
+											</tr>
+											<tr class="order-total">
+												<th>Order Total</th>
+												<td class="text-right"><span
+													class="order-total-ammount">$56.00</span></td>
+											</tr>
+										</tfoot>
+									</table>
+								</div>
+							</div>
+						</div>
 						<div class="col-lg-6">
 							<div class="checkout-title mt--10">
 								<h2>填寫運送資料</h2>
@@ -335,8 +361,6 @@ select {
 											</div>
 										</div></li>
 
-
-
 									<div class="form-row mb--20">
 										<div class="form__group col-12">
 											<label for="billing_email" class="form__label form__label--2">Email</label>
@@ -344,161 +368,43 @@ select {
 												class="form__input form__input--2">
 										</div>
 									</div>
-
-
-									<div class="cart-section">
-										<div class="checkout-title mt--10">
-											<h2>配送資訊</h2>
-										</div>										
-										<ul class="formstyle--horizontal formstyle">
-											<li><label class="title">配送時段</label> <select
-												name="ArriveTime"
-												class="floatLabel form-control select-icon valid form__input form__input--2"
-												aria-invalid="false"><option value="0"
-														selected="selected">不指定</option>
-													<option value="1">8~13時</option>
-													<option value="2">14~18時</option></select></li>
-											<li>
-												<!---->
-											</li>
-											<li><label class="title ">發票</label>
-												<div class="row with-small-gap">
-													<div class="col">
-														<div class="controls-float">
-															<select id="invoice-chose" name="InvoiceType"
-																class="floatLabel form-control select-icon valid form__input form__input--2"
-																aria-invalid="false"><option index="0"
-																	value="1">電子發票 E-invoice</option>
-																<option index="1" value="2">電子發票(手機載具)
-																	E-Invoice carrier</option>
-																<option index="2" value="3">捐贈發票 Donation
-																	Invoice</option>
-																<option index="3" value="4">統編(公司戶)發票 Company
-																	Tax ID number Invoice</option></select>
-														</div>
-														<div id="invoice-selected" class="h6">
-															<!---->
-															<div>
-																<div class="mt-2">
-																	<input id="invoice-mobile-code"
-																		name="InvoiceMobileCode" type="text" class="text form__input form__input--2">
-																</div>
-															</div>
-															<!---->
-															<!---->
-															<div class="pt-2 lh-15">
-																核准文號：北區國稅北縣三字第1050754970號 <br>※依統一發票使用辦法規定：發票一經開立不得任意更改或改開發票。
-															</div>
-														</div>
-													</div>
-												</div></li>
-										</ul>
-									</div>
-
-
-
-
-								</form>
-							</div>
-						</div>
-						<div class="col-xl-5 offset-xl-1 col-lg-6 mt-md--40">
-							<div class="order-details">
-								<div class="checkout-title mt--10">
-									<h2>訂單明細</h2>
-								</div>
-								<div class="table-content table-responsive mb--30">
-									<table class="table order-table order-table-2">
-										<thead>
-											<tr>
-												<th >商品資訊</th>
-												<th>顏色</th>
-												<th>尺寸</th>
-												<th>數量</th>
-												<th class="text-right">金額</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<th>舒適仿麻西裝外套</th>
-												<th>杏</th>
-												<th>S</th>
-												<th>1</th>
-												<td class="text-right">NT.1280.0</td>
-											</tr>
-											<tr>
-												<th>造型前開衩直筒牛仔褲 <strong><span>&#10005;</span>1</strong>
-												</th>
-												<td class="text-right">NT.1680.0</td>
-											</tr>
-										</tbody>
-										<tfoot>
-											<tr class="cart-subtotal">
-												<th>Subtotal</th>
-												<td class="text-right">$56.00</td>
-											</tr>
-											<tr class="shipping">
-												<th>Shipping</th>
-												<td class="text-right"><span>Flat Rate; $20.00</span></td>
-											</tr>
-											<tr class="order-total">
-												<th>Order Total</th>
-												<td class="text-right"><span
-													class="order-total-ammount">$56.00</span></td>
-											</tr>
-										</tfoot>
-									</table>
-								</div>
-								<div class="checkout-payment">
-									<form action="#" class="payment-form">
+									
+									<div class="checkout-payment">
 										<div class="payment-group mb--10">
 											<div class="payment-radio">
-												<input type="radio" value="bank" name="payment-method"
-													id="bank" checked> <label class="payment-label"
-													for="cheque">Direct Bank Transfer</label>
+												<input type="radio" value="fax" checked> <label>宅配</label>
 											</div>
-											<div class="payment-info" data-method="bank">
-												<p>Make your payment directly into our bank account.
-													Please use your Order ID as the payment reference. Your
-													order will not be shipped until the funds have cleared in
-													our account.</p>
-											</div>
+											
 										</div>
 										<div class="payment-group mb--10">
 											<div class="payment-radio">
 												<input type="radio" value="cheque" name="payment-method"
 													id="cheque"> <label class="payment-label"
-													for="cheque"> cheque payments </label>
+													for="cheque"> 貨到付款 </label>
 											</div>
-											<div class="payment-info cheque hide-in-default"
-												data-method="cheque">
-												<p>Please send a check to Store Name, Store Street,
-													Store Town, Store State / County, Store Postcode.</p>
-											</div>
+											
 										</div>
 										<div class="payment-group mb--10">
 											<div class="payment-radio">
 												<input type="radio" value="cash" name="payment-method"
 													id="cash"> <label class="payment-label" for="cash">
-													CASH ON DELIVERY </label>
+													線上刷卡 </label>
 											</div>
-											<div class="payment-info cash hide-in-default"
-												data-method="cash">
-												<p>Pay with cash upon delivery.</p>
-											</div>
+											
 										</div>
 										<div class="payment-group mt--20">
-											<p class="mb--15">Your personal data will be used to
-												process your order, support your experience throughout this
-												website, and for other purposes described in our privacy
-												policy.</p>
+											<p class="mb--15" style="font-size:20px; font-weight: bold;" >Notice</p>
+											<p>※下單前請再次確認您的購買明細及配送資訊，訂單成立後無法異動訂單內容</p>
 											<button type="submit"
 												class="btn btn-fullwidth btn-bg-red btn-color-white btn-hover-2">Place
 												Order</button>
 										</div>
-									</form>
-								</div>
+
+									</div>
+								</form>
 							</div>
 						</div>
+						
 						<!-- Checkout Area End -->
 						<div class="cart-buttons">
 							<a class="btn btn--l" href="/zh-tw/checkout"><span

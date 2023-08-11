@@ -1,7 +1,11 @@
 package shop.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,12 +36,6 @@ public class ShopDetailServlet extends HttpServlet {
     }  
      
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-	
-		
-		
-		
-		
-		
 		String productName = req.getParameter("productName");
 		String color = req.getParameter("color");
 		
@@ -46,6 +44,23 @@ public class ShopDetailServlet extends HttpServlet {
 		Gson gson = new Gson();
 		String mappingJson = gson.toJson(result.getProdIdSizeColorImgStockList());
 		
+		
+		//讓下方的四個商品隨機出現
+		List<Product> allProductList = productService.getNewAll();
+		Random randomizer = new Random();
+		Set<Integer> randomNumSet = new HashSet<>();
+		while(randomNumSet.size() < 4) {
+			int num = randomizer.nextInt(allProductList.size());
+			randomNumSet.add(num);
+		}
+		
+		List<Product> randomProductList = new ArrayList<>();
+		for(Integer index : randomNumSet) {
+			randomProductList.add(allProductList.get(index));
+		}
+		
+		
+		req.setAttribute("randomProductList", randomProductList); //存入random的四個商品
 		req.setAttribute("detail", result);
 		req.setAttribute("defaultColorType", color);
 		req.setAttribute("mappingJson", mappingJson);

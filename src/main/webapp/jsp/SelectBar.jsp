@@ -96,8 +96,13 @@
 							<li class="nav-item"><a class="nav-link"
 								href="/seriesIndex.html">影集</a></li>
 							<!-- 藝人商品 -->
-							<li class="nav-item"><a class="nav-link active"
-								style="color: #81D8D0;" href="/productIndex.html">藝人商品</a></li>
+							<li class="nav-item">
+							
+							<a class="nav-link active"
+								style="color: #81D8D0;" href="<c:url value="/MainShopServlet"/>">藝人商品</a></li>
+								
+								
+								
 							<!-- 收藏地圖 -->
 							<li class="nav-item"><a class="nav-link"
 								href="/favoriteMapIndex.html">收藏地圖</a></li>

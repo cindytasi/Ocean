@@ -406,12 +406,13 @@
                                     "slidesToShow": 1
                                 }}
                             ]'>
+                            <c:forEach var="randomProductList" items="${randomProductList}">
                                 <div class="item">
                                     <div class="zakas-product">
                                         <div class="product-inner">
                                             <figure class="product-image">
-                                                <a href="product-details.html">                                                
-                                                    <img src="<c:url value="/img/products/prod-9.jpg"/>" alt="Products">
+                                                <a href="<c:url value="/ShopDetailServlet?productName=${randomProductList.productName}&color=${randomProductList.colorType}"/>">                                                
+                                                    <img src="<c:url value="/ImageSevlet?id=${randomProductList.productImgId}&photo_data=1"/>" alt="Product">
                                                 </a>
                                                 <div class="zakas-product-action">
                                                     <div class="product-action d-flex">
@@ -455,216 +456,24 @@
                                                         </a>
                                                     </div>
                                                 </div>
-                                                <span class="product-badge">New</span>
+                                              
                                             </figure>
                                             <div class="product-info">
                                                 <h3 class="product-title mb--15">
-                                                    <a href="product-details.html">Long Cartigen</a>
+                                                
+                                                    <a href="<c:url value="/ShopDetailServlet?productName=${randomProductList.productName}&color=${randomProductList.colorType}"/>">${randomProductList.productName}</a>
                                                 </h3>
                                                 <div class="product-price-wrapper mb--30">
-                                                    <span class="money">$80</span>
-                                                    <span class="money-separator">-</span>
-                                                    <span class="money">$200</span>
+                                                    <span class="money">NT.${randomProductList.price}</span>
                                                 </div>
-                                                <a href="cart.html" class="btn btn-small btn-bg-sand btn-color-dark">Add To Cart</a>
+                                                
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="item">
-                                    <div class="zakas-product">
-                                        <div class="product-inner">
-                                            <figure class="product-image">
-                                                <a href="product-details.html">                                                
-                                                    <img src="<c:url value="/img/products/prod-10.jpg"/>" alt="Products">
-                                                </a>
-                                                <div class="zakas-product-action">
-                                                    <div class="product-action d-flex">
-                                                        <div class="product-size">
-                                                            <a href="" class="action-btn">
-                                                                <span class="current">XL</span>
-                                                            </a>
-                                                            <div class="product-size-swatch">
-                                                                <span class="product-size-swatch-btn variation-btn">
-                                                                    L
-                                                                </span>
-                                                                <span class="product-size-swatch-btn variation-btn">
-                                                                    M
-                                                                </span>
-                                                                <span class="product-size-swatch-btn variation-btn">
-                                                                    S
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-color">
-                                                            <a href="" class="action-btn">
-                                                                <span class="current abbey">Abbey</span>
-                                                            </a>
-                                                            <div class="product-color-swatch">
-                                                                <span class="product-color-swatch-btn blue variation-btn">
-                                                                    Blue
-                                                                </span>
-                                                                <span class="product-color-swatch-btn copper variation-btn">
-                                                                    Copper
-                                                                </span>
-                                                                <span class="product-color-swatch-btn old-rose variation-btn">
-                                                                    Old Rose
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <a href="wishlist.html" class="action-btn">
-                                                            <i class="flaticon flaticon-like"></i>
-                                                        </a>
-                                                        <a data-toggle="modal" data-target="#productModal" class="action-btn quick-view">
-                                                            <i class="flaticon flaticon-eye"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </figure>
-                                            <div class="product-info">
-                                                <h3 class="product-title mb--15">
-                                                    <a href="product-details.html">Long Cartigen</a>
-                                                </h3>
-                                                <div class="product-price-wrapper mb--30">
-                                                    <span class="money">$80</span>
-                                                    <span class="money-separator">-</span>
-                                                    <span class="money">$200</span>
-                                                </div>
-                                                <a href="cart.html" class="btn btn-small btn-bg-sand btn-color-dark">Add To Cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="zakas-product">
-                                        <div class="product-inner">
-                                            <figure class="product-image">
-                                                <a href="product-details.html">                                                
-                                                    <img src="<c:url value="/img/products/prod-11.jpg"/>" alt="Products">
-                                                </a>
-                                                <div class="zakas-product-action">
-                                                    <div class="product-action d-flex">
-                                                        <div class="product-size">
-                                                            <a href="" class="action-btn">
-                                                                <span class="current">XL</span>
-                                                            </a>
-                                                            <div class="product-size-swatch">
-                                                                <span class="product-size-swatch-btn variation-btn">
-                                                                    L
-                                                                </span>
-                                                                <span class="product-size-swatch-btn variation-btn">
-                                                                    M
-                                                                </span>
-                                                                <span class="product-size-swatch-btn variation-btn">
-                                                                    S
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-color">
-                                                            <a href="" class="action-btn">
-                                                                <span class="current abbey">Abbey</span>
-                                                            </a>
-                                                            <div class="product-color-swatch">
-                                                                <span class="product-color-swatch-btn blue variation-btn">
-                                                                    Blue
-                                                                </span>
-                                                                <span class="product-color-swatch-btn copper variation-btn">
-                                                                    Copper
-                                                                </span>
-                                                                <span class="product-color-swatch-btn old-rose variation-btn">
-                                                                    Old Rose
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <a href="wishlist.html" class="action-btn">
-                                                            <i class="flaticon flaticon-like"></i>
-                                                        </a>
-                                                        <a data-toggle="modal" data-target="#productModal" class="action-btn quick-view">
-                                                            <i class="flaticon flaticon-eye"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <span class="product-badge">New</span>
-                                            </figure>
-                                            <div class="product-info">
-                                                <h3 class="product-title mb--15">
-                                                    <a href="product-details.html">Long Cartigen</a>
-                                                </h3>
-                                                <div class="product-price-wrapper mb--30">
-                                                    <span class="money">$80</span>
-                                                    <span class="money-separator">-</span>
-                                                    <span class="money">$200</span>
-                                                </div>
-                                                <a href="cart.html" class="btn btn-small btn-bg-sand btn-color-dark">Add To Cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="zakas-product">
-                                        <div class="product-inner">
-                                            <figure class="product-image">
-                                                <a href="product-details.html">                                                
-                                                    <img src="<c:url value="/img/products/prod-12.jpg"/>" alt="Products">
-                                                </a>
-                                                <div class="zakas-product-action">
-                                                    <div class="product-action d-flex">
-                                                        <div class="product-size">
-                                                            <a href="" class="action-btn">
-                                                                <span class="current">XL</span>
-                                                            </a>
-                                                            <div class="product-size-swatch">
-                                                                <span class="product-size-swatch-btn variation-btn">
-                                                                    L
-                                                                </span>
-                                                                <span class="product-size-swatch-btn variation-btn">
-                                                                    M
-                                                                </span>
-                                                                <span class="product-size-swatch-btn variation-btn">
-                                                                    S
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-color">
-                                                            <a href="" class="action-btn">
-                                                                <span class="current abbey">Abbey</span>
-                                                            </a>
-                                                            <div class="product-color-swatch">
-                                                                <span class="product-color-swatch-btn blue variation-btn">
-                                                                    Blue
-                                                                </span>
-                                                                <span class="product-color-swatch-btn copper variation-btn">
-                                                                    Copper
-                                                                </span>
-                                                                <span class="product-color-swatch-btn old-rose variation-btn">
-                                                                    Old Rose
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <a href="wishlist.html" class="action-btn">
-                                                            <i class="flaticon flaticon-like"></i>
-                                                        </a>
-                                                        <a data-toggle="modal" data-target="#productModal" class="action-btn quick-view">
-                                                            <i class="flaticon flaticon-eye"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <span class="product-badge">New</span>
-                                            </figure>
-                                            <div class="product-info">
-                                                <h3 class="product-title mb--15">
-                                                    <a href="product-details.html">Long Cartigen</a>
-                                                </h3>
-                                                <div class="product-price-wrapper mb--30">
-                                                    <span class="money">$80</span>
-                                                    <span class="money-separator">-</span>
-                                                    <span class="money">$200</span>
-                                                </div>
-                                                <a href="cart.html" class="btn btn-small btn-bg-sand btn-color-dark">Add To Cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            </c:forEach>
+                                
+                                
                             </div>
                         </div>
                     </div>

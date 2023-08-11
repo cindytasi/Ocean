@@ -23,15 +23,16 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.util.JedisUtil;
 import responseutil.ResponseUtils;
+import shop.service.ProductService;
 import shop.vo.ApiConstants;
 import shop.vo.BaseAPIResult;
+import shop.vo.Product;
 import shop.vo.ShopCartVo;
 
 
 @WebServlet("/ShopCartDetailServlet")
-public class ShopCartDetailServlet extends HttpServlet {
-	
-	
+public class ShopCartDetailServlet extends HttpServlet {	
+
 	
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		this.doPost(req, res);
@@ -39,40 +40,38 @@ public class ShopCartDetailServlet extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		JedisPool pool = JedisUtil.getJedisPool(); 
-		try (Jedis jedis = pool.getResource();){
-			
 
-						
-			String userId = "1"; // 假設userid=1 (設一個假資料)								
+		JedisPool pool = JedisUtil.getJedisPool();
+		try (Jedis jedis = pool.getResource();) {
+
+			String userId = "1"; // 假設userid=1 (設一個假資料)
 			String cart = jedis.get(Constant.shopCartRedisKey + ":" + userId);
 			Gson gson = new Gson();
-			List<ShopCartVo> shopCartVoList = gson.fromJson(cart, new TypeToken<List<ShopCartVo>>(){}.getType());
-			
-			
+			List<ShopCartVo> shopCartVoList = gson.fromJson(cart, new TypeToken<List<ShopCartVo>>() {
+			}.getType());
 
 			Set<String> productcomIdSet = new HashSet<String>();
-			for(ShopCartVo shopcart : shopCartVoList) {
+			for (ShopCartVo shopcart : shopCartVoList) {
 				productcomIdSet.add(shopcart.getProductcomId());
 			}
-			
+
 			List<List<ShopCartVo>> result = new ArrayList<>();
-			for(String productcomId : productcomIdSet) {
+			for (String productcomId : productcomIdSet) {
 				List<ShopCartVo> shopCartGroupByComIdList = new ArrayList<>();
-				for(ShopCartVo shopcart : shopCartVoList) {
-					if(shopcart.getProductcomId().equals(productcomId)) {
+				for (ShopCartVo shopcart : shopCartVoList) {
+					if (shopcart.getProductcomId().equals(productcomId)) {
 						shopCartGroupByComIdList.add(shopcart);
 					}
 				}
-				
+
 				result.add(shopCartGroupByComIdList);
 			}
-			
+
 			req.setAttribute("prod", result);
 			req.getRequestDispatcher("/jsp/Cart.jsp").forward(req, res);
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
+		}
 	}
 
 }
