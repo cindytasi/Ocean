@@ -102,21 +102,32 @@ public class DelAddRedisServlet extends HttpServlet {
 				        // 將更新後的 JSON 字串存回 Redis
 				        jedis.set(cartkey, updatedJsonString);
 								
-						
+				        System.out.println(shopCartVoList);
 					}else if("Alldelete".equals(type)) {
 						
-						jedis.del(cartkey);						
-						map.put("type", type);	
-						result.setData(map);
-						return;
+						jedis.del(cartkey);				        			        
+				        map.put("type", type);
+
 					};
 					
 										
-					cart = jedis.get(shopCartRedisKey + ":" + userId);//重新獲取購物車數據										
-					map.put("type", type);	//ajax回應需要type和status數據，但我status預設是1，所以不用加入
-					result.setData(map);
-
+					
+					
+					if(!"Alldelete".equals(type)) {
+						cart = jedis.get(shopCartRedisKey + ":" + userId);//重新獲取購物車數據										
+						map.put("type", type);	//ajax回應需要type和status數據，但我status預設是1，所以不用加入
+						
+						shopCartVoList = gson.fromJson(cart, new TypeToken<List<ShopCartVo>>(){}.getType());					
+						int cartSize = shopCartVoList.size();	
+						System.out.println(cartSize);
+						map.put("shopcartSize", cartSize);
+						
+					}	
+						
 	
+					result.setData(map);
+					
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 					result.setStatus(ApiConstants.STATUS_FAIL);

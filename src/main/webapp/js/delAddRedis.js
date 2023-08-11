@@ -46,7 +46,7 @@ $(".qtybutton").on("click", function() {
             type: type
         },
         success: function(response) {
-            console.log("有成功執行");
+            console.log("有成功進來add或minus");
             if (response.status === 1) {
                 if (response.data.type === "add" || response.data.type === "minus") {
                     $quantityInput.val(newVal);
@@ -115,7 +115,7 @@ $(".toDoAction").on("click", function() {
 			type: type
 		},
 		success: function(response) {
-			console.log("有成功執行");
+			console.log("有成功進來delete");
 			if (response.status === 1) {
 				//要是點擊增加或減少按鈕則執行
 				if (response.data.type === "delete") {
@@ -127,6 +127,19 @@ $(".toDoAction").on("click", function() {
 							$("tr.comIdOne[data-comid='" + comId + "']").remove();
 						}
 					}
+					
+				var cartSize = response.data.shopcartSize;
+					console.log('Cart Size: ' + cartSize);
+				$(".mini-cart-count")[0].innerText = cartSize;
+					
+				var cartSize = response.data.shopcartSize;
+
+				// 檢查數字是否小於1，如果是，隱藏綠色圖案
+				if (cartSize < 1) {
+					$(".mini-cart-count").css("display", "none");
+				}
+					
+				
 					updateCartTotals();
 				}
 
@@ -142,20 +155,101 @@ $(".toDoAction").on("click", function() {
 });
 
 
-    
+//------------------------------------------刪除整個購物車資料------------------------------------------------------------------------//	    
 
+//
+//	$(".cart-form__btn").on("click", function() {
+//    // 弹出询问窗口
+//    var confirmed = confirm("確定要清空購物車嗎?");
+//
+//		// 如果用户确认清空购物车
+//		if (confirmed) {
+//			// 获取所有商品行
+//			var $productRows = $("tbody.productAll").find(".productInfo");
+//			var type = $(".cart-form__btn").data("type")
+//			// 遍历每个商品行
+//			$productRows.each(function() {
+//				var $row = $(this);
+//				var productId = $row.find('.productId').val();
+//				var productcomId = $row.find('.productcomId').val();
+//				var inStock = $row.find('.inStock').val();
+//				var productImgId = $row.find('.productImgId').attr('value');
+//				var prodName = $row.find('.prodName').attr('value');
+//				var selectedColor = $row.find('.color.selectedColor').attr('data-value');
+//				var selectedSize = $row.find('.size.selectedSize').attr('data-value');
+//				var quantityValue = $row.find('.quantityValue').val();
+//				var price = parseFloat($row.find('.money.price').attr('data-value'));
+//
+//
+//
+//				$.ajax({
+//					url: "/Ocean/DelAddRedisServlet",
+//					method: "POST",
+//					data: {
+//						productId: productId,
+//						productcomId: productcomId,
+//						inStock: inStock,
+//						productImgId: productImgId,
+//						prodName: prodName,
+//						selectedColor: selectedColor,
+//						selectedSize: selectedSize,
+//						quantityValue: quantityValue,
+//						price: price,
+//						type: type
+//					},
+//					success: function(response) {
+//						if (response.status === 1) {
+//							$row.remove();
+//
+//							if ($comRow.nextUntil(".comIdOne", ".productInfo").length === 0) {
+//								var comId = $comRow.data("comid");
+//								if (comId !== undefined) {
+//									$("tr.comIdOne[data-comid='" + comId + "']").remove();
+//								}
+//							}
+//
+//							var cartSize = response.data.shopcartSize;
+//							console.log('Cart Size: ' + cartSize);
+//							$(".mini-cart-count")[0].innerText = cartSize;
+//
+//							var cartSize = response.data.shopcartSize;
+//
+//							// 檢查數字是否小於1，如果是，隱藏綠色圖案
+//							if (cartSize < 1) {
+//								$(".mini-cart-count").css("display", "none");
+//							}
+//
+//
+//							updateCartTotals();
+//							//$("tbody.productAll").remove();
+//						} else {
+//							console.error("删除商品失败：" + response.data.message);
+//						}
+//						// 更新购物车总计
+//						updateCartTotals();
+//					},
+//					error: function(xhr, status, error) {
+//						console.error("沒有收到回應:" + error);
+//					}
+//				});
+//			});
+//
+//			// 更新页面内容
+//			updateCartTotals();
+//		}
+//	});
 
 
 	//清空購物車
 	$(".cart-form__btn").on("click", function() {
 		// 彈出詢問窗口
 		var confirmed = confirm("確定要清空購物車嗎?");
-
+		var type = $(".cart-form__btn").data("type");
 		// 如果用户確認清空購物車
 		if (confirmed) {
 			// 刪除所有動態生成的商品列			
 			//$("tbody.productAll").remove();
-            var type = $(this).data("type");			
+            		
 		}
 		
 		$.ajax({
@@ -163,23 +257,24 @@ $(".toDoAction").on("click", function() {
 		method: "POST",
 		data: {
 			
-//			productId: productId,
-//			productcomId: productcomId,
-//			inStock: inStock,
-//			productImgId: productImgId,
-//			prodName: prodName,
-//			selectedColor: selectedColor,
-//			selectedSize: selectedSize,
-//			quantityValue: quantityValue,
-//			price:price,
+			productId: null,
+			productcomId: null,
+			inStock: 0,
+			productImgId: null,
+			prodName: null,
+			selectedColor: null,
+			selectedSize: null,
+			quantityValue: 0,
+			price:0,
 			type: type
 		},
 		success: function(response) {
-			console.log("有成功執行");
+			console.log("有成功進來Alldelete");
 			if(response.status === 1){
-				//要是點擊增加或減少按鈕則執行
+				
 				if(response.data.type === "Alldelete"){
-					$("tbody.productAll").remove();                
+					$("tbody.productAll").remove();    
+					console.log("有成功進來並要執行remove()");            
 				} 
 			updateCartTotals();
 			} else {
@@ -192,12 +287,8 @@ $(".toDoAction").on("click", function() {
 		}
 	});
 		
-		
-		
-		
-		
-	});    
-    
+});    
+
     
     
     
