@@ -117,6 +117,10 @@ html {
     html {
       font-size: 31.25%; } }
       
+      
+.global-search form {
+    position: relative;
+    background-color: #fff; }     
 
 body {
   font-size: 16px;
@@ -3662,8 +3666,9 @@ a, a:hover, a:focus, a:active, button, button:focus, input, select, textarea, .s
 .product-color .old-rose:after {
   background-color: #c18775; }
 
-.product-price-wrapper {
-  line-height: 1.4; }
+/*.product-price-wrapper {*/
+/*	line-height: 1.4;*/
+/*}*/
   .product-price-wrapper span {
     font-size: 16px; }
     .product-price-wrapper span.old-price {
@@ -4433,7 +4438,7 @@ a, a:hover, a:focus, a:active, button, button:focus, input, select, textarea, .s
     .table th.wide-column, .table td.wide-column {
       min-width: 240px; }
   .table tbody td {
-    padding: 15px 0; }
+    padding: 15px 5px; }
     .table tbody td.product-remove {
       width: 30px !important;
       min-width: 30px !important;
@@ -17058,17 +17063,17 @@ a, button, .user-info-menu, .banner-box .banner-info, .banner-box .banner-hover-
 /*****************************
 52 - Utilities - Color
 *****************************/
-.header-toolbar__btn.mini-cart-btn .mini-cart-count, .header-toolbar.white-color .header-toolbar__btn, .footer-menu.color-2 li a:hover, .footer .copyright-text.color--white a, .btn:hover, .btn-color-white, .btn-submit, .nav-style-2 .slick-btn:hover, .nav-style-2 .accordion-slider__btn:hover, .nav-style-2 .accordion-click-slider__btn:hover, .nav-hover-2 .slick-btn:hover, .nav-hover-2 .accordion-slider__btn:hover, .nav-hover-2 .accordion-click-slider__btn:hover, .newsletter-form__submit, .searchform-2__submit, .mobile-menu .mean-bar .mean-nav > ul li a, .mobile-menu .mean-bar .mean-nav ul li a.mean-expand, .offcanvas-navigation .offcanvas-menu li.active > a, .product-badge, .zakas-product.product-style-2 .product-title a, .zakas-product.product-style-2 .product-price-wrapper span, .zakas-product:hover .btn, .special-product-price span, .special-product-stock, .special-product-title, .special-product-title a, .tab-style-1 .nav-link.active, .tab-style-3 .nav-link.active, .user-dashboard-tab__head .nav-link.active, .user-dashboard-tab__head .nav-link:hover, .widget-color a, .pagination li .page-number.current, .pagination li .page-number:hover, .countdown .single-countdown, .countdown-2 .single-countdown:not(:last-child):after, .countdown-2 .single-countdown span {
+.header-toolbar.white-color .header-toolbar__btn, .footer-menu.color-2 li a:hover, .footer .copyright-text.color--white a, .btn:hover, .btn-color-white, .btn-submit, .nav-style-2 .slick-btn:hover, .nav-style-2 .accordion-slider__btn:hover, .nav-style-2 .accordion-click-slider__btn:hover, .nav-hover-2 .slick-btn:hover, .nav-hover-2 .accordion-slider__btn:hover, .nav-hover-2 .accordion-click-slider__btn:hover, .newsletter-form__submit, .searchform-2__submit, .mobile-menu .mean-bar .mean-nav > ul li a, .mobile-menu .mean-bar .mean-nav ul li a.mean-expand, .offcanvas-navigation .offcanvas-menu li.active > a, .product-badge, .zakas-product.product-style-2 .product-title a, .zakas-product.product-style-2 .product-price-wrapper span, .zakas-product:hover .btn, .special-product-price span, .special-product-stock, .special-product-title, .special-product-title a, .tab-style-1 .nav-link.active, .tab-style-3 .nav-link.active, .user-dashboard-tab__head .nav-link.active, .user-dashboard-tab__head .nav-link:hover, .widget-color a, .pagination li .page-number.current, .pagination li .page-number:hover, .countdown .single-countdown, .countdown-2 .single-countdown:not(:last-child):after, .countdown-2 .single-countdown span {
   color: #ffffff; }
 
 .btn:after, .action-btn, .slick-btn, .accordion-slider__btn, .accordion-click-slider__btn, .social__link span {
   background-color: #ffffff; }
 
 .user-info-menu li a:hover, .footer-menu li a:hover, .footer .copyright-text a, .banner-badge, .blog-meta-btn i, .single-post-details .entry-meta.category-link a, .btn-no-bg:hover, .btn-close:hover, .slick-btn:hover, .accordion-slider__btn:hover, .accordion-click-slider__btn:hover, .product-slide-nav.slick-vertical .slick-btn:hover i, .product-slide-nav.slick-vertical .accordion-slider__btn:hover i, .product-slide-nav.slick-vertical .accordion-click-slider__btn:hover i, .comment-author a:hover, .cart-form__btn:hover, .custom-close:hover i, .mini-cart__product .remove:hover, .mini-cart__product__title:hover, .product-title > a:hover, .product-summary .product-navigation a:hover, .product-summary .product-title a:hover, .variation-form .product-size-variations .product-size-variation-btn:hover, .variation-form .product-size-variations .product-size-variation-btn.selected, .table tbody td.product-remove a, .table.compare-table tbody .remove a, .table.shop_attributes th a:hover, .table.shop_attributes td a:hover, .method-box-2 i, .message-box a:hover, .error h1 {
-  color: #c2080f; }
+  color: black; }
 
-.header-toolbar__btn.mini-cart-btn .mini-cart-count, .btn:hover, .btn:hover:after, .btn-bg-red, .btn-bg-red:after, .btn-submit:hover, .nav-hover-2 .slick-btn:hover, .nav-hover-2 .accordion-slider__btn:hover, .nav-hover-2 .accordion-click-slider__btn:hover, .comment .reply:hover, .newsletter-form__submit, .product-badge, .zakas-product:hover .btn, .zakas-product:hover .btn:after, .tab-style-1 .nav-link:after, .tab-style-1 .nav-link.active, .user-dashboard-tab__head .nav-link.active, .user-dashboard-tab__head .nav-link:hover {
-  background-color: #c2080f; }
+.btn:hover, .btn:hover:after, .btn-bg-red, .btn-bg-red:after, .btn-submit:hover, .nav-hover-2 .slick-btn:hover, .nav-hover-2 .accordion-slider__btn:hover, .nav-hover-2 .accordion-click-slider__btn:hover, .comment .reply:hover, .newsletter-form__submit, .product-badge, .zakas-product:hover .btn, .zakas-product:hover .btn:after, .tab-style-1 .nav-link:after, .tab-style-1 .nav-link.active, .user-dashboard-tab__head .nav-link.active, .user-dashboard-tab__head .nav-link:hover {
+  background-color: #3f9891; }
 
 .nav-hover-2 .slick-btn:hover, .nav-hover-2 .accordion-slider__btn:hover, .nav-hover-2 .accordion-click-slider__btn:hover, .comment .reply:hover {
   border-color: #c2080f; }

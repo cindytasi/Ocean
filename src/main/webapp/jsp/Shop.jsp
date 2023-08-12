@@ -9,6 +9,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
+<jsp:include page="/jsp/pluginsJs.jsp"></jsp:include>
 <title>Zakas - Fashion eCommerce Bootstrap 4 Template</title>
 <meta name="description" content="">
 <meta name="viewport"
@@ -19,17 +20,220 @@
 <link rel="apple-touch-icon" href="<c:url value="/img/icon.png"/>">
 
 <!-- ************************* CSS Files ************************* -->
-
+<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'></link>	
 <!-- Vendor CSS -->
 <link rel="stylesheet" href="<c:url value="/css/vendor.css"/>">
 
 <!-- style css -->
 <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
+<script type="text/javascript" src="<c:url value="/js/keyword.js"/>"></script>
+
+<style>
+.global-search{
+    margin: 0;
+    flex-grow: 1;
+}
+
+.global-search input  {
+    margin: 20PX 0 0 80%;
+    width: 200px;
+    padding: 9px 21px;
+    border: 1px solid #dcdcdc;
+    color: #656565;
+    -webkit-border-radius: 30px;
+    border-radius: 30px;
+    background: #f5f5f5;
+    font-size: 15px;
+    line-height: 14px;
+    height: 34px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background-color: #fff;   
+}
+
+.submit-search{
+  visibility: hidden;
+}
+
+
+.fa-search::before{
+
+  visibility:visible;
+  font-weight: Thin; 
+  font-size: 25px;
+  display: flex;
+  position:absolute;
+  top: 82px;
+  color:#656565;
+  right: 10%;
+}
+
+
+</style>
+	<style type="text/css">
+		.checked {
+      		background-color:gainsboro;
+    	}
+    	.selected-color {
+			background-color: gainsboro; /* 设置选中标签的背景颜色为红色，你可以根据需要更改颜色 */
+   			color: #FFFFFF; /* 设置选中标签的文本颜色为白色，你可以根据需要更改颜色 */  			
+		}
+		        :root {
+            --bs-blue: #81D8D0;
+        }
+
+        /* 頁面背景色 */
+        .list {
+            background: #000;
+        }
+
+        /* 清單 */
+        .navbar-dark .navbar-nav .nav-link:focus,
+        .navbar-dark .navbar-nav .nav-link:hover {
+            color: var(--bs-blue)
+        }
+
+        .navbar {
+            background: #000;
+        }
+
+        /* search */
+        .bi {
+            color: #fff;
+            font-size: 25px;
+        }
+
+        .bi:hover {
+            color: #81D8D0;
+        }
+
+        /* 下拉選單 */
+        .dropdown-item:hover {
+            font-size: 20px;
+            color: rgb(9, 163, 130);
+        }
+
+        .dropdown-menu.show {
+            opacity: 65%;
+        }
+        
+        .errMsg {
+  			position: absolute;
+  			right: 0;
+  			/* 使用 absolute 定位，並設定 right 為 0 */
+  			transform: translateX(100%);
+  			/* 將元素右偏移自身寬度的 100%，這將將元素移到最右邊 */
+  			
+		}
+		.centered-text {
+		            display: flex;
+		            justify-content: center;
+		            align-items: center;
+					height: 30vh; 
+		            
+		            
+		}
+		.centered-text p {
+
+		            font-size: 30px;
+		            color: #1ba69a;
+		            
+		}
+
+	</style>
+
+
 
 </head>
 
 <body>
+<!-- Header Start -->
+	<header class="header">
+<jsp:include page="/jsp/SelectBar.jsp"></jsp:include>
+	<div class="header-inner fixed-header"
+		style="background-color: #deefed;">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-xl-10 col-lg-9 col-3">
+					<nav class="main-navigation">
+						<div class="mainmenu-nav d-none d-lg-block">
+							<ul class="mainmenu">
+								<li class="mainmenu__item menu-item-has-children"><a
+									href="<c:url value="/ShopServlet?type=AllProduct"/>"
+									class="mainmenu__link"> <span class="mm-text">所有商品</span>
+								</a></li>
 
+								<li class="mainmenu__item menu-item-has-children"><a
+									href="<c:url value="/ShopServlet?type=Women"/>"
+									class="mainmenu__link"> <span class="mm-text">女裝</span>
+								</a>
+									<ul class="sub-menu"">
+										<li><a href="<c:url value="/ShopServlet?type=WomenTop"/>">
+												<span class="mm-text">上衣 Top</span>
+										</a></li>
+										<li><a
+											href="<c:url value="/ShopServlet?type=WomenBottom"/>"> <span
+												class="mm-text">下身 Bottom</span>
+										</a></li>
+									</ul></li>
+
+								<li class="mainmenu__item menu-item-has-children"><a
+									href="<c:url value="/ShopServlet?type=Men"/>"
+									class="mainmenu__link"> <span class="mm-text">男裝</span>
+								</a>
+									<ul class="sub-menu">
+										<li><a href="<c:url value="/ShopServlet?type=MenTop"/>">
+												<span class="mm-text">上衣 Top</span>
+										</a></li>
+										<li><a
+											href="<c:url value="/ShopServlet?type=MenBottom"/>"> <span
+												class="mm-text">下身 Bottom</span>
+										</a></li>
+									</ul></li>
+
+
+								<li class="mainmenu__item menu-item-has-children"><a
+									href="<c:url value="/ShopServlet?type=Shoes"/>"
+									class="mainmenu__link"> <span class="mm-text">鞋子</span>
+								</a>
+									<ul class="sub-menu">
+										<li><a
+											href="<c:url value="/ShopServlet?type=WomenShoes"/>"> <span
+												class="mm-text">女鞋 women's shoes</span>
+										</a></li>
+										<li><a href="<c:url value="/ShopServlet?type=MenShoes"/>">
+												<span class="mm-text">男鞋 Men's shoes</span>
+										</a></li>
+									</ul></li>
+								<li class="mainmenu__item menu-item-has-children"><a
+									href="<c:url value="/ShopServlet?type=Accessories"/>"
+									class="mainmenu__link"> <span class="mm-text">飾品</span>
+								</a></li>
+								<li class="mainmenu__item menu-item-has-children"><a
+									href="<c:url value="/ShopServlet?type=Others"/>"
+									class="mainmenu__link"> <span class="mm-text">其他周邊</span>
+								</a></li>
+								<div class="errMsg" style="display: inline-block">
+									<ul class="breadcrumb">								
+									
+										<li><a href="<c:url value="/MainShopServlet"/>">Home</a></li>
+										<li class="current"><span>Product Shop</span></li>
+									</ul>
+								</div>
+							</ul>
+						</div>
+					</nav>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12">
+					<div class="mobile-menu"></div>
+				</div>
+			</div>
+		</div>
+	</div>	
+</header>
+<!-- Header End -->
 	<!-- Preloader Start -->
 	<div class="zakas-preloader active">
 		<div
@@ -44,187 +248,54 @@
 	
 	<!-- Main Wrapper Start -->
 	<div class="wrapper">
-		<!-- Header Start -->
-		<header class="header">
-			<div class="header-inner fixed-header">
-				<div class="container">
-					<div class="row align-items-center">
-						<div class="col-xl-10 col-lg-9 col-3">
-							<nav class="main-navigation">
-								<div class="site-branding">
-									
-								</div>
-
-
-								<div class="mainmenu-nav d-none d-lg-block">
-									<ul class="mainmenu">
-										<li class="mainmenu__item menu-item-has-children"><a
-											href="<c:url value="/ShopServlet?type=AllProduct"/>"
-											class="mainmenu__link"> <span class="mm-text">所有商品</span>
-										</a></li>
-
-										<li class="mainmenu__item menu-item-has-children"><a
-											href="<c:url value="/ShopServlet?type=Women"/>"
-											class="mainmenu__link"> <span class="mm-text">女裝</span>
-										</a>
-											<ul class="sub-menu"">
-												<li><a
-													href="<c:url value="/ShopServlet?type=WomenTop"/>"> <span
-														class="mm-text">上衣 Top</span>
-												</a></li>
-												<li><a
-													href="<c:url value="/ShopServlet?type=WomenBottom"/>">
-														<span class="mm-text">下身 Bottom</span>
-												</a></li>
-											</ul></li>
-
-										<li class="mainmenu__item menu-item-has-children"><a
-											href="<c:url value="/ShopServlet?type=Men"/>"
-											class="mainmenu__link"> <span class="mm-text">男裝</span>
-										</a>
-											<ul class="sub-menu">
-												<li><a href="<c:url value="/ShopServlet?type=MenTop"/>">
-														<span class="mm-text">上衣 Top</span>
-												</a></li>
-												<li><a
-													href="<c:url value="/ShopServlet?type=MenBottom"/>"> <span
-														class="mm-text">下身 Bottom</span>
-												</a></li>
-											</ul></li>
-
-
-										<li class="mainmenu__item menu-item-has-children"><a
-											href="<c:url value="/ShopServlet?type=Shoes"/>"
-											class="mainmenu__link"> <span class="mm-text">鞋子</span>
-										</a>
-											<ul class="sub-menu">
-												<li><a
-													href="<c:url value="/ShopServlet?type=WomenShoes"/>"> <span
-														class="mm-text">女鞋 women's shoes</span>
-												</a></li>
-												<li><a
-													href="<c:url value="/ShopServlet?type=MenShoes"/>"> <span
-														class="mm-text">男鞋 Men's shoes</span>
-												</a></li>
-											</ul></li>
-										<li class="mainmenu__item menu-item-has-children"><a
-											href="<c:url value="/ShopServlet?type=Accessories"/>"
-											class="mainmenu__link"> <span class="mm-text">飾品</span>
-										</a></li>
-										<li class="mainmenu__item menu-item-has-children"><a
-											href="<c:url value="/ShopServlet?type=Others"/>"
-											class="mainmenu__link"> <span class="mm-text">其他周邊</span>
-										</a></li>
-									</ul>
-								</div>
-
-
-
-							</nav>
-						</div>
-						<div class="col-xl-2 col-lg-3 col-9 text-right">
-							<ul class="header-toolbar">
-								<li class="header-toolbar__item"><a href="wishlist.html"
-									class="header-toolbar__btn"> <i
-										class="flaticon flaticon-like"></i>
-								</a></li>
-								<li class="header-toolbar__item mini-cart-item"><a
-									href="#miniCart"
-									class="header-toolbar__btn toolbar-btn mini-cart-btn"> <i
-										class="flaticon flaticon-shopping-cart"></i> <sup
-										class="mini-cart-count">2</sup>
-								</a></li>
-								<li class="header-toolbar__item user-info"><a href=""
-									class="header-toolbar__btn"> <i
-										class="flaticon flaticon-user"></i>
-								</a>
-									<ul class="user-info-menu">
-										<li><a href="my-account.html">My Account</a></li>
-										<li><a href="cart.html">Shopping Cart</a></li>
-										<li><a href="checkout.html">Check Out</a></li>
-										<li><a href="wishlist.html">Wishlist</a></li>
-										<li><a href="order-tracking.html">Order tracking</a></li>
-										<li><a href="compare.html">compare</a></li>
-									</ul></li>
-								<li class="header-toolbar__item"><a href="#searchForm"
-									class="header-toolbar__btn toolbar-btn"> <i
-										class="flaticon flaticon-search"></i>
-								</a></li>
-								<li class="header-toolbar__item d-lg-none"><a href="#"
-									class="header-toolbar__btn menu-btn"> <i class="fa fa-bars"></i>
-								</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-12">
-							<div class="mobile-menu"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</header>
-		<!-- Header End -->
-
-		<!-- Breadcrumb area Start -->
-		<div class="breadcrumb-area bg-color ptb--90" data-bg-color="#f6f6f6">
-			<div class="container">
-				<div class="row">
-					<div class="col-12">
-						<div
-							class="d-flex justify-content-between align-items-center flex-sm-row flex-column">
-							<h1 class="page-title">Shop</h1>
-							<ul class="breadcrumb">
-								<li><a href="index.html">Home</a></li>
-								<li class="current"><span>Shop</span></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Breadcrumb area End -->
-
+      
 		<!-- Main Content Wrapper Start -->
 		<div class="main-content-wrapper">
 			<div class="shop-page-wrapper ptb--80">
 				<div class="container">
 					<div class="row">
 						<div class="col-12">
-							<div class="shop-toolbar mb--50">
-								
+							<div class="shop-toolbar mb--50">	
 							</div>
+							
+						<c:if test="${empty product}">
+							<div class="centered-text">
+								<p>找不到此商品，請重新輸入~</p>
+							</div>
+						</c:if>
+							
+							
 							<div class="shop-products">
 								<div class="row">
-
-
+		
+							<!-- 	秀出商品資訊     -->
 								<c:forEach var="brand" items="${product}">
 									<div class="col-xl-3 col-lg-4 col-sm-6 mb--50">
 										<div class="zakas-product">
 											<div class="product-inner">
 												<figure class="product-image">
-													<a href="product-details.html"> <img
-														src="<c:url value="/img/products/prod-13.jpg"/>"
+													<a href="<c:url value="/ShopDetailServlet?productName=${brand.productName}&color=${brand.colorType}"/>"> <img
+														src="<c:url value="/ImageSevlet?id=${brand.productImgId}&photo_data=1"/>"
 														alt="Products">
 													</a>
-													<span class="product-badge">New</span>
+													
 												</figure>
 												<div class="product-info">
 													<h3 class="product-title mb--15">
+													
 														<a
-															href="/Ocean/ShopDetailServlet?productName=${brand.productName}&color=${brand.colorType}">${brand.productName}</a>
+															href="<c:url value="/ShopDetailServlet?productName=${brand.productName}&color=${brand.colorType}"/>">${brand.productName}</a>
 													</h3>
 													<div class="product-price-wrapper mb--30">
 														<span class="money">NT.${brand.price}</span>
 													</div>
-													<a href="cart.html"
-														class="btn btn-small btn-bg-sand btn-color-dark">Add
-														To Cart</a>
+													
 												</div>
 											</div>
 										</div>
 									</div>
 								</c:forEach>
+
 
 
 
@@ -317,21 +388,7 @@
 		</footer>
 		<!-- Footer End-->
 
-		<!-- Searchform Popup Start -->
-		<div class="searchform__popup" id="searchForm">
-			<a href="#" class="btn-close"><i class="flaticon flaticon-cross"></i></a>
-			<div class="searchform__body">
-				<p>Start typing and press Enter to search</p>
-				<form class="searchform">
-					<input type="text" name="popup-search" id="popup-search"
-						class="searchform__input" placeholder="Search Entire Store...">
-					<button type="submit" class="searchform__submit">
-						<i class="flaticon flaticon-magnifying-glass-icon"></i>
-					</button>
-				</form>
-			</div>
-		</div>
-		<!-- Searchform Popup End -->
+		
 
 		<!-- Mini Cart Start -->
 		<aside class="mini-cart" id="miniCart">
