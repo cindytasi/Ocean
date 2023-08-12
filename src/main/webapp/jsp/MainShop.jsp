@@ -168,7 +168,7 @@
 
 
 											<li><a href="<c:url value="/MainShopServlet"/>">Home</a></li>
-											<li class="current"><span>Ocean</span></li>
+											<a href="<c:url value="/ShopServlet?type=AllProduct"/>">Shop</a>
 
 
 

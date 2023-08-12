@@ -116,7 +116,7 @@
 								<div class="errMsg" style="display: inline-block">
 									<ul class="breadcrumb">								
 									
-										<li><a href="<c:url value="/MainShopServlet"/>">Home</a></li>
+										<li><a href="<c:url value="/ShopServlet?type=AllProduct"/>">Shop</a></li>
 										<li class="current"><span>Product Detail</span></li>
 									</ul>
 								</div>

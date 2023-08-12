@@ -64,6 +64,7 @@ select {
 <body>
 <!-- Header Start -->
 	<header class="header">
+		<input type="hidden" value='${productJson}'/>
 		<jsp:include page="/jsp/SelectBar.jsp"></jsp:include>
 		<div class="header-inner fixed-header"
 			style="background-color: #deefed;">

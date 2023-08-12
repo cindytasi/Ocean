@@ -217,7 +217,7 @@
 									<ul class="breadcrumb">								
 									
 										<li><a href="<c:url value="/MainShopServlet"/>">Home</a></li>
-										<li class="current"><span>Product Shop</span></li>
+										<li class="current"><a href="<c:url value="/ShopServlet?type=AllProduct"/>">Shop</a></li>
 									</ul>
 								</div>
 							</ul>
