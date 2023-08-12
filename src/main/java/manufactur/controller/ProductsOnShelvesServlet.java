@@ -35,6 +35,10 @@ public class ProductsOnShelvesServlet extends HttpServlet {
     public void init() {
         dao = new ManufacturServiceimpl();
     }
+    
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    	this.doPost(req, res);
+    }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 //		req.setCharacterEncoding("utf-8");
