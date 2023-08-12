@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ocean</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<style>
+    /* 修改預設 */
+    :root {
+        --bs-blue: #81D8D0;
+    }
+
+    /* 頁面背景色 */
+    body {
+        background: #000;
+        background-image: url("/img/waves_4.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+
+    /* 清單 */
+    .navbar-dark .navbar-nav .nav-link:focus,
+    .navbar-dark .navbar-nav .nav-link:hover {
+        color: var(--bs-blue)
+    }
+
+    .navbar {
+        background: #000;
+    }
+
+    /* search */
+    .bi {
+        color: #fff;
+        font-size: 25px;
+    }
+
+    .bi:hover {
+        color: #81D8D0;
+    }
+
+    /* 下拉選單 */
+    .dropdown-item:hover {
+        font-size: 20px;
+        color: rgb(9, 163, 130);
+    }
+
+    /* search icon */
+    .bi {
+        color: #fff;
+        font-size: 25px;
+    }
+
+    .bi:hover {
+        color: #81D8D0;
+    }
+
+    /* footer */
+    .footer_detail li>a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .footer_detail li>a:hover {
+        color: var(--bs-blue);
+    }
+</style>
+
+<body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top mb-5">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+                <!-- logo -->
+                <div class="logo d-flex">
+                    <a class="navbar-brand" href="/oceanIndex.html">
+                        <img src="/logo/logo_-_.png" alt="Ocean Logo" style="width: 50px;height: 50px;">
+                    </a>
+                    <!-- search -->
+                    <div class="input-group my-auto w-50">
+                        <input type="text" class="form-control" id="searchInput" placeholder="Search"
+                            aria-label="Search" aria-describedby="basic-addon2">
+                        <button class="btn btn-outline-secondary" type="button" id="searchButton">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- 導覽列 -->
+                <div class="list align-items-center">
+                    <ul class="navbar-nav">
+                        <!-- 首頁 -->
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/oceanIndex.html">首頁</a>
+                        </li>
+                        <!-- 電影 -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="/movieIndex.html">電影</a>
+                        </li>
+                        <!-- 影集 -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="/seriesIndex.html">影集</a>
+                        </li>
+                        <!-- 藝人商品 -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="/productIndex.html">藝人商品</a>
+                        </li>
+                        <!-- 收藏地圖 -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="/favoriteMapIndex.html">收藏地圖</a>
+                        </li>
+                        <!--user  -->
+                        <div class="nav-item dropdown">
+                            <button type="button" class="btn dropdown-toggle" id="navbarDropdownUserLink"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="/img/user.webp" alt="" style="width: 40px; height: 40px;">
+                            </button>
+                            <!-- user下拉選單 -->
+                            <ul class="dropdown-menu dropdown-menu-end mt-2" style="opacity: 80%;"
+                                aria-labelledby="navbarDropdownUserLink">
+                                <li><a class="dropdown-item" href="/aacountIndex.html">帳戶</a></li>
+                                <li><a class="dropdown-item" href="/accountDetail.html">基本資料</a></li>
+                                <li><a class="dropdown-item" href="/myAchieve.html">我的成就</a></li>
+                                <li><a class="dropdown-item" href="/myOrder.html">我的訂單</a></li>
+                                <li><a class="dropdown-item" href="/myList.html">我的片單</a></li>
+                                <li><a class="dropdown-item" href="/watchHistory.html">觀看紀錄</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="/signOut.html">登出</a></li>
+                            </ul>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 關於我們 -->
+    <div class="aboutUs">
+        <div class="aboutUsPic text-center mb-4">
+            <img src="/logo/logo_-_.png" alt="">
+        </div>
+        <section>
+            <h2 class="text-center text-light" style="font-size: 35px;">品牌由來</h2>
+            <hr style="color: white;">
+            <div class="oceanContent text-center col-lg-6 m-auto text-light">
+                <p>
+                    OTT平台在現今是很盛行的一個應用程式，從小孩到長者都會有使用的機會，而當我們在觀賞影片的時候，
+                    有時會想要了解劇中人物所使用的商品、店家、美食、拍攝地點等等，
+                    但往往這些資訊都需要透過某些外部平台日後的報導或文章我們才能得知其資訊，
+                    以商品為例，當這些外部平台報導之後，常常會間接影響到商品的銷售價格及庫存，
+                    如果沒有在第一時間發現的話，有時會落空買不到商品，所以我們想解決這個問題；
+                    另外一部分是，在觀賞影片的時候，有時會看到劇中人物吃的食物而自己當下也會很想吃，但卻吃不到的狀況，
+                    所以我們想透過我們設計的OTT平台來改善這個問題，讓大家也能近乎同步的享受美食。
+                </p>
+            </div>
+            <div class="container" style="color: #fff;">
+                <div class="row align-items-strech">
+                    <div class="col-lg-6">
+                        <div class="text-center px-2 py-5 p-lg-5">
+                            <h2>使用者快速掌握資訊</h2>
+                            <p>
+                                讓使用者在觀賞影片的同時，第一時間掌握劇中人物所有的商品、去過的餐廳、景點。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6"
+                        style="background:url('https://images.unsplash.com/photo-1616627440455-9907b864b144?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=929&q=80') center;background-size:cover;min-height:300px;">
+                    </div>
+                </div>
+                <div class="row align-items-strech">
+                    <div class="col-lg-6 order-lg-2 order-1">
+                        <div class="text-center px-2 py-5 p-lg-5">
+                            <h2>快速訂購服務</h2>
+                            <p>
+                                享受影片同時，提供購買相似商品服務，甚至是預約餐廳、立即外送等服務，不須外出即可一鍵滿足食衣住行育樂。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 order-lg-1 order-2"
+                        style="background:url('https://images.unsplash.com/photo-1502945015378-0e284ca1a5be?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjF8fHdvcmt8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60') center;background-size:cover;min-height:300px;">
+                    </div>
+                </div>
+                <div class="row align-items-strech">
+                    <div class="col-lg-6">
+                        <div class="text-center px-2 py-5 p-lg-5">
+                            <h2>提供店家或是商品曝光服務</h2>
+                            <p>
+                                合作店家提供他們產品在劇中的時間戳，讓平台在對應時間曝光該商品，加倍刺激消費者購物慾，同時能促進觀光。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6"
+                        style="background:url('https://images.unsplash.com/photo-1616627440455-9907b864b144?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=929&q=80') center;background-size:cover;min-height:300px;">
+                    </div>
+                </div>
+                <div class="row align-items-strech">
+                    <div class="col-lg-6 order-lg-2 order-1">
+                        <div class="text-center px-2 py-5 p-lg-5">
+                            <h2>收藏地圖一鍵在手</h2>
+                            <p>
+                                使用者能收藏並建立專屬地圖，煩惱出去玩不知道該去哪時，收藏地圖就能提供無限想像。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 order-lg-1 order-2"
+                        style="background:url('https://images.unsplash.com/photo-1502945015378-0e284ca1a5be?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjF8fHdvcmt8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60') center;background-size:cover;min-height:300px;">
+                    </div>
+                </div>
+                <div class="row align-items-strech">
+                    <div class="col-lg-6">
+                        <div class="text-center px-2 py-5 p-lg-5">
+                            <h2>無須跳轉頁面打斷情緒</h2>
+                            <p>
+                                所有服務都在同一個平台內解決，省去轉跳頁面的麻煩。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6"
+                        style="background:url('https://images.unsplash.com/photo-1616627440455-9907b864b144?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=929&q=80') center;background-size:cover;min-height:300px;">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 頁尾 -->
+    <div class="container pt-5 ">
+        <ul class="footer_detail d-flex justify-content-center list-unstyled">
+            <li class="px-2"><a href="/qaIndex.html">常見問題</a></li>
+            <li class="px-2"><a href="/privacyAndTerms.html">隱私權</a></li>
+            <li class="px-2"><a href="/legalNotices.html">法律聲明</a></li>
+            <li class="px-2"><a href="/aboutUs.html">關於我們</a></li>
+        </ul>
+        <span class="d-flex justify-content-center">Copyright© 2023 Ocean.All rights reserved.</span>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        //=========================SEARCH FUNCTION==================================//
+        $(document).ready(function () {
+            $("#searchButton").click(function () {
+                $("#searchInput").focus();
+            });
+        });
+    </script>
+</body>
+
+</html>

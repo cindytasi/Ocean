@@ -1,0 +1,2410 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ocean</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <style>
+        /* 修改預設 */
+        :root {
+            --bs-blue: #81D8D0;
+        }
+
+        /* 頁面背景色 */
+        body {
+            background: #000;
+        }
+
+        /* 清單 */
+        .navbar-dark .navbar-nav .nav-link:focus,
+        .navbar-dark .navbar-nav .nav-link:hover {
+            color: var(--bs-blue)
+        }
+
+        .navbar {
+            background: #000;
+        }
+
+        /* search */
+        .bi {
+            color: #fff;
+            font-size: 25px;
+        }
+
+        .bi:hover {
+            color: #81D8D0;
+        }
+
+        /* 下拉選單 */
+        .dropdown-item:hover {
+            font-size: 20px;
+            color: rgb(9, 163, 130);
+        }
+
+        /* footer */
+        .footer_detail li>a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .footer_detail li>a:hover {
+            color: var(--bs-blue);
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 3%;
+            background-color: #000;
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            width: 4rem;
+            height: 5rem;
+        }
+
+        .card {
+            background: transparent;
+        }
+
+
+        /* ========================篩選器（國家）=================================== */
+        .countryModal #countryModalBody {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .countryModal #countryModalBody a.countryModalItem {
+            width: 20%;
+            /* 將每個項目的寬度設為 20%，以確保每行顯示五個項目 */
+        }
+
+        .countryModal .item {
+            position: relative;
+            display: block;
+            transition: transform 500ms;
+        }
+
+        .countryModal #countryModalBody:focus-within .item,
+        .countryModal #countryModalBody:hover .item {
+            transform: translateX(-10%);
+        }
+
+        .countryModal .item:focus~.item,
+        .countryModal .item:hover~.item {
+            transform: translateX(10%);
+        }
+
+        .countryModal #countryModalBody .item:focus,
+        .countryModal #countryModalBody .item:hover {
+            transform: scale(1.15);
+            z-index: 1;
+        }
+
+        .countryModal .item img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .countryModal .item {
+            position: relative;
+        }
+
+        .countryModal .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .countryModal .item:hover .overlay {
+            opacity: 1;
+        }
+
+        .countryModal .overlay-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 限制 modal 內容的最大高度並添加滾動條 */
+        .countryModal .modal-content {
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        /* 調整每個項目容器的寬度，以確保每行只有五個項目 */
+        .countryModal .item-container {
+            width: 20%;
+        }
+
+        /* 調整卡片內容的排列 */
+        .countryModal .info {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .countryModal .infoType p {
+            margin-top: 0.25rem;
+        }
+
+        /* ===================篩選器（類型）=================================== */
+        .typeModal #typeModalBody {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .typeModal #typeModalBody a.typeModalItem {
+            width: 20%;
+            /* 將每個項目的寬度設為 20%，以確保每行顯示五個項目 */
+        }
+
+        .typeModal .item {
+            position: relative;
+            display: block;
+            transition: transform 500ms;
+        }
+
+        .typeModal #typeModalBody:focus-within .item,
+        .typeModal #typeModalBody:hover .item {
+            transform: translateX(-10%);
+        }
+
+        .typeModal .item:focus~.item,
+        .typeModal .item:hover~.item {
+            transform: translateX(10%);
+        }
+
+        .typeModal #typeModalBody .item:focus,
+        .typeModal #typeModalBody .item:hover {
+            transform: scale(1.15);
+            z-index: 1;
+        }
+
+        .typeModal .item img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .typeModal .item {
+            position: relative;
+        }
+
+        .typeModal .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .typeModal .item:hover .overlay {
+            opacity: 1;
+        }
+
+        .typeModal .overlay-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 限制 modal 內容的最大高度並添加滾動條 */
+        .typeModal .modal-content {
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        /* 調整每個項目容器的寬度，以確保每行只有五個項目 */
+        .typeModal .item-container {
+            width: 20%;
+        }
+
+        /* 調整卡片內容的排列 */
+        .typeModal .info {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .typeModal .infoType p {
+            margin-top: 0.25rem;
+        }
+
+        .dropdown-menu-scrollable {
+            max-height: 200px;
+            /* 設置最大高度，您可以根據需要進行調整 */
+            overflow-y: auto;
+            /* 添加垂直滾動條 */
+        }
+
+        /* ===================篩選器（年份）=================================== */
+        .timeModal #timeModalBody {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .timeModal #timeModalBody a.timeModalItem {
+            width: 20%;
+            /* 將每個項目的寬度設為 20%，以確保每行顯示五個項目 */
+        }
+
+        .timeModal .item {
+            position: relative;
+            display: block;
+            transition: transform 500ms;
+        }
+
+        .timeModal #timeModalBody:focus-within .item,
+        .timeModal #timeModalBody:hover .item {
+            transform: translateX(-10%);
+        }
+
+        .timeModal .item:focus~.item,
+        .timeModal .item:hover~.item {
+            transform: translateX(10%);
+        }
+
+        .timeModal #timeModalBody .item:focus,
+        .timeModal #timeModalBody .item:hover {
+            transform: scale(1.15);
+            z-index: 1;
+        }
+
+        .timeModal .item img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .timeModal .item {
+            position: relative;
+        }
+
+        .timeModal .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .timeModal .item:hover .overlay {
+            opacity: 1;
+        }
+
+        .timeModal .overlay-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 限制 modal 內容的最大高度並添加滾動條 */
+        .timeModal .modal-content {
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        /* 調整每個項目容器的寬度，以確保每行只有五個項目 */
+        .timeModal .item-container {
+            width: 20%;
+        }
+
+        /* 調整卡片內容的排列 */
+        .timeModal .info {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .timeModal .infoType p {
+            margin-top: 0.25rem;
+        }
+
+
+
+
+
+        /* ==================================================== */
+        .item {
+            position: relative;
+            display: block;
+            /* flex: 1 1 0px; */
+            transition: transform 500ms;
+        }
+
+        /* .container:focus-within .item,
+.container:hover .item {
+    transform: translateX(-10%);
+}
+
+.item:focus ~ .item,
+.item:hover ~ .item {
+    transform: translateX(10%);
+} */
+
+        .container .item:focus,
+        .container .item:hover {
+            transform: scale(1.3);
+            z-index: 1;
+        }
+
+
+        .item img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* 新增的樣式 */
+        .item {
+            position: relative;
+
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .item:hover .overlay {
+            opacity: 1;
+        }
+
+        .overlay-content {
+            position: relative;
+            z-index: 2;
+        }
+
+
+
+
+        /* ===================icon變探索全部=============================== */
+        .explore-button {
+            display: inline-block;
+            padding: 10px 20px;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .explore-button i {
+            display: inline-block;
+            opacity: 1;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .explore-button:hover i {
+            opacity: 0;
+            transform: translateX(10px);
+        }
+
+        .explore-button span {
+            display: inline-block;
+            position: absolute;
+            top: 30%;
+            left: 100%;
+            padding-left: 10px;
+            white-space: nowrap;
+            transition: transform 0.3s;
+        }
+
+        .explore-button:hover span {
+            transform: translateX(-100%);
+        }
+
+        /* ===================探索全部（最新上線）=================================== */
+        #exploreModal #exploreModalBody {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        #exploreModal #exploreModalBody a.exploreModalItem {
+            width: 20%;
+            /* 將每個項目的寬度設為 20%，以確保每行顯示五個項目 */
+        }
+
+        #exploreModal .item {
+            position: relative;
+            display: block;
+            transition: transform 500ms;
+        }
+
+        #exploreModal #exploreModalBody:focus-within .item,
+        #exploreModal #exploreModalBody:hover .item {
+            transform: translateX(-10%);
+        }
+
+        #exploreModal .item:focus~.item,
+        #exploreModal .item:hover~.item {
+            transform: translateX(10%);
+        }
+
+        #exploreModal #exploreModalBody .item:focus,
+        #exploreModal #exploreModalBody .item:hover {
+            transform: scale(1.15);
+            z-index: 1;
+        }
+
+        #exploreModal .item img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        #exploreModal .item {
+            position: relative;
+        }
+
+        #exploreModal .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        #exploreModal .item:hover .overlay {
+            opacity: 1;
+        }
+
+        #exploreModal .overlay-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 限制 modal 內容的最大高度並添加滾動條 */
+        #exploreModal .modal-content {
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        /* 調整每個項目容器的寬度，以確保每行只有五個項目 */
+        #exploreModal .item-container {
+            width: 20%;
+        }
+
+        /* 調整卡片內容的排列 */
+        #exploreModal .info {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        #exploreModal .infoType p {
+            margin-top: 0.25rem;
+        }
+
+        /* ===================探索全部（最新電影top10）=================================== */
+        #lastOnlineTop10Modal #lastOnlineTop10ModalBody {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        #lastOnlineTop10Modal #lastOnlineTop10ModalBody a.lastOnlineTop10ModalItem {
+            width: 20%;
+            /* 將每個項目的寬度設為 20%，以確保每行顯示五個項目 */
+        }
+
+        #lastOnlineTop10Modal .item {
+            position: relative;
+            display: block;
+            transition: transform 500ms;
+        }
+
+        #lastOnlineTop10Modal #lastOnlineTop10ModalBody:focus-within .item,
+        #lastOnlineTop10Modal #lastOnlineTop10ModalBody:hover .item {
+            transform: translateX(-10%);
+        }
+
+        #lastOnlineTop10Modal .item:focus~.item,
+        #lastOnlineTop10Modal .item:hover~.item {
+            transform: translateX(10%);
+        }
+
+        #lastOnlineTop10Modal #lastOnlineTop10ModalBody .item:focus,
+        #lastOnlineTop10Modal #lastOnlineTop10ModalBody .item:hover {
+            transform: scale(1.15);
+            z-index: 1;
+        }
+
+        #lastOnlineTop10Modal .item img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        #lastOnlineTop10Modal .item {
+            position: relative;
+        }
+
+        #lastOnlineTop10Modal .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        #lastOnlineTop10Modal .item:hover .overlay {
+            opacity: 1;
+        }
+
+        #lastOnlineTop10Modal .overlay-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 限制 modal 內容的最大高度並添加滾動條 */
+        #lastOnlineTop10Modal .modal-content {
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        /* 調整每個項目容器的寬度，以確保每行只有五個項目 */
+        #lastOnlineTop10Modal .item-container {
+            width: 20%;
+        }
+
+        /* 調整卡片內容的排列 */
+        #lastOnlineTop10Modal .info {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        #lastOnlineTop10Modal .infoType p {
+            margin-top: 0.25rem;
+        }
+
+        /* ===================探索全部（熱門推薦）=================================== */
+        #recommendedModal #recommendedModalBody {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        #recommendedModal #recommendedModalBody a.recommendedModalItem {
+            width: 20%;
+            /* 將每個項目的寬度設為 20%，以確保每行顯示五個項目 */
+        }
+
+        #recommendedModal .item {
+            position: relative;
+            display: block;
+            transition: transform 500ms;
+        }
+
+        #recommendedModal #recommendedModalBody:focus-within .item,
+        #recommendedModal #recommendedModalBody:hover .item {
+            transform: translateX(-10%);
+        }
+
+        #recommendedModal .item:focus~.item,
+        #recommendedModal .item:hover~.item {
+            transform: translateX(10%);
+        }
+
+        #recommendedModal #recommendedModalBody .item:focus,
+        #recommendedModal #recommendedModalBody .item:hover {
+            transform: scale(1.15);
+            z-index: 1;
+        }
+
+        #recommendedModal .item img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        #recommendedModal .item {
+            position: relative;
+        }
+
+        #recommendedModal .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        #recommendedModal .item:hover .overlay {
+            opacity: 1;
+        }
+
+        #recommendedModal .overlay-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 限制 modal 內容的最大高度並添加滾動條 */
+        #recommendedModal .modal-content {
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        /* 調整每個項目容器的寬度，以確保每行只有五個項目 */
+        #recommendedModal .item-container {
+            width: 20%;
+        }
+
+        /* 調整卡片內容的排列 */
+        #recommendedModal .info {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        #recommendedModal .infoType p {
+            margin-top: 0.25rem;
+        }
+
+        /* ===================探索全部（繼續觀看）=================================== */
+        #continueModal #continueModalBody {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        #continueModal #continueModalBody a.continueModalItem {
+            width: 20%;
+            /* 將每個項目的寬度設為 20%，以確保每行顯示五個項目 */
+        }
+
+        #continueModal .item {
+            position: relative;
+            display: block;
+            transition: transform 500ms;
+        }
+
+        #continueModal #continueModalBody:focus-within .item,
+        #continueModal #continueModalBody:hover .item {
+            transform: translateX(-10%);
+        }
+
+        #continueModal .item:focus~.item,
+        #continueModal .item:hover~.item {
+            transform: translateX(10%);
+        }
+
+        #continueModal #continueModalBody .item:focus,
+        #continueModal #continueModalBody .item:hover {
+            transform: scale(1.15);
+            z-index: 1;
+        }
+
+        #continueModal .item img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        #continueModal .item {
+            position: relative;
+        }
+
+        #continueModal .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        #continueModal .item:hover .overlay {
+            opacity: 1;
+        }
+
+        #continueModal .overlay-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 限制 modal 內容的最大高度並添加滾動條 */
+        #continueModal .modal-content {
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        /* 調整每個項目容器的寬度，以確保每行只有五個項目 */
+        #continueModal .item-container {
+            width: 20%;
+        }
+
+        /* 調整卡片內容的排列 */
+        #continueModal .info {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        #continueModal .infoType p {
+            margin-top: 0.25rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navAndMovie sticky-top">
+        <!-- navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+                    <!-- logo -->
+                    <div class="logo d-flex">
+                        <a class="navbar-brand" href="../index/oceanIndex.html">
+                            <img src="../logo/logo_-_.png" alt="Ocean Logo" style="width: 50px;height: 50px;">
+                        </a>
+                        <!-- search -->
+                        <div class="input-group my-auto w-50 dropdown">
+                            <input type="text" class="form-control dropdown-toggle" id="searchInput"
+                                placeholder="Search" aria-label="Search" aria-describedby="basic-addon2"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <button class="btn btn-outline-secondary" type="button" id="searchButton">
+                                <i class="bi bi-search"></i>
+                            </button>
+                            <ul class="searchMovie dropdown-menu" aria-labelledby="searchInput"
+                                style="width: 400px; height: 100px;background-color: rgba(0, 0, 0, 0.5);"
+                                id="searchVideo">
+                                <!-- <div class="card mb-3">
+                                    <div class="row g-0">
+                                        <div class="col-md-4">
+                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSneeWcVqMfMeHC0tLaVFfwcjAgPpRq6jaXYg&usqp=CAU" alt="..." style="width: 150px; height: 100px;">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body">
+                                                <p class="card-text">This is a wider card with supporting text below as a
+                                                    natural lead-in to additional content. This content is a little bit
+                                                    longer.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> -->
+                            </ul>
+
+                        </div>
+                    </div>
+                    <!-- 導覽列 -->
+                    <div class="list">
+                        <ul class="navbar-nav align-items-center">
+                            <!-- 首頁 -->
+                            <li class="nav-item">
+                                <a class="nav-link active" href="../index/oceanIndex.html">首頁</a>
+                            </li>
+                            <!-- 電影 -->
+                            <li class="nav-item">
+                                <a class="nav-link active" style="color: #81D8D0;" href="/movieIndex.html">電影</a>
+                            </li>
+                            <!-- 影集 -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="../index/movieIndex.html">影集</a>
+                            </li>
+                            <!-- 藝人商品 -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="../index/seriesIndex.html">藝人商品</a>
+                            </li>
+                            <!-- 收藏地圖 -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="../index/productIndex.html">收藏地圖</a>
+                            </li>
+                            <!--user  -->
+                            <div class="nav-item dropdown">
+                                <button type="button" class="btn dropdown-toggle" id="navbarDropdownUserLink"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="../img/user.webp" alt="" style="width: 40px; height: 40px;">
+                                </button>
+                                <!-- user下拉選單 -->
+                                <ul class="dropdown-menu dropdown-menu-end mt-2" style="opacity: 80%;"
+                                    aria-labelledby="navbarDropdownUserLink">
+                                    <li><a class="dropdown-item" href="../index/aacountIndex.html">帳戶</a></li>
+                                    <li><a class="dropdown-item" href="../index/accountDetail.html">基本資料</a></li>
+                                    <li><a class="dropdown-item" href="../index/myAchieve.html">我的成就</a></li>
+                                    <li><a class="dropdown-item" href="../index/myOrder.html">我的訂單</a></li>
+                                    <li><a class="dropdown-item" href="../index/myList.html">我的片單</a></li>
+                                    <li><a class="dropdown-item" href="../index/watchHistory.html">觀看紀錄</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="../index/signOut.html">登出</a></li>
+                                </ul>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- 電影bar -->
+        <div class="movieBar container-fluid d-flex align-items-center ps-4">
+            <h2 class="m-0" style="color: #fff; padding-left: 10px;">電影</h2>
+            <i class="bi bi-plus dropdown" data-bs-toggle="dropdown" style="font-size: 40px;"></i>
+            <ul class="dropdown-menu">
+                <li>
+                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#countryModal">國家</a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#typeModal">類型</a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#timeModal">年份</a>
+                </li>
+            </ul>
+        </div>
+
+
+        <!-- 篩選器（國家）Modal -->
+        <div class="countryModal modal fade" id="countryModal" tabindex="-1" data-bs-backdrop="false">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+                <div class="modal-content" style="background-color: rgb(24,24,24);">
+                    <div class="modal-header border-0 mb-5">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown">
+                                國家
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="#">台灣</a></li>
+                                <li><a class="dropdown-item" href="#">韓國</a></li>
+                                <li><a class="dropdown-item" href="#">日本</a></li>
+                                <li><a class="dropdown-item" href="#">美國</a></li>
+                                <li><a class="dropdown-item" href="#">英國</a></li>
+                            </ul>
+                        </div>
+                        <i class="bi bi-x-lg" data-bs-dismiss="modal"></i>
+                    </div>
+                    <div class="modal-body d-flex flex-wrap" id="countryModalBody">
+                        <!-- <a href="#animals" class="countryModalItem item">
+                            <img src="/Ocean/src/main/webapp/img/18991668670366737.jpg" alt="Animals">
+                            <div class="overlay">
+                                <div class="card card-overlay">
+                                    <div class="pic">
+                                        <img src="/Ocean/src/main/webapp/img/LUPIN_S2_16X9_EN-US.jpg" alt=""
+                                            class="card-img-top">
+                                    </div>
+                                    <div class="overlay-content">
+                                        <div class="card-body"
+                                            style="background-color: rgb(24, 24, 24); width: 100%;padding: 0.5rem 0.5rem;">
+                                            <i class="bi bi-play-circle-fill"></i>
+                                            <i class="bi bi-plus-circle"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <div class="info d-flex">
+                                                <p class="card-text me-3 my-auto">亞森羅蘋</p>
+                                                <p class="card-text my-auto" style="color: rgb(91, 91, 91);">1小時90分鐘</p>
+                                            </div>
+                                            <div class="infoType">
+                                                <p class="card-text mt-0">懸疑．動作</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 篩選器（類型）Modal -->
+        <div class="typeModal modal fade" id="typeModal" tabindex="-1" data-bs-backdrop="false">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+                <div class="modal-content" style="background-color: rgb(24,24,24);">
+                    <div class="modal-header border-0 mb-5">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2"
+                                data-bs-toggle="dropdown">
+                                類型
+                            </button>
+                            <ul class="typeDropdown-menu dropdown-menu dropdown-menu-scrollable"
+                                aria-labelledby="dropdownMenuButton2">
+                                <li><a class="dropdown-item" href="#" data-domainid="1">喜劇</a></li>
+                                <li><a class="dropdown-item" href="#" data-domainid="2">卡通</a></li>
+                                <li><a class="dropdown-item" href="#" data-domainid="3">動漫</a></li>
+                                <li><a class="dropdown-item" href="#" data-domainid="4">驚悚</a></li>
+                                <li><a class="dropdown-item" href="#" data-domainid="5">愛情</a></li>
+                                <li><a class="dropdown-item" href="#" data-domainid="6">奇幻</a></li>
+                                <li><a class="dropdown-item" href="#" data-domainid="7">懸疑</a></li>
+                                <li><a class="dropdown-item" href="#" data-domainid="8">科幻</a></li>
+                                <li><a class="dropdown-item" href="#" data-domainid="9">動作</a></li>
+                                <li><a class="dropdown-item" href="#" data-domainid="10">紀錄</a></li>
+                            </ul>
+                        </div>
+                        <i class="bi bi-x-lg" data-bs-dismiss="modal"></i>
+                    </div>
+                    <div class="modal-body d-flex flex-wrap" id="typeModalBody">
+                        <!-- <a href="#animals" class="typeModalItem item">
+                            <img src="/Ocean/src/main/webapp/img/18991668670366737.jpg" alt="Animals">
+                            <div class="overlay">
+                                <div class="card card-overlay">
+                                    <div class="pic">
+                                        <img src="/Ocean/src/main/webapp/img/LUPIN_S2_16X9_EN-US.jpg" alt=""
+                                            class="card-img-top">
+                                    </div>
+                                    <div class="overlay-content">
+                                        <div class="card-body"
+                                            style="background-color: rgb(24, 24, 24); width: 100%;padding: 0.5rem 0.5rem;">
+                                            <i class="bi bi-play-circle-fill"></i>
+                                            <i class="bi bi-plus-circle"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <div class="info d-flex">
+                                                <p class="card-text me-3 my-auto">亞森羅蘋</p>
+                                                <p class="card-text my-auto" style="color: rgb(91, 91, 91);">1小時90分鐘</p>
+                                            </div>
+                                            <div class="infoType">
+                                                <p class="card-text mt-0">懸疑．動作</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 篩選器（年份）Modal -->
+        <div class="timeModal modal fade" id="timeModal" tabindex="-1" data-bs-backdrop="false">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+                <div class="modal-content" style="background-color: rgb(24,24,24);">
+                    <div class="modal-header border-0 mb-5">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown">
+                                年份
+                            </button>
+                            <ul class="timeDropdown-menu dropdown-menu dropdown-menu-scrollable"
+                                aria-labelledby="dropdownMenuButton3">
+                                <li><a class="dropdown-item" href="#" data-timestart="2021"
+                                        data-timeend="2030">2021-2030</a></li>
+                                <li><a class="dropdown-item" href="#" data-timestart="2011"
+                                        data-timeend="2020">2011-2020</a></li>
+                                <li><a class="dropdown-item" href="#" data-timestart="2001"
+                                        data-timeend="2010">2001-2010</a></li>
+                                <li><a class="dropdown-item" href="#" data-timestart="1991"
+                                        data-timeend="2000">1991-2000</a></li>
+                                <li><a class="dropdown-item" href="#" data-timestart="1981"
+                                        data-timeend="1990">1981-1990</a></li>
+                            </ul>
+                        </div>
+                        <i class="bi bi-x-lg" data-bs-dismiss="modal"></i>
+                    </div>
+                    <div class="modal-body d-flex flex-wrap" id="timeModalBody">
+                        <!-- <a href="#animals" class="timeModalItem item">
+                            <img src="/Ocean/src/main/webapp/img/18991668670366737.jpg" alt="Animals">
+                            <div class="overlay">
+                                <div class="card card-overlay">
+                                    <div class="pic">
+                                        <img src="/Ocean/src/main/webapp/img/LUPIN_S2_16X9_EN-US.jpg" alt=""
+                                            class="card-img-top">
+                                    </div>
+                                    <div class="overlay-content">
+                                        <div class="card-body"
+                                            style="background-color: rgb(24, 24, 24); width: 100%;padding: 0.5rem 0.5rem;">
+                                            <i class="bi bi-play-circle-fill"></i>
+                                            <i class="bi bi-plus-circle"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <div class="info d-flex">
+                                                <p class="card-text me-3 my-auto">亞森羅蘋</p>
+                                                <p class="card-text my-auto" style="color: rgb(91, 91, 91);">1小時90分鐘</p>
+                                            </div>
+                                            <div class="infoType">
+                                                <p class="card-text mt-0">懸疑．動作</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- 熱門影片 -->
+    <div id="carouselTopMovie" class="container-fluid carousel slide topMovie-Carousel mb-3" data-bs-ride="carousel"
+        data-bs-interval="false">
+        <div class="topMovie carousel-inner d-flex">
+            <div class="topMovie carousel-item ratio ratio-21x9 active ">
+                <img src="../img/images.jpeg" class="d-block w-100" alt="...">
+            </div>
+            <div class="TopMovieItem carousel-item ratio ratio-21x9">
+                <img src="../img/posts_image3_111304_1631720835.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="TopMovieItem carousel-item ratio ratio-21x9">
+                <img src="../img/18991668670366737.jpg" class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev bg-transparent" type="button" data-bs-target="#carouselTopMovie"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next bg-transparent" type="button" data-bs-target="#carouselTopMovie"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <!-- 最新上線 -->
+    <div class="title text-start mt-5 container-fluid d-flex align-items-center">
+        <h3 class="ps-4" style="color: #fff; margin: 0;">最新上線</h3>
+        <a href="#" class="explore-button" data-bs-toggle="modal" data-bs-target="#exploreModal">
+            <i class="bi bi-chevron-right" style="color: #81D8D0;"></i>
+            <span style="color: #81D8D0;font-weight: bold;">探索全部</span>
+        </a>
+    </div>
+    <div class="container-fluid d-flex mt-5" style="height: 50%;" id="lastOnlineList">
+        <a href="#animals" class="item">
+            <img src="../img/18991668670366737.jpg" alt="Animals">
+            <div class="overlay">
+                <div class="card card-overlay">
+                    <div class="pic">
+                        <!-- <img src="../img/LUPIN_S2_16X9_EN-US.jpg" alt="" class="card-img-top"> -->
+                        <iframe id="youtubeVideo" src="https://www.youtube.com/embed/vlY5Fvzy9Yg?auto=1&mute=1"
+                            style="max-width: 100%; height: auto;" frameborder="0"
+                            allow="accelerometer; encrypted-media;"></iframe>
+                    </div>
+                    <div class="overlay-content">
+                        <div class="card-body"
+                            style="background-color: rgb(24, 24, 24); width: 100%;padding: 0.5rem 0.5rem;">
+                            <i class="bi bi-play-circle-fill"></i>
+                            <i class="bi bi-plus-circle"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <div class="info d-flex">
+                                <p class="card-text me-3 my-auto">亞森羅蘋</p>
+                                <p class="card-text my-auto" style="color: rgb(91, 91, 91);">1小時90分鐘</p>
+                            </div>
+                            <div class="infoType">
+                                <p class="card-text mt-0">懸疑．動作</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+    </div>
+
+    <!-- 探索全部（最新上線） -->
+    <div class="modal fade" id="exploreModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content" style="background-color: rgb(24,24,24);">
+                <div class="modal-header border-0 mb-5">
+                    <h3 class="modal-title mx-auto" id="exploreModalLabel" style="color: #fff;font-size: 3rem;">最新上線
+                    </h3>
+                    <i class="bi bi-x-lg" data-bs-dismiss="modal"></i>
+                </div>
+                <div class="modal-body " id="exploreModalBody">
+                    <!-- <a href="#animals" class="exploreModalItem item">
+                    <img src="/Ocean/src/main/webapp/img/18991668670366737.jpg" alt="Animals">
+                    <div class="overlay">
+                        <div class="card card-overlay">
+                            <div class="pic">
+                                <img src="/Ocean/src/main/webapp/img/LUPIN_S2_16X9_EN-US.jpg" alt=""
+                                    class="card-img-top">
+                            </div>
+                            <div class="overlay-content">
+                                <div class="card-body"
+                                    style="background-color: rgb(24, 24, 24); width: 100%;padding: 0.5rem 0.5rem;">
+                                    <i class="bi bi-play-circle-fill"></i>
+                                    <i class="bi bi-plus-circle"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <div class="info d-flex">
+                                        <p class="card-text me-3 my-auto">亞森羅蘋</p>
+                                        <p class="card-text my-auto" style="color: rgb(91, 91, 91);">1小時90分鐘</p>
+                                    </div>
+                                    <div class="infoType">
+                                        <p class="card-text mt-0">懸疑．動作</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a> -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 最新電影top10 -->
+    <div class="title text-start mt-5 container-fluid d-flex align-items-center">
+        <h3 class="ps-4" style="color: #fff; margin: 0;">最新電影TOP10</h3>
+        <a href="#" class="explore-button" data-bs-toggle="modal" data-bs-target="#lastOnlineTop10Modal">
+            <i class="bi bi-chevron-right" style="color: #81D8D0;"></i>
+            <span style="color: #81D8D0;font-weight: bold;">探索全部</span>
+        </a>
+    </div>
+    <div class="container-fluid d-flex mt-5" style="height: 50%;" id="lastOnlineTop10List">
+        <!-- <a href="#animals" class="item">
+            <img src="../img/18991668670366737.jpg" alt="Animals">
+            <div class="overlay">
+                <div class="card card-overlay">
+                    <div class="pic">
+                        <img src="../img/LUPIN_S2_16X9_EN-US.jpg" alt="" class="card-img-top">
+                    </div>
+                    <div class="overlay-content">
+                        <div class="card-body"
+                            style="background-color: rgb(24, 24, 24); width: 100%;padding: 0.5rem 0.5rem;">
+                            <i class="bi bi-play-circle-fill"></i>
+                            <i class="bi bi-plus-circle"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <div class="info d-flex">
+                                <p class="card-text me-3 my-auto">亞森羅蘋</p>
+                                <p class="card-text my-auto" style="color: rgb(91, 91, 91);">1小時90分鐘</p>
+                            </div>
+                            <div class="infoType">
+                                <p class="card-text mt-0">懸疑．動作</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a> -->
+
+    </div>
+    <!-- 探索全部（最新top10上線） -->
+    <div class="modal fade" id="lastOnlineTop10Modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content" style="background-color: rgb(24,24,24);">
+                <div class="modal-header border-0 mb-5">
+                    <h3 class="modal-title mx-auto" id="lastOnlineTop10ModalLabel" style="color: #fff;font-size: 3rem;">
+                        最新電影TOP10
+                    </h3>
+                    <i class="bi bi-x-lg" data-bs-dismiss="modal"></i>
+                </div>
+                <div class="modal-body " id="lastOnlineTop10ModalBody">
+                    <!-- <a href="#animals" class="lastOnlineTop10ModalItem item">
+                    <img src="/Ocean/src/main/webapp/img/18991668670366737.jpg" alt="Animals">
+                    <div class="overlay">
+                        <div class="card card-overlay">
+                            <div class="pic">
+                                <img src="/Ocean/src/main/webapp/img/LUPIN_S2_16X9_EN-US.jpg" alt=""
+                                    class="card-img-top">
+                            </div>
+                            <div class="overlay-content">
+                                <div class="card-body"
+                                    style="background-color: rgb(24, 24, 24); width: 100%;padding: 0.5rem 0.5rem;">
+                                    <i class="bi bi-play-circle-fill"></i>
+                                    <i class="bi bi-plus-circle"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <div class="info d-flex">
+                                        <p class="card-text me-3 my-auto">亞森羅蘋</p>
+                                        <p class="card-text my-auto" style="color: rgb(91, 91, 91);">1小時90分鐘</p>
+                                    </div>
+                                    <div class="infoType">
+                                        <p class="card-text mt-0">懸疑．動作</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a> -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 熱門推薦 -->
+    <div class="title text-start mt-5 container-fluid d-flex align-items-center">
+        <h3 class="ps-4" style="color: #fff; margin: 0;">熱門推薦</h3>
+        <a href="#" class="explore-button" data-bs-toggle="modal" data-bs-target="#recommendedModal">
+            <i class="bi bi-chevron-right" style="color: #81D8D0;"></i>
+            <span style="color: #81D8D0;font-weight: bold;">探索全部</span>
+        </a>
+    </div>
+    <div class="container-fluid d-flex mt-5" style="height: 50%;" id="RecommendedMovieList">
+        <!-- <a href="#animals" class="item">
+            <img src="../img/18991668670366737.jpg" alt="Animals">
+            <div class="overlay">
+                <div class="card card-overlay">
+                    <div class="pic">
+                        <img src="../img/LUPIN_S2_16X9_EN-US.jpg" alt="" class="card-img-top">
+                    </div>
+                    <div class="overlay-content">
+                        <div class="card-body"
+                            style="background-color: rgb(24, 24, 24); width: 100%;padding: 0.5rem 0.5rem;">
+                            <i class="bi bi-play-circle-fill"></i>
+                            <i class="bi bi-plus-circle"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <div class="info d-flex">
+                                <p class="card-text me-3 my-auto">亞森羅蘋</p>
+                                <p class="card-text my-auto" style="color: rgb(91, 91, 91);">1小時90分鐘</p>
+                            </div>
+                            <div class="infoType">
+                                <p class="card-text mt-0">懸疑．動作</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a> -->
+
+    </div>
+    <!-- 探索全部（熱門推薦） -->
+    <div class="modal fade" id="recommendedModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content" style="background-color: rgb(24,24,24);">
+                <div class="modal-header border-0 mb-5">
+                    <h3 class="modal-title mx-auto" id="recommendedModalLabel" style="color: #fff;font-size: 3rem;">熱門推薦
+                    </h3>
+                    <i class="bi bi-x-lg" data-bs-dismiss="modal"></i>
+                </div>
+                <div class="modal-body " id="recommendedModalBody">
+                    <!-- <a href="#animals" class="recommendedModalItem item">
+                    <img src="../img/18991668670366737.jpg" alt="Animals">
+                    <div class="overlay">
+                        <div class="card card-overlay">
+                            <div class="pic">
+                                <img src="../img/LUPIN_S2_16X9_EN-US.jpg" alt=""
+                                    class="card-img-top">
+                            </div>
+                            <div class="overlay-content">
+                                <div class="card-body"
+                                    style="background-color: rgb(24, 24, 24); width: 100%;padding: 0.5rem 0.5rem;">
+                                    <i class="bi bi-play-circle-fill"></i>
+                                    <i class="bi bi-plus-circle"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <div class="info d-flex">
+                                        <p class="card-text me-3 my-auto">亞森羅蘋</p>
+                                        <p class="card-text my-auto" style="color: rgb(91, 91, 91);">1小時90分鐘</p>
+                                    </div>
+                                    <div class="infoType">
+                                        <p class="card-text mt-0">懸疑．動作</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a> -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 繼續觀看 -->
+    <div class="title text-start mt-5 container-fluid d-flex align-items-center">
+        <h3 class="ps-4" style="color: #fff; margin: 0;">繼續觀看</h3>
+        <a href="#" class="explore-button" data-bs-toggle="modal" data-bs-target="#continueModal">
+            <i class="bi bi-chevron-right" style="color: #81D8D0;"></i>
+            <span style="color: #81D8D0;font-weight: bold;">探索全部</span>
+        </a>
+    </div>
+    <div class="container-fluid d-flex mt-5" style="height: 50%;" id="ContinueList">
+        <!-- <a href="#animals" class="item">
+            <img src="../img/18991668670366737.jpg" alt="Animals">
+            <div class="overlay">
+                <div class="card card-overlay">
+                    <div class="pic">
+                        <img src="../img/LUPIN_S2_16X9_EN-US.jpg" alt="" class="card-img-top">
+                    </div>
+                    <div class="overlay-content">
+                        <div class="card-body"
+                            style="background-color: rgb(24, 24, 24); width: 100%;padding: 0.5rem 0.5rem;">
+                            <i class="bi bi-play-circle-fill"></i>
+                            <i class="bi bi-plus-circle"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <div class="info d-flex">
+                                <p class="card-text me-3 my-auto">亞森羅蘋</p>
+                                <p class="card-text my-auto" style="color: rgb(91, 91, 91);">1小時90分鐘</p>
+                            </div>
+                            <div class="infoType">
+                                <p class="card-text mt-0">懸疑．動作</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a> -->
+
+    </div>
+    <!-- 探索全部（繼續觀看） -->
+    <div class="modal fade" id="continueModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content" style="background-color: rgb(24,24,24);">
+                <div class="modal-header border-0 mb-5">
+                    <h3 class="modal-title mx-auto" id="continueModalLabel" style="color: #fff;font-size: 3rem;">最新上線
+                    </h3>
+                    <i class="bi bi-x-lg" data-bs-dismiss="modal"></i>
+                </div>
+                <div class="modal-body " id="continueModalBody">
+                    <!-- <a href="#animals" class="continueModalItem item">
+                    <img src="/Ocean/src/main/webapp/img/18991668670366737.jpg" alt="Animals">
+                    <div class="overlay">
+                        <div class="card card-overlay">
+                            <div class="pic">
+                                <img src="/Ocean/src/main/webapp/img/LUPIN_S2_16X9_EN-US.jpg" alt=""
+                                    class="card-img-top">
+                            </div>
+                            <div class="overlay-content">
+                                <div class="card-body"
+                                    style="background-color: rgb(24, 24, 24); width: 100%;padding: 0.5rem 0.5rem;">
+                                    <i class="bi bi-play-circle-fill"></i>
+                                    <i class="bi bi-plus-circle"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <div class="info d-flex">
+                                        <p class="card-text me-3 my-auto">亞森羅蘋</p>
+                                        <p class="card-text my-auto" style="color: rgb(91, 91, 91);">1小時90分鐘</p>
+                                    </div>
+                                    <div class="infoType">
+                                        <p class="card-text mt-0">懸疑．動作</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a> -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 推薦給ＸＸＸ -->
+    <!-- <div id="recommendedCarousel" class="container-fluid text-center my-3 pt-5  pb-5">
+        <div class="title text-start mt-5">
+            <h3 class="ps-4" style="color: #fff;">推薦給您</h3>
+        </div>
+        <div class="row mx-auto my-auto justify-content-center">
+            <div id="recipeRecommendedCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+                <div class="carousel-inner" role="listbox">
+                    <div class="carousel-item active">
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-img ratio ratio-16x9">
+                                    <img src="/img/top10-1.jpeg" class="img-fluid">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-img ratio ratio-16x9">
+                                    <img src="/img/john wich.jpeg" class="img-fluid">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-img ratio ratio-16x9">
+                                    <img src="/img/top10-3.webp" class="img-fluid">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-img ratio ratio-16x9">
+                                    <img src="/img/top10-4.webp" class="img-fluid">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-img ratio ratio-16x9">
+                                    <img src="/img/mission.avif" class="img-fluid">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-img ratio ratio-16x9">
+                                    <img src="/img/top10-6.jpeg" class="img-fluid">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="buttonprev">
+                    <a class="carousel-control-prev w-aut" href="#recipeRecommendedCarousel" role="button"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    </a>
+                </div>
+                <a class="carousel-control-next w-aut" href="#recipeRecommendedCarousel" role="button"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </a>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- 頁尾 -->
+    <div class="container mt-5">
+        <ul class="footer_detail d-flex justify-content-center list-unstyled">
+            <li class="px-2"><a href="../index/qaIndex.html">常見問題</a></li>
+            <li class="px-2"><a href="../index/copyright.html">版權聲明</a></li>
+            <li class="px-2"><a href="../index/instruction.html">使用說明</a></li>
+            <li class="px-2"><a href="../index/aboutUs.html">關於我們</a></li>
+        </ul>
+        <span class="d-flex justify-content-center">Copyright© 2023 Ocean.All rights reserved.</span>
+    </div>
+
+    <!-- <script src="https://www.youtube.com/AIzaSyBeU9qGx-_8imbZ-JSBKbzkHKYtgEzBNUU"></script> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+
+    <script>
+        //                 // ============================test==========================//
+        //         // 在 YouTube API 載入完畢後執行
+        // function onYouTubeIframeAPIReady() {
+        //     // 建立 YouTube 播放器物件
+        //     const player = new YT.Player('youtubeVideo', {
+        //         events: {
+        //             'onReady': onPlayerReady,
+        //         }
+        //     });
+
+        //     function onPlayerReady(event) {
+        //         // 影片載入完畢時，開始播放
+        //         event.target.playVideo();
+
+        //         // 設定 30 秒後暫停播放
+        //         setTimeout(function() {
+        //             player.pauseVideo();
+        //         }, 30000); // 30 秒的毫秒數
+        //     }
+        // }
+
+        //=================================SEARCH FUNCTION======================================//
+
+        let lastSearchText = '';
+        $(document).ready(function () {
+            $("#searchButton").click(function () {
+                $("#searchInput").focus();
+            });
+        });
+
+        const searchInput = document.getElementById("searchInput");
+        const sv = document.getElementById('searchVideo');
+
+        searchInput.addEventListener("keypress", function (e) {
+
+            if (e.keyCode === 13) {
+                const searchText = searchInput.value.trim();
+
+                if (searchText === '') {
+                    sv.innerHTML = '';
+                    return;
+                }
+
+                // 先清空之前的結果
+                sv.innerHTML = '';
+
+                // 更新上一次的搜尋內容
+                lastSearchText = searchText;
+
+                $.ajax({
+                    url: "/Ocean/web/controller/searchVideoController", // 資料請求的網址
+                    type: "POST",
+                    dataType: "json",
+                    data: JSON.stringify({
+                        videoType: "電影",
+                        videoName: searchText
+                    }),
+                    success: function (data) {
+
+                        console.log(data);
+
+
+                        let starRatings = []; // 用來存放每一筆資料的星星數量
+
+                        for (let i in data) {
+                            //console.log(data);
+
+                            // 將字串轉換為數字
+                            const videoReview = parseInt(data[i].VideoReview, 10); // 假設 data[i].VideoReview 是一個範圍為 "1" 到 "5" 的字串
+
+                            // 將星星數量放入陣列
+                            starRatings.push(videoReview);
+
+                            // 生成星星 icon
+                            let starsHtml = '';
+                            for (let j = 1; j <= 5; j++) {
+                                const starClass = j <= videoReview ? 'bi bi-star-fill checked' : 'bi bi-star';
+                                starsHtml += `<i class="${starClass}" data-rating="${j}" style="color:#81D8D2"></i>`;
+                            }
+
+                            let card = document.createElement('div');
+                            card.classList.add('card');
+                            card.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+                            card.innerHTML = `
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSneeWcVqMfMeHC0tLaVFfwcjAgPpRq6jaXYg&usqp=CAU" alt="..." style="width: 150px; height: 100px;">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body text-left ms-2">
+                                        <h4 class="card-text" style="color: white;">${data[i].videoName}</h4>
+                                        <div class="stars" style="color: white;">${starsHtml}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                            sv.appendChild(card);
+                        }
+                    }
+                })
+            }
+        });
+
+        // 在搜尋欄失去焦點時檢查是否需要清空搜尋結果
+        searchInput.addEventListener("blur", function () {
+            const searchText = searchInput.value.trim();
+            if (searchText === '') {
+                sv.innerHTML = '';
+            }
+        });
+
+        // 在搜尋欄重新獲得焦點時檢查是否需要重新顯示上一次的搜尋結果
+        searchInput.addEventListener("focus", function () {
+            const searchText = searchInput.value.trim();
+            if (searchText === '' && lastSearchText !== '') {
+                searchInput.value = lastSearchText;
+                // 觸發 Enter 鍵事件，重新顯示上一次的搜尋結果
+                const enterEvent = new KeyboardEvent("keypress", { keyCode: 13 });
+                searchInput.dispatchEvent(enterEvent);
+            }
+        });
+        //=========================================取消輪播自動播放====================================//
+        $(document).ready(function () {
+            $("#recipeCarousel").carousel({
+                interval: false
+            });
+        });
+        //=====================================movieBar sticky top==================================//  
+        function addStyle(element, styleName, styleValue) {
+            $(element).css(styleName, styleValue);
+        }
+        $(document).ready(function () {
+            $(window).scroll(function () {
+                var scroll = $(window).scrollTop();
+
+                if (scroll > 0) {
+                    addStyle(".movieBar", "background-color", "#000");
+                } else {
+                    addStyle(".movieBar", "background-color", "transparent");
+                }
+            });
+        });
+
+        //============================================最新上線=======================================================//
+        $.ajax({
+            url: "/Ocean/web/controller/videoListController", // 資料請求的網址
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify({
+                type: "lastOnline",
+                videoType: "電影"
+            }),
+            success: function (data) {
+
+                let vidLastOnline5 = document.getElementById('lastOnlineList');
+
+                let starRatings = [];
+
+                for (let i in data) {
+                    const videoReview = parseInt(data[i].VideoReview, 10);
+
+                    // Add star ratings to the starRatings array
+                    starRatings.push(videoReview);
+
+                    // Generate star icons HTML
+                    let starsHtml = '';
+                    for (let j = 1; j <= 5; j++) {
+                        const starClass = j <= videoReview ? 'bi bi-star-fill checked' : 'bi bi-star';
+                        starsHtml += `<i class="${starClass}" data-rating="${j}" style="color:#81D8D2"></i>`;
+                    }
+
+                    vidLastOnline5.innerHTML += `
+                                    <a href="#animals" class="item">
+                        <img src="../img/18991668670366737.jpg" alt="Animals">
+                        <div class="overlay">
+                            <div class="card card-overlay">
+                                <div class="pic">
+                                    <img src="../img/LUPIN_S2_16X9_EN-US.jpg" alt="" class="card-img-top">
+                                </div>
+                                <div class="overlay-content">
+                                    <div class="card-body"
+                                        style="background-color: rgb(24, 24, 24); width: 100%;padding: 0.5rem 0.5rem;">
+                                        <i class="bi bi-play-circle-fill"></i>
+                                        <i class="bi bi-plus-circle addToWatchlist" data-video-id="${data[i].videoId}"></i>
+                                        ${starsHtml}
+                                        <div class="info d-flex">
+                                            <p class="card-text me-3 my-auto">${data[i].videoName}</p>
+                                            <p class="card-text my-auto" style="color: rgb(91, 91, 91);">${data[i].videoLength}</p>
+                                        </div>
+                                        <div class="infoType">
+                                            <p class="card-text mt-0">${data[i].domainId}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                        `;
+                }
+            }
+        });
+                // 在這裡你可以執行你想要的操作，例如將 videoId 加入到列表中
+                $(document).on('click', '.addToWatchlist', function () {
+                    const videoId = $(this).data('video-id');
+                    console.log('Clicked on video with id:', videoId);
+
+                    $.ajax({
+                        url: "/Ocean/web/controller/insertVideoController",
+                        type: 'POST',
+                        dataType: 'json', 
+                        data: JSON.stringify({
+                            videoId: videoId,
+                            memberId:4
+                            }), 
+                        success: function (response) {
+                            console.log('good job!');
+                        },
+                    });
+                });
+
+
+        //============================================最新電影top10=======================================================//
+        $.ajax({
+            url: "/Ocean/web/controller/videoListController", // 資料請求的網址
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify({
+                type: "movieTop10",
+                videoType: "電影"
+            }),
+            success: function (data) {
+                let vidLastOnlineTop105 = document.getElementById('lastOnlineTop10List');
+                let starRatings = [];
+
+                for (let i in data) {
+
+                    const videoReview = parseInt(data[i].VideoReview, 10);
+
+                    // Add star ratings to the starRatings array
+                    starRatings.push(videoReview);
+
+                    // Generate star icons HTML
+                    let starsHtml = '';
+                    for (let j = 1; j <= 5; j++) {
+                        const starClass = j <= videoReview ? 'bi bi-star-fill checked' : 'bi bi-star';
+                        starsHtml += `<i class="${starClass}" data-rating="${j}" style="color:#81D8D2"></i>`;
+                    }
+
+                    vidLastOnlineTop105.innerHTML += `
+                                    <a href="#animals" class="item">
+                        <img src="../img/18991668670366737.jpg" alt="Animals">
+                        <div class="overlay">
+                            <div class="card card-overlay">
+                                <div class="pic">
+                                    <img src="../img/LUPIN_S2_16X9_EN-US.jpg" alt="" class="card-img-top">
+                                </div>
+                                <div class="overlay-content">
+                                    <div class="card-body"
+                                        style="background-color: rgb(24, 24, 24); width: 100%;padding: 0.5rem 0.5rem;">
+                                        <i class="bi bi-play-circle-fill"></i>
+                                        <i class="bi bi-plus-circle"></i>
+                                        ${starsHtml}
+                                        <div class="info d-flex">
+                                            <p class="card-text me-3 my-auto">${data[i].videoName}</p>
+                                            <p class="card-text my-auto" style="color: rgb(91, 91, 91);">${data[i].videoLength}</p>
+                                        </div>
+                                        <div class="infoType">
+                                            <p class="card-text mt-0">${data[i].domainId}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                        `
+                }
+            }
+        })
+
+        //============================================熱門推薦=======================================================//
+        $.ajax({
+            url: "/Ocean/web/controller/videoListController", // 資料請求的網址
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify({
+                type: "recommended",
+                videoType: "電影"
+            }),
+            success: function (data) {
+                let vidRecommendedMovie5 = document.getElementById('RecommendedMovieList');
+                let starRatings = [];
+
+                for (let i in data) {
+
+                    const videoReview = parseInt(data[i].VideoReview, 10);
+
+                    // Add star ratings to the starRatings array
+                    starRatings.push(videoReview);
+
+                    // Generate star icons HTML
+                    let starsHtml = '';
+                    for (let j = 1; j <= 5; j++) {
+                        const starClass = j <= videoReview ? 'bi bi-star-fill checked' : 'bi bi-star';
+                        starsHtml += `<i class="${starClass}" data-rating="${j}" style="color:#81D8D2"></i>`;
+                    }
+
+                    vidRecommendedMovie5.innerHTML += `
+                                    <a href="#animals" class="item">
+                        <img src="../img/18991668670366737.jpg" alt="Animals">
+                        <div class="overlay">
+                            <div class="card card-overlay">
+                                <div class="pic">
+                                    <img src="../img/LUPIN_S2_16X9_EN-US.jpg" alt="" class="card-img-top">
+                                </div>
+                                <div class="overlay-content">
+                                    <div class="card-body"
+                                        style="background-color: rgb(24, 24, 24); width: 100%;padding: 0.5rem 0.5rem;">
+                                        <i class="bi bi-play-circle-fill"></i>
+                                        <i class="bi bi-plus-circle"></i>
+                                        ${starsHtml}
+                                        <div class="info d-flex">
+                                            <p class="card-text me-3 my-auto">${data[i].videoName}</p>
+                                            <p class="card-text my-auto" style="color: rgb(91, 91, 91);">${data[i].videoLength}</p>
+                                        </div>
+                                        <div class="infoType">
+                                            <p class="card-text mt-0">${data[i].domainId}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                        `
+                }
+            }
+        })
+
+        //============================================繼續觀看=======================================================//
+        $.ajax({
+            url: "/Ocean/web/controller/videoListController", // 資料請求的網址
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify({
+                type: "continue",
+                videoType: "戲劇",
+                memberId: 1
+            }),
+            success: function (data) {
+                let vidContinue5 = document.getElementById('ContinueList');
+                let starRatings = [];
+
+                for (let i in data) {
+
+                    const videoReview = parseInt(data[i].VideoReview, 10);
+
+                    // Add star ratings to the starRatings array
+                    starRatings.push(videoReview);
+
+                    // Generate star icons HTML
+                    let starsHtml = '';
+                    for (let j = 1; j <= 5; j++) {
+                        const starClass = j <= videoReview ? 'bi bi-star-fill checked' : 'bi bi-star';
+                        starsHtml += `<i class="${starClass}" data-rating="${j}" style="color:#81D8D2"></i>`;
+                    }
+
+                    vidContinue5.innerHTML += `
+                                    <a href="#animals" class="item">
+                        <img src="../img/18991668670366737.jpg" alt="Animals">
+                        <div class="overlay">
+                            <div class="card card-overlay">
+                                <div class="pic">
+                                    <img src="../img/LUPIN_S2_16X9_EN-US.jpg" alt="" class="card-img-top">
+                                </div>
+                                <div class="overlay-content">
+                                    <div class="card-body"
+                                        style="background-color: rgb(24, 24, 24); width: 100%;padding: 0.5rem 0.5rem;">
+                                        <i class="bi bi-play-circle-fill"></i>
+                                        <i class="bi bi-plus-circle"></i>
+                                        ${starsHtml}
+                                        <div class="info d-flex">
+                                            <p class="card-text me-3 my-auto">${data[i].videoName}</p>
+                                            <p class="card-text my-auto" style="color: rgb(91, 91, 91);">${data[i].videoLength}</p>
+                                        </div>
+                                        <div class="infoType">
+                                            <p class="card-text mt-0">${data[i].domainId}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                        `
+                }
+            }
+        })
+        //=========================================探索全部（最新上線）===================================================//
+
+        $.ajax({
+            url: "/Ocean/web/controller/videoController", // 資料請求的網址
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify({
+                type: "lastOnline",
+                videoType: "電影"
+            }),
+            success: function (data) {
+                let vidSeeAll = document.getElementById('exploreModalBody');
+                let starRatings = [];
+
+                for (let i in data) {
+
+                    const videoReview = parseInt(data[i].VideoReview, 10);
+
+                    // Add star ratings to the starRatings array
+                    starRatings.push(videoReview);
+
+                    // Generate star icons HTML
+                    let starsHtml = '';
+                    for (let j = 1; j <= 5; j++) {
+                        const starClass = j <= videoReview ? 'bi bi-star-fill checked' : 'bi bi-star';
+                        starsHtml += `<i class="${starClass}" data-rating="${j}" style="color:#81D8D2"></i>`;
+                    }
+
+                    vidSeeAll.innerHTML += `
+                                <a href="#animals" class="exploreModalItem item">
+                            <img src="../img/18991668670366737.jpg" alt="Animals">
+                            <div class="overlay">
+                                <div class="card card-overlay">
+                                    <div class="pic">
+                                        <img src="../img/LUPIN_S2_16X9_EN-US.jpg" alt=""
+                                            class="card-img-top">
+                                    </div>
+                                    <div class="overlay-content">
+                                        <div class="card-body"
+                                            style="background-color: rgb(24, 24, 24); width: 100%;padding: 0.5rem 0.5rem;">
+                                            <i class="bi bi-play-circle-fill"></i>
+                                            <i class="bi bi-plus-circle"></i>
+                                            ${starsHtml}
+                                            <div class="info d-flex">
+                                                <p class="card-text me-3 my-auto">${data[i].videoName}</p>
+                                                <p class="card-text my-auto" style="color: rgb(91, 91, 91);">${data[i].videoLength}</p>
+                                            </div>
+                                            <div class="infoType">
+                                                <p class="card-text mt-0">${data[i].domainId}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        `
+                }
+            }
+        })
+
+        //=========================================探索全部（最新電影top10）===================================================//
+
+        $.ajax({
+            url: "/Ocean/web/controller/videoController", // 資料請求的網址
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify({
+                type: "movieTop10",
+                videoType: "電影"
+            }),
+            success: function (data) {
+                let vidLastOnlineTop10 = document.getElementById('lastOnlineTop10ModalBody');
+                let starRatings = [];
+
+
+                for (let i in data) {
+
+                    const videoReview = parseInt(data[i].VideoReview, 10);
+
+                    // Add star ratings to the starRatings array
+                    starRatings.push(videoReview);
+
+                    // Generate star icons HTML
+                    let starsHtml = '';
+                    for (let j = 1; j <= 5; j++) {
+                        const starClass = j <= videoReview ? 'bi bi-star-fill checked' : 'bi bi-star';
+                        starsHtml += `<i class="${starClass}" data-rating="${j}" style="color:#81D8D2"></i>`;
+                    }
+
+                    vidLastOnlineTop10.innerHTML += `
+                                <a href="#animals" class="lastOnlineTop10ModalItem item">
+                            <img src="../img/18991668670366737.jpg" alt="Animals">
+                            <div class="overlay">
+                                <div class="card card-overlay">
+                                    <div class="pic">
+                                        <img src="../img/LUPIN_S2_16X9_EN-US.jpg" alt=""
+                                            class="card-img-top">
+                                    </div>
+                                    <div class="overlay-content">
+                                        <div class="card-body"
+                                            style="background-color: rgb(24, 24, 24); width: 100%;padding: 0.5rem 0.5rem;">
+                                            <i class="bi bi-play-circle-fill"></i>
+                                            <i class="bi bi-plus-circle"></i>
+                                            ${starsHtml}
+                                            <div class="info d-flex">
+                                                <p class="card-text me-3 my-auto">${data[i].videoName}</p>
+                                                <p class="card-text my-auto" style="color: rgb(91, 91, 91);">${data[i].videoLength}</p>
+                                            </div>
+                                            <div class="infoType">
+                                                <p class="card-text mt-0">${data[i].domainId}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        `
+                }
+            }
+        })
+
+        //=========================================探索全部（熱門推薦）===================================================//
+
+        $.ajax({
+            url: "/Ocean/web/controller/videoController", // 資料請求的網址
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify({
+                type: "recommended",
+                videoType: "電影"
+            }),
+            success: function (data) {
+                let vidRecommended = document.getElementById('recommendedModalBody');
+                let starRatings = [];
+
+                for (let i in data) {
+
+                    const videoReview = parseInt(data[i].VideoReview, 10);
+
+                    // Add star ratings to the starRatings array
+                    starRatings.push(videoReview);
+
+                    // Generate star icons HTML
+                    let starsHtml = '';
+                    for (let j = 1; j <= 5; j++) {
+                        const starClass = j <= videoReview ? 'bi bi-star-fill checked' : 'bi bi-star';
+                        starsHtml += `<i class="${starClass}" data-rating="${j}" style="color:#81D8D2"></i>`;
+                    }
+
+                    vidRecommended.innerHTML += `
+                                <a href="#animals" class="recommendedModalItem item">
+                            <img src="../img/18991668670366737.jpg" alt="Animals">
+                            <div class="overlay">
+                                <div class="card card-overlay">
+                                    <div class="pic">
+                                        <img src="../img/LUPIN_S2_16X9_EN-US.jpg" alt=""
+                                            class="card-img-top">
+                                    </div>
+                                    <div class="overlay-content">
+                                        <div class="card-body"
+                                            style="background-color: rgb(24, 24, 24); width: 100%;padding: 0.5rem 0.5rem;">
+                                            <i class="bi bi-play-circle-fill"></i>
+                                            <i class="bi bi-plus-circle"></i>
+                                            ${starsHtml}
+                                            <div class="info d-flex">
+                                                <p class="card-text me-3 my-auto">${data[i].videoName}</p>
+                                                <p class="card-text my-auto" style="color: rgb(91, 91, 91);">${data[i].videoLength}</p>
+                                            </div>
+                                            <div class="infoType">
+                                                <p class="card-text mt-0">${data[i].domainId}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a
+                        `
+                }
+            }
+        })
+
+        //=========================================探索全部（繼續觀看）===================================================//
+
+        $.ajax({
+            url: "/Ocean/web/controller/videoController", // 資料請求的網址
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify({
+                type: "continue",
+                videoType: "戲劇",
+                memberId: 1
+            }),
+            success: function (data) {
+                let vidContinue = document.getElementById('continueModalBody');
+                let starRatings = [];
+
+                for (let i in data) {
+
+                    const videoReview = parseInt(data[i].VideoReview, 10);
+
+                    // Add star ratings to the starRatings array
+                    starRatings.push(videoReview);
+
+                    // Generate star icons HTML
+                    let starsHtml = '';
+                    for (let j = 1; j <= 5; j++) {
+                        const starClass = j <= videoReview ? 'bi bi-star-fill checked' : 'bi bi-star';
+                        starsHtml += `<i class="${starClass}" data-rating="${j}" style="color:#81D8D2"></i>`;
+                    }
+
+                    vidContinue.innerHTML += `
+                                <a href="#animals" class="continueModalItem item">
+                            <img src="../img/18991668670366737.jpg" alt="Animals">
+                            <div class="overlay">
+                                <div class="card card-overlay">
+                                    <div class="pic">
+                                        <img src="../img/LUPIN_S2_16X9_EN-US.jpg" alt=""
+                                            class="card-img-top">
+                                    </div>
+                                    <div class="overlay-content">
+                                        <div class="card-body"
+                                            style="background-color: rgb(24, 24, 24); width: 100%;padding: 0.5rem 0.5rem;">
+                                            <i class="bi bi-play-circle-fill"></i>
+                                            <i class="bi bi-plus-circle"></i>
+                                            ${starsHtml}
+                                            <div class="info">
+                                                <p class="card-text me-3 my-auto">${data[i].videoName}</p>
+                                                <p class="card-text my-auto" style="color: rgb(91, 91, 91);">${data[i].videoLength}</p>
+                                            </div>
+                                            <div class="infoType">
+                                                <p class="card-text mt-0">${data[i].domainId}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        `
+                }
+            }
+        })
+
+        //=========================================篩選器（國家）===================================================//
+
+        // 在點擊事件中獲取所選值並將其傳遞給AJAX請求
+        $(".dropdown-menu").on("click", "a.dropdown-item", function (event) {
+            event.preventDefault();
+
+            // 獲取選擇的值
+            let selectedValue = $(this).text();
+
+            // 將選擇的值設置到下拉選單按鈕上
+            $("#dropdownMenuButton1").text(selectedValue);
+
+            // 清空原本的內容
+            $("#countryModalBody").empty();
+
+            $.ajax({
+                url: "/Ocean/web/controller/classificationController", // 資料請求的網址
+                type: "POST",
+                dataType: "json",
+                data: JSON.stringify({
+                    type: "movieArea",
+                    videoType: "電影",
+                    videoArea: selectedValue
+                }),
+                success: function (data) {
+                    let vidCountry = document.getElementById('countryModalBody');
+
+                    for (let i in data) {
+
+                        vidCountry.innerHTML += `
+                        <a href="#animals" class="countryModalItem item">
+                            <img src="../img/18991668670366737.jpg" alt="Animals">
+                            <div class="overlay">
+                                <div class="card card-overlay">
+                                    <div class="pic">
+                                        <img src="../img/LUPIN_S2_16X9_EN-US.jpg" alt=""
+                                            class="card-img-top">
+                                    </div>
+                                    <div class="overlay-content">
+                                        <div class="card-body"
+                                            style="background-color: rgb(24, 24, 24); width: 100%;padding: 0.5rem 0.5rem;">
+                                            <i class="bi bi-play-circle-fill"></i>
+                                            <i class="bi bi-plus-circle"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <div class="info d-flex flex-row">
+                                                <p class="card-text me-3 my-auto">${data[i].videoName}</p>
+                                                <p class="card-text my-auto" style="color: rgb(91, 91, 91);">${data[i].videoLength}</p>
+                                            </div>
+                                            <div class="infoType">
+                                                <p class="card-text mt-0">${data[i].domainId}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        `
+                    }
+                }
+            })
+        })
+
+        //========================================篩選器（類型）===================================================//
+
+        $(document).ready(function () {
+            let selectedDomainId = null; // 初始化 selectedDomainId
+
+            // 監聽下拉選單項目的點擊事件
+            $(".typeDropdown-menu").on("click", "a.dropdown-item", function (event) {
+                event.preventDefault();
+
+                // 清空原本的內容
+                $("#typeModalBody").empty();
+
+                // 獲取選擇的 domainId，並轉換成整數
+                selectedDomainId = parseInt($(this).data("domainid"));
+                console.log(selectedDomainId);
+                // 將選擇的值設置到下拉選單按鈕上
+                $("#dropdownMenuButton2").text($(this).text());
+
+                $.ajax({
+                    url: "/Ocean/web/controller/classificationController", // 資料請求的網址
+                    type: "POST",
+                    dataType: "json",
+                    data: JSON.stringify({
+                        type: "movieType",
+                        videoType: "電影",
+                        domainId: selectedDomainId
+                    }),
+                    success: function (data) {
+                        let vidType = document.getElementById('typeModalBody');
+
+                        for (let i in data) {
+
+                            vidType.innerHTML += `
+                                <a href="#animals" class="typeModalItem item">
+                                    <img src="../img/18991668670366737.jpg" alt="Animals">
+                                    <div class="overlay">
+                                        <div class="card card-overlay">
+                                            <div class="pic">
+                                                <img src="../img/LUPIN_S2_16X9_EN-US.jpg" alt=""
+                                                    class="card-img-top">
+                                            </div>
+                                            <div class="overlay-content">
+                                                <div class="card-body"
+                                                    style="background-color: rgb(24, 24, 24); width: 100%;padding: 0.5rem 0.5rem;">
+                                                    <i class="bi bi-play-circle-fill"></i>
+                                                    <i class="bi bi-plus-circle"></i>
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <div class="info d-flex flex-row">
+                                                        <p class="card-text me-3 my-auto">${data[i].videoName}</p>
+                                                        <p class="card-text my-auto" style="color: rgb(91, 91, 91);">${data[i].videoLength}</p>
+                                                    </div>
+                                                    <div class="infoType">
+                                                        <p class="card-text mt-0">${data[i].domainId}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                `
+                        }
+                    }
+                })
+            });
+        });
+        //========================================篩選器（年份）====================================================//
+
+        $(".timeDropdown-menu a.dropdown-item").click(function () {
+            // 獲取選擇的年份的起始和結束值
+            var selectedTimeStart = $(this).data("timestart");
+            var selectedTimeEnd = $(this).data("timeend");
+
+            // 清空原本的內容
+            $("#timeModalBody").empty();
+
+            // 將選擇的年份值設定給下拉選單按鈕
+            $("#dropdownMenuButton3").text(selectedTimeStart + "-" + selectedTimeEnd);
+
+
+            $.ajax({
+                url: "/Ocean/web/controller/classificationController", // 資料請求的網址
+                type: "POST",
+                dataType: "json",
+                data: JSON.stringify({
+                    type: "movieYear",
+                    videoType: "電影",
+                    videoStartYear: selectedTimeStart,
+                    videoEndYear: selectedTimeEnd
+                }),
+                success: function (data) {
+                    let vidTime = document.getElementById('timeModalBody');
+
+                    for (let i in data) {
+
+                        vidTime.innerHTML += `
+                        <a href="#animals" class="timeModalItem item">
+                            <img src="../img/18991668670366737.jpg" alt="Animals">
+                            <div class="overlay">
+                                <div class="card card-overlay">
+                                    <div class="pic">
+                                        <img src="../img/LUPIN_S2_16X9_EN-US.jpg" alt=""
+                                            class="card-img-top">
+                                    </div>
+                                    <div class="overlay-content">
+                                        <div class="card-body"
+                                            style="background-color: rgb(24, 24, 24); width: 100%;padding: 0.5rem 0.5rem;">
+                                            <i class="bi bi-play-circle-fill"></i>
+                                            <i class="bi bi-plus-circle"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <div class="info d-flex flex-row">
+                                                <p class="card-text me-3 my-auto">${data[i].videoName}</p>
+                                                <p class="card-text my-auto" style="color: rgb(91, 91, 91);">${data[i].videoLength}</p>
+                                            </div>
+                                            <div class="infoType">
+                                                <p class="card-text mt-0">${data[i].domainId}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        `
+                    }
+                }
+            })
+        });
+
+
+    </script>
+</body>
+
+</html>
