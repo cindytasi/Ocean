@@ -36,7 +36,7 @@ public class ProductsOnShelvesServlet extends HttpServlet {
         dao = new ManufacturServiceimpl();
     }
 
-    protected void doPost(HttpServletRequest req, HttpServletResponse res, HttpServletRequest request) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 //		req.setCharacterEncoding("utf-8");
 //		res.setContentType("text/plain;charset=UTF-8");
 		System.out.println("ProductsOnShelvesServlet");// 測試console
@@ -46,7 +46,7 @@ public class ProductsOnShelvesServlet extends HttpServlet {
 			  
 			  List<byte[]> imageList = new ArrayList<>();   // 建立byte[]的list
 			  
-				for (Part part : request.getParts()) {   // 圖片們是用request.getParts()取 forEach迴圈來對每個Part做處理
+				for (Part part : req.getParts()) {   // 圖片們是用request.getParts()取 forEach迴圈來對每個Part做處理
 					if (part.getName().startsWith("images")) {  // 這裡images就是前端設的key
 						try (InputStream inputStream = part.getInputStream()) { //這裡用到trywithresources寫法 讓IS自動關閉
 					            imageList.add(inputStream.readAllBytes());     // 用IS的readAllBytes()加到list裡

@@ -31,19 +31,17 @@ public class ProductListServlet extends HttpServlet {
 		dao = new ManufactursDAOimpl();
 	}
 
-//	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-//		doPost(req, res);
-//		List<Product> list = manufacturService.getNewAll();
-//		req.setAttribute("product", list);		
-//		req.getRequestDispatcher("/jsp/ProductList.jsp").forward(req, res);
-	// jsp的用法
 
-//	}
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
 		res.setContentType("application/json;charset=UTF-8");
 		System.out.println("ddd");// 測試console
+		try {
+		    Class.forName("com.mysql.jdbc.Driver");
+		   } catch (ClassNotFoundException e) {
+		    e.printStackTrace();
+		   }
 
 		Gson gson = new Gson();
 //		Product product = gson.fromJson(req.getReader(), Product.class);

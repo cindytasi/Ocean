@@ -3,7 +3,8 @@ package manufactur.vo;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
-public class Product {
+public class Product extends ProductImg {
+	
 
 	private Integer productId;
 	private String productName;
@@ -21,6 +22,7 @@ public class Product {
 	private Integer gender;
 	private boolean successful;
 	private String message;
+	
 	public boolean isSuccessful() {
 		return successful;
 	}
@@ -149,7 +151,7 @@ public class Product {
 	public void setVideoName(String videoName) {
 		this.videoName = videoName;
 	}
-
+	
 	public Integer getProductImgId() {
 		return productImgId;
 	}
