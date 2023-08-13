@@ -255,20 +255,21 @@ $(document).ready(function() {
 		//將productInfo標籤裡的參數全部取出，要用迴圈跑，因為是list
 		var productArray = [];//用一個陣列將物件裝起來
 		$(".productInfo").each(function(index, item) {
-			let comid = $(item).attr("comid");
+			let productcomId = $(item).attr("comid");
 			let productId = $(item).attr("productId");
 			let productImgId = $(item).attr("productImgId");
+			let prodName = $(item).attr("prodName");
 			let selectedSize = $(item).attr("selectedSize");
 			let selectedColor = $(item).attr("selectedColor");
 			let price = $(item).attr("price");
 			let quantityValue = $(item).attr("quantityValue");
 			let inStock = $(item).attr("inStock");
-
+		
 			let product = {
-				comid: comid,
+				productcomId: productcomId,
 				productId: productId,
 				productImgId: productImgId,
-				prodname: prodname,
+				prodName: prodName,
 				selectedSize: selectedSize,
 				selectedColor: selectedColor,
 				price: price,
@@ -298,7 +299,7 @@ $(document).ready(function() {
 		}
 		checkoutArray.push(checkout);
 		var checkoutJson = JSON.stringify(checkoutArray)
-		$("#checkoutJson").val(checkoutArray);
+		$("#checkoutJson").val(checkoutJson);
 
 
 		if (productArray.length === 0) {

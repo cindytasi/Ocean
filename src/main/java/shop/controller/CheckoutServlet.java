@@ -23,6 +23,7 @@ import redis.util.JedisUtil;
 import responseutil.ResponseUtils;
 import shop.vo.ApiConstants;
 import shop.vo.BaseAPIResult;
+import shop.vo.CheckoutVo;
 import shop.vo.Product;
 import shop.vo.ShopCartVo;
 
@@ -38,17 +39,21 @@ public class CheckoutServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String productJson =  request.getParameter("productJson");
 		Gson gson = new Gson();
-		List<Product> productList = gson.fromJson(productJson, new TypeToken<List<Product>>() {}.getType());
+		List<ShopCartVo> productList = gson.fromJson(productJson, new TypeToken<List<ShopCartVo>>() {}.getType());
 		
 		
 		String checkoutJson =  request.getParameter("checkoutJson");
-		
+		List<CheckoutVo> checkoutList = gson.fromJson(checkoutJson, new TypeToken<List<CheckoutVo>>() {}.getType());
 		
 		
 		request.setAttribute("productJson", productJson);
 		request.setAttribute("productList", productList);
+		request.setAttribute("checkoutJson", checkoutJson);
+		request.setAttribute("checkoutList", checkoutList);
+		
 		request.getRequestDispatcher("/jsp/Checkout.jsp").forward(request, response);
 	};
 

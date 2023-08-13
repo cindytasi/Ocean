@@ -205,7 +205,7 @@ select {
 					</div>
 					<div class="row pb--80 pb-md--60 pb-sm--40">
 						<!-- Checkout Area Start -->
-						<div class="col-xl-5 offset-xl-1 col-lg-6 mt-md--40">
+						<div class="col mt-md--40">
 							<div class="order-details">
 								<div class="checkout-title mt--10">
 									<h2>­q³æ©ú²Ó</h2>
@@ -238,16 +238,16 @@ select {
 										<tfoot>
 											<tr class="cart-subtotal">
 												<th>Subtotal</th>
-												<td class="text-right">$56.00</td>
+												<td class="text-right" style="padding-left:69%">$56.00</td>
 											</tr>
 											<tr class="shipping">
 												<th>Shipping</th>
-												<td class="text-right"><span>Flat Rate; $20.00</span></td>
+												<td class="text-right"  style="padding-left:69%"><span>Flat Rate; $20.00</span></td>
 											</tr>
 											<tr class="order-total">
 												<th>Order Total</th>
-												<td class="text-right"><span
-													class="order-total-ammount">$56.00</span></td>
+												<td class="text-right" style="padding-left:69%"><span
+													class="order-total-ammount" >$56.00</span></td>
 											</tr>
 										</tfoot>
 									</table>
