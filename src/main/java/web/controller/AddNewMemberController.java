@@ -38,19 +38,12 @@ public class AddNewMemberController extends HttpServlet {
 		
 
 		memberVo = memberService.addNewMember(memberVo);
-		System.out.println(memberVo.getMemberName());
-		System.out.println(memberVo.getChildMember());
-		System.out.println(memberVo.getMemberPassword());
-		System.out.println(memberVo.getUserId());
-//		if (userVo.isSuccessful()) {
-//			if (req.getSession(false) != null) {
-//				req.changeSessionId();
-//			}
-//			final HttpSession session = req.getSession();
-//			session.setAttribute("loggedin", true);
-//			session.setAttribute("userVo", userVo);
-////			System.out.println(userVo.toString());
-//		}
+//		System.out.println(memberVo.getMemberName());
+//		System.out.println(memberVo.getChildMember());
+//		System.out.println(memberVo.getMemberPassword());
+//		System.out.println(memberVo.getUserId());
+		
+		
 		writePojo2Json(resp, memberVo);
 	}
 }

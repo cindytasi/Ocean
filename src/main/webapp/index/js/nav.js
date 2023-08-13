@@ -12,8 +12,8 @@
 				<li id="edit" class="nav-item">
 					<a href="${getContextPath()}/edit/edit.html" class="nav-link active" aria-current="page">編輯會員資訊</a>
 				</li>
-                <li id="manage" class="nav-item">
-					<a href="${getContextPath()}/manage" class="nav-link active" aria-current="page">會員管理</a>
+                <li id="favourites" class="nav-item">
+					<a href="${getContextPath()}/favourites/favourites.html" class="nav-link active" aria-current="page">最愛片單</a>
 				</li>
 				<li id="login" class="nav-item">
 					<a href="${getContextPath()}/login/login.html" class="nav-link active" aria-current="page">登入</a>
@@ -33,31 +33,42 @@
 
 	const userName = sessionStorage.getItem('userName');
 	const userId = sessionStorage.getItem('userId');
-//	const roleId = sessionStorage.getItem('roleId');
+	const memberId = sessionStorage.getItem('memberIdValue');
+	const memberName = sessionStorage.getItem('memberName');
+	//	const roleId = sessionStorage.getItem('roleId');
 	const register = document.querySelector('#register');
 	const edit = document.querySelector('#edit');
-	const manage = document.querySelector('#manage');
+	const favourites = document.querySelector('#favourites');
 	const login = document.querySelector('#login');
 	const logout = document.querySelector('#logout');
+	console.log(memberId);
 	if (userName) {
 		console.log(userName);
-		
+
 		register.classList.add('hide');
 		edit.classList.remove('hide');
-//		roleId == 1 ? manage.classList.remove('hide') : manage.classList.add('hide');
+		//		roleId == 1 ? manage.classList.remove('hide') : manage.classList.add('hide');
 		login.classList.add('hide');
 		logout.classList.remove('hide');
-		document.querySelector('#currentUser').textContent = userName+userId;
+		document.querySelector('#currentUser').textContent = userName + userId + "+" + memberId;
 	} else {
+		favourites.classList.add('hide');
 		register.classList.remove('hide');
 		edit.classList.add('hide');
-		manage.classList.add('hide');
 		login.classList.remove('hide');
 		logout.classList.add('hide');
+		
+		
 	}
 
 	logout.addEventListener('click', () => {
 		sessionStorage.removeItem('userName');
+		sessionStorage.removeItem('userId');
+		sessionStorage.removeItem('memberId');
+		sessionStorage.removeItem('memberName');
+		sessionStorage.removeItem('childMember');
+
+
 		fetch('/Ocean/web/controller/LogoutContorller"');
 		location.href = 'http://localhost:8080/Ocean/index.html';
 	});

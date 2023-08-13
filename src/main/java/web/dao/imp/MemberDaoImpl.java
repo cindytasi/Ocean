@@ -2,13 +2,18 @@ package web.dao.imp;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.sound.midi.MetaMessage;
 import javax.sql.DataSource;
 
 import web.dao.MemberDao;
-import web.vo.MemberVo;;
+import web.vo.MemberVo;
+import web.vo.UserVo;;
 
 public class MemberDaoImpl implements MemberDao {
 
@@ -30,8 +35,8 @@ public class MemberDaoImpl implements MemberDao {
 		final String sql = "insert INTO Ocean.Member (memberName, userId, childMember,  memberPassword) "
 				+ "values( ?, ?, ?, ?)";
 
-		try (Connection conn = ds.getConnection(); 
-				PreparedStatement pstmt = conn.prepareStatement(sql)) {
+		System.out.println("insertMember");
+		try (Connection conn = ds.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setString(1, memberVo.getMemberName());
 			pstmt.setInt(2, memberVo.getUserId());
 			pstmt.setBoolean(3, memberVo.getChildMember());
@@ -44,4 +49,29 @@ public class MemberDaoImpl implements MemberDao {
 		return -1;
 	}
 
+	@Override
+	public List<MemberVo> selectMemberById(Integer userId) {
+		final String sql = "select * FROM Member WHERE userId=? ";
+		try (Connection connection = ds.getConnection(); 
+				PreparedStatement pstm = connection.prepareStatement(sql);) {
+			pstm.setInt(1, userId);
+			ResultSet rs = pstm.executeQuery();
+			System.out.println("Dao selectByEmailFromEdit");
+			MemberVo memberVo ;
+			List <MemberVo> list = new ArrayList<MemberVo>();
+			while(rs.next()) {
+				memberVo = new MemberVo();
+				memberVo.setMemberId(rs.getInt("memberId"));
+				memberVo.setMemberName(rs.getString("memberName"));
+				memberVo.setChildMember(rs.getBoolean("childMember"));
+				memberVo.setMemberPassword(rs.getString("memberPassword"));;
+				list.add(memberVo);
+			}
+			return list;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

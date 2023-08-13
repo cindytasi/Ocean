@@ -44,3 +44,11 @@ h1 {
 .hide {
 	display: none;
 }
+
+#text_subscription{
+	color: white;
+}
+
+#text_footer{
+	color: white;
+}

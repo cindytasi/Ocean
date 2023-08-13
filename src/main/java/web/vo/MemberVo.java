@@ -1,5 +1,7 @@
 package web.vo;
 
+import java.util.Arrays;
+
 import core.vo.CoreVo;
 
 public class MemberVo extends CoreVo{
@@ -57,6 +59,13 @@ public class MemberVo extends CoreVo{
 
 	public void setUserId(Integer userId) {
 		this.userId = userId;
+	}
+
+	@Override
+	public String toString() {
+		return "MemberVo [memberId=" + memberId + ", memberName=" + memberName + ", userId=" + userId + ", childMember="
+				+ childMember + ", memberPassword=" + memberPassword + ", profilePicture="
+				+ Arrays.toString(profilePicture) + "]";
 	}
 	
 	

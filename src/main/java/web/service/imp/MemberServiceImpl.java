@@ -1,5 +1,7 @@
 package web.service.imp;
 
+import java.util.List;
+
 import core.vo.CoreVo;
 import web.dao.MemberDao;
 import web.dao.UserDao;
@@ -20,6 +22,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberVo addNewMember(MemberVo memberVo) {
 		CoreVo coreVo = new CoreVo();
+		System.out.println("addNewMember");
 //		if(duplicateregister(memberVo.getEmail())) {
 //			memberVo.setMessage("帳號重複");
 //			memberVo.setSuccessful(false);
@@ -31,10 +34,17 @@ public class MemberServiceImpl implements MemberService {
 			memberVo.setSuccessful(false);
 			return memberVo;
 		}
-//			memberVo.setMessage("註冊失敗");
-//			memberVo.setSuccessful(false);
-//			return memberVo;
+		memberVo.setMessage("註冊失敗");
+		memberVo.setSuccessful(false);
 		return memberVo;
 	}
 
+	@Override
+	public List<MemberVo> selectMember(MemberVo memberVo) {
+		final Integer userIdInteger = memberVo.getUserId();
+
+		return memberDao.selectMemberById(userIdInteger);
+
+		
+	}
 }

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ocean_Subscription</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href="../index/css/nav.css" />
+    <link rel="stylesheet" href="css/subscription.css" />
+
+</head>
+
+<body>
+
+    <!-- <div id="text_subscription">
+        <section class="subscription-details">
+            <h2>訂閱詳細信息</h2>
+            <p>你正在訂閱Ocean影音串流服務。</p>
+            <p>訂閱費用：$1270 / 1年</p>
+        </section>
+        <section class="terms-and-conditions">
+            <h2>合約條款與條件</h2>
+            <p>在訂閱Ocean影音串流服務前，請仔細閱讀以下條款與條件：</p>
+            <ul>
+                <li>訂閱有效期為一年，自付款日起計算。</li>
+                <li>訂閱費用為 $1270 美元。</li>
+                <li>訂閱自動續訂，除非在到期前取消。</li>
+                <li>取消訂閱需要提前 30 天通知。</li>
+                <li>訂閱費用不予退還。</li>
+            </ul>
+        </section>
+
+    </div>
+    <footer id="text_footer">
+        <p>請確保在訂閱前閱讀並理解我們的條款與條件。</p>
+        <p>簽字：</p>
+        <p>日期：</p>
+        <button type="button">確認</button>
+    </footer> -->
+
+    <nav class="nav nav-3">
+        <a href="">
+            <img class="logo" src="../login/logo.png" alt="" />
+        </a>
+    </nav>
+    <form action="index.html" class="main-container margin-inline">
+        <h1 class="margin-bottom-1">設定付款資訊</h1>
+        <div class="wallet">
+            <!-- VISA -->
+
+            <input class="wallet-input" type="radio" name="radiowal" id="dana" checked />
+
+            <div class="wallet-bg dana margin-right">
+                <label class="wallet-label" for="dana">VISA</label>
+            </div>
+
+            <div class="wallet-content margin-bottom-1 margin-top-1">
+                <p>Enter your VISA mobile number.</p>
+            </div>
+
+            <!-- MASTERCARD -->
+
+            <input class="wallet-input" type="radio" name="radiowal" id="gopay" />
+
+            <div class="wallet-bg gopay margin-right">
+                <label class="wallet-label" for="gopay">MASTERCARD</label>
+            </div>
+
+            <div class="wallet-content margin-top-1 margin-bottom-1">
+                <p>Enter your MASTERCARD mobile number.</p>
+            </div>
+
+            <!-- JCB -->
+
+            <input class="wallet-input" type="radio" name="radiowal" id="ovo" />
+
+            <div class="wallet-bg ovo">
+                <label class="wallet-label" for="ovo">JCB</label>
+            </div>
+
+            <div class="wallet-content margin-top-1 margin-bottom-1">
+                <p>Enter your JCB mobile number.</p>
+            </div>
+        </div>
+
+
+        <div class="input-container">
+            <div class="input">
+                <div class="phone">
+                    <img class="flag"
+                        src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Credit_card_font_awesome.svg" alt="" />
+                </div>
+
+                <input class="input-field input-field-phone" type="text" id="input" placeholder="password"
+                    pattern="^([+]\d{2}[ ])?\d{11,13}$" autocomplete="off" maxlength="13" required />
+
+                <label for="input" class="input-label input-label-phone label-size">卡號</label>
+            </div>
+
+            <div data-uia="field-creditExpirationMonth+container" class="nfInput nfInputOversize">
+                <div class="nfInputPlacement">
+                    <label class="input_id" placeholder="creditExpirationMonth">
+                        <input data-uia="field-creditExpirationMonth" name="creditExpirationMonth" class="nfTextField"
+                            id="id_creditExpirationMonth" type="tel" tabindex="0" autocomplete="cc-exp" dir=""
+                            placeholder="月月/年年" value="">
+                        <label for="id_creditExpirationMonth" class="placeLabel">到期日</label>
+                    </label>
+                </div>
+            </div>
+
+            <div class="processed margin-bottom">
+                <p class="text-terms">
+                    By checking the checkbox below, you agree to our <span class="text-terms-1">Terms of Use, Privacy
+                        Statement, </span>and that you are over 18. Netflix will automatically continue your membership
+                    and charge the membership fee
+                    (currently IDR186,000/month) to your payment method until you cancel. You may cancel at any time to
+                    avoid future charges.
+                </p>
+            </div>
+
+            <div class="agreement">
+                <input class="agree-input" type="checkbox" name="" id="agree" required />
+                <label class="agree-label" for="agree">I agree.</label>
+                <p class="agree-alert">You must anknowledge that you have read and agree to the Terms of Use to
+                    continue.</p>
+            </div>
+
+            <button type="submit" class="btn-wide margin-top-1 margin-inline">Start Membership</button>
+        </div>
+    </form>
+
+    <footer class="footer footer-gray margin-top-1">
+        <div class="footer-container margin-inline">
+            <p class="text-gray">
+                Questions? <br />
+                Call 007-803-321-2130
+            </p>
+            <div class="links">
+                <ul class="">
+                    <li><a class="text-terms text-underline" href="">FAQ</a></li>
+                    <li><a class="text-terms text-underline" href="">Cookie Preferences</a></li>
+                </ul>
+
+                <ul>
+                    <li><a class="text-terms text-underline" href="">Help Center</a></li>
+                    <li><a class="text-terms text-underline" href="">Corporate Information</a></li>
+                </ul>
+
+                <a class="text-terms text-underline" href="">Terms of Use</a>
+
+                <a class="text-terms text-underline" href="">Privacy</a>
+            </div>
+
+            <div class="language">
+                <select class="language-select" onchange="location=this.value;">
+                    <option value="english" selected>English</option>
+                    <option value="">Bahasa Indonesia</option>
+                </select>
+                <div class="language-icon">
+                    <i class="fas fa-globe globe"></i>
+                    <i class="fas fa-chevron-down chevron"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
+    <script src="index/js/nav.js"></script>
+
+</body>
+
+
+</html>
