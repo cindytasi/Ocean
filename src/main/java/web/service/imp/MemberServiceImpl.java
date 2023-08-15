@@ -1,6 +1,12 @@
 package web.service.imp;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.Part;
 
 import core.vo.CoreVo;
 import web.dao.MemberDao;
@@ -31,7 +37,7 @@ public class MemberServiceImpl implements MemberService {
 
 		if (memberDao.insert(memberVo) > -1) {
 			memberVo.setMessage("註冊成功");
-			memberVo.setSuccessful(false);
+			memberVo.setSuccessful(true);
 			return memberVo;
 		}
 		memberVo.setMessage("註冊失敗");
@@ -44,7 +50,49 @@ public class MemberServiceImpl implements MemberService {
 		final Integer userIdInteger = memberVo.getUserId();
 
 		return memberDao.selectMemberById(userIdInteger);
-
-		
 	}
+
+	private static final String PICFILE_DIRECTORY = "/Users/J_s_Kai/Desktop/memberImage/";
+
+	@Override
+	public void memberImage(Part profilePicture) {
+		
+		System.out.println("memberImage");
+		
+		MemberVo memberVo = new MemberVo();
+		try {
+
+			// 建立圖片暫存檔
+			File picFile = new File(PICFILE_DIRECTORY + profilePicture.getSubmittedFileName());
+			if (!picFile.exists()) {
+				picFile.mkdirs();
+			}
+			profilePicture.write(picFile.getAbsolutePath());
+
+			// 將圖片存到sql
+			byte[] picF = readImageData(picFile);
+			memberVo.setProfilePicture(picF);
+			picFile.delete();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
+	}
+
+	private byte[] readImageData(File imageFile) {
+		try (FileInputStream inputStream = new FileInputStream(imageFile)) {
+			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+			byte[] buffer = new byte[4096];
+			int bytesRead;
+			while ((bytesRead = inputStream.read(buffer)) != -1) {
+				outputStream.write(buffer, 0, bytesRead);
+			}
+			return outputStream.toByteArray();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 }

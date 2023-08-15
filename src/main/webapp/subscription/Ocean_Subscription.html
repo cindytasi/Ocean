@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)http://127.0.0.1:5500/src/main/webapp/subscription/subscription.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ocean_Subscription</title>
+    <link href="./Ocean_Subscription_files/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href="./Ocean_Subscription_files/nav.css">
+    <link rel="stylesheet" href="./Ocean_Subscription_files/subscription.css">
+
+</head>
+
+<body>
+
+    <!-- <div id="text_subscription">
+        <section class="subscription-details">
+            <h2>訂閱詳細信息</h2>
+            <p>你正在訂閱Ocean影音串流服務。</p>
+            <p>訂閱費用：$1270 / 1年</p>
+        </section>
+        <section class="terms-and-conditions">
+            <h2>合約條款與條件</h2>
+            <p>在訂閱Ocean影音串流服務前，請仔細閱讀以下條款與條件：</p>
+            <ul>
+                <li>訂閱有效期為一年，自付款日起計算。</li>
+                <li>訂閱費用為 $1270 美元。</li>
+                <li>訂閱自動續訂，除非在到期前取消。</li>
+                <li>取消訂閱需要提前 30 天通知。</li>
+                <li>訂閱費用不予退還。</li>
+            </ul>
+        </section>
+
+    </div>
+    <footer id="text_footer">
+        <p>請確保在訂閱前閱讀並理解我們的條款與條件。</p>
+        <p>簽字：</p>
+        <p>日期：</p>
+        <button type="button">確認</button>
+    </footer> -->
+
+    <nav class="nav nav-3">
+        <a href="http://127.0.0.1:5500/src/main/webapp/subscription/subscription.html">
+            <img class="logo" src="./Ocean_Subscription_files/logo.png" alt="">
+        </a>
+        <a href="http://127.0.0.1:5500/src/main/webapp/subscription/subscription.html" class="btn-logout text-underline">Sign Out</a>
+    </nav>
+    <form action="http://127.0.0.1:5500/src/main/webapp/subscription/index.html" class="main-container margin-inline">
+        <h2>step 3 of 3</h2>
+        <h1 class="margin-bottom-1">Set Up your Wallet</h1>
+        <div class="wallet">
+            <!-- Dana -->
+
+            <input class="wallet-input" type="radio" name="radiowal" id="dana" checked="">
+
+            <div class="wallet-bg dana margin-right">
+                <label class="wallet-label" for="dana">dana</label>
+            </div>
+
+            <div class="wallet-content margin-bottom-1 margin-top-1">
+                <p>Enter your DANA mobile number.</p>
+            </div>
+
+            <!-- Gopay -->
+
+            <input class="wallet-input" type="radio" name="radiowal" id="gopay">
+
+            <div class="wallet-bg gopay margin-right">
+                <label class="wallet-label" for="gopay">gopay</label>
+            </div>
+
+            <div class="wallet-content margin-top-1 margin-bottom-1">
+                <p>Enter your GoPay mobile number.</p>
+            </div>
+
+            <!-- Ovo -->
+
+            <input class="wallet-input" type="radio" name="radiowal" id="ovo">
+
+            <div class="wallet-bg ovo">
+                <label class="wallet-label" for="ovo">ovo</label>
+            </div>
+
+            <div class="wallet-content margin-top-1 margin-bottom-1">
+                <p>Enter your OVO mobile number.</p>
+            </div>
+        </div>
+        <div class="credit-card">
+            <input type="text" id="card-number" placeholder="信用卡號">
+        </div>
+
+        <div class="input-container">
+            <div class="input">
+                <div class="phone">
+                    <img class="flag" src="./Ocean_Subscription_files/Flag_of_Indonesia.svg" alt="">
+                    <span class="text-phone">+62</span>
+                </div>
+
+                <input class="input-field input-field-phone" type="text" id="input" placeholder="password" pattern="^([+]\d{2}[ ])?\d{11,13}$" autocomplete="off" maxlength="13" required="">
+
+                <label for="input" class="input-label input-label-phone label-size">Mobile Number</label>
+
+                <p class="text-error">Please enter a valid mobile number.</p>
+            </div>
+
+            <a class="btn btn-change margin-block margin-inline" href="http://127.0.0.1:5500/src/main/webapp/subscription/subscription.html">
+                <div class="change">
+                    <p class="text-change">IDR186,000/month</p>
+                    <p class="text-change-1">Premium Plan</p>
+                </div>
+                <p class="text-change-2">Change</p>
+            </a>
+
+            <div class="processed margin-bottom">
+                <p class="text-terms">
+                    By checking the checkbox below, you agree to our <span class="text-terms-1">Terms of Use, Privacy
+                        Statement, </span>and that you are over 18. Netflix will automatically continue your membership
+                    and charge the membership fee
+                    (currently IDR186,000/month) to your payment method until you cancel. You may cancel at any time to
+                    avoid future charges.
+                </p>
+            </div>
+
+            <div class="agreement">
+                <input class="agree-input" type="checkbox" name="" id="agree" required="">
+                <label class="agree-label" for="agree">I agree.</label>
+                <p class="agree-alert">You must anknowledge that you have read and agree to the Terms of Use to
+                    continue.</p>
+            </div>
+
+            <button type="submit" class="btn-wide margin-top-1 margin-inline">Start Membership</button>
+        </div>
+    </form>
+
+    <footer class="footer footer-gray margin-top-1">
+        <div class="footer-container margin-inline">
+            <p class="text-gray">
+                Questions? <br>
+                Call 007-803-321-2130
+            </p>
+            <div class="links">
+                <ul class="">
+                    <li><a class="text-terms text-underline" href="http://127.0.0.1:5500/src/main/webapp/subscription/subscription.html">FAQ</a></li>
+                    <li><a class="text-terms text-underline" href="http://127.0.0.1:5500/src/main/webapp/subscription/subscription.html">Cookie Preferences</a></li>
+                </ul>
+
+                <ul>
+                    <li><a class="text-terms text-underline" href="http://127.0.0.1:5500/src/main/webapp/subscription/subscription.html">Help Center</a></li>
+                    <li><a class="text-terms text-underline" href="http://127.0.0.1:5500/src/main/webapp/subscription/subscription.html">Corporate Information</a></li>
+                </ul>
+
+                <a class="text-terms text-underline" href="http://127.0.0.1:5500/src/main/webapp/subscription/subscription.html">Terms of Use</a>
+
+                <a class="text-terms text-underline" href="http://127.0.0.1:5500/src/main/webapp/subscription/subscription.html">Privacy</a>
+            </div>
+
+            <div class="language">
+                <select class="language-select" onchange="location=this.value;">
+                    <option value="english" selected="">English</option>
+                    <option value="">Bahasa Indonesia</option>
+                </select>
+                <div class="language-icon">
+                    <i class="fas fa-globe globe"></i>
+                    <i class="fas fa-chevron-down chevron"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./Ocean_Subscription_files/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <script src="./Ocean_Subscription_files/nav.js"></script>
+
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+
+
+</body></html>

@@ -10,7 +10,9 @@ import web.vo.UserVo;
 public interface MemberDao {
 
 	int insert(MemberVo memberVo);
-	
+
 	List<MemberVo> selectMemberById(Integer userId);
-	
+
+//	int memberImageinsert();
+
 }

@@ -27,6 +27,11 @@ public class SelectMemberController extends HttpServlet {
 	public void init() throws ServletException {
 		memberService = new MemberServiceImpl();
 	}
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		this.doPost(req, resp);
+	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

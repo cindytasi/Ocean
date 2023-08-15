@@ -24,19 +24,6 @@ public class UserVo extends CoreVo{
 
 	}
 
-	public UserVo(Integer userId, String userName, String address, String telephone, String email, String account,
-			String password, Timestamp achievementTime, Boolean statusCode) {
-
-		this.userId = userId;
-		this.userName = userName;
-		this.address = address;
-		this.telephone = telephone;
-		this.email = email;
-		this.account = account;
-		this.password = password;
-		this.achievementTime = achievementTime;
-		this.statusCode = statusCode;
-	}
 
 	public Integer getUserId() {
 		return userId;

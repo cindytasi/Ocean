@@ -21,30 +21,32 @@
         </div>
         <ul class="choose-profile">
             <li class="profile">
-                <div id="drop_zone"><span class="text">圖片拖曳至此處</span></div>
-                <input type="file" id="upload_btn" style="display: none;">
-                <label for="upload_btn" id="upload_label" class="btn btn-primary">上傳圖片</label>
-                <!-- <div id="preview"><span class="text">預覽圖</span></div> -->
-                <!-- <img src="img/images1.jpeg" alt="Member image" class="member_image"> -->
-                <div>
+                <!-- <div id="drop_zone"><span class="text" style="display: none;">圖片拖曳至此處</span></div> -->
+                <div id="preview">
+                    <span class="text">預覽圖</span>
+                    <img id="preview_image" src="">
+                </div>
+                <label for="upload_btn" id="upload_label" class="btn btn-primary">上傳圖片<input type="file" id="upload_btn"
+                        style="display: none;">
+                </label>
+                <div class="text">
                     <span>孩童使用者</span>
                     <input type="checkbox" name="childMember" id="childMember">
                 </div>
-                <div>
+                <div class="text">
                     <span>輸入成員名稱</span>
                     <input type="text" name="memberName" id="memberName">
                 </div>
-                <div>
+                <div class="text">
                     <span>成員密碼</span>
                     <input type="text" name="memberPassword" id="memberPassword">
                 </div>
             </li>
         </ul>
-    </div>
-
-    <div id="errMsg" class="error"></div>
-    <div>
-        <button id="btn_new_member" type="button" class="btn_new_member">新增使用者</button>
+        <div id="errMsg" class="error"></div>
+        <div class="add_member">
+            <button id="btn_new_member" type="button" class="btn_new_member">新增使用者</button>
+        </div>
     </div>
 </body>
 <script src="../vendors/jquery/jquery-3.7.0.min.js"></script>

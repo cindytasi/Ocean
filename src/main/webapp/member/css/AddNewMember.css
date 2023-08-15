@@ -1,4 +1,4 @@
-
+/* 
 #drop_zone {
     border: 1px dashed #ccc;
     height: 200px;
@@ -6,7 +6,14 @@
     top: 50%;
     left: 43.25%;
     position: relative;
-}
+} */
+
+/* #drop_zone_display {
+    border: 1px dashed #ccc;
+    height: 200px;
+    width: 200px;
+    position: relative;
+} */
 
 /* #drop_zone span.text {
     position: absolute;
@@ -23,11 +30,22 @@
     box-shadow: 3px 3px 5px lightblue inset, -3px -3px 5px lightblue inset;
 } */
 
+#preview_image{
+    /* position: absolute; */
+    width: 100%;
+    /* 圖片佔據其父元素的 100% 寬度 */
+    max-width: 200px;
+    /* 設定圖片的最大寬度 */
+    height: auto;
+    /* 讓高度自適應，保持比例 */
+}
+
 #preview {
-    border: 1px solid lightgray;
-    display: inline-block;
-    width: 100px;
-    min-height: 150px;
+    border: 1px dashed #ccc;
+    height: 200px;
+    width: 200px;
+    top: 50%;
+    left: 43.25%;
     position: relative;
 }
 
@@ -48,3 +66,4 @@
 .choose-profile {
     list-style-type: none;
 }
+

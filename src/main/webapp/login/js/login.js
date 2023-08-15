@@ -17,7 +17,7 @@
 			.then(body => {
 				errMsg.textContent = '';
 				const { successful, message } = body;
-				console.log(successful);
+				console.log(body);
 				if (successful) {
 					const { userName , userId} = body;
 //					sessionStorage.setItem('id', id);
