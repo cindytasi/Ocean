@@ -1,38 +1,38 @@
-#input_div ul {
-    display: flex;
-    justify-content: center;
+/* #input_div ul { */
+    /* display: flex; */
+    /* justify-content: center; */
     /* 將元素置於容器中央 */
-    list-style: none;
+    /* list-style: none; */
     /* 去除項目點 */
-    padding: 0;
-}
+    /* padding: 0; */
+/* } */
 
-#input_div li.profile {
-    margin: 0 10px;
+/* #input_div li.profile {
+    margin: 0 10px; */
     /* 設定項目之間的間距 */
-}
+/* } */
 
-.movie_image {
-    display: block;
+/* .movie_image { */
+    /* display: block; */
     /* 確保圖片為塊級元素 */
-    width: 100%;
+    /* width: 100%; */
     /* 圖片佔據其父元素的 100% 寬度 */
-    max-width: 200px;
+    /* max-width: 200px; */
     /* 設定圖片的最大寬度 */
-    height: auto;
+    /* height: auto; */
     /* 讓高度自適應，保持比例 */
-}
+/* } */
 
-.add_image {
-    display: block;
+/* .add_image { */
+    /* display: block; */
     /* 確保圖片為塊級元素 */
-    width: 100%;
+    /* width: 100%; */
     /* 圖片佔據其父元素的 100% 寬度 */
-    max-width: 200px;
+    /* max-width: 200px; */
     /* 設定圖片的最大寬度 */
-    height: auto;
+    /* height: auto; */
     /* 讓高度自適應，保持比例 */
-}
+/* } */
 
 .img_div:hover {
     border: 5px solid aqua;
@@ -41,21 +41,21 @@
 
 
 
-.img_div {
+/* .img_div {
     color: white;
-}
+} */
 
-li.profile a {
+/* li.profile a {
     text-decoration: none;
-}
+} */
 
-.choose-profile {
+/* .choose-profile {
     list-style-type: none;
-}
+} */
 
-.add_ul_profile {
+/* .add_ul_profile {
     list-style-type: none;
-}
+} */
 
 /* .bi bi-star {
     position: absolute;
@@ -63,12 +63,60 @@ li.profile a {
     left: 40px;
 } */
 
-.image-container {
+/* .image-container {
     position: relative;
     display: inline-block;
-   
-}
+} */
 
 .movie_div{
     padding: 10px;
+    display: flex;
+    position: relative;
+}
+
+#like{
+    position: absolute;
+    right : 5%;
+}
+
+
+
+
+
+/* start here */
+
+ /* 修改預設 */
+ :root {
+    --bs-blue: #81D8D0;
+}
+
+/* 頁面背景色 */
+body {
+    background: #000;
+}
+
+/* 清單 */
+.navbar-dark .navbar-nav .nav-link:focus,
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: var(--bs-blue)
+}
+
+.navbar {
+    background: #000;
+}
+
+/* search */
+.bi {
+    color: #fff;
+    font-size: 25px;
+}
+
+.bi:hover {
+    color: #81D8D0;
+}
+
+/* 下拉選單 */
+.dropdown-item:hover {
+    font-size: 20px;
+    color: rgb(9, 163, 130);
 }

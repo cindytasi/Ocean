@@ -56,14 +56,15 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void memberImage(Part profilePicture) {
-		
+
 		System.out.println("memberImage");
-		
+
 		MemberVo memberVo = new MemberVo();
+		File picFile = new File(PICFILE_DIRECTORY + profilePicture.getSubmittedFileName());
+		System.out.println(profilePicture.getSubmittedFileName());
 		try {
 
 			// 建立圖片暫存檔
-			File picFile = new File(PICFILE_DIRECTORY + profilePicture.getSubmittedFileName());
 			if (!picFile.exists()) {
 				picFile.mkdirs();
 			}
@@ -72,13 +73,22 @@ public class MemberServiceImpl implements MemberService {
 			// 將圖片存到sql
 			byte[] picF = readImageData(picFile);
 			memberVo.setProfilePicture(picF);
-			picFile.delete();
+//			picFile.delete();
 
 		} catch (Exception e) {
 			e.printStackTrace();
-
 		}
 	}
+	
+	public void fileImageDelet(Part profilePicture) {
+
+		MemberVo memberVo = new MemberVo();
+		File picFile = new File(PICFILE_DIRECTORY + profilePicture.getSubmittedFileName());
+		
+			picFile.delete();
+	}
+
+		
 
 	private byte[] readImageData(File imageFile) {
 		try (FileInputStream inputStream = new FileInputStream(imageFile)) {

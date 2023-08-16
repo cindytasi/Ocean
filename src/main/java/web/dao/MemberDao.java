@@ -13,6 +13,4 @@ public interface MemberDao {
 
 	List<MemberVo> selectMemberById(Integer userId);
 
-//	int memberImageinsert();
-
 }

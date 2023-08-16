@@ -15,4 +15,6 @@ public interface MemberService {
 	List<MemberVo> selectMember(MemberVo memberVo);
 	
 	void memberImage(Part profilePicture);
+	
+	void fileImageDelet(Part profilePicture);
 }

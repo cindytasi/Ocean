@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,7 @@ import web.vo.MemberVo;
 import web.vo.UserVo;
 
 @WebServlet("/web/controller/SelectMemberController")
+@MultipartConfig
 public class SelectMemberController extends HttpServlet {
 
 	private MemberService memberService;
@@ -36,10 +38,7 @@ public class SelectMemberController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		System.out.println("SelectMemberController");
 		MemberVo memberVo = json2Pojo(req, MemberVo.class);
-		System.out.println(memberVo.getUserId());
-
 		List<MemberVo> memberVos = memberService.selectMember(memberVo);
 
 		

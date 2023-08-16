@@ -79,10 +79,6 @@ public class MemberDaoImpl implements MemberDao {
 			pstmt.setString(4, memberVo.getMemberPassword());
 			pstmt.setBinaryStream(5, in, in.available());
 
-//			if (files != null) {
-//				directory.delete();
-//			}
-
 			return pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -105,7 +101,8 @@ public class MemberDaoImpl implements MemberDao {
 				memberVo.setMemberName(rs.getString("memberName"));
 				memberVo.setChildMember(rs.getBoolean("childMember"));
 				memberVo.setMemberPassword(rs.getString("memberPassword"));
-				;
+				memberVo.setProfilePicture(rs.getBytes("profilePicture"));
+				
 				list.add(memberVo);
 			}
 			return list;
@@ -116,22 +113,31 @@ public class MemberDaoImpl implements MemberDao {
 		return null;
 	}
 
-//	@Override
-//	public int memberImageinsert() {
-//		// 存圖片到資料庫
-//		String sql = "insert into ProductImg(img1)values(?);";
-//		try (Connection connection = ds.getConnection(); PreparedStatement pstm = connection.prepareStatement(sql);) {
-//			// 讀入圖檔後插入。省略第3個參數length可能有效能問題，建議查看JDBC driver文件
-//			ps.setBinaryStream(1, in, in.available());
-//			int rowCount = ps.executeUpdate();
-//			System.out.println(rowCount + " row(s) inserted!!");
-//		}
-//
-//	}catch(
-//
-//	Exception e)
-//	{
-//         e.printStackTrace();
-//     }return 0;
-//}
+	public MemberVo selectMemberImgById(Integer userId) {
+		final String sql = "select * FROM Member WHERE memberId=? ";
+		try (Connection connection = ds.getConnection(); PreparedStatement pstm = connection.prepareStatement(sql);) {
+			pstm.setInt(1, userId);
+			ResultSet rs = pstm.executeQuery();
+			System.out.println("Dao selectByEmailFromEdit");
+			MemberVo memberVo =null;
+			//List<MemberVo> list = new ArrayList<MemberVo>();
+			while (rs.next()) {
+				memberVo = new MemberVo();
+				memberVo.setMemberId(rs.getInt("memberId"));
+				memberVo.setMemberName(rs.getString("memberName"));
+				memberVo.setChildMember(rs.getBoolean("childMember"));
+				memberVo.setMemberPassword(rs.getString("memberPassword"));
+				memberVo.setProfilePicture(rs.getBytes("profilePicture"));
+				
+				//list.add(memberVo);
+			}
+			return memberVo;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	
 }

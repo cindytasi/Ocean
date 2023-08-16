@@ -60,6 +60,9 @@ public class MemberImageController extends HttpServlet {
 		MemberVo respMemberVo = memberService.addNewMember(memberVo);
 
 		writePojo2Json(resp, respMemberVo);
+		
+		memberService.fileImageDelet(profilePicture);
+
 
 	}
 
