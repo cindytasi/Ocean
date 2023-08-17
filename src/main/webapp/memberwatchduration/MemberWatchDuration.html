@@ -11,9 +11,183 @@
     <link rel="stylesheet" href="css/favourites.css" />
 
 
+    <style>
+        /* 修改預設 */
+        :root {
+            --bs-blue: #81D8D0;
+        }
+
+        /* 頁面背景色 */
+        body {
+            background: #000;
+            background-image: url("../index/img/waves_4.jpg");
+            color: #81D8D0;
+        }
+
+        /* 清單 */
+        .navbar-dark .navbar-nav .nav-link:focus,
+        .navbar-dark .navbar-nav .nav-link:hover {
+            color: var(--bs-blue)
+        }
+
+        .navbar {
+            background: #000;
+        }
+
+        /* search */
+        .bi {
+            color: #fff;
+            font-size: 25px;
+        }
+
+        .bi:hover {
+            color: #81D8D0;
+        }
+
+        /* 下拉選單 */
+        .dropdown-item:hover {
+            font-size: 20px;
+            color: rgb(9, 163, 130);
+        }
+
+        .videoitems>.item img:hover {
+            border: 5px solid #81D8D0;
+        }
+
+        .videoitems {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: -0.5%;
+            margin-right: -0.5%;
+        }
+
+        .item {
+            width: 20%;
+            padding: 0 0.5%;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .star-icon {
+            position: absolute;
+            top: 0;
+            right: 3px;
+            padding: 4px;
+            font-size: 35px;
+        }
+
+        #star {
+            color: #81D8D0;
+        }
+
+        /* ======================================footer==================================== */
+        .footer_detail li>a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .footer_detail li>a:hover {
+            color: var(--bs-blue);
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 3%;
+            background-color: #000;
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            width: 4rem;
+            height: 5rem;
+        }
+
+        .card {
+            background: transparent;
+        }
+    </style>
+
 </head>
 
 <body>
+    <!--header  -->
+    <div class="navAndMovie sticky-top">
+        <!-- navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+                    <!-- logo -->
+                    <div class="logo d-flex">
+                        <a class="navbar-brand" href="../index/oceanIndex.html">
+                            <img src="../login/logo_-_.png" alt="Ocean Logo" style="width: 50px;height: 50px;">
+                        </a>
+                        <!-- search -->
+                        <div class="input-group my-auto w-50 dropdown">
+                            <input type="text" class="form-control dropdown-toggle" id="searchInput"
+                                placeholder="Search" aria-label="Search" aria-describedby="basic-addon2"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <button class="btn btn-outline-secondary" type="button" id="searchButton">
+                                <i class="bi bi-search"></i>
+                            </button>
+                            <!-- search影片List -->
+                            <ul class="searchMovie dropdown-menu" aria-labelledby="searchInput"
+                                style="width: 400px; height: 100px;background-color: rgba(0, 0, 0, 0.5);"
+                                id="searchVideo">
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- 導覽列 -->
+                    <div class="list">
+                        <ul class="navbar-nav align-items-center">
+                            <!-- 首頁 -->
+                            <li class="nav-item">
+                                <a class="nav-link active" href="../index/oceanIndex.html">首頁</a>
+                            </li>
+                            <!-- 電影 -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="/movieIndex.html">電影</a>
+                            </li>
+                            <!-- 影集 -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="../index/movieIndex.html">影集</a>
+                            </li>
+                            <!-- 藝人商品 -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="../index/seriesIndex.html">藝人商品</a>
+                            </li>
+                            <!-- 收藏地圖 -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="../index/productIndex.html">收藏地圖</a>
+                            </li>
+                            <!--user  -->
+                            <div class="nav-item dropdown">
+                                <button type="button" class="btn dropdown-toggle" id="navbarDropdownUserLink"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="../img/user.webp" alt="" style="width: 40px; height: 40px;">
+                                </button>
+                                <!-- user下拉選單 -->
+                                <ul class="dropdown-menu dropdown-menu-end mt-2" style="opacity: 80%;"
+                                    aria-labelledby="navbarDropdownUserLink">
+                                    <li><a class="dropdown-item" href="../index/aacountIndex.html">帳戶</a></li>
+                                    <li><a class="dropdown-item" href="../index/accountDetail.html">基本資料</a></li>
+                                    <li><a class="dropdown-item" href="../index/myAchieve.html">我的成就</a></li>
+                                    <li><a class="dropdown-item" href="../index/myOrder.html">我的訂單</a></li>
+                                    <li><a class="dropdown-item" href="../favourites/favourites.html">我的片單</a></li>
+                                    <li><a class="dropdown-item" href="../index/watchHistory.html">觀看紀錄</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+
+                                    <li id="logout"><a class="dropdown-item" href="../index.html">登出</a></li>
+                                </ul>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+
 
     <div id="input_div">
         <div>
@@ -28,7 +202,8 @@
             </li>
 
             <li class="movie_img">
-                <img src="img/800px-Harry_potter_and_the_deathly_hallows_part2_2011_movie_poster.jpg" alt="add image" class="add_image">
+                <img src="img/800px-Harry_potter_and_the_deathly_hallows_part2_2011_movie_poster.jpg" alt="add image"
+                    class="add_image">
             </li>
 
             <li class="movie_img">
