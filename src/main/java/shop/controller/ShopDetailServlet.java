@@ -44,7 +44,6 @@ public class ShopDetailServlet extends HttpServlet {
 		Gson gson = new Gson();
 		String mappingJson = gson.toJson(result.getProdIdSizeColorImgStockList());
 		
-		
 		//讓下方的四個商品隨機出現
 		List<Product> allProductList = productService.getNewAll();
 		Random randomizer = new Random();

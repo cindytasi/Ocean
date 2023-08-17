@@ -21,7 +21,7 @@
     <meta charset="utf-8">
 	<jsp:include page="/jsp/pluginsJs.jsp"></jsp:include>
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Zakas - Fashion eCommerce Bootstrap 4 Template</title>
+    <title>Ocean</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicons -->
@@ -37,9 +37,7 @@
     <!-- style css -->     
     <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
   	
-    <script type="text/javascript" src="<c:url value="/js/shopdetail.js"/>"></script>
-	<script type="text/javascript" src="<c:url value="/js/delAddRedis.js"/>"></script>
-	
+		<script type="text/javascript" src="<c:url value="/js/shopdetail.js"/>"></script>
 	
 
 </head>
@@ -209,7 +207,7 @@
                                         	<c:forEach var="size" items="${detail.sizeList}">
                                         	
 												<div class="variation">
-	                                                <a class="product-size-variation-btn selected sizeBtn" data-toggle="tooltip" data-placement="top">
+	                                                <a class="product-size-variation-btn selected pickSize sizeBtn" data-toggle="tooltip" data-placement="top">
 	                                                    <span class="product-size-variation-label">${size}</span>
 	                                                </a>
 	                                            </div>
@@ -225,7 +223,7 @@
                                         	
                                         		
 												<div class="variation colorCheck colorbtn">
-	                                                <a class="product-size-variation-btn selected colorBtn <c:if test="${defaultColorType.equals(color)}">checked</c:if>" data-toggle="tooltip" data-placement="top" color="${color}">
+	                                                <a class="product-size-variation-btn selected pickColor colorBtn <c:if test="${defaultColorType.equals(color)}">checked</c:if>" data-toggle="tooltip" data-placement="top" color="${color}">
 	                                                    <span class="product-color-variation-label">${color}</span>
 	                                                    <c:set var="color" value="${defaultColorType}" />
 	                                                </a>
@@ -240,13 +238,13 @@
                                     <div class="quantity-wrapper d-flex align-items-center mr--30 mr-xs--0 mb-xs--30">
                                         <label class="quantity-label" for="qty" style="font-size:16px">件數:</label>
                                         <div class="quantity">
-                                            <input type="number" class="quantity-input" name="qty" id="qty" value="1" min="1">
+                                            <input type="number " class="quantity-input" name="qty" id="qty" value="1" min="1">
                                         </div>
                                     </div>
                                     
                                 </div>  
                              <div>
-                                    <button id="wishlistbtn" type="button" class="btn btn-small btn-bg-red btn-color-white btn-hover-2" onclick="window.location.href='cart.html'">
+                                    <button id="wishlistbtn" type="button" class="btn btn-small btn-bg-red btn-color-white btn-hover-2">
                                         WIST LIST
                                     </button>
                                     <button id="shopCartbtn" type="button" class="btn btn-small btn-bg-red btn-color-white btn-hover-2">
@@ -647,7 +645,7 @@
                                     <p class="variation-label">Size:</p>   
                                     <div class="product-size-variation variation-wrapper">
                                         <div class="variation">
-                                            <a class="product-size-variation-btn selected" data-toggle="tooltip" data-placement="top" title="S">
+                                            <a class="product-size-variation-btn " data-toggle="tooltip" data-placement="top" title="S">
                                                 <span class="product-size-variation-label">S</span>
                                             </a>
                                         </div>

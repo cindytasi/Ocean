@@ -39,6 +39,7 @@ public class CheckoutServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		//先轉換編碼，並拿前端的兩個json(一個是訂單詳情、一個是應付金額等total資料)
 		request.setCharacterEncoding("UTF-8");
 		String productJson =  request.getParameter("productJson");
 		Gson gson = new Gson();
@@ -46,13 +47,13 @@ public class CheckoutServlet extends HttpServlet {
 		
 		
 		String checkoutJson =  request.getParameter("checkoutJson");
-		List<CheckoutVo> checkoutList = gson.fromJson(checkoutJson, new TypeToken<List<CheckoutVo>>() {}.getType());
-		
+		//List<CheckoutVo> checkoutList = gson.fromJson(checkoutJson, new TypeToken<List<CheckoutVo>>() {}.getType());
+		CheckoutVo checkoutVo = gson.fromJson(checkoutJson, CheckoutVo.class);
 		
 		request.setAttribute("productJson", productJson);
 		request.setAttribute("productList", productList);
 		request.setAttribute("checkoutJson", checkoutJson);
-		request.setAttribute("checkoutList", checkoutList);
+		request.setAttribute("checkoutVo", checkoutVo);
 		
 		request.getRequestDispatcher("/jsp/Checkout.jsp").forward(request, response);
 	};

@@ -23,7 +23,8 @@ import redis.clients.jedis.JedisPool;
 import redis.util.JedisUtil;
 import shop.vo.ShopCartVo;
 
-@WebFilter(urlPatterns = { "/ShopCartDetailServlet","/ShopDetailServlet" ,"/MainShopServlet","/ShopServlet","/SelectBarServlet","/DelAddRedisServlet"})
+@WebFilter(urlPatterns = { "/ShopCartDetailServlet","/ShopDetailServlet" ,"/MainShopServlet","/ShopServlet","/SelectBarServlet",
+		"/DelAddRedisServlet","/CheckoutServlet","/SelectWishListServlet","/DelWishListServlet"})
 public class RedisFilter implements Filter {
 	public void destroy() {
 		

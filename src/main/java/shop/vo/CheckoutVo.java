@@ -1,35 +1,69 @@
 package shop.vo;
 
 public class CheckoutVo {
+	private int totalItems;
+	private double totalPrice;
+	private int shippingCost;
+	private double payableAmount;
+	private String itemCountText;
+	private String totalAmountText;
+	private String shippingCostText;
+	private String payableAmountText;
+	private String shippingTextValue;
 	
-	private String itemCount;
-	private String totalAmount;
-	private String shippingCost;
-	private String payableAmount;	
-	
-	public String getItemCount() {
-		return itemCount;
+	public int getTotalItems() {
+		return totalItems;
 	}
-	public void setItemCount(String itemCount) {
-		this.itemCount = itemCount;
+	public void setTotalItems(int totalItems) {
+		this.totalItems = totalItems;
 	}
-	public String getTotalAmount() {
-		return totalAmount;
+	public double getTotalPrice() {
+		return totalPrice;
 	}
-	public void setTotalAmount(String totalAmount) {
-		this.totalAmount = totalAmount;
+	public void setTotalPrice(double totalPrice) {
+		this.totalPrice = totalPrice;
 	}
-	public String getShippingCost() {
+	public int getShippingCost() {
 		return shippingCost;
 	}
-	public void setShippingCost(String shippingCost) {
+	public void setShippingCost(int shippingCost) {
 		this.shippingCost = shippingCost;
 	}
-	public String getPayableAmount() {
+	public double getPayableAmount() {
 		return payableAmount;
 	}
-	public void setPayableAmount(String payableAmount) {
+	public void setPayableAmount(double payableAmount) {
 		this.payableAmount = payableAmount;
+	}
+	public String getItemCountText() {
+		return itemCountText;
+	}
+	public void setItemCountText(String itemCountText) {
+		this.itemCountText = itemCountText;
+	}
+	public String getTotalAmountText() {
+		return totalAmountText;
+	}
+	public void setTotalAmountText(String totalAmountText) {
+		this.totalAmountText = totalAmountText;
+	}
+	public String getShippingCostText() {
+		return shippingCostText;
+	}
+	public void setShippingCostText(String shippingCostText) {
+		this.shippingCostText = shippingCostText;
+	}
+	public String getPayableAmountText() {
+		return payableAmountText;
+	}
+	public void setPayableAmountText(String payableAmountText) {
+		this.payableAmountText = payableAmountText;
+	}
+	public String getShippingTextValue() {
+		return shippingTextValue;
+	}
+	public void setShippingTextValue(String shippingTextValue) {
+		this.shippingTextValue = shippingTextValue;
 	}
 	
 	

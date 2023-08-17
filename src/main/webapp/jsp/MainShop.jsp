@@ -12,7 +12,7 @@
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <!-- 把jQurey統一匯進來 -->
 <jsp:include page="/jsp/pluginsJs.jsp"></jsp:include>
-<title>Zakas - Fashion eCommerce Bootstrap 4 Template</title>
+<title>Ocean</title>
 <meta name="description" content="">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">

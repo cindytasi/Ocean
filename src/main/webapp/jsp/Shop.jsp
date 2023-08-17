@@ -10,7 +10,7 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <jsp:include page="/jsp/pluginsJs.jsp"></jsp:include>
-<title>Zakas - Fashion eCommerce Bootstrap 4 Template</title>
+<title>Ocean</title>
 <meta name="description" content="">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -26,7 +26,7 @@
 
 <!-- style css -->
 <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
-<script type="text/javascript" src="<c:url value="/js/keyword.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/js/shop.js"/>"></script>
 
 <style>
 .global-search{
