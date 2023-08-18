@@ -11,22 +11,24 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import manufactur.dao.manufactursDAO;
-import manufactur.dao.manufactursDAOimpl;
-import manufactur.service.ManufacturService;
+import manufactur.dao.ManufactursDAO;
+import manufactur.dao.ManufactursDAOimpl;
+import manufactur.service.ManufacturServiceimpl;
+import manufactur.service.ManufactursService;
 import manufactur.vo.Product;
+import manufactur.vo.ProductLink;
 
 @WebServlet("/ProductListServlet")
 public class ProductListServlet extends HttpServlet {
 
-	private manufactursDAO dao;
-	private ManufacturService manufacturService;
+	private ManufactursDAO dao;
+	private ManufactursService manufacturService;
 
 	// 在這個 init 方法中，通常會在 Servlet 被初始化時調用。Servlet 容器會在第一次請求到達該 Servlet 時自動調用 init
 	// 方法，以便初始化一些必要的物件和資源，這樣該 Servlet 就可以正確地處理後續的請求。
 	public void init() {
-		manufacturService = new ManufacturService();
-		dao = new manufactursDAOimpl();
+		manufacturService = new ManufacturServiceimpl();
+		dao = new ManufactursDAOimpl();
 	}
 
 //	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -52,7 +54,7 @@ public class ProductListServlet extends HttpServlet {
 		String product = gson.toJson(list);
 		
 
-		res.getWriter().write(product);
+		res.getWriter().write(product);//: 這行程式碼將 JSON 格式的字串 product 寫入到 HTTP 回應中，並返回給客戶端。這樣，客戶端就會收到 JSON 格式的資料。
 
 		// return ResponseEntity.ok(user);
 
@@ -63,6 +65,28 @@ public class ProductListServlet extends HttpServlet {
 //		 res.setContentType("application/json");
 //		    res.setCharacterEncoding("utf-8");
 //		    res.getWriter().write("success");
+	
+	
+	
 	}
 
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
