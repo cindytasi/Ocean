@@ -3,7 +3,7 @@ package manufactur.vo;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
-public class Product extends ProductImg {
+public class Product {
 	
 
 	private Integer productId;

@@ -7,7 +7,7 @@ import manufactur.vo.ProductImg;
 import manufactur.vo.ProductLink;
 import manufactur.vo.Video;
 
-public interface ManufactursService {
+public interface ManufacturService {
 
 	//顯示商品列表
 	List<Product> selectAll();
@@ -28,4 +28,10 @@ public interface ManufactursService {
 //	Product insertNum(Product product);
 
 	Product insertNum(Product product, ProductImg productImg);
+
+	Product updatelist(Product product, ProductImg productimg);
+
+	int updateProductInformation(Product product);
+
+//	List<Product> updateProductInformation();
 }

@@ -17,14 +17,14 @@ import com.google.gson.Gson;
 import manufactur.dao.ManufactursDAO;
 import manufactur.dao.ManufactursDAOimpl;
 import manufactur.service.ManufacturServiceimpl;
-import manufactur.service.ManufactursService;
+import manufactur.service.ManufacturService;
 import manufactur.vo.Video;
 
 @WebServlet("/VideoChooseServlet")
 public class VideoChooseServlet extends HttpServlet {
 
     private ManufactursDAO dao;
-    private ManufactursService manufacturService;
+    private ManufacturService manufacturService;
 
     @Override
     public void init() throws ServletException {

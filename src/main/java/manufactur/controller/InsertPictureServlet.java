@@ -60,8 +60,8 @@ public class InsertPictureServlet extends HttpServlet {
         // 返回插入結果給客戶端	
         
         Product products = new Product();
-        		
-    	products =	new ManufacturServiceimpl().insertNum(product);
+//        		
+//    	products =	new ManufacturServiceimpl().insertNum(product);
    
     	res.getWriter().write(gson.toJson(products));
     	

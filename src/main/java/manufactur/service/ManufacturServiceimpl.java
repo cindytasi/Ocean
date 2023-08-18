@@ -9,7 +9,7 @@ import manufactur.vo.ProductLink;
 import manufactur.vo.Video;
 
 
-public class ManufacturServiceimpl implements ManufactursService {
+public class ManufacturServiceimpl implements ManufacturService {
 	ManufactursDAOimpl manufactursDAOimpl = new ManufactursDAOimpl();
 	
 	
@@ -124,5 +124,15 @@ public class ManufacturServiceimpl implements ManufactursService {
 //			product.setSuccessful(true);
 		
 	}
+		@Override
+		public Product updatelist(Product product, ProductImg productimg) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		@Override
+		public int updateProductInformation(Product product) {
+			// TODO Auto-generated method stub
+			return 0;
+		}
 		
 }

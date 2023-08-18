@@ -14,7 +14,7 @@ import com.google.gson.Gson;
 import manufactur.dao.ManufactursDAO;
 import manufactur.dao.ManufactursDAOimpl;
 import manufactur.service.ManufacturServiceimpl;
-import manufactur.service.ManufactursService;
+import manufactur.service.ManufacturService;
 import manufactur.vo.Product;
 import manufactur.vo.ProductLink;
 
@@ -22,7 +22,7 @@ import manufactur.vo.ProductLink;
 public class ProductListServlet extends HttpServlet {
 
 	private ManufactursDAO dao;
-	private ManufactursService manufacturService;
+	private ManufacturService manufacturService;
 
 	// 在這個 init 方法中，通常會在 Servlet 被初始化時調用。Servlet 容器會在第一次請求到達該 Servlet 時自動調用 init
 	// 方法，以便初始化一些必要的物件和資源，這樣該 Servlet 就可以正確地處理後續的請求。

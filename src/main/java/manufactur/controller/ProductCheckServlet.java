@@ -16,14 +16,14 @@ import com.google.gson.Gson;
 import manufactur.dao.ManufactursDAO;
 import manufactur.dao.ManufactursDAOimpl;
 import manufactur.service.ManufacturServiceimpl;
-import manufactur.service.ManufactursService;
+import manufactur.service.ManufacturService;
 import manufactur.vo.ProductLink;
 
 @WebServlet("/ProductCheckServlet")
 public class ProductCheckServlet extends HttpServlet {
 
     private ManufactursDAO dao;
-    private ManufactursService manufacturService;
+    private ManufacturService manufacturService;
 
     @Override
     public void init() throws ServletException {

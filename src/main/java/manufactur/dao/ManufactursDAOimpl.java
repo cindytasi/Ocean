@@ -85,20 +85,21 @@ public class ManufactursDAOimpl implements ManufactursDAO {
 			List<Product> list = new ArrayList<>();
 			while (rs.next()) {
 				Product product = new Product();
-				// product.setProductId(rs.getInt("productId"));
+				 product.setProductId(rs.getInt("productId"));
 				product.setProductName(rs.getString("productName"));
 			product.setSpecType(rs.getInt("specType"));
-//				product.setSpecInfo(rs.getString("specInfo"));
+				product.setSpecInfo(rs.getString("specInfo"));
 			product.setSizeType(rs.getString("sizeType"));
-	//			product.setColorType(rs.getString("colorType"));
-//				product.setComId(rs.getInt("comId"));			
-	//			product.setAddedTime(rs.getTimestamp("addedTime"));
-				//product.setReviewTime(rs.getObject("reviewTime",LocalDateTime.class));
+				product.setColorType(rs.getString("colorType"));
+				product.setComId(rs.getInt("comId"));			
+				product.setAddedTime(rs.getTimestamp("addedTime"));
+//				product.setReviewTime(rs.getObject("reviewTime",LocalDateTime.class));
+			product.setReviewTime(rs.getTimestamp("reviewTime"));
 				product.setPrice(rs.getDouble("price"));
-				//product.setVideoName(rs.getString("videoName"));
-				//product.setProductId(rs.getInt("productImgId"));
+				product.setVideoName(rs.getString("videoName"));
+				product.setProductImgId(rs.getInt("productImgId"));
 				product.setInStock(rs.getInt("inStock"));
-				//product.setGender(rs.getInt("gender"));
+				product.setGender(rs.getInt("gender"));
 				list.add(product);
 			}
 			return list;
@@ -107,6 +108,64 @@ public class ManufactursDAOimpl implements ManufactursDAO {
 		}
 		return null;
 	}
+	
+	//算select出的總比數
+	 @Override
+	    public int countTotalProducts() {
+	        String sql = "SELECT COUNT(*) FROM ProductInformation";
+	        try (
+	            Connection conn = DriverManager.getConnection(url,user,password);
+	            PreparedStatement pstmt = conn.prepareStatement(sql);
+	            ResultSet rs = pstmt.executeQuery()
+	        ) {
+	            if (rs.next()) {
+	                return rs.getInt(1);
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	        return 0;
+	    }
+	//select用分頁顯示
+	    @Override
+	    public List<Product> getProductsByPage(int offset, int limit) {
+	        String sql = "SELECT * FROM ProductInformation LIMIT ? OFFSET ?";
+	        List<Product> productList = new ArrayList<>();
+	        try (
+	            Connection conn = DriverManager.getConnection(url,user,password);
+	            PreparedStatement pstmt = conn.prepareStatement(sql)
+	        ) {
+	            pstmt.setInt(1, limit);
+	            pstmt.setInt(2, offset);
+	            ResultSet rs = pstmt.executeQuery();
+	            List<Product> list = new ArrayList<>();
+				while (rs.next()) {
+					Product product = new Product();
+					// product.setProductId(rs.getInt("productId"));
+					product.setProductName(rs.getString("productName"));
+				product.setSpecType(rs.getInt("specType"));
+//					product.setSpecInfo(rs.getString("specInfo"));
+				product.setSizeType(rs.getString("sizeType"));
+		//			product.setColorType(rs.getString("colorType"));
+//					product.setComId(rs.getInt("comId"));			
+		//			product.setAddedTime(rs.getTimestamp("addedTime"));
+					//product.setReviewTime(rs.getObject("reviewTime",LocalDateTime.class));
+					product.setPrice(rs.getDouble("price"));
+					//product.setVideoName(rs.getString("videoName"));
+					//product.setProductId(rs.getInt("productImgId"));
+					product.setInStock(rs.getInt("inStock"));
+					//product.setGender(rs.getInt("gender"));
+					list.add(product);
+				}
+				return list;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return null;
+		}	
+	
+	
+	
 	
 	
 	
@@ -226,9 +285,83 @@ public class ManufactursDAOimpl implements ManufactursDAO {
 	
 	
 	
+	//update商品列表
 	
-	
-	
+		
+		    // ... 其他方法 ...
+
+		@Override
+		public int updatelist(Product product, ProductImg productImg) {
+		    try (Connection conn = DriverManager.getConnection(url, user, password);
+		         PreparedStatement pstmt = conn.prepareStatement("UPDATE ProductImg SET img1=?, img2=?, img3=?, img4=? WHERE productImgId=?")) {
+		        
+		        // 更新 ProductImg 表中的圖片數據
+		        pstmt.setBytes(1, productImg.getImg1());
+		        pstmt.setBytes(2, productImg.getImg2());
+		        pstmt.setBytes(3, productImg.getImg3());
+		        pstmt.setBytes(4, productImg.getImg4());
+//		        pstmt.setInt(5, productImg.getProductImgId());
+
+		        int rowsAffectedImg = pstmt.executeUpdate();
+
+		        if (rowsAffectedImg > 0) {
+		            // 更新 ProductInformation 表中的產品信息
+		            final String sql = "UPDATE ProductInformation SET comId=?, productName=?, specType=?, specInfo=?, sizeType=?, colorType=?, price=?, videoName=?, inStock=?, gender=?, reviewTime=? WHERE productId=?";
+		            PreparedStatement updateStatement = conn.prepareStatement(sql);
+
+//		            updateStatement.setInt(1, product.getComId());
+		            updateStatement.setString(2, product.getProductName());
+		            updateStatement.setInt(3, product.getSpecType());
+		            updateStatement.setString(4, product.getSpecInfo());
+		            updateStatement.setString(5, product.getSizeType());
+		            updateStatement.setString(6, product.getColorType());
+		            updateStatement.setDouble(7, product.getPrice());
+		            updateStatement.setString(8, product.getVideoName());
+		            updateStatement.setInt(9, product.getInStock());
+		            updateStatement.setInt(10, product.getGender());
+//		            updateStatement.setTimestamp(11, new Timestamp(System.currentTimeMillis()));
+//		            updateStatement.setInt(12, product.getProductId());
+
+		            int rowsAffectedProductInfo = updateStatement.executeUpdate();
+		            updateStatement.close();
+
+		            return rowsAffectedProductInfo; // 返回影響的行數
+		        } else {
+		            return -1; // 返回一個錯誤狀態碼
+		        }
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		        return -1; // 返回一個錯誤狀態碼
+		    }
+		}
+
+		
+		
+		
+		
+		//只update文字
+		@Override
+		public int updateProductInformation(Product product) {
+		    try (Connection conn = DriverManager.getConnection(url, user, password);
+		         PreparedStatement pstmt = conn.prepareStatement("UPDATE ProductInformation SET productName=?, specType=?, sizeType=?, colorType=?, price=?, videoName=?, inStock=?, gender=? WHERE productId=?")) {
+
+		        pstmt.setString(1, product.getProductName());
+		        pstmt.setInt(2, product.getSpecType());
+		        pstmt.setString(3, product.getSizeType());
+		        pstmt.setString(4, product.getColorType());
+		        pstmt.setDouble(5, product.getPrice());
+		        pstmt.setString(6, product.getVideoName());
+		        pstmt.setInt(7, product.getInStock());
+       pstmt.setInt(8, product.getGender());
+		        pstmt.setInt(9, product.getProductId());
+
+		        int rowsAffected = pstmt.executeUpdate();
+		        return rowsAffected; // 返回影響的行數
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		        return -1; // 返回一個錯誤狀態碼
+		    }
+		}
 	
 	
 	
@@ -369,36 +502,44 @@ public class ManufactursDAOimpl implements ManufactursDAO {
 			        }
 			    }
 			 // 然後，將獲取到的編號值插入到當前表中
-			    final String sql = "insert into ProductInformation(img1, img2,img3,img4,productName, specType,specInfo,sizeType,colorType, price,videoName,productImgId,inStock,gender) " + "values( ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?)";		    
+			    final String sql = "insert into ProductInformation(comId,productName, specType,specInfo,sizeType,colorType, price,videoName,productImgId,inStock,gender,addedTime,reviewTime) " + "values(?, ?,?,?,?,?,?,?,?,?,?,?,?)";		    
 			    PreparedStatement insertStatement = conn.prepareStatement(sql);
 			
 			    
-			    insertStatement.setBytes(1, productImg.getImg1());
-		        insertStatement.setBytes(2, productImg.getImg2());
-		        insertStatement.setBytes(3, productImg.getImg3());
-		        insertStatement.setBytes(4, productImg.getImg4());
-		        insertStatement.setString(5, product.getProductName());
-		        insertStatement.setInt(6, product.getSpecType());
+//			    insertStatement.setBytes(1, productImg.getImg1());
+//		        insertStatement.setBytes(2, productImg.getImg2());
+//		        insertStatement.setBytes(3, productImg.getImg3());
+//		        insertStatement.setBytes(4, productImg.getImg4());
+			    
+			    
+			    
+			  
+			
+			    
+			    insertStatement.setInt(1, product.getComId());
+		        insertStatement.setString(2, product.getProductName());
+		        insertStatement.setInt(3, product.getSpecType());
 		        if(product.getSpecType() == 1) {
-		        	insertStatement.setString(7, "衣服");
+		        	insertStatement.setString(4, "衣服");
 		        }else if(product.getSpecType() == 2) {
-		        	insertStatement.setString(7, "褲子");
+		        	insertStatement.setString(4, "褲子");
 		        }else if(product.getSpecType() == 3) {
-		        	insertStatement.setString(7, "鞋子");
+		        	insertStatement.setString(4, "鞋子");
 		        }else if(product.getSpecType() == 4) {
-		        	insertStatement.setString(7, "飾品");
+		        	insertStatement.setString(4, "飾品");
 		        }else {
-		        	insertStatement.setString(7, "其他");
+		        	insertStatement.setString(4, "其他");
 		        }
 		        	
-		        insertStatement.setString(8, product.getSizeType());
-		        insertStatement.setString(9, product.getColorType());
-		        insertStatement.setDouble(10, product.getPrice());
-		        insertStatement.setString(11, product.getVideoName());
-		        insertStatement.setLong(12, generatedId); // 插入第一個生成的编号值
-		        insertStatement.setInt(13, product.getInStock());
-		        insertStatement.setInt(14, product.getGender());
-
+		        insertStatement.setString(5, product.getSizeType());
+		        insertStatement.setString(6, product.getColorType());
+		        insertStatement.setDouble(7, product.getPrice());
+		        insertStatement.setString(8, product.getVideoName());
+		        insertStatement.setLong(9, generatedId); // 插入第一個生成的编号值
+		        insertStatement.setInt(10, product.getInStock());
+		        insertStatement.setInt(11, product.getGender());
+		        insertStatement.setTimestamp(12, new Timestamp(System.currentTimeMillis()));
+		        insertStatement.setTimestamp(13, new Timestamp(System.currentTimeMillis()));
 		        int rowsAffectedProductInfo = insertStatement.executeUpdate();
 
 		        insertStatement.close();
@@ -409,7 +550,15 @@ public class ManufactursDAOimpl implements ManufactursDAO {
 		        return -1; // 返回一個錯誤狀態碼
 		    }
 	}
-			    
+
+
+
+//	@Override
+//	public List<Product> selectByPage(int pageNumber, int itemsPerPage) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//			    
 		    
 			
 //			return pstmt.executeUpdate();

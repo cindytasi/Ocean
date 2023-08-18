@@ -24,6 +24,12 @@ public interface ManufactursDAO {
 	//找置入時間戳
 	List<ProductLink> selectStatusLinkTimestamp();
 	int insert(Product product, ProductImg productImg);
+//	List<Product> selectByPage(int pageNumber, int itemsPerPage);
+	List<Product> getProductsByPage(int offset, int limit);
+	int countTotalProducts();
+//	Product updateProduct(Product product, ProductImg productimg) throws Exception;
+	int updatelist(Product product, ProductImg productImg);
+	int updateProductInformation(Product product);
 	
 	
 	
