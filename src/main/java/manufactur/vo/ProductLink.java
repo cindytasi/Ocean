@@ -6,15 +6,15 @@ public class ProductLink {
 	private Integer productLinkId;
 	private Integer productId;
 	private Integer videoId;
-	private LocalDateTime linkTimestamp;
-	private Integer lastModifiedDate;
+	private Integer linkTimestamp;
+	private LocalDateTime lastModifiedDate;
 	private Integer approvalStatus;
 	
 	public  ProductLink() {
 	}
 	
 	public ProductLink(Integer productLinkId, Integer productId,Integer videoId,
-			LocalDateTime linkTimestamp,Integer lastModifiedDate,Integer approvalStatus) {
+			Integer linkTimestamp,LocalDateTime lastModifiedDate,Integer approvalStatus) {
 		super();
 		this.productLinkId = productLinkId;
 		this.productId = productId;
@@ -53,19 +53,19 @@ public class ProductLink {
 		this.videoId = videoId;
 	}
 
-	public LocalDateTime getLinkTimestamp() {
+	public Integer getLinkTimestamp() {
 		return linkTimestamp;
 	}
 
-	public void setLinkTimestamp(LocalDateTime linkTimestamp) {
+	public void setLinkTimestamp(Integer linkTimestamp) {
 		this.linkTimestamp = linkTimestamp;
 	}
 
-	public Integer getLastModifiedDate() {
+	public LocalDateTime getLastModifiedDate() {
 		return lastModifiedDate;
 	}
 
-	public void setLastModifiedDate(Integer lastModifiedDate) {
+	public void setLastModifiedDate(LocalDateTime lastModifiedDate) {
 		this.lastModifiedDate = lastModifiedDate;
 	}
 

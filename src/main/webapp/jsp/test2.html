@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- 省略原有的代码 -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <style>
+        /* 其他 CSS 样式 */
+        body {
+            background-color: #363434;
+            color: #fff;
+            /* Optional: Set the text color to white for contrast */
+        }
+
+        /* Other CSS styles go here */
+
+        h3 {
+            margin-top: 100px;
+            /* Adjust the value to move the h3 element down */
+            margin-left: 50px;
+            height: 40px;
+
+        }
+
+
+        .btn-group-vertical .btn {
+            background-color: #363333;
+            /* 將按鈕的底色設置為淺灰色 (#777) */
+            color: #fff;
+            /* 設置按鈕文字顏色為白色 */
+        }
+
+
+        /* .name-container .right-aligned {
+            text-align: right;
+            /* 讓內容向右對齊 */
+        /* } */
+
+
+        /* .item-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            /* 调整商品与信息之间的间距 */
+            /* border: 3px solid #fff; */
+            /* 白色細線邊框 */
+            /* padding: 10px; */
+            /* 內部間距，使白色邊框不會貼得太緊 */
+        /* } */ 
+
+        .preview_img {
+            max-width: 100px;
+            /* 调整图片的最大宽度 */
+            margin-right: 20px;
+            /* 调整图片与信息之间的间距 */
+        }
+
+        /* .item-info {
+            flex: 1;
+            /* 让信息占据剩余的空间 */
+        /* }  */
+    </style>
+</head>
+
+<body>
+<!-- navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top mb-5">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+            <!-- logo -->
+            <div class="logo d-flex">
+                <a class="navbar-brand" href="/oceanIndex.html">
+                    <img src="https://cdn.discordapp.com/attachments/1111587335419740274/1129318479376429158/logo_-_.png" alt="Ocean Logo" style="width: 50px;height: 50px;">
+                </a>
+                <!-- search -->
+                <div class="input-group my-auto w-50">
+                    <input type="text" class="form-control" id="searchInput" placeholder="Search"
+                        aria-label="Search" aria-describedby="basic-addon2">
+                    <button class="btn btn-outline-secondary" type="button" id="searchButton">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- 導覽列 -->
+            <div class="list">
+                <ul class="navbar-nav align-items-center">
+                    <!-- 首頁 -->
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/oceanIndex.html">首頁</a>
+                    </li>
+                    <!-- 電影 -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="/movieIndex.html">電影</a>
+                    </li>
+                    <!-- 影集 -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="/seriesIndex.html">影集</a>
+                    </li>
+                    <!-- 藝人商品 -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="/productIndex.html">藝人商品</a>
+                    </li>
+                    <!-- 收藏地圖 -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="/favoriteMapIndex.html">收藏地圖</a>
+                    </li>
+                    <!--user  -->
+                    <div class="nav-item dropdown">
+                        <button type="button" class="btn dropdown-toggle" id="navbarDropdownUserLink"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="/img/user.webp" alt="" style="width: 40px; height: 40px;">
+                        </button>
+                       <!-- user下拉選單 -->
+                        <ul class="dropdown-menu dropdown-menu-end mt-2" style="opacity: 80%;"
+                            aria-labelledby="navbarDropdownUserLink">
+                            <li><a class="dropdown-item" href="/aacountIndex.html">帳戶</a></li>
+                            <li><a class="dropdown-item" href="/accountDetail.html">基本資料</a></li>
+                            <li><a class="dropdown-item" href="/myAchieve.html">我的成就</a></li>
+                            <li><a class="dropdown-item" href="/myOrder.html">我的訂單</a></li>
+                            <li><a class="dropdown-item" href="/myList.html">我的片單</a></li>
+                            <li><a class="dropdown-item" href="/watchHistory.html">觀看紀錄</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="/signOut.html">登出</a></li>
+                        </ul>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav> 
+
+<div class="foamtitle container">
+    <h3>廠商後台</h3>
+</div>  
+<div class="check container" style="margin-left: 20%;">
+    <button type="button" class="btn btn-outline-secondary"><a href="test.html">已上架</a></button>
+    <button type="button" class="btn btn-outline-secondary">待審核</button>
+</div>
+
+    <div class="foamlist container">
+        <div class="mainfoam  left d-flex">
+            <div class="btn">
+                <button type="button" class="btn btn-dark "><a href="test2.html">商品列表</a></button>
+                <button type="button" class="btn btn-dark"><a href="test.html">上架商品</a></button>
+                <br>
+                <button type="button" class="btn btn-dark">商品置入</button>
+                <button type="button" class="btn btn-dark">審核明細</button>
+            </div>
+                <div id="product" class="foamdetail container">
+                    商品一
+                    <div class="item-container border border-1">
+                        <img src="..." class="preview_img" alt="商品圖片">
+                        <div class="item-info">
+                            <label for="inputPassword" class="col-sm-2 col-form-label">商品名稱</label>
+                            <div class="col-sm-10">
+                                <input type="商品名稱" class="form-control" id="inputPassword">
+                            </div>
+                            
+
+                            <label for="inputPassword" class="col-sm-2 col-form-label">商品分類</label>
+                            <div class="col-sm-10">
+                                <!-- <input type="商品名稱" class="form-control" id="inputPassword"> -->
+
+
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected>開啟選擇類別</option>
+                                    <option value="1">衣服</option>
+                                    <option value="2">庫子</option>
+                                    <option value="3">帽子</option>
+                                </select>
+                            </div>
+
+                            <label for="inputPassword" class="col-sm-2 col-form-label">商品尺寸</label>
+                            <div class="col-sm-10">
+                                <input type="商品名稱" class="form-control" id="inputPassword">
+                            </div>
+                            <label for="inputPassword" class="col-sm-2 col-form-label">商品庫存</label>
+                            <div class="col-sm-10">
+                                <input type="商品名稱" class="form-control" id="inputPassword">
+                            </div>
+                            <div class="right-aligned">
+                                <button type="button" class="btn btn-warning">編輯</button>
+                                <button type="button" class="btn btn-info">下架</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 分頁按鈕 -->
+
+                  
+                </div>
+
+            </div>  
+              
+        </div>
+        <div id="pagination" class="d-flex justify-content-center">
+            <button id="prevButton">上一頁</button>
+            <select id="pageNumberSelect"></select>
+            <button id="nextButton">下一頁</button>
+        </div>
+    </div> <!-- 其他 HTML 结构 -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <!-- ajax -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script> 
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
+
+    <script>
+        window.onload = function(){
+
+                $.ajax({
+                    url:"/Ocean/ProductListServlet",
+                    type:"POST",
+                    dataType:"JSON",
+                    success:function(data){
+
+                        console.log(data);
+
+                            product.innerHTML=""; 
+
+                        for(let i in  data ){
+
+                            if(!data[i].successful){
+
+                                var itemContainer = document.createElement("div");
+                                itemContainer.className = "item-container border border-1";
+
+                //                  // 創建隱藏的 input 元素用於儲存 productId
+                var productIdInput = document.createElement("input");
+                productIdInput.type = "hidden";
+                productIdInput.name = "product_Id"; // 表單參數的名稱
+                productIdInput.value = data[i].productId; // 將計數器的值賦予 productId，並遞增
+                // itemInfo.appendChild(productIdInput);
+                // priceInput.value = data[i].price; // 設置初始值
+
+                                // 創建圖片元素
+                                // var img = document.createElement("img");
+                                // img.src = "..."; // 設置圖片的src屬性
+                                // img.className = "preview_img";
+                                // img.alt = "商品圖片";
+
+                                // 創建商品信息容器
+                                var itemInfo = document.createElement("div");
+                                itemInfo.className = "item-info";
+
+                                // 創建商品名稱元素
+                                var nameLabel = document.createElement("label");
+                                nameLabel.className = "col-sm-2 col-form-label";
+                                nameLabel.textContent = "商品名稱";
+                               
+
+                                var nameInput = document.createElement("input");
+                                nameInput.type = "text"; // 修改為文本輸入框
+                                nameInput.className = "form-control";
+                                nameInput.id = "productName";
+                                nameInput.value=data[i].productName;
+
+                                // 創建商品分類元素
+                                var categoryLabel = document.createElement("label");
+                                categoryLabel.className = "col-sm-2 col-form-label";
+                                categoryLabel.textContent = "商品分類";                
+
+                                var categorySelect = document.createElement("select");
+                                categorySelect.className = "form-select";
+                                categorySelect.setAttribute("aria-label", "Default select example");
+                                categorySelect.id = "specType";
+                                var categoryOption1 = document.createElement("option");
+                                categoryOption1.value = "1";
+                                categoryOption1.textContent = "衣服";
+
+                                var categoryOption2 = document.createElement("option");
+                                categoryOption2.value = "2";
+                                categoryOption2.textContent = "褲子";
+
+                                var categoryOption3 = document.createElement("option");
+                                categoryOption3.value = "3";
+                                categoryOption3.textContent = "帽子";
+
+                                // var categoryOption3 = document.createElement("option");
+                                // categoryOption3.value = "4";
+                                // categoryOption3.textContent = "帽子";
+
+                                var categoryOption4 = document.createElement("option");
+                                categoryOption4.value = "5";
+                                categoryOption4.textContent = "其它";
+
+                                // 添加選項到選擇框
+                                categorySelect.appendChild(categoryOption1);
+                                categorySelect.appendChild(categoryOption2);
+                                categorySelect.appendChild(categoryOption3);
+                                categorySelect.appendChild(categoryOption4);
+
+                                if (categorySelect.options[0].value === data[i].specType) {
+                                    categorySelect.options[0].selected = true;
+                                }else if(categorySelect.options[1].value === data[i].specType){
+                                    categorySelect.options[1].selected = true;    
+                                }else if(categorySelect.options[2].value === data[i].specType){
+                                    categorySelect.options[2].selected = true;
+                                }else if(categorySelect.options[3].value === data[i].specType){
+                                    categorySelect.options[3].selected = true;
+                                }    
+                                // 創建商品尺寸元素
+                                var sizeLabel = document.createElement("label");
+                                sizeLabel.className = "col-sm-2 col-form-label";
+                                sizeLabel.textContent = "商品尺寸";
+                                // sizeLabel.hidden = true; // 設置為隱藏狀態
+                                var sizeInput = document.createElement("input");
+                                sizeInput.type = "text"; // 修改為文本輸入框
+                                sizeInput.className = "form-control";
+                                sizeInput.id = "sizeType";
+                                sizeInput.value=data[i].sizeType;
+                                // sizeInput.hidden = true; // 設置為隱藏狀態
+
+                                // 創建價格元素
+                                var priceLabel = document.createElement("label");
+                                priceLabel.className = "col-sm-2 col-form-label";
+                                priceLabel.textContent = "價格";
+
+                                var priceInput = document.createElement("input");
+                                priceInput.type = "number"; // 設定輸入類型為數字
+                                priceInput.className = "form-control";
+                                priceInput.id = "price"; // 設定 id，以便後續在 jQuery 中使用
+                                priceInput.value = data[i].price; // 根據你的需求，設定初始值或從 data 中獲取價格
+                               
+                               
+                               
+                               //顏色
+                               var colorTypeLabel = document.createElement("label");
+                               colorTypeLabel.className = "col-sm-2 col-form-label";
+                               colorTypeLabel.textContent = "顏色";
+
+                                var colorTypeInput = document.createElement("input");
+                                colorTypeInput.type = "text";
+                                colorTypeInput.className = "form-control";
+                                colorTypeInput.id = "colorType";
+                                colorTypeInput.value = data[i].colorType;
+                                // colorTypeInput.hidden = true;
+
+
+
+
+
+                                //這部分是隱藏的-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                                // var specTypeInput = document.createElement("input");
+                                // specTypeInput.type = "text";
+                                // specTypeInput.className = "form-control";
+                                // specTypeInput.id = "specType";
+                                // specTypeInput.value = data[i].specType;
+                                // specTypeInput.hidden = true;
+
+                             
+
+                                var comIdInput = document.createElement("input");
+                                comIdInput.type = "text";
+                                comIdInput.className = "form-control";
+                                comIdInput.id = "comId";
+                                comIdInput.value = data[i].comId;
+                                comIdInput.hidden = true;
+
+                                var addedTimeInput = document.createElement("input");
+                                addedTimeInput.type = "text";
+                                addedTimeInput.className = "form-control";
+                                addedTimeInput.id = "addedTime";
+                                addedTimeInput.value = data[i].addedTime;
+                                addedTimeInput.hidden = true;
+
+                                var reviewTimeInput = document.createElement("input");
+                                reviewTimeInput.type = "text";
+                                reviewTimeInput.className = "form-control";
+                                reviewTimeInput.id = "reviewTime";
+                                reviewTimeInput.value = data[i].reviewTime;
+                                reviewTimeInput.hidden = true;
+
+                                var videoNameInput = document.createElement("input");
+                                videoNameInput.type = "text";
+                                videoNameInput.className = "form-control";
+                                videoNameInput.id = "videoName";
+                                videoNameInput.value = data[i].videoName;
+                                videoNameInput.hidden = true;
+
+                                var productImageIdInput = document.createElement("input");
+                                productImageIdInput.type = "text";
+                                productImageIdInput.className = "form-control";
+                                productImageIdInput.id = "productImageId";
+                                productImageIdInput.value = data[i].productImageId;
+                                productImageIdInput.hidden = true;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                //=======================================================================================================================
+                                // 創建商品庫存元素
+                                var stockLabel = document.createElement("label");
+                                stockLabel.className = "col-sm-2 col-form-label";
+                                stockLabel.textContent = "商品庫存";
+                                
+
+                                var stockInput = document.createElement("input");
+                                stockInput.type = "number"; // 修改為數字輸入框
+                                stockInput.className = "form-control";
+                                stockInput.id = "inStock"
+                                stockInput.value =data[i].inStock ;    
+                              
+                              
+                              
+                           
+
+var genderValue = data[i].gender;
+                        
+var genderContainer = document.createElement("div");
+genderContainer.className = "gender-container";
+
+// 創建男性性別選項
+var maleRadio = document.createElement("input");
+maleRadio.type = "radio";
+maleRadio.className = "form-check-input";
+maleRadio.name = "gender";
+maleRadio.id = "male"+ i;
+maleRadio.value = 1; // 男性的值
+if(genderValue == 1){
+    console.log("1");
+    maleRadio.checked = true;
+}
+var maleLabel = document.createElement("label");
+maleLabel.className = "form-check-label";
+maleLabel.htmlFor = "male"+ i ;
+maleLabel.textContent = "男性";
+//maleRadio.value = 1; // 男性的值
+// if (genderValue === 1) {
+//     maleRadio.checked = true; // 如果性別值為 1，選中男性選項
+// }
+// console.log(genderValue);
+
+// 創建女性性別選項
+var femaleRadio = document.createElement("input");
+femaleRadio.type = "radio";
+femaleRadio.className = "form-check-input";
+femaleRadio.name = "gender";
+femaleRadio.id = "female"+ i;
+femaleRadio.value = 0; // 女性的值
+if(genderValue == 0){
+    console.log("0");
+    femaleRadio.checked = true;
+}
+var femaleLabel = document.createElement("label");
+femaleLabel.className = "form-check-label";
+femaleLabel.htmlFor = "female"+ i;
+femaleLabel.textContent = "女性";
+//femaleRadio.value = 0; // 女性的值
+// if (genderValue == 0) {
+//     femaleRadio.checked = true; // 如果性別值為 0，選中女性選項
+// }
+
+// 創建無性別性別選項
+var otherRadio = document.createElement("input");
+otherRadio.type = "radio";
+otherRadio.className = "form-check-input";
+otherRadio.name = "gender";
+otherRadio.id = "other"+ i;
+otherRadio.value = 2; // 無性別的值
+if(genderValue == 2){
+    console.log("2");
+    otherRadio.checked = true;
+}
+var otherLabel = document.createElement("label");
+otherLabel.className = "form-check-label";
+otherLabel.htmlFor = "other"+ i;
+otherLabel.textContent = "無性別";
+   // otherRadio.value = 2; // 無性別的值
+// if (genderValue === 2) {
+//     otherRadio.checked = true; // 如果性別值為 2，選中無性別選項
+// }
+
+
+//const radioInputs = document.querySelectorAll('.radio-input');
+
+// if(data[i].genderValue === 1){
+//     document.getElementById("male"+i).setAttribute("checked","checked");
+//     console.log("1");
+// }else if(data[i].genderValue === 0){
+//     document.getElementById("female"+i).setAttribute("checked","checked");
+//     console.log("0");
+// }else if(data[i].genderValue === 2){
+//     document.getElementById("other"+i).setAttribute("checked","checked");
+//     console.log("2")
+// }
+
+   //  創建性別選項容器
+//    var genderValue = data[i].gender;
+
+
+//                                 if(genderValue === 1){
+//                                     // document.getElementById("male"+i).setAttribute("checked","checked");
+//                                     // console.log("id1" +data[i].gender);
+//                                     let man = document.getElementsByClassName("gender-container");
+//                                     man.innerHTML=`
+//                                     <input type="radio" class="form-check-input" name="gender" id="male1" value="1" checked>
+//                                     `
+//                                 }else if(genderValue === 0){
+//                                     // document.getElementById("female"+i).setAttribute("checked","checked");
+//                                     // console.log("id2"+data[i].gender);
+//                                     let woman = document.getElementsByClassName("gender-container");
+//                                     woman.innerHTML=`
+//                                     <input type="radio" class="form-check-input" name="gender" id="female1" value="0" checked>
+//                                     `
+//                                 }else if(genderValue === 2){
+//                                     // document.getElementById("other"+i).setAttribute("checked","checked");
+//                                     // console.log("id3" +data[i].gender)
+//                                     let other = document.getElementsByClassName("gender-container");
+//                                     other.innerHTML=`
+//                                     <input type="radio" class="form-check-input" name="gender" id="other1" value="2" checked>
+//                                     `
+//                                 };
+
+
+
+// 將性別選項元素添加到性別選項容器中
+genderContainer.appendChild(maleRadio);
+genderContainer.appendChild(maleLabel);
+genderContainer.appendChild(femaleRadio);
+genderContainer.appendChild(femaleLabel);
+genderContainer.appendChild(otherRadio);
+genderContainer.appendChild(otherLabel);
+
+// 將性別選項容器添加到商品信息容器中
+
+
+         
+
+
+
+
+                                
+                                // 創建編輯和下架按鈕
+                                var editButton = document.createElement("button");
+                                editButton.type = "button";
+                                editButton.className = "btn btn-warning edit-button";
+                                editButton.textContent = "編輯";
+
+                                var removeButton = document.createElement("button");
+                                removeButton.type = "button";
+                                removeButton.className = "btn btn-info";
+                                removeButton.textContent = "下架";
+
+
+
+                                // 將元素添加到容器中
+                                itemInfo.appendChild(productIdInput);
+                                // itemInfo.appendChild(priceInput);
+
+
+
+                                itemInfo.appendChild(nameLabel);
+                                itemInfo.appendChild(nameInput);
+                                itemInfo.appendChild(categoryLabel);
+                                itemInfo.appendChild(categorySelect);
+                                itemInfo.appendChild(sizeLabel);
+                                itemInfo.appendChild(sizeInput);
+                                itemInfo.appendChild(priceLabel);
+                                itemInfo.appendChild(priceInput);
+                              itemInfo.appendChild(genderContainer);
+                                itemInfo.appendChild(stockLabel);
+                                itemInfo.appendChild(stockInput);
+                                itemInfo.appendChild(editButton);
+                                itemInfo.appendChild(removeButton);
+                                // itemInfo.appendChild(specTypeInput);
+                                itemInfo.appendChild(colorTypeLabel);
+                                itemInfo.appendChild(colorTypeInput);
+                                // itemContainer.appendChild(img);
+                                itemContainer.appendChild(itemInfo);
+
+                             
+                                
+                                itemInfo.appendChild(comIdInput);
+                                itemInfo.appendChild(addedTimeInput);
+                                itemInfo.appendChild(reviewTimeInput);
+                                itemInfo.appendChild(videoNameInput);
+                                itemInfo.appendChild(productImageIdInput);
+
+                               
+                                product.appendChild(itemContainer);
+                                    // product.innerHTML += html;
+                                }    
+                            
+                        }
+                        
+                    },
+                    error:function(){
+
+                     }
+                 });
+
+                // const product_name_input = document.getElementById("inputPassword");
+                // const product_name = product_name_input;  
+                // const product =document.querySelector("#product");
+                
+                // const productName = document.getElementById("productName");
+                // const specType = document.getElementById("specType");
+                // const sizeType = document.getElementById("sizeType");
+                // const price = document.getElementById("price");
+                // const inStock = document.getElementById("inStock");
+                // const productId = document.getElementById("productId");
+
+                // console.log(productName);
+                   
+
+
+        // <!-- 在您的 test2.html 中 -->
+        // <!-- 省略之前的代碼 -->
+
+
+
+    // 監聽編輯按鈕的點擊事件
+    $(document).on("click", ".edit-button", function() {
+        const container = $(this).closest("div.item-container");
+
+
+        const productId = $(this).closest("div.item-container").find(`input[name="product_Id"]`).val();
+        const productName = $(this).closest("div.item-container").find(`input#productName`).val();
+        // const product = $(this).closest("div.item-container").find("input.product").val();
+        // const male = $(this).closest("div.item-container").find(`input#male`).val();
+        // const female = $(this).closest("div.item-container").find(`input#female`).val();
+        // const otherRadio = $(this).closest("div.item-container").find(`input#otherRadio`).val();
+        const specType = $(this).closest("div.item-container").find(`select#specType`).val();
+        const sizeType = $(this).closest("div.item-container").find(`input#sizeType`).val();
+        const price = $(this).closest("div.item-container").find(`input#price`).val();
+        const gender = $(this).closest("div.item-container").find(`input[name="gender"]:checked`).val();
+        const inStock = $(this).closest("div.item-container").find(`input#inStock`).val();
+       
+        const colorType = container.find(`input#colorType`).val();
+        const comId = container.find(`input#comId`).val();
+        const addedTime = container.find(`input#addedTime`).val();
+        const reviewTime = container.find(`input#reviewTime`).val();
+        const videoName = container.find(`input#videoName`).val();
+        const productImageId = container.find(`input#productImageId`).val();
+      // 獲取相關 productId 的值
+        console.log(productId);
+        // 其他要更新的數據
+        // var otherData = {
+
+        //     price: $("#priceInput").val(),
+        //     productName: $("#productNameInput").val(),
+        //     specType: $("#specTypeSelect").val(),
+        //     sizeType: $("#sizeTypeInput").val(),
+        //     gender: $("#genderRadio").val(),
+        //     // colorType: $("#colorTypeInput").val(),
+        //     inStock: $("#inStockInput").val()
+        //     // 其他要更新的數據...
+        // };
+
+        // 將需要更新的數據添加到 data 對象中
+        var requestData = {
+        productId: productId,
+        price: price,
+        productName: productName,
+        specType: specType,
+        sizeType: sizeType,
+        colorType: colorType,
+        comId: comId,
+        addedTime: addedTime,
+        reviewTime: reviewTime,
+        videoName: videoName,
+        productImageId: productImageId,
+        gender: gender,
+        inStock: inStock
+    };
+
+
+            // 使用 AJAX 請求將商品 ID 傳遞到 UpdateProductServlet 進行處理
+              $.ajax({
+            url: "/Ocean/ProductListUpdateServlet",
+            type: "POST",
+            data: JSON.stringify(requestData), // 將商品 ID 和其他要更新的數據傳遞到 Servlet
+            contentType: "application/json", // 設置 Content-Type 為 application/json
+            success: function(data) {
+                // 在成功回調中處理更新後的數據
+                // 這裡可以根據您的需求更新頁面上的內容
+                // 例如，更新商品名稱、價格等相關元素的內容
+                // $("#productName").text(data.productName);
+                // $("#price").text(data.price);
+                // $("#specType").text(data.specType);
+                // $("#sizeType").text(data.sizeType);
+                // $("#inStock").text(data.inStock);
+                // $("#colorType").text(data.colorType);
+                // ... 其他相關元素的更新
+                
+                window.location.href = "/Ocean/jsp/test4.html";
+                console.log("Product ID " + productId + " updated successfully.");
+            },
+                error: function(xhr, status, error) {
+                    // 在錯誤回調中處理錯誤情況
+                    console.error("Error updating product: " + error);
+                }
+            });
+        });
+    
+
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                 
+                                           
+
+
+
+
+
+
+
+
+            
+           
+
+
+</body>
+</html>
