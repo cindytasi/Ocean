@@ -1,11 +1,11 @@
 package admin.vo;
 
-public class adminVo {
-	private Integer adminId;
-	private String adminName;
-	private String adminAccount;
-	private String adminPassword;
-	private String adMode;
+public class AdminVo {
+	private Integer adminId;		//id
+	private String adminName;		//名稱
+	private String adminAccount;	//帳號
+	private String adminPassword;	//密碼
+	private String adMode;			//即將執行的方法
 	
 	public Integer getAdminId() {
 		return adminId;
@@ -37,5 +37,7 @@ public class adminVo {
 	public void setAdMode(String adMode) {
 		this.adMode = adMode;
 	}
+	
+	
 	
 }
