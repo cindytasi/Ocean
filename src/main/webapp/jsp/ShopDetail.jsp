@@ -19,9 +19,9 @@
 
 <head>
     <meta charset="utf-8">
-	<jsp:include page="/jsp/pluginsJs.jsp"></jsp:include>
+	<script type="text/javascript" src="<c:url value="/js/jquery/jquery-3.7.0.min.js"/>"></script>
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Zakas - Fashion eCommerce Bootstrap 4 Template</title>
+    <title>Ocean</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicons -->
@@ -37,9 +37,7 @@
     <!-- style css -->     
     <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
   	
-    <script type="text/javascript" src="<c:url value="/js/shopdetail.js"/>"></script>
-	<script type="text/javascript" src="<c:url value="/js/delAddRedis.js"/>"></script>
-	
+		<script type="text/javascript" src="<c:url value="/js/shopdetail.js"/>"></script>
 	
 
 </head>
@@ -116,7 +114,7 @@
 								<div class="errMsg" style="display: inline-block">
 									<ul class="breadcrumb">								
 									
-										<li><a href="<c:url value="/MainShopServlet"/>">Home</a></li>
+										<li><a href="<c:url value="/ShopServlet?type=AllProduct"/>">Shop</a></li>
 										<li class="current"><span>Product Detail</span></li>
 									</ul>
 								</div>
@@ -209,7 +207,7 @@
                                         	<c:forEach var="size" items="${detail.sizeList}">
                                         	
 												<div class="variation">
-	                                                <a class="product-size-variation-btn selected sizeBtn" data-toggle="tooltip" data-placement="top">
+	                                                <a class="product-size-variation-btn selected pickSize sizeBtn" data-toggle="tooltip" data-placement="top">
 	                                                    <span class="product-size-variation-label">${size}</span>
 	                                                </a>
 	                                            </div>
@@ -225,7 +223,7 @@
                                         	
                                         		
 												<div class="variation colorCheck colorbtn">
-	                                                <a class="product-size-variation-btn selected colorBtn <c:if test="${defaultColorType.equals(color)}">checked</c:if>" data-toggle="tooltip" data-placement="top" color="${color}">
+	                                                <a class="product-size-variation-btn selected pickColor colorBtn <c:if test="${defaultColorType.equals(color)}">checked</c:if>" data-toggle="tooltip" data-placement="top" color="${color}">
 	                                                    <span class="product-color-variation-label">${color}</span>
 	                                                    <c:set var="color" value="${defaultColorType}" />
 	                                                </a>
@@ -240,13 +238,13 @@
                                     <div class="quantity-wrapper d-flex align-items-center mr--30 mr-xs--0 mb-xs--30">
                                         <label class="quantity-label" for="qty" style="font-size:16px">件數:</label>
                                         <div class="quantity">
-                                            <input type="number" class="quantity-input" name="qty" id="qty" value="1" min="1">
+                                            <input type="number " class="quantity-input" name="qty" id="qty" value="1" min="1">
                                         </div>
                                     </div>
                                     
                                 </div>  
                              <div>
-                                    <button id="wishlistbtn" type="button" class="btn btn-small btn-bg-red btn-color-white btn-hover-2" onclick="window.location.href='cart.html'">
+                                    <button id="wishlistbtn" type="button" class="btn btn-small btn-bg-red btn-color-white btn-hover-2">
                                         WIST LIST
                                     </button>
                                     <button id="shopCartbtn" type="button" class="btn btn-small btn-bg-red btn-color-white btn-hover-2">
@@ -262,127 +260,149 @@
                             <div class="product-data-tab tab-style-3">
                                 <div class="nav nav-tabs product-data-tab__head mb--35 mb-sm--25" id="product-tab" role="tablist">
                                     <a class="product-data-tab__link nav-link active" id="nav-description-tab" data-toggle="tab" href="#nav-description" role="tab" aria-selected="true"> 
-                                        <span>Description</span>
-                                    </a>
-                                    <a class="product-data-tab__link nav-link" id="nav-info-tab" data-toggle="tab" href="#nav-info" role="tab" aria-selected="true">
-                                        <span>Additional Information</span>
-                                    </a>
-                                    <a class="product-data-tab__link nav-link" id="nav-reviews-tab" data-toggle="tab" href="#nav-reviews" role="tab" aria-selected="true">
-                                        <span>Reviews(1)</span>
-                                    </a>
-                                </div>
-                                <div class="tab-content product-data-tab__content" id="product-tabContent">
-                                    <div class="tab-pane fade show active" id="nav-description" role="tabpanel" aria-labelledby="nav-description-tab">
-                                        <div class="product-description">
-                                            <p>Lorem ipsum dolor sit amet, consec do eiusmod tincididunt ut labore et dolore magna aliqua. Ut enim ad minim veniaLo ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla paExcepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. iatis unde omnis iste natus error sit voluptatem accusantium </p>
+                                        <span>商品描述</span>
+                                    </a> <a
+										class="product-data-tab__link nav-link" id="nav-info-tab"
+										data-toggle="tab" href="#nav-info" role="tab"
+										aria-selected="true"> <span>洗滌說明 </span>
+									</a> <a class="product-data-tab__link nav-link"
+										id="nav-reviews-tab" data-toggle="tab" href="#nav-reviews"
+										role="tab" aria-selected="true"> <span>Reviews(1)</span>
+									</a>
+								</div>
+								<div class="tab-content product-data-tab__content"
+									id="product-tabContent">
+									<div class="tab-pane fade show active" id="nav-description"
+										role="tabpanel" aria-labelledby="nav-description-tab">
+										<div class="product-description">
+											<div>
+												<p>*實品顏色依單品照為主</p>
+												<p>聚丙烯腈纖維 75% 尼龍 25%</p>
+												<p>素材產地 / 中國</p>
+												<p>加工產地 / 中國</p>
+												<p>
+													造型木紋釦/V領寬鬆版型/涼感針織紗線<br>
+													<br>商品長度/適中<br>商品版型/適中<br>商品厚薄/適中<br>商品彈性/佳<br>
+													<br>*深色布料因穿著時接觸人體溫度及洗滌後有脫色及染劑移染狀況，第一次下水脫色為正常現象<br>*此款材質特性，不宜使用衣架吊掛，建議平放/避免摩擦<br>*針織材質吸濕性較一般材質大，故洗滌後些微縮水屬正常現象<br>*請避免手錶、飾品或者包包小零件勾住針織網眼
+												</p>
+											</div>
 
-                                            <p>Lorem ipsum dolor sit amet, consec do eiusmod tincididunt ut labore et dolore magna aliqua. Ut enim ad minim veniaLo ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-                                            
-                                            <h5 class="product-description__heading">Characteristics :</h5>
-                                            <ul>
-                                                <li><i class="ti-arrow-right"></i><span>Rsit amet, consectetur adipisicing elit, sed do eiusmod tempor inc.</span></li>
-                                                <li><i class="ti-arrow-right"></i><span>sunt in culpa qui officia deserunt mollit anim id est laborum. </span></li>
-                                                <li><i class="ti-arrow-right"></i><span>Lorem ipsum dolor sit amet, consec do eiusmod tincididu. </span></li>
-                                            </ul>
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
-                                        <div class="table-content table-responsive">
-                                            <table class="table shop_attributes">
-                                                <tbody>
-                                                    <tr>
-                                                        <th>Weight</th>
-                                                        <td>57 kg</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Dimensions</th>
-                                                        <td>160 × 152 × 110 cm</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Color</th>
-                                                        <td>
-                                                            <a href="shop-sidebar.html">Black</a>,
-                                                            <a href="shop-sidebar.html">Gray</a>,
-                                                            <a href="shop-sidebar.html">Red</a>,
-                                                            <a href="shop-sidebar.html">Violet</a>,
-                                                            <a href="shop-sidebar.html">Yellow</a>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="nav-reviews" role="tabpanel" aria-labelledby="nav-reviews-tab">
-                                        <div class="product-reviews">
-                                            <h3 class="review__title">1 review for Black Blazer</h3>
-                                            <ul class="review__list">
-                                                <li class="review__item">
-                                                    <div class="review__container">                                                   
-                                                        <img src="<c:url value="/img/others/comment-1.jpg"/>" alt="Review Avatar" class="review__avatar">
-                                                        <div class="review__text">
-                                                            <div class="d-flex flex-sm-row flex-column justify-content-between">
-                                                                <div class="review__meta">
-                                                                    <strong class="review__author">John Snow </strong>
-                                                                    <span class="review__dash">-</span>
-                                                                    <span class="review__published-date">November 20, 2018</span>
-                                                                </div>
-                                                                <div class="product-rating">
-                                                                    <div class="star-rating star-five">
-                                                                        <span>Rated <strong class="rating">5.00</strong> out of 5</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <p class="review__description">Aliquam egestas libero ac turpis pharetra, in vehicula lacus scelerisque. Vestibulum ut sem laoreet, feugiat tellus at, hendrerit arcu.</p>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                            <div class="review-form-wrapper">
-                                                <div class="row">
-                                                    <div class="col-lg-8">
-                                                        <span class="reply-title">Add a review</span>
-                                                        <form action="#" class="form pr--30">
-                                                            <div class="form-notes mb--20">
-                                                                <p>Your email address will not be published. Required fields are marked <span class="required">*</span></p>
-                                                            </div>
-                                                            <div class="form__group mb--10 pb--1">
-                                                                <label class="form__label d-block" >Your Ratings</label>
-                                                                <div class="rating">
-                                                                    <span><i class="fa fa-star"></i></span>
-                                                                    <span><i class="fa fa-star"></i></span>
-                                                                    <span><i class="fa fa-star"></i></span>
-                                                                    <span><i class="fa fa-star"></i></span>
-                                                                    <span><i class="fa fa-star"></i></span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form__group mb--10">
-                                                                <label class="form__label d-block" for="email">Your Review<span class="required">*</span></label>
-                                                                <textarea name="review" id="review" class="form__input form__input--textarea"></textarea>
-                                                            </div>
-                                                            <div class="form__group mb--20">
-                                                                <label class="form__label d-block" for="name">Name<span class="required">*</span></label>
-                                                                <input type="text" name="name" id="name" class="form__input">
-                                                            </div>
-                                                            <div class="form__group mb--20">
-                                                                <label class="form__label d-block" for="email">Email<span class="required">*</span></label>
-                                                                <input type="email" name="email" id="email" class="form__input">
-                                                            </div>
-                                                            <div class="form__group">
-                                                                <div class="form-row">
-                                                                    <div class="col-12">
-                                                                        <input type="submit" value="Submit Now" class="btn-submit">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
+										</div>
+									</div>
+									<div class="tab-pane" id="nav-info" role="tabpanel"
+										aria-labelledby="nav-info-tab">
+										<div class="table-content table-responsive">
+											<table class="table shop_attributes">
+												<tbody>
+													<tr>
+														<th>Weight</th>
+														<td>57 kg</td>
+													</tr>
+													<tr>
+														<th>Dimensions</th>
+														<td>160 × 152 × 110 cm</td>
+													</tr>
+													<tr>
+														<th>Color</th>
+														<td><a href="shop-sidebar.html">Black</a>, <a
+															href="shop-sidebar.html">Gray</a>, <a
+															href="shop-sidebar.html">Red</a>, <a
+															href="shop-sidebar.html">Violet</a>, <a
+															href="shop-sidebar.html">Yellow</a></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+									<div class="tab-pane fade" id="nav-reviews" role="tabpanel"
+										aria-labelledby="nav-reviews-tab">
+										<div class="product-reviews">
+											<h3 class="review__title">1 review for Black Blazer</h3>
+											<ul class="review__list">
+												<li class="review__item">
+													<div class="review__container">
+														<img src="<c:url value="/img/others/comment-1.jpg"/>"
+															alt="Review Avatar" class="review__avatar">
+														<div class="review__text">
+															<div
+																class="d-flex flex-sm-row flex-column justify-content-between">
+																<div class="review__meta">
+																	<strong class="review__author">John Snow </strong> <span
+																		class="review__dash">-</span> <span
+																		class="review__published-date">November 20,
+																		2018</span>
+																</div>
+																<div class="product-rating">
+																	<div class="star-rating star-five">
+																		<span>Rated <strong class="rating">5.00</strong>
+																			out of 5
+																		</span>
+																	</div>
+																</div>
+															</div>
+															<p class="review__description">Aliquam egestas libero
+																ac turpis pharetra, in vehicula lacus scelerisque.
+																Vestibulum ut sem laoreet, feugiat tellus at, hendrerit
+																arcu.</p>
+														</div>
+													</div>
+												</li>
+											</ul>
+											<div class="review-form-wrapper">
+												<div class="row">
+													<div class="col-lg-8">
+														<span class="reply-title">Add a review</span>
+														<form action="#" class="form pr--30">
+															<div class="form-notes mb--20">
+																<p>
+																	Your email address will not be published. Required
+																	fields are marked <span class="required">*</span>
+																</p>
+															</div>
+															<div class="form__group mb--10 pb--1">
+																<label class="form__label d-block">Your Ratings</label>
+																<div class="rating">
+																	<span><i class="fa fa-star"></i></span> <span><i
+																		class="fa fa-star"></i></span> <span><i
+																		class="fa fa-star"></i></span> <span><i
+																		class="fa fa-star"></i></span> <span><i
+																		class="fa fa-star"></i></span>
+																</div>
+															</div>
+															<div class="form__group mb--10">
+																<label class="form__label d-block" for="email">Your
+																	Review<span class="required">*</span>
+																</label>
+																<textarea name="review" id="review"
+																	class="form__input form__input--textarea"></textarea>
+															</div>
+															<div class="form__group mb--20">
+																<label class="form__label d-block" for="name">Name<span
+																	class="required">*</span></label> <input type="text"
+																	name="name" id="name" class="form__input">
+															</div>
+															<div class="form__group mb--20">
+																<label class="form__label d-block" for="email">Email<span
+																	class="required">*</span></label> <input type="email"
+																	name="email" id="email" class="form__input">
+															</div>
+															<div class="form__group">
+																<div class="form-row">
+																	<div class="col-12">
+																		<input type="submit" value="Submit Now"
+																			class="btn-submit">
+																	</div>
+																</div>
+															</div>
+														</form>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
                         </div>
                     </div>
                     <div class="row">
@@ -406,12 +426,13 @@
                                     "slidesToShow": 1
                                 }}
                             ]'>
+                            <c:forEach var="randomProductList" items="${randomProductList}">
                                 <div class="item">
                                     <div class="zakas-product">
                                         <div class="product-inner">
                                             <figure class="product-image">
-                                                <a href="product-details.html">                                                
-                                                    <img src="<c:url value="/img/products/prod-9.jpg"/>" alt="Products">
+                                                <a href="<c:url value="/ShopDetailServlet?productName=${randomProductList.productName}&color=${randomProductList.colorType}"/>">                                                
+                                                    <img src="<c:url value="/ImageSevlet?id=${randomProductList.productImgId}&photo_data=1"/>" alt="Product">
                                                 </a>
                                                 <div class="zakas-product-action">
                                                     <div class="product-action d-flex">
@@ -455,216 +476,24 @@
                                                         </a>
                                                     </div>
                                                 </div>
-                                                <span class="product-badge">New</span>
+                                              
                                             </figure>
                                             <div class="product-info">
                                                 <h3 class="product-title mb--15">
-                                                    <a href="product-details.html">Long Cartigen</a>
+                                                
+                                                    <a href="<c:url value="/ShopDetailServlet?productName=${randomProductList.productName}&color=${randomProductList.colorType}"/>">${randomProductList.productName}</a>
                                                 </h3>
                                                 <div class="product-price-wrapper mb--30">
-                                                    <span class="money">$80</span>
-                                                    <span class="money-separator">-</span>
-                                                    <span class="money">$200</span>
+                                                    <span class="money">NT.${randomProductList.price}</span>
                                                 </div>
-                                                <a href="cart.html" class="btn btn-small btn-bg-sand btn-color-dark">Add To Cart</a>
+                                                
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="item">
-                                    <div class="zakas-product">
-                                        <div class="product-inner">
-                                            <figure class="product-image">
-                                                <a href="product-details.html">                                                
-                                                    <img src="<c:url value="/img/products/prod-10.jpg"/>" alt="Products">
-                                                </a>
-                                                <div class="zakas-product-action">
-                                                    <div class="product-action d-flex">
-                                                        <div class="product-size">
-                                                            <a href="" class="action-btn">
-                                                                <span class="current">XL</span>
-                                                            </a>
-                                                            <div class="product-size-swatch">
-                                                                <span class="product-size-swatch-btn variation-btn">
-                                                                    L
-                                                                </span>
-                                                                <span class="product-size-swatch-btn variation-btn">
-                                                                    M
-                                                                </span>
-                                                                <span class="product-size-swatch-btn variation-btn">
-                                                                    S
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-color">
-                                                            <a href="" class="action-btn">
-                                                                <span class="current abbey">Abbey</span>
-                                                            </a>
-                                                            <div class="product-color-swatch">
-                                                                <span class="product-color-swatch-btn blue variation-btn">
-                                                                    Blue
-                                                                </span>
-                                                                <span class="product-color-swatch-btn copper variation-btn">
-                                                                    Copper
-                                                                </span>
-                                                                <span class="product-color-swatch-btn old-rose variation-btn">
-                                                                    Old Rose
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <a href="wishlist.html" class="action-btn">
-                                                            <i class="flaticon flaticon-like"></i>
-                                                        </a>
-                                                        <a data-toggle="modal" data-target="#productModal" class="action-btn quick-view">
-                                                            <i class="flaticon flaticon-eye"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </figure>
-                                            <div class="product-info">
-                                                <h3 class="product-title mb--15">
-                                                    <a href="product-details.html">Long Cartigen</a>
-                                                </h3>
-                                                <div class="product-price-wrapper mb--30">
-                                                    <span class="money">$80</span>
-                                                    <span class="money-separator">-</span>
-                                                    <span class="money">$200</span>
-                                                </div>
-                                                <a href="cart.html" class="btn btn-small btn-bg-sand btn-color-dark">Add To Cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="zakas-product">
-                                        <div class="product-inner">
-                                            <figure class="product-image">
-                                                <a href="product-details.html">                                                
-                                                    <img src="<c:url value="/img/products/prod-11.jpg"/>" alt="Products">
-                                                </a>
-                                                <div class="zakas-product-action">
-                                                    <div class="product-action d-flex">
-                                                        <div class="product-size">
-                                                            <a href="" class="action-btn">
-                                                                <span class="current">XL</span>
-                                                            </a>
-                                                            <div class="product-size-swatch">
-                                                                <span class="product-size-swatch-btn variation-btn">
-                                                                    L
-                                                                </span>
-                                                                <span class="product-size-swatch-btn variation-btn">
-                                                                    M
-                                                                </span>
-                                                                <span class="product-size-swatch-btn variation-btn">
-                                                                    S
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-color">
-                                                            <a href="" class="action-btn">
-                                                                <span class="current abbey">Abbey</span>
-                                                            </a>
-                                                            <div class="product-color-swatch">
-                                                                <span class="product-color-swatch-btn blue variation-btn">
-                                                                    Blue
-                                                                </span>
-                                                                <span class="product-color-swatch-btn copper variation-btn">
-                                                                    Copper
-                                                                </span>
-                                                                <span class="product-color-swatch-btn old-rose variation-btn">
-                                                                    Old Rose
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <a href="wishlist.html" class="action-btn">
-                                                            <i class="flaticon flaticon-like"></i>
-                                                        </a>
-                                                        <a data-toggle="modal" data-target="#productModal" class="action-btn quick-view">
-                                                            <i class="flaticon flaticon-eye"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <span class="product-badge">New</span>
-                                            </figure>
-                                            <div class="product-info">
-                                                <h3 class="product-title mb--15">
-                                                    <a href="product-details.html">Long Cartigen</a>
-                                                </h3>
-                                                <div class="product-price-wrapper mb--30">
-                                                    <span class="money">$80</span>
-                                                    <span class="money-separator">-</span>
-                                                    <span class="money">$200</span>
-                                                </div>
-                                                <a href="cart.html" class="btn btn-small btn-bg-sand btn-color-dark">Add To Cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="zakas-product">
-                                        <div class="product-inner">
-                                            <figure class="product-image">
-                                                <a href="product-details.html">                                                
-                                                    <img src="<c:url value="/img/products/prod-12.jpg"/>" alt="Products">
-                                                </a>
-                                                <div class="zakas-product-action">
-                                                    <div class="product-action d-flex">
-                                                        <div class="product-size">
-                                                            <a href="" class="action-btn">
-                                                                <span class="current">XL</span>
-                                                            </a>
-                                                            <div class="product-size-swatch">
-                                                                <span class="product-size-swatch-btn variation-btn">
-                                                                    L
-                                                                </span>
-                                                                <span class="product-size-swatch-btn variation-btn">
-                                                                    M
-                                                                </span>
-                                                                <span class="product-size-swatch-btn variation-btn">
-                                                                    S
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-color">
-                                                            <a href="" class="action-btn">
-                                                                <span class="current abbey">Abbey</span>
-                                                            </a>
-                                                            <div class="product-color-swatch">
-                                                                <span class="product-color-swatch-btn blue variation-btn">
-                                                                    Blue
-                                                                </span>
-                                                                <span class="product-color-swatch-btn copper variation-btn">
-                                                                    Copper
-                                                                </span>
-                                                                <span class="product-color-swatch-btn old-rose variation-btn">
-                                                                    Old Rose
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <a href="wishlist.html" class="action-btn">
-                                                            <i class="flaticon flaticon-like"></i>
-                                                        </a>
-                                                        <a data-toggle="modal" data-target="#productModal" class="action-btn quick-view">
-                                                            <i class="flaticon flaticon-eye"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <span class="product-badge">New</span>
-                                            </figure>
-                                            <div class="product-info">
-                                                <h3 class="product-title mb--15">
-                                                    <a href="product-details.html">Long Cartigen</a>
-                                                </h3>
-                                                <div class="product-price-wrapper mb--30">
-                                                    <span class="money">$80</span>
-                                                    <span class="money-separator">-</span>
-                                                    <span class="money">$200</span>
-                                                </div>
-                                                <a href="cart.html" class="btn btn-small btn-bg-sand btn-color-dark">Add To Cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            </c:forEach>
+                                
+                                
                             </div>
                         </div>
                     </div>
@@ -838,7 +667,7 @@
                                     <p class="variation-label">Size:</p>   
                                     <div class="product-size-variation variation-wrapper">
                                         <div class="variation">
-                                            <a class="product-size-variation-btn selected" data-toggle="tooltip" data-placement="top" title="S">
+                                            <a class="product-size-variation-btn " data-toggle="tooltip" data-placement="top" title="S">
                                                 <span class="product-size-variation-label">S</span>
                                             </a>
                                         </div>

@@ -65,7 +65,7 @@ public class AddToCartServlet extends HttpServlet {
 			Gson gson = new Gson();
 			List<ShopCartVo> shopCartVoList = gson.fromJson(cart, new TypeToken<List<ShopCartVo>>(){}.getType());
 			//=============購物車為空，則加入產品=============
-			if (shopCartVoList == null || "".equals(shopCartVoList) ) {  
+			if (shopCartVoList == null || shopCartVoList.isEmpty()) {  
 				shopCartVoList = new ArrayList<>();
 				ShopCartVo shopCartVo = new ShopCartVo();
 				shopCartVo.setSelectedSize(selectedSize);

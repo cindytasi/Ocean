@@ -21,6 +21,8 @@ public class ProductDetail2 {
 	
 	
 	
+	
+
 	public Integer getDefaultImgId() {
 		return defaultImgId;
 	}

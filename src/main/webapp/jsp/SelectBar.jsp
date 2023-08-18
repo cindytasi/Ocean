@@ -2,8 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<jsp:include page="/jsp/pluginsJs.jsp"></jsp:include>
-<script type="text/javascript" src="<c:url value="/js/shopdetail.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/js/jquery/jquery-3.7.0.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/js/selectBar.js"/>"></script>
 <!-- Header Start -->
 
 <style>
@@ -67,6 +67,49 @@
 	transform: translateX(100%);
 	/* 將元素右偏移自身寬度的 100%，這將將元素移到最右邊 */
 }
+
+
+
+element.style {
+}
+.header-toolbar__btn.menu-btn i, .user-info-menu, .banner-box .banner-hover-1 .banner-image:after, .blog-info, .home-08-banner-01 .banner-overlay, .home-08-banner-01 .banner-overlay:after, .modal, .searchform__popup, .mini-cart, .offcanvas-menu-wrapper .offcanvas-menu-inner, .product-size-swatch, .product-size-swatch-btn, .product-color-swatch, .product-color-swatch-btn, .zakas-product-list .product-thumbnail-action, .tab-style-1 .nav-link:after, .tab-style-2 .nav-link span:after, .zakas-global-overlay, .instagram-feed .instagram-feed-item a:before {
+    visibility: hidden;
+    opacity: 0;
+}
+a, button, .user-info-menu, .banner-box .banner-info, .banner-box .banner-hover-1 .banner-image, .banner-box .banner-hover-1 .banner-image:after, .banner-box .banner-hover-2 .banner-image, .btn, .btn-submit, .slick-btn, .accordion-slider__btn, .accordion-click-slider__btn, .slick-arrow, .product-slide-nav .slick-btn, .product-slide-nav .accordion-slider__btn, .product-slide-nav .accordion-click-slider__btn, .searchform__input, .product-modal .close, .custom-close i, .searchform__body, .offcanvas-menu-wrapper .offcanvas-menu-inner, .offcanvas-navigation .offcanvas-menu li > .menu-expand, .zakas-product-list .product-thumbnail-action, .variation-form .product-color-variations .product-color-variation-btn, .tab-style-1 .nav-link:after, .zakas-global-overlay, .pagination li .page-number, .instagram-feed .instagram-feed-item a:before {
+    -webkit-transition: all 250ms ease-out;
+    -moz-transition: all 250ms ease-out;
+    -ms-transition: all 250ms ease-out;
+    -o-transition: all 250ms ease-out;
+    transition: all 250ms ease-out;
+}
+.header-toolbar__btn.mini-cart-btn .mini-cart-count, .user-info-menu, .banner-box .banner-info-over-img .banner-info, .banner-box .banner-overlay, .banner-badge-wrapper.abs-center, .banner-badge, .banner-overlay, .blog-info, .slick-btn-wrapper, .nav-center-bottom .slick-btn, .nav-center-bottom .accordion-slider__btn, .nav-center-bottom .accordion-click-slider__btn, .nav-left-bottom .slick-btn, .nav-left-bottom .accordion-slider__btn, .nav-left-bottom .accordion-click-slider__btn, .nav-right-bottom .slick-btn, .nav-right-bottom .accordion-slider__btn, .nav-right-bottom .accordion-click-slider__btn, .product-slide-nav .slick-btn, .product-slide-nav .accordion-slider__btn, .product-slide-nav .accordion-click-slider__btn, .product-slide-nav.slick-vertical .slick-btn, .product-slide-nav.slick-vertical .accordion-slider__btn, .product-slide-nav.slick-vertical .accordion-click-slider__btn, .comment .reply, .searchform__submit, .cart-form .coupon .cart-form__btn, .product-modal .close, .product-badge, .product-size-swatch, .product-color-swatch, .zakas-product-action, .zakas-product-list .product-thumbnail-action, .accordion-slider__btn-group, .accordion-click-slider__btn-group, .product-gallery__actions, .method-box i, .countdown-2 .single-countdown:not(:last-child):after, .breadcrumb li:not(:last-child):after, .zakas-product.product-style-2 .product-info, .instagram-feed-heading, .instagram-feed-heading:after, .nav-right-center .slick-btn, .nav-right-center .accordion-slider__btn, .nav-right-center .accordion-click-slider__btn, .nav-vertical-center .slick-btn, .nav-vertical-center .accordion-slider__btn, .nav-vertical-center .accordion-click-slider__btn {
+    position: absolute;
+}
+.user-info-menu {
+    left: 50%;
+    top: 150%;
+    min-width: 200px;
+    margin-top: 6px;
+    background: #fff;
+    padding: 15px 0;
+    pointer-events: none;
+    z-index: 111;
+    white-space: -moz-nowrap;
+    white-space: nowrap;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+    -webkit-box-shadow: 0 2px 12px 2px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 2px 12px 2px rgba(0, 0, 0, 0.1);
+    -ms-box-shadow: 0 2px 12px 2px rgba(0, 0, 0, 0.1);
+    -o-box-shadow: 0 2px 12px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 12px 2px rgba(0, 0, 0, 0.1);
+}
+
+
 </style>
 
 
@@ -96,8 +139,13 @@
 							<li class="nav-item"><a class="nav-link"
 								href="/seriesIndex.html">影集</a></li>
 							<!-- 藝人商品 -->
-							<li class="nav-item"><a class="nav-link active"
-								style="color: #81D8D0;" href="/productIndex.html">藝人商品</a></li>
+							<li class="nav-item">
+							
+							<a class="nav-link active"
+								style="color: #81D8D0;" href="<c:url value="/MainShopServlet"/>">藝人商品</a></li>
+								
+								
+								
 							<!-- 收藏地圖 -->
 							<li class="nav-item"><a class="nav-link"
 								href="/favoriteMapIndex.html">收藏地圖</a></li>
@@ -105,7 +153,7 @@
 							<div class="col-xl-2 col-lg-3 col-9 text-right align-item-center">
 								<ul class="header-toolbar d-flex">
 									<li class="header-toolbar__item my-auto"><a
-										href="wishlist.html" class="header-toolbar__btn"> <i
+										href="<c:url value="/SelectWishListServlet"/>" class="header-toolbar__btn"> <i
 											class="flaticon flaticon-like"></i>
 									</a></li>
 
@@ -125,12 +173,14 @@
 											style="width: 85%; height: 100%;"/>
 									</a>
 										<ul class="user-info-menu">
-											<li><a href="my-account.html">My Account</a></li>
-											<li><a href="cart.html">Shopping Cart</a></li>
-											<li><a href="checkout.html">Check Out</a></li>
-											<li><a href="wishlist.html">Wishlist</a></li>
-											<li><a href="order-tracking.html">Order tracking</a></li>
-											<li><a href="compare.html">compare</a></li>
+											<li><a href="my-account.html" style="font-size:16px">帳戶</a></li>
+											<li><a href="cart.html" style="font-size:16px">基本資料</a></li>
+											<li><a href="checkout.html" style="font-size:16px">我的成就</a></li>
+											<li><a href="/Ocean/html/my-account.html" style="font-size:16px">我的訂單</a></li>
+											<li><a href="order-tracking.html" style="font-size:16px">我的片單</a></li>
+											<li><a href="compare.html" style="font-size:16px">觀看紀錄</a></li>
+											<li><hr></li>
+											<li><a href="compare.html" style="font-size:16px">登出</a></li>
 										</ul></li>
 
 									<li class="header-toolbar__item d-lg-none"><a href="#"

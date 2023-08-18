@@ -12,11 +12,18 @@ public class ShopCartVo {
 	private int inStock;      
 	private String productImgId;
 	private double price;
+	private double total;
 	
 	
 	
 	
 	
+	public double getTotal() {
+		return total;
+	}
+	public void setTotal(double total) {
+		this.total = total;
+	}
 	public double getPrice() {
 		return price;
 	}

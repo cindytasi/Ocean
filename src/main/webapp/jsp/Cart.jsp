@@ -15,9 +15,8 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<!-- 把jQurey統一匯進來 -->
-<jsp:include page="/jsp/pluginsJs.jsp"></jsp:include>
-<title>Zakas - Fashion eCommerce Bootstrap 4 Template</title>
+<script type="text/javascript" src="<c:url value="/js/jquery/jquery-3.7.0.min.js"/>"></script>
+<title>Ocean</title>
 <meta name="description" content="">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -181,159 +180,174 @@
         <!-- Main Content Wrapper Start -->
         <div class="main-content-wrapper">
             <div class="page-content-inner ptb--80">
+           
+            
+            <form id="mainForm" action="<c:url value="/CheckoutServlet"/>" method="post">
+            	<input id="productJson" type="hidden" name="productJson">
+            	<input id="checkoutJson" type="hidden" name="checkoutJson">
                 <div class="container">
                     <div >
                         <div class="col-lg-8 mb-md--50">
-                            <form class="cart-form" action="#">
-                                <div class="row no-gutters">
-                                    <div class="col-12">
-                                        <div class="table-content table-responsive">
-                                            <table class="table text-center">
-                                                <thead >
-                                                    <tr>
-                                                        <th>&nbsp;</th>
-                                                        <th>&nbsp;</th>
-                                                        <th style="font-size:15px" class="prodInfo text-left">商品資訊</th>
-                                                        <th style="font-size:15px">顏色</th>
-                                                        <th style="font-size:15px">尺寸</th>
-                                                        <th style="font-size:15px">單價</th>
-                                                        <th style="font-size:15px">數量</th>
-                                                        <th style="font-size:15px">小計</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody class="productAll">
-                                                
-                                                <c:forEach var="shopCartGroupByComIdList" items="${prod}">
-                                               	  
-                                               		<tr class="comIdOne" data-comid="${shopCartGroupByComIdList[0].productcomId}">
-                                               			<td colspan="8"><hr></td>	
-                                               		</tr>
-                                               		 <tr class="comIdOne" data-comid="${shopCartGroupByComIdList[0].productcomId}">
-        												<td colspan="1">
-            												<div class="seller-box">
-                											<span class="seller-label">廠商:${shopCartGroupByComIdList[0].productcomId}</span> 
-           									 				</div>
-        												</td>
-    												</tr>
-    												
-                                               		 <c:forEach var="shopCart" items="${shopCartGroupByComIdList}">
-                                               		 
-															<tr class="productInfo">
-																<input class="productId" type="hidden"
-																	value="${shopCart.productId}" />
-																<input class="productcomId" type="hidden"
-																	value="${shopCart.productcomId}" />
-																<input class="inStock" type="hidden"
-																	value="${shopCart.inStock}" />
-																<td class="product-remove text-left"><a><i
-																		class="flaticon flaticon-cross toDoAction"
-																		type="delete"></i></a></td>
-																<td class="product-thumbnail text-left"><img
-																	class="productImgId" value="${shopCart.productImgId}"
-																	src="<c:url value="/ImageSevlet?id=${shopCart.productImgId}&photo_data=1"/>"
-																	alt="Product Thumnail"></td>
-																<td class="product-name text-left wide-column">
-																	<h3>
-																		<a class="prodName" value="${shopCart.prodName}"
-																			href="product-details.html">${shopCart.prodName}</a>
-																	</h3>
-																</td>
-																<td class="product-price"><span
-																	class="product-price-wrapper"> <span
-																		class="color selectedColor"
-																		data-value="${shopCart.selectedColor}">${shopCart.selectedColor}</span>
-																</span></td>
-																<td class="product-price"><span
-																	class="product-price-wrapper"> <span
-																		class="size selectedSize"
-																		data-value="${shopCart.selectedSize}">${shopCart.selectedSize}</span>
-																</span></td>
-																<td class="product-price"><span
-																	class="product-price-wrapper"> <span
-																		class="money price" data-value="${shopCart.price}">${shopCart.price}</span>
-																</span></td>
-																<td class="product-quantity">
-																	<div class="quantity">
-																		<input type="number"
-																			class="quantity-input quantityValue" name="qty"
-																			value="${shopCart.quantityValue}" min="1">
-																	</div>
-																</td>
+							<div class="row no-gutters">
+								<div class="col-12">
+									<div class="table-content table-responsive">
+									
+										<table class="table text-center">
+											<thead>
+												<tr>
+													<th>&nbsp;</th>
+													<th>&nbsp;</th>
+													<th style="font-size: 15px" class="prodInfo text-left">商品資訊</th>
+													<th style="font-size: 15px">顏色</th>
+													<th style="font-size: 15px">尺寸</th>
+													<th style="font-size: 15px">單價</th>
+													<th style="font-size: 15px">數量</th>
+													<th style="font-size: 15px">小計</th>
+												</tr>
+											</thead>
+											<tbody class="productAll">
 
-																<td class="product-total-price"><span
-																	class="product-price-wrapper"> <span
-																		class="money total"
-																		data-value="${shopCart.price*shopCart.quantityValue}">${shopCart.price*shopCart.quantityValue}</span>
-																</span></td>
-															</tr>
-															
-														</c:forEach>
-                                                </c:forEach>
- 											
-                                                </tbody>
-                                            </table>
-                                        </div>  
-                                    </div>
-                                </div>
-                                <div class="row no-gutters border-top pt--20 mt--20">
-                                    <div class="col-sm-6">
-                                        
-                                    </div>
-                                    <div class="col-sm-6 text-sm-right">
-                                        <button type="submit" class="cart-form__btn" data-type="Alldelete">清空購物車</button>                                       
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="col-lg-4 custom-cart-box">
-                            <div class="cart-collaterals">
-                                <div class="cart-totals">
-                                    
-                                    <div class="cart-calculator">
-                                        <div class="cart-calculator__item">
-                                            <div class="cart-calculator__item--head">
-                                                <span>商品件數 :</span>
-                                            </div>
-                                            
-                                            <div class="cart-calculator__item--value">
-                                                <span Style="color:gray;text-align: right;">3 件</span>
-                                            </div>
-                                        </div>
-                                        <div class="cart-calculator__item">
-                                            <div class="cart-calculator__item--head">
-                                                <span >總金額 :</span>
-                                            </div>
-                                            <div class="cart-calculator__item--value">
-                                                <span Style="color:gray;text-align: right;">NT.2000</span>
-                                            </div>
-                                        </div>
-                                        <div class="cart-calculator__item">
-                                            <div class="cart-calculator__item--head">
-                                                <span>運費 :</span>
-                                            </div>
-                                            <div class="cart-calculator__item--value">
-                                                <span Style="color:gray;text-align: right;">NT.0</span>         
-                                            </div>
-                                        </div>
-                                        <div class="cart-calculator__item order-total">
-                                            <div class="cart-calculator__item--head">
-                                                <span >應付金額 :</span>
-                                            </div>
-                                            <div class="cart-calculator__item--value">
-                                                <span style="text-align: right;" class="product-price-wrapper">
-                                                    <span class="money">NT.2000</span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="checkout.html" class="btn btn-fullwidth btn-bg-red btn-color-white btn-hover-2">
-                                    Proceed To Checkout
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+												<c:forEach var="shopCartGroupByComIdList" items="${prod}">
+
+													<tr class="comIdOne"
+														data-comid="${shopCartGroupByComIdList[0].productcomId}">
+														<td colspan="8"><hr></td>
+													</tr>
+													<tr class="comIdOne"
+														data-comid="${shopCartGroupByComIdList[0].productcomId}">
+														<td colspan="1">
+															<div class="seller-box">
+																<span class="seller-label">廠商:${shopCartGroupByComIdList[0].productcomId}</span>
+															</div>
+														</td>
+													</tr>
+
+													<c:forEach var="shopCart" items="${shopCartGroupByComIdList}" varStatus="status">
+
+														<tr class="productInfo" comid="${shopCart.productcomId}" productId="${shopCart.productId}" productImgId="${shopCart.productImgId}" prodName="${shopCart.prodName}" 
+														selectedSize="${shopCart.selectedSize}" selectedColor="${shopCart.selectedColor}" price="${shopCart.price}" quantityValue="${shopCart.quantityValue}" inStock="${shopCart.inStock}"> 
+														
+														
+														
+														
+														
+														    		
+															<td class="product-remove text-left"><a><i
+																	class="flaticon flaticon-cross toDoAction"
+																	type="delete"></i></a></td>
+															<td class="product-thumbnail text-left">
+																<a href="<c:url value="/ShopDetailServlet?productName=${shopCart.prodName}&color=${shopCart.selectedColor}"/>">
+																	<img class="productImgId" value="${shopCart.productImgId}" 
+																		src="<c:url value="/ImageSevlet?id=${shopCart.productImgId}&photo_data=1"/>" alt="Product Thumnail">
+																</a>
+															</td>
+															<td class="product-name text-left wide-column">
+																<h3>
+																	<a href="<c:url value="/ShopDetailServlet?productName=${shopCart.prodName}&color=${shopCart.selectedColor}"/>">${shopCart.prodName}</a>
+																</h3>
+															</td>
+															<td class="product-price"><span
+																class="product-price-wrapper"> <span
+																	class="color selectedColor"
+																	data-value="${shopCart.selectedColor}">${shopCart.selectedColor}</span>
+															</span></td>
+															<td class="product-price"><span
+																class="product-price-wrapper"> <span
+																	class="size selectedSize"
+																	data-value="${shopCart.selectedSize}">${shopCart.selectedSize}</span>
+															</span></td>
+															<td class="product-price"><span
+																class="product-price-wrapper"> <span
+																	class="money price" data-value="${shopCart.price}">${shopCart.price}</span>
+															</span></td>
+															<td class="product-quantity">
+																<div class="quantity">
+																	<input type="number"
+																		class="quantity-input quantityValue" name="qty"
+																		value="${shopCart.quantityValue}" min="1">
+																</div>
+															</td>
+
+															<td class="product-total-price"><span
+																class="product-price-wrapper"> <span
+																	class="money total"
+																	data-value="${shopCart.price*shopCart.quantityValue}">${shopCart.price*shopCart.quantityValue}</span>
+															</span></td>
+														</tr>
+
+													</c:forEach>
+												</c:forEach>
+
+											</tbody>
+										</table>
+										
+									</div>
+								</div>
+							</div>
+							<div class="row no-gutters border-top pt--20 mt--20">
+								<div class="col-sm-6"></div>
+								<div class="col-sm-6 text-sm-right">
+									<button type="button" class="cart-form__btn"
+										data-type="Alldelete">清空購物車</button>
+								</div>
+							</div>
+						</div>
+							<div class="col-lg-4 custom-cart-box">
+								<div class="cart-collaterals">
+									<div class="cart-totals">
+										<div class="cart-calculator">
+											<div class="cart-calculator__item">
+												<div class="cart-calculator__item--head">
+													<span>商品件數 :</span>
+												</div>
+												<div class="cart-calculator__item--value">
+													<span Style="color: gray; text-align: right;"></span>
+												</div>
+											</div>
+											<div class="cart-calculator__item">
+												<div class="cart-calculator__item--head">
+													<span>總金額 :</span>
+												</div>
+												<div class="cart-calculator__item--value">
+													<span Style="color: gray; text-align: right;"></span>
+												</div>
+											</div>
+											<!-- 新增的运费部分 -->
+											<div class="cart-calculator__item">
+												<div class="cart-calculator__item--head">
+													<span>運費 :</span>
+												</div>
+												<div class="cart-calculator__item--value">
+													<span style="color: gray; text-align: right;"
+														class="shipping-cost">Nt.0</span> <br> <span
+														style="color: green; text-align: right;"
+														class="shipping-text"></span>
+												</div>
+											</div>
+											<!-- 运费部分结束 -->
+											<div class="cart-calculator__item order-total">
+												<div class="cart-calculator__item--head">
+													<span>應付金額 :</span>
+												</div>
+												<div class="cart-calculator__item--value">
+													<span style="text-align: right;"
+														class="product-price-wrapper"> <span class="money"></span>
+													</span>
+												</div>
+											</div>
+										</div>
+									</div>
+									<input id="submitBtn" type="button"
+										class="btn btn-fullwidth btn-bg-red btn-color-white btn-hover-2"
+										value="Proceed To Checkout">
+								</div>
+							</div>
+						</div>
                 </div>
+                
+                </form>
+                
+                
             </div>
         </div>
         <!-- Main Content Wrapper Start -->
@@ -417,7 +431,7 @@
                 <p>Start typing and press Enter to search</p>
                 <form class="searchform">
                     <input type="text" name="popup-search" id="popup-search" class="searchform__input" placeholder="Search Entire Store...">
-                    <button type="submit" class="searchform__submit"><i class="flaticon flaticon-magnifying-glass-icon"></i></button>
+                    <button type="submit" class="searchform__submit"><i class="flaticon flaticon-magnifying-glass-icon"></i></button> 
                 </form>
             </div>
         </div>

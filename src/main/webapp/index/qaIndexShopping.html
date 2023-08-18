@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ocean</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<style>
+    /* 修改預設 */
+    :root {
+        --bs-blue: #81D8D0;
+    }
+
+    /* 頁面背景色 */
+    body {
+        background: #000;
+        background-image: url("/img/waves_4.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+
+    /* 清單 */
+    .navbar-dark .navbar-nav .nav-link:focus,
+    .navbar-dark .navbar-nav .nav-link:hover {
+        color: var(--bs-blue)
+    }
+
+    .navbar {
+        background: #000;
+    }
+
+    /* search */
+    .bi {
+        color: #fff;
+        font-size: 25px;
+    }
+
+    .bi:hover {
+        color: #81D8D0;
+    }
+
+    /* 下拉選單 */
+    .dropdown-item:hover {
+        font-size: 20px;
+        color: rgb(9, 163, 130);
+    }
+
+    /* search icon */
+    .bi {
+        color: #fff;
+        font-size: 25px;
+    }
+
+    .bi:hover {
+        color: #81D8D0;
+    }
+
+    /* sidebar */
+    .sidebar a {
+        color: #000;
+        text-decoration: none;
+    }
+
+    .sidebar a:hover {
+        color: var(--bs-blue);
+    }
+
+
+    /* footer */
+    .footer_detail li>a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .footer_detail li>a:hover {
+        color: var(--bs-blue);
+    }
+</style>
+
+<body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top mb-5">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+                <!-- logo -->
+                <div class="logo d-flex">
+                    <a class="navbar-brand" href="../index/oceanIndex.html">
+                        <img src="../logo/logo_-_.png" alt="Ocean Logo" style="width: 50px;height: 50px;">
+                    </a>
+                    <!-- search -->
+                    <div class="input-group my-auto w-50 dropdown">
+                        <input type="text" class="form-control dropdown-toggle" id="searchInput"
+                            placeholder="Search" aria-label="Search" aria-describedby="basic-addon2"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-outline-secondary" type="button" id="searchButton">
+                            <i class="bi bi-search"></i>
+                        </button>
+                        <!-- search影片List -->
+                        <ul class="searchMovie dropdown-menu" aria-labelledby="searchInput"
+                            style="width: 400px; height: 100px;background-color: rgba(0, 0, 0, 0.5);"
+                            id="searchVideo">
+                        </ul>
+                    </div>
+                </div>
+                <!-- 導覽列 -->
+                <div class="list">
+                    <ul class="navbar-nav align-items-center">
+                        <!-- 首頁 -->
+                        <li class="nav-item">
+                            <a class="nav-link active" href="../index/oceanIndex.html">首頁</a>
+                        </li>
+                        <!-- 電影 -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index/movieIndex.html">電影</a>
+                        </li>
+                        <!-- 影集 -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index/seriesIndex.html">影集</a>
+                        </li>
+                        <!-- 藝人商品 -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index/productIndex.html">藝人商品</a>
+                        </li>
+                        <!-- 收藏地圖 -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index/favoriteMapIndex.html">收藏地圖</a>
+                        </li>
+                        <!--user  -->
+                        <div class="nav-item dropdown">
+                            <button type="button" class="btn dropdown-toggle" id="navbarDropdownUserLink"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <!-- <img src="/img/user.webp" alt="" style="width: 40px; height: 40px;"> -->
+                                <img src="" alt="" id="userImg" style="width: 40px;height: 40px;;">
+                            </button>
+                            <!-- user下拉選單 -->
+                            <ul class="dropdown-menu dropdown-menu-end mt-2" style="opacity: 80%;"
+                                aria-labelledby="navbarDropdownUserLink">
+                                <li><a class="dropdown-item" href="/aacountIndex.html">帳戶</a></li>
+                                <li><a class="dropdown-item" href="/accountDetail.html">基本資料</a></li>
+                                <li><a class="dropdown-item" href="/myAchieve.html">我的成就</a></li>
+                                <li><a class="dropdown-item" href="/myOrder.html">我的訂單</a></li>
+                                <li><a class="dropdown-item" href="/myList.html">我的片單</a></li>
+                                <li><a class="dropdown-item" href="/watchHistory.html">觀看紀錄</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="/signOut.html">登出</a></li>
+                            </ul>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <h2 class="text-center text-light mb-3" style="font-size: 35px;">常見問題</h2>
+    <div class="main container d-flex" style="margin-right:20% ">
+        <!-- sidebar -->
+        <div class="sidebar" style="width: 15%;">
+            <ul class="list-group text-center">
+                <li class="list-group-item">
+                    <a href="../index/qaIndex.html">會員問題</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="../index/qaIndexShopping.html">購物問題</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="../index/qaIndexFee.html">收費問題</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="../index/qaIndexPlay.html">播放問題</a>
+                </li>
+
+            </ul>
+        </div>
+        <!-- Q&A -->
+        <div class="accordion container" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Accordion Item #1
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <strong>This is the first item's accordion body.</strong> It is shown by default, until the
+                        collapse
+                        plugin adds the appropriate classes that we use to style each element. These classes control the
+                        overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of
+                        this with custom CSS or overriding our default variables. It's also worth noting that just about
+                        any
+                        HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Accordion Item #2
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the
+                        collapse plugin adds the appropriate classes that we use to style each element. These classes
+                        control the overall appearance, as well as the showing and hiding via CSS transitions. You can
+                        modify any of this with custom CSS or overriding our default variables. It's also worth noting
+                        that
+                        just about any HTML can go within the <code>.accordion-body</code>, though the transition does
+                        limit
+                        overflow.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Accordion Item #3
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the
+                        collapse plugin adds the appropriate classes that we use to style each element. These classes
+                        control the overall appearance, as well as the showing and hiding via CSS transitions. You can
+                        modify any of this with custom CSS or overriding our default variables. It's also worth noting
+                        that
+                        just about any HTML can go within the <code>.accordion-body</code>, though the transition does
+                        limit
+                        overflow.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        Accordion Item #4
+                    </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the
+                        collapse plugin adds the appropriate classes that we use to style each element. These classes
+                        control the overall appearance, as well as the showing and hiding via CSS transitions. You can
+                        modify any of this with custom CSS or overriding our default variables. It's also worth noting
+                        that
+                        just about any HTML can go within the <code>.accordion-body</code>, though the transition does
+                        limit
+                        overflow.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFive">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        Accordion Item #5
+                    </button>
+                </h2>
+                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the
+                        collapse plugin adds the appropriate classes that we use to style each element. These classes
+                        control the overall appearance, as well as the showing and hiding via CSS transitions. You can
+                        modify any of this with custom CSS or overriding our default variables. It's also worth noting
+                        that
+                        just about any HTML can go within the <code>.accordion-body</code>, though the transition does
+                        limit
+                        overflow.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingSix">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                        Accordion Item #6
+                    </button>
+                </h2>
+                <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the
+                        collapse plugin adds the appropriate classes that we use to style each element. These classes
+                        control the overall appearance, as well as the showing and hiding via CSS transitions. You can
+                        modify any of this with custom CSS or overriding our default variables. It's also worth noting
+                        that
+                        just about any HTML can go within the <code>.accordion-body</code>, though the transition does
+                        limit
+                        overflow.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingSeven">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                        Accordion Item #7
+                    </button>
+                </h2>
+                <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the
+                        collapse plugin adds the appropriate classes that we use to style each element. These classes
+                        control the overall appearance, as well as the showing and hiding via CSS transitions. You can
+                        modify any of this with custom CSS or overriding our default variables. It's also worth noting
+                        that
+                        just about any HTML can go within the <code>.accordion-body</code>, though the transition does
+                        limit
+                        overflow.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingEight">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                        Accordion Item #8
+                    </button>
+                </h2>
+                <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the
+                        collapse plugin adds the appropriate classes that we use to style each element. These classes
+                        control the overall appearance, as well as the showing and hiding via CSS transitions. You can
+                        modify any of this with custom CSS or overriding our default variables. It's also worth noting
+                        that
+                        just about any HTML can go within the <code>.accordion-body</code>, though the transition does
+                        limit
+                        overflow.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingNine">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                        Accordion Item #9
+                    </button>
+                </h2>
+                <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the
+                        collapse plugin adds the appropriate classes that we use to style each element. These classes
+                        control the overall appearance, as well as the showing and hiding via CSS transitions. You can
+                        modify any of this with custom CSS or overriding our default variables. It's also worth noting
+                        that
+                        just about any HTML can go within the <code>.accordion-body</code>, though the transition does
+                        limit
+                        overflow.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTen">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                        Accordion Item #10
+                    </button>
+                </h2>
+                <div id="collapseTen" class="accordion-collapse collapse" aria-labelledby="headingTen"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the
+                        collapse plugin adds the appropriate classes that we use to style each element. These classes
+                        control the overall appearance, as well as the showing and hiding via CSS transitions. You can
+                        modify any of this with custom CSS or overriding our default variables. It's also worth noting
+                        that
+                        just about any HTML can go within the <code>.accordion-body</code>, though the transition does
+                        limit
+                        overflow.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button id="chatButton" class="btn btn-secondary rounded-circle position-fixed" style="bottom: 20px; right: 20px;">
+        <i class="bi bi-chat" style="font-size: 24px;"></i>
+    </button>
+    <div id="chatModal" class="modal fade" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">常見問題 - ChatGPT</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="questionInput">問題：</label>
+                        <input type="text" class="form-control" id="questionInput" placeholder="請輸入您的問題">
+                    </div>
+                    <div class="form-group">
+                        <label for="answerOutput">回答：</label>
+                        <textarea class="form-control" id="answerOutput" rows="3" readonly></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                    <button type="button" class="btn btn-primary" id="submitQuestion">送出問題</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 頁尾 -->
+    <div class="wave container pt-5">
+        <ul class="footer_detail d-flex justify-content-center list-unstyled">
+            <li class="px-2"><a href="../index/qaIndex.html">常見問題</a></li>
+            <li class="px-2"><a href="../index/privacyAndTerms.html">隱私權</a></li>
+            <li class="px-2"><a href="../index/legalNotices.html">法律聲明</a></li>
+            <li class="px-2"><a href="../index/aboutUs.html">關於我們</a></li>
+        </ul>
+        <span class="d-flex justify-content-center">Copyright© 2023 Ocean.All rights reserved.</span>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+//=================================從session取得memberId======================================//
+        const memberId = sessionStorage.getItem("memberId");
+
+        //=================================搜尋使用者img======================================//
+        document.getElementById("userImg").setAttribute("src", "http://localhost:8080/Ocean/web/controller/selectMemberImgController?memberId=" + memberId);
+
+
+        
+        $(document).ready(function () {
+            $("#searchButton").click(function () {
+                $("#searchInput").focus();
+            });
+        });
+
+
+
+
+        $(document).ready(function () {
+            // 當按鈕被點擊時，顯示問答小視窗
+            $("#chatButton").click(function () {
+                $("#chatModal").modal("show");
+            });
+
+            // 當送出問題按鈕被點擊時，使用ChatGPT API進行問答
+            $("#submitQuestion").click(function () {
+                const question = $("#questionInput").val();
+                if (question.trim() !== "") {
+                    // 使用ChatGPT API進行問答，你需要將以下代碼替換為使用的API端點和金鑰
+                    // 由於ChatGPT API是付費服務，你需要確保你有相應的訂閱來使用
+                    const apiKey = "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";
+                    const apiEndpoint = "https://api.openai.com/v1/chat/completions";
+                    $.ajax({
+                        type: "POST",
+                        url: apiEndpoint,
+                        beforeSend: function (xhr) {
+                            xhr.setRequestHeader("Authorization", "Bearer " + apiKey);
+                        },
+                        data: {
+                            model: "gpt-3.5-turbo",
+                            messages: [
+                                {
+                                    role: "system",
+                                    content: "You are a helpful assistant.",
+                                },
+                                {
+                                    role: "user",
+                                    content: question,
+                                },
+                            ],
+                        },
+                        success: function (response) {
+                            const answer = response.choices[0].message.content;
+                            $("#answerOutput").val(answer);
+                        },
+                        error: function () {
+                            $("#answerOutput").val("問答時出現錯誤。");
+                        },
+                    });
+                }
+            });
+        });
+
+         //=================================SEARCH Video FUNCTION======================================//
+
+         let lastSearchText = '';
+        $(document).ready(function () {
+            $("#searchButton").click(function () {
+                $("#searchInput").focus();
+            });
+        });
+
+        const searchInput = document.getElementById("searchInput");
+        const sv = document.getElementById('searchVideo');
+
+        searchInput.addEventListener("keypress", function (e) {
+
+            if (e.keyCode === 13) {
+                const searchText = searchInput.value.trim();
+
+                if (searchText === '') {
+                    sv.innerHTML = '';
+                    return;
+                }
+
+                // 清空之前搜尋的結果
+                sv.innerHTML = '';
+
+                // 更新上一次的搜尋內容
+                lastSearchText = searchText;
+
+                $.ajax({
+                    url: "/Ocean/web/controller/indexSearchVideoController",
+                    type: "POST",
+                    dataType: "json",
+                    data: JSON.stringify({
+                        videoName: searchText
+                    }),
+                    success: function (data) {
+
+                        let starRatings = []; // 用來存放每一筆資料的星星數量
+
+                        for (let i in data) {
+
+                            // 將字串轉換為數字
+                            const videoReview = parseInt(data[i].VideoReview, 10); // 假設 data[i].VideoReview 是一個範圍為 "1" 到 "5" 的字串
+
+                            // 將星星數量放入陣列
+                            starRatings.push(videoReview);
+
+                            // 生成星星 icon
+                            let starsHtml = '';
+                            for (let j = 1; j <= 5; j++) {
+                                const starClass = j <= videoReview ? 'bi bi-star-fill checked' : 'bi bi-star';
+                                starsHtml += `<i class="${starClass}" data-rating="${j}" style="color:#81D8D2"></i>`;
+                            }
+
+                            let card = document.createElement('div');
+                            card.classList.add('card');
+                            card.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+                            card.innerHTML = `
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="http://localhost:8080/Ocean/web/controller/selectVideoImgController?videoId=${data[i].videoId}" alt="..." style="width: 150px; height: 100px;">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body text-left ms-2">
+                                        <h4 class="card-text" style="color: white;">${data[i].videoName}</h4>
+                                        <div class="stars" style="color: white;">${starsHtml}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                            sv.appendChild(card);
+                        }
+                    }
+                })
+            }
+        });
+
+        // 在搜尋欄失去焦點時檢查是否需要清空搜尋結果
+        searchInput.addEventListener("blur", function () {
+            const searchText = searchInput.value.trim();
+            if (searchText === '') {
+                sv.innerHTML = '';
+            }
+        });
+
+        // 在搜尋欄重新獲得焦點時檢查是否需要重新顯示上一次的搜尋結果
+        searchInput.addEventListener("focus", function () {
+            const searchText = searchInput.value.trim();
+            if (searchText === '' && lastSearchText !== '') {
+                searchInput.value = lastSearchText;
+                // 觸發 Enter 鍵事件，重新顯示上一次的搜尋結果
+                const enterEvent = new KeyboardEvent("keypress", { keyCode: 13 });
+                searchInput.dispatchEvent(enterEvent);
+            }
+        });
+    </script>
+</body>
+
+</html>
