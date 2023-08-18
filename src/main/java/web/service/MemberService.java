@@ -17,4 +17,5 @@ public interface MemberService {
 	void memberImage(Part profilePicture);
 	
 	void fileImageDelet(Part profilePicture);
+	
 }
