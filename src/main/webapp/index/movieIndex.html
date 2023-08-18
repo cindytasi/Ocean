@@ -109,7 +109,7 @@
         .countryModal .item img {
             display: block;
             max-width: 100%;
-            height: auto;
+            height: 138px;
         }
 
         .countryModal .item {
@@ -197,7 +197,7 @@
         .typeModal .item img {
             display: block;
             max-width: 100%;
-            height: auto;
+            height: 138px;
         }
 
         .typeModal .item {
@@ -292,7 +292,7 @@
         .timeModal .item img {
             display: block;
             max-width: 100%;
-            height: auto;
+            height: 138px;
         }
 
         .timeModal .item {
@@ -348,7 +348,7 @@
 
 
 
-        /* ==================================================== */
+        /* =======================電影hover效果============================= */
         .item {
             position: relative;
             display: block;
@@ -482,7 +482,7 @@
         #exploreModal .item img {
             display: block;
             max-width: 100%;
-            height: auto;
+            height: 138px;
         }
 
         #exploreModal .item {
@@ -570,7 +570,7 @@
         #lastOnlineTop10Modal .item img {
             display: block;
             max-width: 100%;
-            height: auto;
+            height: 138px;
         }
 
         #lastOnlineTop10Modal .item {
@@ -658,7 +658,7 @@
         #recommendedModal .item img {
             display: block;
             max-width: 100%;
-            height: auto;
+            height: 138px;
         }
 
         #recommendedModal .item {
@@ -746,7 +746,7 @@
         #continueModal .item img {
             display: block;
             max-width: 100%;
-            height: auto;
+            height: 138px;
         }
 
         #continueModal .item {
@@ -796,6 +796,20 @@
 
         #continueModal .infoType p {
             margin-top: 0.25rem;
+        }
+
+        /* =======================muted test========================= */
+
+        #muteButton {
+            background-color: transparent;
+            border: 1px solid white;
+            border-radius: 50%;
+            opacity: 0.3;
+            /* transition: opacity 0.3s ease; */
+        }
+
+        #muteButton:hover {
+            opacity: 1;
         }
     </style>
 </head>
@@ -849,25 +863,27 @@
                             </li>
                             <!-- 電影 -->
                             <li class="nav-item">
-                                <a class="nav-link active" style="color: #81D8D0;" href="/movieIndex.html">電影</a>
+                                <a class="nav-link active" style="color: #81D8D0;"
+                                    href="../index/movieIndex.html">電影</a>
                             </li>
                             <!-- 影集 -->
                             <li class="nav-item">
-                                <a class="nav-link" href="../index/movieIndex.html">影集</a>
+                                <a class="nav-link" href="../index/seriesIndex.html">影集</a>
                             </li>
                             <!-- 藝人商品 -->
                             <li class="nav-item">
-                                <a class="nav-link" href="../index/seriesIndex.html">藝人商品</a>
+                                <a class="nav-link" href="../index/productIndex.html">藝人商品</a>
                             </li>
                             <!-- 收藏地圖 -->
                             <li class="nav-item">
-                                <a class="nav-link" href="../index/productIndex.html">收藏地圖</a>
+                                <a class="nav-link" href="../index/favoriteMapIndex.html">收藏地圖</a>
                             </li>
                             <!--user  -->
                             <div class="nav-item dropdown">
                                 <button type="button" class="btn dropdown-toggle" id="navbarDropdownUserLink"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="../img/user.webp" alt="" style="width: 40px; height: 40px;">
+                                    <!-- <img src="../img/user.webp" alt="" style="width: 40px; height: 40px;"> -->
+                                    <img src="" alt="" id="userImg" style="width: 40px;height: 40px;">
                                 </button>
                                 <!-- user下拉選單 -->
                                 <ul class="dropdown-menu dropdown-menu-end mt-2" style="opacity: 80%;"
@@ -1032,7 +1048,7 @@
                 <div class="modal-content" style="background-color: rgb(24,24,24);">
                     <div class="modal-header border-0 mb-5">
                         <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton3"
                                 data-bs-toggle="dropdown">
                                 年份
                             </button>
@@ -1094,8 +1110,8 @@
     <!-- 熱門影片 -->
     <div id="carouselTopMovie" class="container-fluid carousel slide topMovie-Carousel mb-3" data-bs-ride="carousel"
         data-bs-interval="false">
-        <div class="topMovie carousel-inner d-flex">
-            <div class="topMovie carousel-item ratio ratio-21x9 active ">
+        <div class="topMovie carousel-inner d-flex" id="topMovie">
+            <!-- <div class="topMovie carousel-item ratio ratio-21x9 active ">
                 <img src="../img/images.jpeg" class="d-block w-100" alt="...">
             </div>
             <div class="TopMovieItem carousel-item ratio ratio-21x9">
@@ -1103,7 +1119,7 @@
             </div>
             <div class="TopMovieItem carousel-item ratio ratio-21x9">
                 <img src="../img/18991668670366737.jpg" class="d-block w-100" alt="...">
-            </div>
+            </div> -->
         </div>
         <button class="carousel-control-prev bg-transparent" type="button" data-bs-target="#carouselTopMovie"
             data-bs-slide="prev">
@@ -1126,21 +1142,28 @@
         </a>
     </div>
     <div class="container-fluid d-flex mt-5" style="height: 50%;" id="lastOnlineList">
-        <a href="#animals" class="item">
+        <!-- <a href="#animals" class="item">
             <img src="../img/18991668670366737.jpg" alt="Animals">
             <div class="overlay">
                 <div class="card card-overlay">
-                    <div class="pic">
-                        <!-- <img src="../img/LUPIN_S2_16X9_EN-US.jpg" alt="" class="card-img-top"> -->
-                        <iframe id="youtubeVideo" src="https://www.youtube.com/embed/vlY5Fvzy9Yg?auto=1&mute=1"
-                            style="max-width: 100%; height: auto;" frameborder="0"
-                            allow="accelerometer; encrypted-media;"></iframe>
-                    </div>
-                    <div class="overlay-content">
+                    <div class="pic"> -->
+        <!-- <img src="../img/LUPIN_S2_16X9_EN-US.jpg" alt="" class="card-img-top"> -->
+
+        <!-- <video id="myVideo" width="320" height="240" autoplay muted
+                            controlsList="nodownload noplaybackrate nofullscreen" disablePictureInPicture
+                            poster="../img/LUPIN_S2_16X9_EN-US.jpg">
+                            <source src="../img/2060E7A5-6B06-4A78-888F-DDF97EB62A3B.mp4" type="video/mp4"/>
+                        </video> -->
+        <!-- <button id="muteButton" onclick="toggleMute()"
+                            style="background-color: transparent;border: 1px solid white;border-radius: 50%;" class="me-3 mb-3">
+                            <i id="muteIcon" class="bi bi-volume-mute-fill" style="color: #81D8D0;"></i>
+                        </button> -->
+        <!-- </div> -->
+        <!-- <div class="overlay-content">
                         <div class="card-body"
                             style="background-color: rgb(24, 24, 24); width: 100%;padding: 0.5rem 0.5rem;">
-                            <i class="bi bi-play-circle-fill"></i>
-                            <i class="bi bi-plus-circle"></i>
+                            <i class="bi bi-play-circle-fill" style="font-size: 35px;"></i>
+                            <i class="bi bi-plus-circle" style="font-size: 35px;"></i>
                             <i class="bi bi-star-fill"></i>
                             <i class="bi bi-star-fill"></i>
                             <i class="bi bi-star-fill"></i>
@@ -1154,10 +1177,10 @@
                                 <p class="card-text mt-0">懸疑．動作</p>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </div> -->
+        <!-- </div>
             </div>
-        </a>
+        </a> -->
 
     </div>
 
@@ -1209,7 +1232,7 @@
 
     <!-- 最新電影top10 -->
     <div class="title text-start mt-5 container-fluid d-flex align-items-center">
-        <h3 class="ps-4" style="color: #fff; margin: 0;">最新電影TOP10</h3>
+        <h3 class="ps-4" style="color: #fff; margin: 0;">最新電影Top5</h3>
         <a href="#" class="explore-button" data-bs-toggle="modal" data-bs-target="#lastOnlineTop10Modal">
             <i class="bi bi-chevron-right" style="color: #81D8D0;"></i>
             <span style="color: #81D8D0;font-weight: bold;">探索全部</span>
@@ -1253,7 +1276,7 @@
             <div class="modal-content" style="background-color: rgb(24,24,24);">
                 <div class="modal-header border-0 mb-5">
                     <h3 class="modal-title mx-auto" id="lastOnlineTop10ModalLabel" style="color: #fff;font-size: 3rem;">
-                        最新電影TOP10
+                        最新電影Top5
                     </h3>
                     <i class="bi bi-x-lg" data-bs-dismiss="modal"></i>
                 </div>
@@ -1426,7 +1449,7 @@
         <div class="modal-dialog modal-xl modal-dialog-centered">
             <div class="modal-content" style="background-color: rgb(24,24,24);">
                 <div class="modal-header border-0 mb-5">
-                    <h3 class="modal-title mx-auto" id="continueModalLabel" style="color: #fff;font-size: 3rem;">最新上線
+                    <h3 class="modal-title mx-auto" id="continueModalLabel" style="color: #fff;font-size: 3rem;">繼續觀看
                     </h3>
                     <i class="bi bi-x-lg" data-bs-dismiss="modal"></i>
                 </div>
@@ -1548,21 +1571,20 @@
     <div class="container mt-5">
         <ul class="footer_detail d-flex justify-content-center list-unstyled">
             <li class="px-2"><a href="../index/qaIndex.html">常見問題</a></li>
-            <li class="px-2"><a href="../index/copyright.html">版權聲明</a></li>
-            <li class="px-2"><a href="../index/instruction.html">使用說明</a></li>
+            <li class="px-2"><a href="../index/privacyAndTerms.html">隱私權</a></li>
+            <li class="px-2"><a href="../index/legalNotices.html">法律聲明</a></li>
             <li class="px-2"><a href="../index/aboutUs.html">關於我們</a></li>
         </ul>
         <span class="d-flex justify-content-center">Copyright© 2023 Ocean.All rights reserved.</span>
     </div>
 
-    <!-- <script src="https://www.youtube.com/AIzaSyBeU9qGx-_8imbZ-JSBKbzkHKYtgEzBNUU"></script> -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/755328616c.js" crossorigin="anonymous"></script>
 
     <script>
         //                 // ============================test==========================//
@@ -1585,6 +1607,52 @@
         //         }, 30000); // 30 秒的毫秒數
         //     }
         // }
+
+        //=================================測試靜音===================================================//
+
+        //     const video = document.getElementById('myVideo');
+        // const muteButton = document.getElementById('muteButton');
+        // const muteIcon = document.getElementById('muteIcon');
+
+        // function toggleMute() {
+        //     video.muted = !video.muted;
+        //     if (video.muted) {
+        //         muteIcon.classList.remove('bi-volume-up-fill');
+        //         muteIcon.classList.add('bi-volume-mute-fill');
+        //     } else {
+        //         muteIcon.classList.remove('bi-volume-mute-fill');
+        //         muteIcon.classList.add('bi-volume-up-fill');
+        //     }
+        // }
+
+        // video.addEventListener('play', function () {
+        //     setTimeout(function () {
+        //         video.pause();
+        //         video.removeAttribute('controls'); // 隱藏控制條
+        //     }, 10000); // 10000毫秒等於10秒
+        // });
+
+        //=================================從session取得memberId======================================//
+        const memberId = sessionStorage.getItem("memberId");
+
+        //=================================搜尋使用者img======================================//
+        document.getElementById("userImg").setAttribute("src", "http://localhost:8080/Ocean/web/controller/selectMemberImgController?memberId=" + memberId);
+
+
+        //=================================轉換影片類別===================================================//
+
+        const domainIdMappings = {
+            1: '喜劇',
+            2: '卡通',
+            3: '動漫',
+            4: '驚悚',
+            5: '愛情',
+            6: '奇幻',
+            7: '懸疑',
+            8: '科幻',
+            9: '動作',
+            10: '紀錄'
+        };
 
         //=================================SEARCH FUNCTION======================================//
 
@@ -1615,7 +1683,7 @@
                 lastSearchText = searchText;
 
                 $.ajax({
-                    url: "/Ocean/web/controller/searchVideoController", // 資料請求的網址
+                    url: "/Ocean/web/controller/searchVideoController",
                     type: "POST",
                     dataType: "json",
                     data: JSON.stringify({
@@ -1624,13 +1692,9 @@
                     }),
                     success: function (data) {
 
-                        console.log(data);
-
-
                         let starRatings = []; // 用來存放每一筆資料的星星數量
 
                         for (let i in data) {
-                            //console.log(data);
 
                             // 將字串轉換為數字
                             const videoReview = parseInt(data[i].VideoReview, 10); // 假設 data[i].VideoReview 是一個範圍為 "1" 到 "5" 的字串
@@ -1651,7 +1715,7 @@
                             card.innerHTML = `
                             <div class="row g-0">
                                 <div class="col-md-4">
-                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSneeWcVqMfMeHC0tLaVFfwcjAgPpRq6jaXYg&usqp=CAU" alt="..." style="width: 150px; height: 100px;">
+                                    <img src="http://localhost:8080/Ocean/web/controller/selectVideoImgController?videoId=${data[i].videoId}" alt="..." style="width: 150px; height: 100px;">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body text-left ms-2">
@@ -1686,13 +1750,9 @@
                 searchInput.dispatchEvent(enterEvent);
             }
         });
-        //=========================================取消輪播自動播放====================================//
-        $(document).ready(function () {
-            $("#recipeCarousel").carousel({
-                interval: false
-            });
-        });
+
         //=====================================movieBar sticky top==================================//  
+
         function addStyle(element, styleName, styleValue) {
             $(element).css(styleName, styleValue);
         }
@@ -1708,9 +1768,38 @@
             });
         });
 
+        //============================================熱門影片=======================================================//
+
+        $.ajax({
+            url: "/Ocean/web/controller/videoController",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify({
+                type: "topMovie",
+                videoType: "電影"
+            }),
+            success: function (data) {
+
+                let vidTop = document.getElementById('topMovie');
+                let isActive = true; // 控制是否加上 active 類別
+
+                for (let i in data) {
+                    const activeClass = isActive ? 'active' : ''; // 根據 isActive 加上 active 類別
+
+                    vidTop.innerHTML += `
+                <div class="topMovie carousel-item ratio ratio-21x9 ${activeClass}">
+                    <img src="http://localhost:8080/Ocean/web/controller/selectVideoImgController?videoId=${data[i].videoId}" class="d-block w-100" alt="...">
+                </div>
+            `;
+
+                    isActive = false; // 第一個項目加上 active 後，設定為 false，以後的項目不再加上 active
+                }
+            }
+        });
+
         //============================================最新上線=======================================================//
         $.ajax({
-            url: "/Ocean/web/controller/videoListController", // 資料請求的網址
+            url: "/Ocean/web/controller/videoListController",
             type: "POST",
             dataType: "json",
             data: JSON.stringify({
@@ -1726,10 +1815,8 @@
                 for (let i in data) {
                     const videoReview = parseInt(data[i].VideoReview, 10);
 
-                    // Add star ratings to the starRatings array
                     starRatings.push(videoReview);
 
-                    // Generate star icons HTML
                     let starsHtml = '';
                     for (let j = 1; j <= 5; j++) {
                         const starClass = j <= videoReview ? 'bi bi-star-fill checked' : 'bi bi-star';
@@ -1737,8 +1824,8 @@
                     }
 
                     vidLastOnline5.innerHTML += `
-                                    <a href="#animals" class="item">
-                        <img src="../img/18991668670366737.jpg" alt="Animals">
+                                    <a href="#animals" class="item me-2" style="width:20%">
+                        <img src="http://localhost:8080/Ocean/web/controller/selectVideoImgController?videoId=${data[i].videoId}" alt="Animals" style="height:138px;width:100%">
                         <div class="overlay">
                             <div class="card card-overlay">
                                 <div class="pic">
@@ -1747,15 +1834,17 @@
                                 <div class="overlay-content">
                                     <div class="card-body"
                                         style="background-color: rgb(24, 24, 24); width: 100%;padding: 0.5rem 0.5rem;">
-                                        <i class="bi bi-play-circle-fill"></i>
-                                        <i class="bi bi-plus-circle addToWatchlist" data-video-id="${data[i].videoId}"></i>
+                                        <i class="bi bi-play-circle-fill me-1"></i>
+                                        <i class="bi bi-plus-circle addToWatchlist me-2" data-video-id="${data[i].videoId}"></i>
                                         ${starsHtml}
                                         <div class="info d-flex">
                                             <p class="card-text me-3 my-auto">${data[i].videoName}</p>
-                                            <p class="card-text my-auto" style="color: rgb(91, 91, 91);">${data[i].videoLength}</p>
+                                            <p class="card-text my-auto" style="color: rgb(91, 91, 91);">
+                                                ${Math.floor(data[i].videoLength / 60)}小時 ${data[i].videoLength % 60}分鐘
+                                            </p>
                                         </div>
                                         <div class="infoType">
-                                            <p class="card-text mt-0">${data[i].domainId}</p>
+                                            <p class="card-text mt-0">${domainIdMappings[data[i].domainId]}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -1766,29 +1855,31 @@
                 }
             }
         });
-                // 在這裡你可以執行你想要的操作，例如將 videoId 加入到列表中
-                $(document).on('click', '.addToWatchlist', function () {
-                    const videoId = $(this).data('video-id');
-                    console.log('Clicked on video with id:', videoId);
 
-                    $.ajax({
-                        url: "/Ocean/web/controller/insertVideoController",
-                        type: 'POST',
-                        dataType: 'json', 
-                        data: JSON.stringify({
-                            videoId: videoId,
-                            memberId:4
-                            }), 
-                        success: function (response) {
-                            console.log('good job!');
-                        },
-                    });
-                });
+        // ==============================加入收藏片單===============================================================================//
 
+        // 在這裡你可以執行你想要的操作，例如將 videoId 加入到列表中
+        $(document).on('click', '.addToWatchlist', function () {
+            const videoId = $(this).data('video-id');
+            console.log('Clicked on video with id:', videoId);
+
+            $.ajax({
+                url: "/Ocean/web/controller/insertVideoController",
+                type: 'POST',
+                dataType: 'json',
+                data: JSON.stringify({
+                    videoId: videoId,
+                    memberId: memberId
+                }),
+                success: function () {
+                    alert("加入收藏片單")
+                },
+            });
+        });
 
         //============================================最新電影top10=======================================================//
         $.ajax({
-            url: "/Ocean/web/controller/videoListController", // 資料請求的網址
+            url: "/Ocean/web/controller/videoListController",
             type: "POST",
             dataType: "json",
             data: JSON.stringify({
@@ -1803,10 +1894,8 @@
 
                     const videoReview = parseInt(data[i].VideoReview, 10);
 
-                    // Add star ratings to the starRatings array
                     starRatings.push(videoReview);
 
-                    // Generate star icons HTML
                     let starsHtml = '';
                     for (let j = 1; j <= 5; j++) {
                         const starClass = j <= videoReview ? 'bi bi-star-fill checked' : 'bi bi-star';
@@ -1814,8 +1903,8 @@
                     }
 
                     vidLastOnlineTop105.innerHTML += `
-                                    <a href="#animals" class="item">
-                        <img src="../img/18991668670366737.jpg" alt="Animals">
+                                    <a href="#animals" class="item me-2" style="width:20%">
+                        <img src="http://localhost:8080/Ocean/web/controller/selectVideoImgController?videoId=${data[i].videoId}" alt="Animals" style="height:138px;width:100%">
                         <div class="overlay">
                             <div class="card card-overlay">
                                 <div class="pic">
@@ -1824,15 +1913,17 @@
                                 <div class="overlay-content">
                                     <div class="card-body"
                                         style="background-color: rgb(24, 24, 24); width: 100%;padding: 0.5rem 0.5rem;">
-                                        <i class="bi bi-play-circle-fill"></i>
-                                        <i class="bi bi-plus-circle"></i>
+                                        <i class="bi bi-play-circle-fill me-1"></i>
+                                        <i class="bi bi-plus-circle addToWatchlist me-2" data-video-id="${data[i].videoId}"></i>
                                         ${starsHtml}
                                         <div class="info d-flex">
                                             <p class="card-text me-3 my-auto">${data[i].videoName}</p>
-                                            <p class="card-text my-auto" style="color: rgb(91, 91, 91);">${data[i].videoLength}</p>
+                                            <p class="card-text my-auto" style="color: rgb(91, 91, 91);">
+                                                ${Math.floor(data[i].videoLength / 60)}小時 ${data[i].videoLength % 60}分鐘
+                                            </p>
                                         </div>
                                         <div class="infoType">
-                                            <p class="card-text mt-0">${data[i].domainId}</p>
+                                            <p class="card-text mt-0">${domainIdMappings[data[i].domainId]}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -1846,7 +1937,7 @@
 
         //============================================熱門推薦=======================================================//
         $.ajax({
-            url: "/Ocean/web/controller/videoListController", // 資料請求的網址
+            url: "/Ocean/web/controller/videoListController",
             type: "POST",
             dataType: "json",
             data: JSON.stringify({
@@ -1861,10 +1952,8 @@
 
                     const videoReview = parseInt(data[i].VideoReview, 10);
 
-                    // Add star ratings to the starRatings array
                     starRatings.push(videoReview);
 
-                    // Generate star icons HTML
                     let starsHtml = '';
                     for (let j = 1; j <= 5; j++) {
                         const starClass = j <= videoReview ? 'bi bi-star-fill checked' : 'bi bi-star';
@@ -1872,8 +1961,8 @@
                     }
 
                     vidRecommendedMovie5.innerHTML += `
-                                    <a href="#animals" class="item">
-                        <img src="../img/18991668670366737.jpg" alt="Animals">
+                                    <a href="#animals" class="item me-2" style="width:20%">
+                        <img src="http://localhost:8080/Ocean/web/controller/selectVideoImgController?videoId=${data[i].videoId}" alt="Animals" style="height:138px;width:100%">
                         <div class="overlay">
                             <div class="card card-overlay">
                                 <div class="pic">
@@ -1882,15 +1971,17 @@
                                 <div class="overlay-content">
                                     <div class="card-body"
                                         style="background-color: rgb(24, 24, 24); width: 100%;padding: 0.5rem 0.5rem;">
-                                        <i class="bi bi-play-circle-fill"></i>
-                                        <i class="bi bi-plus-circle"></i>
+                                        <i class="bi bi-play-circle-fill me-1"></i>
+                                        <i class="bi bi-plus-circle addToWatchlist me-2" data-video-id="${data[i].videoId}"></i>
                                         ${starsHtml}
                                         <div class="info d-flex">
                                             <p class="card-text me-3 my-auto">${data[i].videoName}</p>
-                                            <p class="card-text my-auto" style="color: rgb(91, 91, 91);">${data[i].videoLength}</p>
+                                            <p class="card-text my-auto" style="color: rgb(91, 91, 91);">
+                                                ${Math.floor(data[i].videoLength / 60)}小時 ${data[i].videoLength % 60}分鐘
+                                            </p>
                                         </div>
                                         <div class="infoType">
-                                            <p class="card-text mt-0">${data[i].domainId}</p>
+                                            <p class="card-text mt-0">${domainIdMappings[data[i].domainId]}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -1904,13 +1995,13 @@
 
         //============================================繼續觀看=======================================================//
         $.ajax({
-            url: "/Ocean/web/controller/videoListController", // 資料請求的網址
+            url: "/Ocean/web/controller/videoListController",
             type: "POST",
             dataType: "json",
             data: JSON.stringify({
                 type: "continue",
-                videoType: "戲劇",
-                memberId: 1
+                videoType: "電影",
+                memberId: memberId
             }),
             success: function (data) {
                 let vidContinue5 = document.getElementById('ContinueList');
@@ -1920,10 +2011,8 @@
 
                     const videoReview = parseInt(data[i].VideoReview, 10);
 
-                    // Add star ratings to the starRatings array
                     starRatings.push(videoReview);
 
-                    // Generate star icons HTML
                     let starsHtml = '';
                     for (let j = 1; j <= 5; j++) {
                         const starClass = j <= videoReview ? 'bi bi-star-fill checked' : 'bi bi-star';
@@ -1931,8 +2020,8 @@
                     }
 
                     vidContinue5.innerHTML += `
-                                    <a href="#animals" class="item">
-                        <img src="../img/18991668670366737.jpg" alt="Animals">
+                                    <a href="#animals" class="item me-2" style="width:20%">
+                        <img src="http://localhost:8080/Ocean/web/controller/selectVideoImgController?videoId=${data[i].videoId}" alt="Animals" style="height:138px;width:100%">
                         <div class="overlay">
                             <div class="card card-overlay">
                                 <div class="pic">
@@ -1941,15 +2030,17 @@
                                 <div class="overlay-content">
                                     <div class="card-body"
                                         style="background-color: rgb(24, 24, 24); width: 100%;padding: 0.5rem 0.5rem;">
-                                        <i class="bi bi-play-circle-fill"></i>
-                                        <i class="bi bi-plus-circle"></i>
+                                        <i class="bi bi-play-circle-fill me-1"></i>
+                                        <i class="bi bi-plus-circle addToWatchlist me-2" data-video-id="${data[i].videoId}"></i>
                                         ${starsHtml}
                                         <div class="info d-flex">
                                             <p class="card-text me-3 my-auto">${data[i].videoName}</p>
-                                            <p class="card-text my-auto" style="color: rgb(91, 91, 91);">${data[i].videoLength}</p>
+                                            <p class="card-text my-auto" style="color: rgb(91, 91, 91);">
+                                                ${Math.floor(data[i].videoLength / 60)}小時 ${data[i].videoLength % 60}分鐘
+                                            </p>
                                         </div>
                                         <div class="infoType">
-                                            <p class="card-text mt-0">${data[i].domainId}</p>
+                                            <p class="card-text mt-0">${domainIdMappings[data[i].domainId]}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -1963,7 +2054,7 @@
         //=========================================探索全部（最新上線）===================================================//
 
         $.ajax({
-            url: "/Ocean/web/controller/videoController", // 資料請求的網址
+            url: "/Ocean/web/controller/videoController",
             type: "POST",
             dataType: "json",
             data: JSON.stringify({
@@ -1978,10 +2069,8 @@
 
                     const videoReview = parseInt(data[i].VideoReview, 10);
 
-                    // Add star ratings to the starRatings array
                     starRatings.push(videoReview);
 
-                    // Generate star icons HTML
                     let starsHtml = '';
                     for (let j = 1; j <= 5; j++) {
                         const starClass = j <= videoReview ? 'bi bi-star-fill checked' : 'bi bi-star';
@@ -1989,8 +2078,8 @@
                     }
 
                     vidSeeAll.innerHTML += `
-                                <a href="#animals" class="exploreModalItem item">
-                            <img src="../img/18991668670366737.jpg" alt="Animals">
+                                <a href="#animals" class="exploreModalItem item" style="width:20%">
+                            <img src="http://localhost:8080/Ocean/web/controller/selectVideoImgController?videoId=${data[i].videoId}" alt="Animals" style="height:138px;width:100%">
                             <div class="overlay">
                                 <div class="card card-overlay">
                                     <div class="pic">
@@ -2000,15 +2089,17 @@
                                     <div class="overlay-content">
                                         <div class="card-body"
                                             style="background-color: rgb(24, 24, 24); width: 100%;padding: 0.5rem 0.5rem;">
-                                            <i class="bi bi-play-circle-fill"></i>
-                                            <i class="bi bi-plus-circle"></i>
+                                            <i class="bi bi-play-circle-fill me-1"></i>
+                                            <i class="bi bi-plus-circle addToWatchlist me-2" data-video-id="${data[i].videoId}"></i>
                                             ${starsHtml}
                                             <div class="info d-flex">
                                                 <p class="card-text me-3 my-auto">${data[i].videoName}</p>
-                                                <p class="card-text my-auto" style="color: rgb(91, 91, 91);">${data[i].videoLength}</p>
+                                                <p class="card-text my-auto" style="color: rgb(91, 91, 91);">
+                                                ${Math.floor(data[i].videoLength / 60)}小時 ${data[i].videoLength % 60}分鐘
+                                            </p>
                                             </div>
                                             <div class="infoType">
-                                                <p class="card-text mt-0">${data[i].domainId}</p>
+                                                <p class="card-text mt-0">${domainIdMappings[data[i].domainId]}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -2023,7 +2114,7 @@
         //=========================================探索全部（最新電影top10）===================================================//
 
         $.ajax({
-            url: "/Ocean/web/controller/videoController", // 資料請求的網址
+            url: "/Ocean/web/controller/videoController",
             type: "POST",
             dataType: "json",
             data: JSON.stringify({
@@ -2034,15 +2125,12 @@
                 let vidLastOnlineTop10 = document.getElementById('lastOnlineTop10ModalBody');
                 let starRatings = [];
 
-
                 for (let i in data) {
 
                     const videoReview = parseInt(data[i].VideoReview, 10);
 
-                    // Add star ratings to the starRatings array
                     starRatings.push(videoReview);
 
-                    // Generate star icons HTML
                     let starsHtml = '';
                     for (let j = 1; j <= 5; j++) {
                         const starClass = j <= videoReview ? 'bi bi-star-fill checked' : 'bi bi-star';
@@ -2050,8 +2138,8 @@
                     }
 
                     vidLastOnlineTop10.innerHTML += `
-                                <a href="#animals" class="lastOnlineTop10ModalItem item">
-                            <img src="../img/18991668670366737.jpg" alt="Animals">
+                                <a href="#animals" class="lastOnlineTop10ModalItem item" style="width:20%">
+                            <img src="http://localhost:8080/Ocean/web/controller/selectVideoImgController?videoId=${data[i].videoId}" alt="Animals" style="height:138px;width:100%">
                             <div class="overlay">
                                 <div class="card card-overlay">
                                     <div class="pic">
@@ -2061,15 +2149,17 @@
                                     <div class="overlay-content">
                                         <div class="card-body"
                                             style="background-color: rgb(24, 24, 24); width: 100%;padding: 0.5rem 0.5rem;">
-                                            <i class="bi bi-play-circle-fill"></i>
-                                            <i class="bi bi-plus-circle"></i>
+                                            <i class="bi bi-play-circle-fill me-1"></i>
+                                            <i class="bi bi-plus-circle addToWatchlist me-2" data-video-id="${data[i].videoId}"></i>
                                             ${starsHtml}
                                             <div class="info d-flex">
                                                 <p class="card-text me-3 my-auto">${data[i].videoName}</p>
-                                                <p class="card-text my-auto" style="color: rgb(91, 91, 91);">${data[i].videoLength}</p>
+                                                <p class="card-text my-auto" style="color: rgb(91, 91, 91);">
+                                                ${Math.floor(data[i].videoLength / 60)}小時 ${data[i].videoLength % 60}分鐘
+                                            </p>
                                             </div>
                                             <div class="infoType">
-                                                <p class="card-text mt-0">${data[i].domainId}</p>
+                                                <p class="card-text mt-0">${domainIdMappings[data[i].domainId]}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -2084,7 +2174,7 @@
         //=========================================探索全部（熱門推薦）===================================================//
 
         $.ajax({
-            url: "/Ocean/web/controller/videoController", // 資料請求的網址
+            url: "/Ocean/web/controller/videoController",
             type: "POST",
             dataType: "json",
             data: JSON.stringify({
@@ -2099,10 +2189,8 @@
 
                     const videoReview = parseInt(data[i].VideoReview, 10);
 
-                    // Add star ratings to the starRatings array
                     starRatings.push(videoReview);
 
-                    // Generate star icons HTML
                     let starsHtml = '';
                     for (let j = 1; j <= 5; j++) {
                         const starClass = j <= videoReview ? 'bi bi-star-fill checked' : 'bi bi-star';
@@ -2110,8 +2198,8 @@
                     }
 
                     vidRecommended.innerHTML += `
-                                <a href="#animals" class="recommendedModalItem item">
-                            <img src="../img/18991668670366737.jpg" alt="Animals">
+                                <a href="#animals" class="recommendedModalItem item" style="width:20%">
+                            <img src="http://localhost:8080/Ocean/web/controller/selectVideoImgController?videoId=${data[i].videoId}" alt="Animals" style="height:138px;width:100%">
                             <div class="overlay">
                                 <div class="card card-overlay">
                                     <div class="pic">
@@ -2121,15 +2209,17 @@
                                     <div class="overlay-content">
                                         <div class="card-body"
                                             style="background-color: rgb(24, 24, 24); width: 100%;padding: 0.5rem 0.5rem;">
-                                            <i class="bi bi-play-circle-fill"></i>
-                                            <i class="bi bi-plus-circle"></i>
+                                            <i class="bi bi-play-circle-fill me-1"></i>
+                                            <i class="bi bi-plus-circle addToWatchlist me-2" data-video-id="${data[i].videoId}"></i>
                                             ${starsHtml}
                                             <div class="info d-flex">
                                                 <p class="card-text me-3 my-auto">${data[i].videoName}</p>
-                                                <p class="card-text my-auto" style="color: rgb(91, 91, 91);">${data[i].videoLength}</p>
+                                                <p class="card-text my-auto" style="color: rgb(91, 91, 91);">
+                                                ${Math.floor(data[i].videoLength / 60)}小時 ${data[i].videoLength % 60}分鐘
+                                            </p>
                                             </div>
                                             <div class="infoType">
-                                                <p class="card-text mt-0">${data[i].domainId}</p>
+                                                <p class="card-text mt-0">${domainIdMappings[data[i].domainId]}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -2144,13 +2234,13 @@
         //=========================================探索全部（繼續觀看）===================================================//
 
         $.ajax({
-            url: "/Ocean/web/controller/videoController", // 資料請求的網址
+            url: "/Ocean/web/controller/videoController",
             type: "POST",
             dataType: "json",
             data: JSON.stringify({
                 type: "continue",
-                videoType: "戲劇",
-                memberId: 1
+                videoType: "電影",
+                memberId: memberId
             }),
             success: function (data) {
                 let vidContinue = document.getElementById('continueModalBody');
@@ -2160,10 +2250,8 @@
 
                     const videoReview = parseInt(data[i].VideoReview, 10);
 
-                    // Add star ratings to the starRatings array
                     starRatings.push(videoReview);
 
-                    // Generate star icons HTML
                     let starsHtml = '';
                     for (let j = 1; j <= 5; j++) {
                         const starClass = j <= videoReview ? 'bi bi-star-fill checked' : 'bi bi-star';
@@ -2171,8 +2259,8 @@
                     }
 
                     vidContinue.innerHTML += `
-                                <a href="#animals" class="continueModalItem item">
-                            <img src="../img/18991668670366737.jpg" alt="Animals">
+                                <a href="#animals" class="continueModalItem item" style="width:20%">
+                            <img src="http://localhost:8080/Ocean/web/controller/selectVideoImgController?videoId=${data[i].videoId}" alt="Animals" style="height:138px;width:100%">
                             <div class="overlay">
                                 <div class="card card-overlay">
                                     <div class="pic">
@@ -2182,15 +2270,17 @@
                                     <div class="overlay-content">
                                         <div class="card-body"
                                             style="background-color: rgb(24, 24, 24); width: 100%;padding: 0.5rem 0.5rem;">
-                                            <i class="bi bi-play-circle-fill"></i>
-                                            <i class="bi bi-plus-circle"></i>
+                                            <i class="bi bi-play-circle-fill me-1"></i>
+                                            <i class="bi bi-plus-circle addToWatchlist me-2" data-video-id="${data[i].videoId}"></i>
                                             ${starsHtml}
                                             <div class="info">
                                                 <p class="card-text me-3 my-auto">${data[i].videoName}</p>
-                                                <p class="card-text my-auto" style="color: rgb(91, 91, 91);">${data[i].videoLength}</p>
+                                                <p class="card-text my-auto" style="color: rgb(91, 91, 91);">
+                                                ${Math.floor(data[i].videoLength / 60)}小時 ${data[i].videoLength % 60}分鐘
+                                            </p>
                                             </div>
                                             <div class="infoType">
-                                                <p class="card-text mt-0">${data[i].domainId}</p>
+                                                <p class="card-text mt-0">${domainIdMappings[data[i].domainId]}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -2218,7 +2308,7 @@
             $("#countryModalBody").empty();
 
             $.ajax({
-                url: "/Ocean/web/controller/classificationController", // 資料請求的網址
+                url: "/Ocean/web/controller/classificationController",
                 type: "POST",
                 dataType: "json",
                 data: JSON.stringify({
@@ -2228,12 +2318,23 @@
                 }),
                 success: function (data) {
                     let vidCountry = document.getElementById('countryModalBody');
+                    let starRatings = [];
 
                     for (let i in data) {
 
+                        const videoReview = parseInt(data[i].VideoReview, 10);
+
+                        starRatings.push(videoReview);
+
+                        let starsHtml = '';
+                        for (let j = 1; j <= 5; j++) {
+                            const starClass = j <= videoReview ? 'bi bi-star-fill checked' : 'bi bi-star';
+                            starsHtml += `<i class="${starClass}" data-rating="${j}" style="color:#81D8D2"></i>`;
+                        }
+
                         vidCountry.innerHTML += `
-                        <a href="#animals" class="countryModalItem item">
-                            <img src="../img/18991668670366737.jpg" alt="Animals">
+                        <a href="#animals" class="countryModalItem item" style="width:20%">
+                            <img src="http://localhost:8080/Ocean/web/controller/selectVideoImgController?videoId=${data[i].videoId}" alt="Animals" style="height:138px;width:100%">
                             <div class="overlay">
                                 <div class="card card-overlay">
                                     <div class="pic">
@@ -2243,19 +2344,17 @@
                                     <div class="overlay-content">
                                         <div class="card-body"
                                             style="background-color: rgb(24, 24, 24); width: 100%;padding: 0.5rem 0.5rem;">
-                                            <i class="bi bi-play-circle-fill"></i>
-                                            <i class="bi bi-plus-circle"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-play-circle-fill me-1"></i>
+                                            <i class="bi bi-plus-circle addToWatchlist me-2" data-video-id="${data[i].videoId}"></i>
+                                            ${starsHtml}
                                             <div class="info d-flex flex-row">
                                                 <p class="card-text me-3 my-auto">${data[i].videoName}</p>
-                                                <p class="card-text my-auto" style="color: rgb(91, 91, 91);">${data[i].videoLength}</p>
+                                                <p class="card-text my-auto" style="color: rgb(91, 91, 91);">
+                                                ${Math.floor(data[i].videoLength / 60)}小時 ${data[i].videoLength % 60}分鐘
+                                            </p>
                                             </div>
                                             <div class="infoType">
-                                                <p class="card-text mt-0">${data[i].domainId}</p>
+                                                <p class="card-text mt-0">${domainIdMappings[data[i].domainId]}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -2278,7 +2377,7 @@
                 event.preventDefault();
 
                 // 清空原本的內容
-                $("#typeModalBody").empty();
+                // $("#typeModalBody").empty();
 
                 // 獲取選擇的 domainId，並轉換成整數
                 selectedDomainId = parseInt($(this).data("domainid"));
@@ -2286,8 +2385,15 @@
                 // 將選擇的值設置到下拉選單按鈕上
                 $("#dropdownMenuButton2").text($(this).text());
 
+                $('#typeModal').on('hidden.bs.modal', function () {
+                    // 清空 modal 內容
+                    $("#typeModalBody").empty();
+                    // 重置下拉選單按鈕的文字為初始值
+                    $("#dropdownMenuButton2").text("類型");
+                });
+
                 $.ajax({
-                    url: "/Ocean/web/controller/classificationController", // 資料請求的網址
+                    url: "/Ocean/web/controller/classificationController",
                     type: "POST",
                     dataType: "json",
                     data: JSON.stringify({
@@ -2297,12 +2403,23 @@
                     }),
                     success: function (data) {
                         let vidType = document.getElementById('typeModalBody');
+                        let starRatings = [];
 
                         for (let i in data) {
 
+                            const videoReview = parseInt(data[i].VideoReview, 10);
+
+                            starRatings.push(videoReview);
+
+                            let starsHtml = '';
+                            for (let j = 1; j <= 5; j++) {
+                                const starClass = j <= videoReview ? 'bi bi-star-fill checked' : 'bi bi-star';
+                                starsHtml += `<i class="${starClass}" data-rating="${j}" style="color:#81D8D2"></i>`;
+                            }
+
                             vidType.innerHTML += `
-                                <a href="#animals" class="typeModalItem item">
-                                    <img src="../img/18991668670366737.jpg" alt="Animals">
+                                <a href="#animals" class="typeModalItem item" style="width:20%">
+                                    <img src="http://localhost:8080/Ocean/web/controller/selectVideoImgController?videoId=${data[i].videoId}" alt="Animals" style="height:138px;width:100%">
                                     <div class="overlay">
                                         <div class="card card-overlay">
                                             <div class="pic">
@@ -2312,19 +2429,17 @@
                                             <div class="overlay-content">
                                                 <div class="card-body"
                                                     style="background-color: rgb(24, 24, 24); width: 100%;padding: 0.5rem 0.5rem;">
-                                                    <i class="bi bi-play-circle-fill"></i>
-                                                    <i class="bi bi-plus-circle"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-play-circle-fill me-1"></i>
+                                                    <i class="bi bi-plus-circle addToWatchlist me-2" data-video-id="${data[i].videoId}"></i>
+                                                    ${starsHtml}
                                                     <div class="info d-flex flex-row">
                                                         <p class="card-text me-3 my-auto">${data[i].videoName}</p>
-                                                        <p class="card-text my-auto" style="color: rgb(91, 91, 91);">${data[i].videoLength}</p>
+                                                        <p class="card-text my-auto" style="color: rgb(91, 91, 91);">
+                                                ${Math.floor(data[i].videoLength / 60)}小時 ${data[i].videoLength % 60}分鐘
+                                            </p>
                                                     </div>
                                                     <div class="infoType">
-                                                        <p class="card-text mt-0">${data[i].domainId}</p>
+                                                        <p class="card-text mt-0">${domainIdMappings[data[i].domainId]}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2345,14 +2460,20 @@
             var selectedTimeEnd = $(this).data("timeend");
 
             // 清空原本的內容
-            $("#timeModalBody").empty();
+            // $("#timeModalBody").empty();
 
             // 將選擇的年份值設定給下拉選單按鈕
             $("#dropdownMenuButton3").text(selectedTimeStart + "-" + selectedTimeEnd);
 
+            $('#timeModal').on('hidden.bs.modal', function () {
+                // 清空 modal 內容
+                $("#timeModalBody").empty();
+                // 重置下拉選單按鈕的文字為初始值
+                $("#dropdownMenuButton3").text("年份");
+            });
 
             $.ajax({
-                url: "/Ocean/web/controller/classificationController", // 資料請求的網址
+                url: "/Ocean/web/controller/classificationController",
                 type: "POST",
                 dataType: "json",
                 data: JSON.stringify({
@@ -2363,12 +2484,23 @@
                 }),
                 success: function (data) {
                     let vidTime = document.getElementById('timeModalBody');
+                    let starRatings = [];
 
                     for (let i in data) {
 
+                        const videoReview = parseInt(data[i].VideoReview, 10);
+
+                        starRatings.push(videoReview);
+
+                        let starsHtml = '';
+                        for (let j = 1; j <= 5; j++) {
+                            const starClass = j <= videoReview ? 'bi bi-star-fill checked' : 'bi bi-star';
+                            starsHtml += `<i class="${starClass}" data-rating="${j}" style="color:#81D8D2"></i>`;
+                        }
+
                         vidTime.innerHTML += `
-                        <a href="#animals" class="timeModalItem item">
-                            <img src="../img/18991668670366737.jpg" alt="Animals">
+                        <a href="#animals" class="timeModalItem item" style="width:20%">
+                            <img src="http://localhost:8080/Ocean/web/controller/selectVideoImgController?videoId=${data[i].videoId}" alt="Animals" style="height:138px;width:100%">
                             <div class="overlay">
                                 <div class="card card-overlay">
                                     <div class="pic">
@@ -2378,19 +2510,17 @@
                                     <div class="overlay-content">
                                         <div class="card-body"
                                             style="background-color: rgb(24, 24, 24); width: 100%;padding: 0.5rem 0.5rem;">
-                                            <i class="bi bi-play-circle-fill"></i>
-                                            <i class="bi bi-plus-circle"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-play-circle-fill me-1"></i>
+                                            <i class="bi bi-plus-circle addToWatchlist me-2" data-video-id="${data[i].videoId}"></i>
+                                            ${starsHtml}
                                             <div class="info d-flex flex-row">
                                                 <p class="card-text me-3 my-auto">${data[i].videoName}</p>
-                                                <p class="card-text my-auto" style="color: rgb(91, 91, 91);">${data[i].videoLength}</p>
+                                                <p class="card-text my-auto" style="color: rgb(91, 91, 91);">
+                                                ${Math.floor(data[i].videoLength / 60)}小時 ${data[i].videoLength % 60}分鐘
+                                            </p>
                                             </div>
                                             <div class="infoType">
-                                                <p class="card-text mt-0">${data[i].domainId}</p>
+                                                <p class="card-text mt-0">${domainIdMappings[data[i].domainId]}</p>
                                             </div>
                                         </div>
                                     </div>

@@ -81,7 +81,68 @@ public class VideoService {
 	
 //	加入片單
 	public int insertVideoList(Integer videoId,Integer memberId) {
+		System.out.println("insertVideoList");
 		int vi = new VideoImpl().insertVideo(videoId, memberId);
 		return vi;
+	}
+	
+	//首頁頁面全部影片
+	public List<Video> getIndexAllMovieVideo(String type, Integer memberId){
+		
+		switch (type) {
+		case "topMovie": 
+			List<Video> rv = videoImpl.selectTopMovie("1");
+			return rv;
+		case "lastOnline" :
+			List<Video> rv2 = videoImpl.selectLastOnline();
+			return rv2;
+		case "movieTop10" :
+			List<Video> rv3 = videoImpl.selectMovieTop10();
+			return rv3;
+		case "continue" :
+			List<Video> rv4 = videoImpl.selectMovieContinue(memberId);
+			return rv4;
+		case "recommended" :
+			List<Video> rv5 = videoImpl.selectRecommendedMovie();
+			return rv5;
+		}
+		return null;
+	}
+	
+	//首頁全部影片5部
+	public List<Video> getIndexAllMovieVideo5(String type,Integer memberId){
+		
+		switch (type) {
+		case "lastOnline" :
+			List<Video> rv2 = videoImpl.selectLastOnline5();
+			return rv2;
+		case "movieTop10" :
+			List<Video> rv3 = videoImpl.selectMovieTop105();
+			return rv3;
+		case "continue" :
+			List<Video> rv4 = videoImpl.selectMovieContinue5(memberId);
+			return rv4;
+		case "recommended" :
+			List<Video> rv5 = videoImpl.selectRecommendedMovie5();
+			return rv5;
+		}
+		return null;
+	}
+	
+	//搜尋bar
+	public List<Video> searchVideos(String videoName){
+		
+		videoName = videoName+"%";
+		
+		List<Video> sv = videoImpl.searchMovie(videoName);
+		return sv;
+	}
+	
+	
+//	找出全部照片
+	public Video searchAllImg(Integer videoId){
+		
+		Video video = videoImpl.searchAllImg(videoId);
+		return video;
 	}
 }

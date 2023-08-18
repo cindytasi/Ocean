@@ -6,9 +6,12 @@ import web.vo.Video;
 
 public interface VideoDao {
 	
+//取出圖片
+	public Video searchAllImg(Integer videoId);
+	
+	
 //	透過使用者輸入文字搜尋影片
 	public List<Video> searchMovie(String videoType, String videoName);
-	
 	
 	
 //	透過影片年份篩選（篩選器-年份）
@@ -52,6 +55,38 @@ public interface VideoDao {
 //	透過瀏覽次數 收藏次數 評分篩選影片(熱門推薦)
 	public List<Video> selectRecommendedMovie5(String videoType);
 	
+	//加入片單
 	public int insertVideo(Integer videoId,Integer memberId);
+	
+	//首頁
+//透過首頁置頂篩選影片照片（熱門影片）
+	public List<Video>  selectTopMovie(String homeTopStatus);
+	
+//	透過上架時間篩選影片（最新上線）
+	public List<Video>  selectLastOnline();
+	
+//	透過上架時間和評分篩選影片（最新電影top10）
+	public List<Video>  selectMovieTop10();
+	
+//	透過影片編號找影片（繼續觀看）
+	public List<Video>  selectMovieContinue(Integer memberId);
+	
+//	透過瀏覽次數 收藏次數 評分篩選影片(熱門推薦)
+	public List<Video> selectRecommendedMovie();
+	
+//	透過上架時間篩選影片（最新上線）
+	public List<Video>  selectLastOnline5();
+	
+//	透過上架時間和評分篩選影片（最新電影top10）
+	public List<Video>  selectMovieTop105();
+	
+//	透過影片編號找影片（繼續觀看）
+	public List<Video>  selectMovieContinue5(Integer memberId);
+	
+//	透過瀏覽次數 收藏次數 評分篩選影片(熱門推薦)
+	public List<Video> selectRecommendedMovie5();
+	
+//	透過使用者輸入文字搜尋影片
+	public List<Video> searchMovie(String videoName);
 	
 }

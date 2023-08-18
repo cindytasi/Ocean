@@ -78,16 +78,22 @@
             <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
                 <!-- logo -->
                 <div class="logo d-flex">
-                    <a class="navbar-brand" href="/oceanIndex.html">
-                        <img src="/logo/logo_-_.png" alt="Ocean Logo" style="width: 50px;height: 50px;">
+                    <a class="navbar-brand" href="../index/oceanIndex.html">
+                        <img src="../logo/logo_-_.png" alt="Ocean Logo" style="width: 50px;height: 50px;">
                     </a>
                     <!-- search -->
-                    <div class="input-group my-auto w-50">
-                        <input type="text" class="form-control" id="searchInput" placeholder="Search"
-                            aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group my-auto w-50 dropdown">
+                        <input type="text" class="form-control dropdown-toggle" id="searchInput"
+                            placeholder="Search" aria-label="Search" aria-describedby="basic-addon2"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                         <button class="btn btn-outline-secondary" type="button" id="searchButton">
                             <i class="bi bi-search"></i>
                         </button>
+                        <!-- search影片List -->
+                        <ul class="searchMovie dropdown-menu" aria-labelledby="searchInput"
+                            style="width: 400px; height: 100px;background-color: rgba(0, 0, 0, 0.5);"
+                            id="searchVideo">
+                        </ul>
                     </div>
                 </div>
                 <!-- 導覽列 -->
@@ -95,29 +101,30 @@
                     <ul class="navbar-nav">
                         <!-- 首頁 -->
                         <li class="nav-item">
-                            <a class="nav-link active" href="/oceanIndex.html">首頁</a>
+                            <a class="nav-link active" href="../index/oceanIndex.html">首頁</a>
                         </li>
                         <!-- 電影 -->
                         <li class="nav-item">
-                            <a class="nav-link" href="/movieIndex.html">電影</a>
+                            <a class="nav-link" href="../index/movieIndex.html">電影</a>
                         </li>
                         <!-- 影集 -->
                         <li class="nav-item">
-                            <a class="nav-link" href="/seriesIndex.html">影集</a>
+                            <a class="nav-link" href="../index/seriesIndex.html">影集</a>
                         </li>
                         <!-- 藝人商品 -->
                         <li class="nav-item">
-                            <a class="nav-link" href="/productIndex.html">藝人商品</a>
+                            <a class="nav-link" href="../index/productIndex.html">藝人商品</a>
                         </li>
                         <!-- 收藏地圖 -->
                         <li class="nav-item">
-                            <a class="nav-link" href="/favoriteMapIndex.html">收藏地圖</a>
+                            <a class="nav-link" href="../index/favoriteMapIndex.html">收藏地圖</a>
                         </li>
                         <!--user  -->
                         <div class="nav-item dropdown">
                             <button type="button" class="btn dropdown-toggle" id="navbarDropdownUserLink"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="/img/user.webp" alt="" style="width: 40px; height: 40px;">
+                                <!-- <img src="/img/user.webp" alt="" style="width: 40px; height: 40px;"> -->
+                                <img src="" alt="" id="userImg" style="width: 40px;height: 40px;">
                             </button>
                             <!-- user下拉選單 -->
                             <ul class="dropdown-menu dropdown-menu-end mt-2" style="opacity: 80%;"
@@ -143,7 +150,7 @@
     <!-- privacyAndTerms -->
     <div class="privacyAndTerms">
         <div class="aboutUsPic text-center mb-4">
-            <img src="/logo/logo_-_.png" alt="">
+            <img src="../logo/logo_-_.png" alt="">
         </div>
         <section>
             <h2 class="text-center text-light" style="font-size: 35px;">隱私權和條款</h2>
@@ -167,10 +174,10 @@
     <!-- 頁尾 -->
     <div class="container pt-5 ">
         <ul class="footer_detail d-flex justify-content-center list-unstyled">
-            <li class="px-2"><a href="/qaIndex.html">常見問題</a></li>
-            <li class="px-2"><a href="/privacyAndTerms.html">隱私權</a></li>
-            <li class="px-2"><a href="/legalNotices.html">法律聲明</a></li>
-            <li class="px-2"><a href="/aboutUs.html">關於我們</a></li>
+            <li class="px-2"><a href="../index/qaIndex.html">常見問題</a></li>
+            <li class="px-2"><a href="../index/privacyAndTerms.html">隱私權</a></li>
+            <li class="px-2"><a href="../index/legalNotices.html">法律聲明</a></li>
+            <li class="px-2"><a href="../index/aboutUs.html">關於我們</a></li>
         </ul>
         <span class="d-flex justify-content-center">Copyright© 2023 Ocean.All rights reserved.</span>
     </div>
@@ -181,11 +188,107 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
+        //=================================從session取得memberId======================================//
+        const memberId = sessionStorage.getItem("memberId");
+
+        //=================================搜尋使用者img======================================//
+        document.getElementById("userImg").setAttribute("src", "http://localhost:8080/Ocean/web/controller/selectMemberImgController?memberId=" + memberId);
+
         //=========================SEARCH FUNCTION==================================//
+         //=================================SEARCH Video FUNCTION======================================//
+
+         let lastSearchText = '';
         $(document).ready(function () {
             $("#searchButton").click(function () {
                 $("#searchInput").focus();
             });
+        });
+
+        const searchInput = document.getElementById("searchInput");
+        const sv = document.getElementById('searchVideo');
+
+        searchInput.addEventListener("keypress", function (e) {
+
+            if (e.keyCode === 13) {
+                const searchText = searchInput.value.trim();
+
+                if (searchText === '') {
+                    sv.innerHTML = '';
+                    return;
+                }
+
+                // 清空之前搜尋的結果
+                sv.innerHTML = '';
+
+                // 更新上一次的搜尋內容
+                lastSearchText = searchText;
+
+                $.ajax({
+                    url: "/Ocean/web/controller/indexSearchVideoController",
+                    type: "POST",
+                    dataType: "json",
+                    data: JSON.stringify({
+                        videoName: searchText
+                    }),
+                    success: function (data) {
+
+                        let starRatings = []; // 用來存放每一筆資料的星星數量
+
+                        for (let i in data) {
+
+                            // 將字串轉換為數字
+                            const videoReview = parseInt(data[i].VideoReview, 10); // 假設 data[i].VideoReview 是一個範圍為 "1" 到 "5" 的字串
+
+                            // 將星星數量放入陣列
+                            starRatings.push(videoReview);
+
+                            // 生成星星 icon
+                            let starsHtml = '';
+                            for (let j = 1; j <= 5; j++) {
+                                const starClass = j <= videoReview ? 'bi bi-star-fill checked' : 'bi bi-star';
+                                starsHtml += `<i class="${starClass}" data-rating="${j}" style="color:#81D8D2"></i>`;
+                            }
+
+                            let card = document.createElement('div');
+                            card.classList.add('card');
+                            card.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+                            card.innerHTML = `
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="http://localhost:8080/Ocean/web/controller/selectVideoImgController?videoId=${data[i].videoId}" alt="..." style="width: 150px; height: 100px;">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body text-left ms-2">
+                                        <h4 class="card-text" style="color: white;">${data[i].videoName}</h4>
+                                        <div class="stars" style="color: white;">${starsHtml}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                            sv.appendChild(card);
+                        }
+                    }
+                })
+            }
+        });
+
+        // 在搜尋欄失去焦點時檢查是否需要清空搜尋結果
+        searchInput.addEventListener("blur", function () {
+            const searchText = searchInput.value.trim();
+            if (searchText === '') {
+                sv.innerHTML = '';
+            }
+        });
+
+        // 在搜尋欄重新獲得焦點時檢查是否需要重新顯示上一次的搜尋結果
+        searchInput.addEventListener("focus", function () {
+            const searchText = searchInput.value.trim();
+            if (searchText === '' && lastSearchText !== '') {
+                searchInput.value = lastSearchText;
+                // 觸發 Enter 鍵事件，重新顯示上一次的搜尋結果
+                const enterEvent = new KeyboardEvent("keypress", { keyCode: 13 });
+                searchInput.dispatchEvent(enterEvent);
+            }
         });
     </script>
 </body>

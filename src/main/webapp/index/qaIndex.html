@@ -18,7 +18,7 @@
     /* 頁面背景色 */
     body {
         background: #000;
-        background-image: url("/img/waves_4.jpg");
+        background-image: url("../img/waves_4.jpg");
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
@@ -89,16 +89,22 @@
             <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
                 <!-- logo -->
                 <div class="logo d-flex">
-                    <a class="navbar-brand" href="/oceanIndex.html">
-                        <img src="/logo/logo_-_.png" alt="Ocean Logo" style="width: 50px;height: 50px;">
+                    <a class="navbar-brand" href="../index/oceanIndex.html">
+                        <img src="../logo/logo_-_.png" alt="Ocean Logo" style="width: 50px;height: 50px;">
                     </a>
                     <!-- search -->
-                    <div class="input-group my-auto w-50">
-                        <input type="text" class="form-control" id="searchInput" placeholder="Search"
-                            aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group my-auto w-50 dropdown">
+                        <input type="text" class="form-control dropdown-toggle" id="searchInput"
+                            placeholder="Search" aria-label="Search" aria-describedby="basic-addon2"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                         <button class="btn btn-outline-secondary" type="button" id="searchButton">
                             <i class="bi bi-search"></i>
                         </button>
+                        <!-- search影片List -->
+                        <ul class="searchMovie dropdown-menu" aria-labelledby="searchInput"
+                            style="width: 400px; height: 100px;background-color: rgba(0, 0, 0, 0.5);"
+                            id="searchVideo">
+                        </ul>
                     </div>
                 </div>
                 <!-- 導覽列 -->
@@ -106,43 +112,44 @@
                     <ul class="navbar-nav align-items-center">
                         <!-- 首頁 -->
                         <li class="nav-item">
-                            <a class="nav-link active" href="/oceanIndex.html">首頁</a>
+                            <a class="nav-link active" href="../index/oceanIndex.html">首頁</a>
                         </li>
                         <!-- 電影 -->
                         <li class="nav-item">
-                            <a class="nav-link" href="/movieIndex.html">電影</a>
+                            <a class="nav-link" href="../index/movieIndex.html">電影</a>
                         </li>
                         <!-- 影集 -->
                         <li class="nav-item">
-                            <a class="nav-link" href="/seriesIndex.html">影集</a>
+                            <a class="nav-link" href="../index/seriesIndex.html">影集</a>
                         </li>
                         <!-- 藝人商品 -->
                         <li class="nav-item">
-                            <a class="nav-link" href="/productIndex.html">藝人商品</a>
+                            <a class="nav-link" href="/../indexproductIndex.html">藝人商品</a>
                         </li>
                         <!-- 收藏地圖 -->
                         <li class="nav-item">
-                            <a class="nav-link" href="/favoriteMapIndex.html">收藏地圖</a>
+                            <a class="nav-link" href="../index/favoriteMapIndex.html">收藏地圖</a>
                         </li>
                         <!--user  -->
                         <div class="nav-item dropdown">
                             <button type="button" class="btn dropdown-toggle" id="navbarDropdownUserLink"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="/img/user.webp" alt="" style="width: 40px; height: 40px;">
+                                <!-- <img src="../img/user.webp" alt="" style="width: 40px; height: 40px;"> -->
+                                <img src="" alt="" id="userImg" style="width: 40px;height: 40px;">
                             </button>
                             <!-- user下拉選單 -->
                             <ul class="dropdown-menu dropdown-menu-end mt-2" style="opacity: 80%;"
                                 aria-labelledby="navbarDropdownUserLink">
-                                <li><a class="dropdown-item" href="/aacountIndex.html">帳戶</a></li>
-                                <li><a class="dropdown-item" href="/accountDetail.html">基本資料</a></li>
-                                <li><a class="dropdown-item" href="/myAchieve.html">我的成就</a></li>
-                                <li><a class="dropdown-item" href="/myOrder.html">我的訂單</a></li>
-                                <li><a class="dropdown-item" href="/myList.html">我的片單</a></li>
-                                <li><a class="dropdown-item" href="/watchHistory.html">觀看紀錄</a></li>
+                                <li><a class="dropdown-item" href="../index/aacountIndex.html">帳戶</a></li>
+                                <li><a class="dropdown-item" href="/../indexaccountDetail.html">基本資料</a></li>
+                                <li><a class="dropdown-item" href="../index/myAchieve.html">我的成就</a></li>
+                                <li><a class="dropdown-item" href="../index/myOrder.html">我的訂單</a></li>
+                                <li><a class="dropdown-item" href="../index/myList.html">我的片單</a></li>
+                                <li><a class="dropdown-item" href="../index/watchHistory.html">觀看紀錄</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="/signOut.html">登出</a></li>
+                                <li><a class="dropdown-item" href="../index/signOut.html">登出</a></li>
                             </ul>
                         </div>
                     </ul>
@@ -157,16 +164,16 @@
         <div class="sidebar" style="width: 15%;">
             <ul class="list-group text-center">
                 <li class="list-group-item">
-                    <a href="/qaIndex.html">會員問題</a>
+                    <a href="../index/qaIndex.html">會員問題</a>
                 </li>
                 <li class="list-group-item">
-                    <a href="/qaIndexShopping.html">購物問題</a>
+                    <a href="../index/qaIndexShopping.html">購物問題</a>
                 </li>
                 <li class="list-group-item">
-                    <a href="/qaIndexFee.html">收費問題</a>
+                    <a href="../index/qaIndexFee.html">收費問題</a>
                 </li>
                 <li class="list-group-item">
-                    <a href="/qaIndexPlay.html">播放問題</a>
+                    <a href="../index/qaIndexPlay.html">播放問題</a>
                 </li>
 
             </ul>
@@ -385,42 +392,27 @@
         </div>
     </div>
 
-    <button id="chatButton" class="btn btn-secondary rounded-circle position-fixed" style="bottom: 20px; right: 20px;">
-        <i class="bi bi-chat" style="font-size: 24px;"></i>
-    </button>
-    <div id="chatModal" class="modal fade" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">常見問題 - ChatGPT</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="questionInput">問題：</label>
-                        <input type="text" class="form-control" id="questionInput" placeholder="請輸入您的問題">
-                    </div>
-                    <div class="form-group">
-                        <label for="answerOutput">回答：</label>
-                        <textarea class="form-control" id="answerOutput" rows="3" readonly></textarea>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
-                    <button type="button" class="btn btn-primary" id="submitQuestion">送出問題</button>
-                </div>
-            </div>
-        </div>
+    <h1>ChatGPT 簡單範例</h1>
+
+    <div>
+        <label for="questionInput">問題：</label>
+        <input type="text" id="questionInput" placeholder="請輸入您的問題">
+        <button id="askButton">提問</button>
+    </div>
+
+    <div>
+        <label for="answerOutput">回答：</label>
+        <textarea id="answerOutput" rows="3" readonly></textarea>
     </div>
 
 
     <!-- 頁尾 -->
     <div class="wave container pt-5">
         <ul class="footer_detail d-flex justify-content-center list-unstyled">
-            <li class="px-2"><a href="/qaIndex.html">常見問題</a></li>
-            <li class="px-2"><a href="/privacyAndTerms.html">隱私權</a></li>
-            <li class="px-2"><a href="/legalNotices.html">法律聲明</a></li>
-            <li class="px-2"><a href="/aboutUs.html">關於我們</a></li>
+            <li class="px-2"><a href="../index/qaIndex.html">常見問題</a></li>
+            <li class="px-2"><a href="../index/privacyAndTerms.html">隱私權</a></li>
+            <li class="px-2"><a href="../index/legalNotices.html">法律聲明</a></li>
+            <li class="px-2"><a href="../index/aboutUs.html">關於我們</a></li>
         </ul>
         <span class="d-flex justify-content-center">Copyright© 2023 Ocean.All rights reserved.</span>
     </div>
@@ -429,63 +421,202 @@
         integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 
     <script>
+        //=================================從session取得memberId======================================//
+        const memberId = sessionStorage.getItem("memberId");
+
+        //=================================SEARCH Video FUNCTION======================================//
+
+        let lastSearchText = '';
         $(document).ready(function () {
             $("#searchButton").click(function () {
                 $("#searchInput").focus();
             });
         });
 
+        const searchInput = document.getElementById("searchInput");
+        const sv = document.getElementById('searchVideo');
 
+        searchInput.addEventListener("keypress", function (e) {
 
+            if (e.keyCode === 13) {
+                const searchText = searchInput.value.trim();
 
-        $(document).ready(function () {
-            // 當按鈕被點擊時，顯示問答小視窗
-            $("#chatButton").click(function () {
-                $("#chatModal").modal("show");
-            });
-
-            // 當送出問題按鈕被點擊時，使用ChatGPT API進行問答
-            $("#submitQuestion").click(function () {
-                const question = $("#questionInput").val();
-                if (question.trim() !== "") {
-                    // 使用ChatGPT API進行問答
-                    const apiKey = "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";
-                    const apiEndpoint = "https://api.openai.com/v1/chat/completions";
-                    $.ajax({
-                        type: "POST",
-                        url: apiEndpoint,
-                        beforeSend: function (xhr) {
-                            xhr.setRequestHeader("Authorization", "Bearer " + apiKey);
-                        },
-                        data: {
-                            model: "gpt-3.5-turbo",
-                            messages: [
-                                {
-                                    role: "system",
-                                    content: "You are a helpful assistant."
-                                },
-                                {
-                                    role: "user",
-                                    content: question
-                                },
-                            ],
-                        },
-                        success: function (response) {
-                            const answer = response.choices[0].message.content;
-                            $("#answerOutput").val(answer);
-                        },
-                        error: function (jqXHR, textStatus, errorThrown) {
-                            console.log("請求失敗：", textStatus);
-                            console.log("錯誤內容：", errorThrown);
-                            console.log("伺服器回應：", jqXHR.responseText);
-                            $("#answerOutput").val("問答時出現錯誤。");
-                        },
-                    });
+                if (searchText === '') {
+                    sv.innerHTML = '';
+                    return;
                 }
-            });
+
+                // 清空之前搜尋的結果
+                sv.innerHTML = '';
+
+                // 更新上一次的搜尋內容
+                lastSearchText = searchText;
+
+                $.ajax({
+                    url: "/Ocean/web/controller/indexSearchVideoController",
+                    type: "POST",
+                    dataType: "json",
+                    data: JSON.stringify({
+                        videoName: searchText
+                    }),
+                    success: function (data) {
+
+                        let starRatings = []; // 用來存放每一筆資料的星星數量
+
+                        for (let i in data) {
+
+                            // 將字串轉換為數字
+                            const videoReview = parseInt(data[i].VideoReview, 10); // 假設 data[i].VideoReview 是一個範圍為 "1" 到 "5" 的字串
+
+                            // 將星星數量放入陣列
+                            starRatings.push(videoReview);
+
+                            // 生成星星 icon
+                            let starsHtml = '';
+                            for (let j = 1; j <= 5; j++) {
+                                const starClass = j <= videoReview ? 'bi bi-star-fill checked' : 'bi bi-star';
+                                starsHtml += `<i class="${starClass}" data-rating="${j}" style="color:#81D8D2"></i>`;
+                            }
+
+                            let card = document.createElement('div');
+                            card.classList.add('card');
+                            card.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+                            card.innerHTML = `
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="http://localhost:8080/Ocean/web/controller/selectVideoImgController?videoId=${data[i].videoId}" alt="..." style="width: 150px; height: 100px;">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body text-left ms-2">
+                                        <h4 class="card-text" style="color: white;">${data[i].videoName}</h4>
+                                        <div class="stars" style="color: white;">${starsHtml}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                            sv.appendChild(card);
+                        }
+                    }
+                })
+            }
         });
+
+        // 在搜尋欄失去焦點時檢查是否需要清空搜尋結果
+        searchInput.addEventListener("blur", function () {
+            const searchText = searchInput.value.trim();
+            if (searchText === '') {
+                sv.innerHTML = '';
+            }
+        });
+
+        // 在搜尋欄重新獲得焦點時檢查是否需要重新顯示上一次的搜尋結果
+        searchInput.addEventListener("focus", function () {
+            const searchText = searchInput.value.trim();
+            if (searchText === '' && lastSearchText !== '') {
+                searchInput.value = lastSearchText;
+                // 觸發 Enter 鍵事件，重新顯示上一次的搜尋結果
+                const enterEvent = new KeyboardEvent("keypress", { keyCode: 13 });
+                searchInput.dispatchEvent(enterEvent);
+            }
+        });
+        //=================================搜尋使用者img======================================//
+        document.getElementById("userImg").setAttribute("src", "http://localhost:8080/Ocean/web/controller/selectMemberImgController?memberId=" + memberId);
+
+        // $(document).ready(function () {
+        //     $("#searchButton").click(function () {
+        //         $("#searchInput").focus();
+        //     });
+        // });
+
+
+
+
+        // $(document).ready(function () {
+        //     // 當按鈕被點擊時，顯示問答小視窗
+        //     $("#chatButton").click(function () {
+        //         $("#chatModal").modal("show");
+        //     });
+
+        //     // 當送出問題按鈕被點擊時，使用ChatGPT API進行問答
+        //     $("#submitQuestion").click(function () {
+        //         const question = $("#questionInput").val();
+        //         if (question.trim() !== "") {
+        //             // 使用ChatGPT API進行問答
+        //             const apiKey = "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";
+        //             const apiEndpoint = "https://api.openai.com/v1/chat/completions";
+        //             $.ajax({
+        //                 type: "POST",
+        //                 url: apiEndpoint,
+        //                 beforeSend: function (xhr) {
+        //                     xhr.setRequestHeader("Authorization", "Bearer " + apiKey);
+        //                 },
+        //                 data: {
+        //                     model: "gpt-3.5-turbo",
+        //                     messages: [
+        //                         {
+        //                             role: "system",
+        //                             content: "You are a helpful assistant."
+        //                         },
+        //                         {
+        //                             role: "user",
+        //                             content: question
+        //                         },
+        //                     ],
+        //                 },
+        //                 success: function (response) {
+        //                     const answer = response.choices[0].message.content;
+        //                     $("#answerOutput").val(answer);
+        //                 },
+        //                 error: function (jqXHR, textStatus, errorThrown) {
+        //                     console.log("請求失敗：", textStatus);
+        //                     console.log("錯誤內容：", errorThrown);
+        //                     console.log("伺服器回應：", jqXHR.responseText);
+        //                     $("#answerOutput").val("問答時出現錯誤。");
+        //                 },
+        //             });
+        //         }
+        //     });
+        // });
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const askButton = document.getElementById('askButton');
+            const questionInput = document.getElementById('questionInput');
+            const answerOutput = document.getElementById('answerOutput');
+
+            askButton.addEventListener('click', function () {
+                const question = questionInput.value;
+                getAnswer(question);
+            });
+
+            function getAnswer(question) {
+                const apiKey = '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'; // 請將 YOUR_API_KEY 替換成你的實際 API 金鑰
+                const headers = {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${apiKey}`
+                };
+                const data = {
+                    prompt: question,
+                    max_tokens: 50
+                };
+
+                axios.post('https://api.openai.com/v1/engines/davinci/completions', data, { headers })
+                    .then(response => {
+                        const answer = response.data.choices[0].text.trim();
+                        answerOutput.value = answer;
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            }
+        });
+
+
+
     </script>
 </body>
 

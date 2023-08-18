@@ -1,6 +1,7 @@
 package web.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,42 +14,42 @@ import com.google.gson.Gson;
 import web.service.VideoService;
 import web.vo.Video;
 
-@WebServlet("/web/controller/insertVideoController")
-public class insertVideoController extends HttpServlet {
+@WebServlet("/web/controller/indexSearchVideoController")
+public class indexSearchVideoController extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 	private VideoService videoService;
 	private Gson gson;
-
+	
 	@Override
 	public void init() throws ServletException {
 		videoService = new VideoService();
 		gson = new Gson();
 	}
-
+	
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setContentType("application/json");
+		resp.setCharacterEncoding("utf-8");
+					
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-
-		Video video = gson.fromJson(req.getReader(), Video.class);
-
-		int vi = videoService.insertVideoList(video.getVideoId(), video.getMemberId());
-
-		String json = gson.toJson(vi);
 		
-		resp.getWriter().write(json);
+		Video video =gson.fromJson(req.getReader(), Video.class);
 		
+		List<Video> videos = videoService.searchVideos(video.getVideoName());
+		
+		String json = gson.toJson(videos);
+		
+	    resp.getWriter().write(json);
 	}
-
+	
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		this.doPost(req, resp);
-
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		this.doGet(req,resp);
 	}
 
 }

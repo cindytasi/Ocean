@@ -17,50 +17,70 @@ public class VideoImpl implements VideoDao {
 	private static String password = "password";
 //搜尋bar
 	private String sqlSearch = "select * from Video where videoType = ? and videoName like ?";
-	
+
 //	篩選器
 	private String sqlYear = "select * from Video \n" + "where videoType = ? and videoYear between ? and ?;";
 
 	private String sqlArea = "select * from Video \n" + "where videoType = ? and videoArea = ?;";
 
 	private String sqlDomain = "select * from Video \n" + "where videoType = ? and domainId = ?;";
-//首頁影片(探索全部)
+//電影頁面和戲劇頁面影片(探索全部)
 	private String sqlTopStatus = "select * from Video\n" + "where videoType = ? and homeTopStatus = ? ;";
 
 	private String sqlUpLoad = "select * from Video\n" + "where videoType = ? order by uploadDate desc;";
 
-	private String sqlUpLoadTop10 = "select * from Video \n"
-			+ "where  videoType = ?  and  videoReview > '4' \n"
+	private String sqlUpLoadTop10 = "select * from Video \n" + "where  videoType = ?  and  videoReview > '4' \n"
 			+ "order by uploadDate desc;";
 
 	private String sqlContinue = "select * from Video vid\n"
-			+ "join  MemberWatchDuration mwd on vid.videoId = mwd.videoId\n"
-			+ "where videoType = ? and memberId = ?;";
+			+ "join  MemberWatchDuration mwd on vid.videoId = mwd.videoId\n" + "where videoType = ? and memberId = ?;";
 
-	private String sqlRecommended = "SELECT * FROM Video\n"
-			+ "WHERE videoType = ? \n"
+	private String sqlRecommended = "SELECT * FROM Video\n" + "WHERE videoType = ? \n"
 			+ "ORDER BY views DESC, VideoReview DESC;";
 
-//首頁影片
+//電影頁面和戲劇頁面影片
 	private String sqlUpLoad5 = "select * from Video where videoType = ? order by uploadDate desc limit 5;";
 
-	private String sqlUpLoadTop105 = "select * from Video \n"
-			+ "where  videoType = ?  and  videoReview > '4' \n"
+	private String sqlUpLoadTop105 = "select * from Video \n" + "where  videoType = ?  and  videoReview > '4' \n"
 			+ "order by uploadDate desc limit 5;";
 
 	private String sqlContinue5 = "select * from Video vid\n"
 			+ "join  MemberWatchDuration mwd on vid.videoId = mwd.videoId\n"
 			+ "where videoType = ? and memberId = ? limit 5;";
 
-	private String sqlRecommended5 = "SELECT * FROM Video\n"
-			+ "WHERE videoType = ? \n"
+	private String sqlRecommended5 = "SELECT * FROM Video\n" + "WHERE videoType = ? \n"
 			+ "ORDER BY views DESC, VideoReview DESC limit 5;";
-	
-//	加入片單
-	private String sqlInsert ="insert  into Ocean.Favourites(videoId,memberId)\n"
-			+ "values(?,?);";
 
-	
+//	加入片單
+	private String sqlInsert = "insert  into Ocean.Favourites(videoId,memberId)\n" + "values(?,?);";
+
+	// 首頁影片(探索全部)
+	private String sqlIndexTopStatus = "select * from Video where homeTopStatus = ? ;";
+
+	private String sqlIndexUpLoad = "select * from Video order by uploadDate desc;";
+
+	private String sqlIndexUpLoadTop10 = "select * from Video where videoReview > '4'order by uploadDate desc;";
+
+	private String sqlIndexContinue = "select * from Video vid join  MemberWatchDuration mwd on vid.videoId = mwd.videoId where memberId = ?;";
+
+	private String sqlIndexRecommended = "SELECT * FROM Video ORDER BY views DESC, VideoReview DESC;";
+
+	// 首頁影片
+	private String sqlIndexUpLoad5 = "select * from Video order by uploadDate desc limit 5;";
+
+	private String sqlIndexUpLoadTop105 = "select * from Video where  videoReview > '4' order by uploadDate desc limit 5;";
+
+	private String sqlIndexContinue5 = "select * from Video vid join  MemberWatchDuration mwd on vid.videoId = mwd.videoId where  memberId = ? limit 5;";
+
+	private String sqlIndexRecommended5 = "SELECT * FROM Video ORDER BY views DESC, VideoReview DESC limit 5;";
+
+	// 首頁搜尋bar
+	private String sqlIndexSearch = "select * from Video where videoName like ?";
+
+//找電影及戲劇封面照
+//		搜尋bar
+	private String sqlSearchVideoImg = "select picture from Video where videoId = ?";
+
 //	private String sqlRecommendedUser = "SELECT memberId, videoType, SUM(viewCount) AS totalViewCount\n"
 //			+ "FROM (\n"
 //			+ "    SELECT mem.memberId, vid.videoType, COUNT(*) AS viewCount\n"
@@ -94,21 +114,20 @@ public class VideoImpl implements VideoDao {
 //		}
 		new VideoImpl().insertVideo(10, 3);
 	}
-	
-	
-	//搜尋bar
+
+	// 搜尋bar
 	@Override
 	public List<Video> searchMovie(String videoType, String videoName) {
 		List<Video> videos = new ArrayList<Video>();
-		
+
 		try (Connection connection = DriverManager.getConnection(url, user, password);
-				PreparedStatement preparedStatement = connection.prepareStatement(sqlSearch)){
-			
+				PreparedStatement preparedStatement = connection.prepareStatement(sqlSearch)) {
+
 			preparedStatement.setString(1, videoType);
 			preparedStatement.setString(2, videoName);
-			
+
 			ResultSet rs = preparedStatement.executeQuery();
-			
+
 			while (rs.next()) {
 				Video v = new Video();
 
@@ -144,12 +163,12 @@ public class VideoImpl implements VideoDao {
 	// 透過影片年份篩選（篩選器-年份）
 	@Override
 	public List<Video> selectMovieYear(String videoType, Integer videostartYear, Integer videoEndYear) {
-			
+
 		List<Video> videos = new ArrayList<Video>();
-			
+
 		try (Connection connection = DriverManager.getConnection(url, user, password);
 				PreparedStatement preparedStatement = connection.prepareStatement(sqlYear)) {
-	
+
 			preparedStatement.setString(1, videoType);
 			preparedStatement.setInt(2, videostartYear);
 			preparedStatement.setInt(3, videoEndYear);
@@ -238,11 +257,10 @@ public class VideoImpl implements VideoDao {
 	public List<Video> selectMovieType(String videoType, Integer domainId) {
 
 		List<Video> videos = new ArrayList<Video>();
-		
-		 
-		try( Connection connection  = DriverManager.getConnection(url, user, password);
+
+		try (Connection connection = DriverManager.getConnection(url, user, password);
 				PreparedStatement preparedStatement = connection.prepareStatement(sqlDomain)) {
-		    
+
 			preparedStatement.setString(1, videoType);
 			preparedStatement.setInt(2, domainId);
 
@@ -415,7 +433,7 @@ public class VideoImpl implements VideoDao {
 
 //	透過影片編號找影片（繼續觀看）
 	@Override
-	public List<Video> selectMovieContinue(String videoType,Integer memberId) {
+	public List<Video> selectMovieContinue(String videoType, Integer memberId) {
 
 		List<Video> videos = new ArrayList<Video>();
 
@@ -542,196 +560,657 @@ public class VideoImpl implements VideoDao {
 //		}
 //		return videos;
 //	}
-		
 
 //透過上架時間篩選影片（最新上線）
-@Override
-public List<Video> selectLastOnline5(String videoType) {
+	@Override
+	public List<Video> selectLastOnline5(String videoType) {
 
-	List<Video> videos = new ArrayList<Video>();
+		List<Video> videos = new ArrayList<Video>();
 
-	try (Connection connection = DriverManager.getConnection(url, user, password);
-			PreparedStatement preparedStatement = connection.prepareStatement(sqlUpLoad5)) {
-		preparedStatement.setString(1, videoType);
+		try (Connection connection = DriverManager.getConnection(url, user, password);
+				PreparedStatement preparedStatement = connection.prepareStatement(sqlUpLoad5)) {
+			preparedStatement.setString(1, videoType);
 
-		ResultSet rs = preparedStatement.executeQuery();
+			ResultSet rs = preparedStatement.executeQuery();
 
-		while (rs.next()) {
-			Video v = new Video();
+			while (rs.next()) {
+				Video v = new Video();
 
-			v.setVideoId(rs.getInt(1));
-			v.setVideoName(rs.getString(2));
-			v.setVideoType(rs.getString(3));
-			v.setVideoYear(rs.getInt(4));
-			v.setVideoArea(rs.getString(5));
-			v.setVideoDirector(rs.getString(6));
-			v.setVideoActor(rs.getString(7));
-			v.setVideoLength(rs.getInt(8));
-			v.setVideoSeason(rs.getInt(9));
-			v.setVideoEpisode(rs.getInt(10));
-			v.setVideoPath(rs.getString(11));
-			v.setAdminId(rs.getInt(12));
-			v.setUploadDate(rs.getString(13));
-			v.setVideoReview(rs.getString(14));
-			v.setDomainId(rs.getInt(15));
-			v.setHomeTopStatus(rs.getString(16));
-			v.setIntroduction(rs.getString(17));
-			v.setViews(rs.getInt(18));
-			v.setSave(rs.getInt(19));
-			v.setPicture(rs.getBytes(20));
+				v.setVideoId(rs.getInt(1));
+				v.setVideoName(rs.getString(2));
+				v.setVideoType(rs.getString(3));
+				v.setVideoYear(rs.getInt(4));
+				v.setVideoArea(rs.getString(5));
+				v.setVideoDirector(rs.getString(6));
+				v.setVideoActor(rs.getString(7));
+				v.setVideoLength(rs.getInt(8));
+				v.setVideoSeason(rs.getInt(9));
+				v.setVideoEpisode(rs.getInt(10));
+				v.setVideoPath(rs.getString(11));
+				v.setAdminId(rs.getInt(12));
+				v.setUploadDate(rs.getString(13));
+				v.setVideoReview(rs.getString(14));
+				v.setDomainId(rs.getInt(15));
+				v.setHomeTopStatus(rs.getString(16));
+				v.setIntroduction(rs.getString(17));
+				v.setViews(rs.getInt(18));
+				v.setSave(rs.getInt(19));
+				v.setPicture(rs.getBytes(20));
 
-			videos.add(v);
+				videos.add(v);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-	} catch (Exception e) {
-		e.printStackTrace();
+		return videos;
 	}
-	return videos;
-}
 
 //透過上架時間和評分篩選影片（最新電影top10）
-@Override
-public List<Video> selectMovieTop105(String videoType) {
+	@Override
+	public List<Video> selectMovieTop105(String videoType) {
 
-	List<Video> videos = new ArrayList<Video>();
+		List<Video> videos = new ArrayList<Video>();
 
-	try (Connection connection = DriverManager.getConnection(url, user, password);
-			PreparedStatement preparedStatement = connection.prepareStatement(sqlUpLoadTop105)) {
-		preparedStatement.setString(1, videoType);
+		try (Connection connection = DriverManager.getConnection(url, user, password);
+				PreparedStatement preparedStatement = connection.prepareStatement(sqlUpLoadTop105)) {
+			preparedStatement.setString(1, videoType);
 
-		ResultSet rs = preparedStatement.executeQuery();
+			ResultSet rs = preparedStatement.executeQuery();
 
-		while (rs.next()) {
-			Video v = new Video();
+			while (rs.next()) {
+				Video v = new Video();
 
-			v.setVideoId(rs.getInt(1));
-			v.setVideoName(rs.getString(2));
-			v.setVideoType(rs.getString(3));
-			v.setVideoYear(rs.getInt(4));
-			v.setVideoArea(rs.getString(5));
-			v.setVideoDirector(rs.getString(6));
-			v.setVideoActor(rs.getString(7));
-			v.setVideoLength(rs.getInt(8));
-			v.setVideoSeason(rs.getInt(9));
-			v.setVideoEpisode(rs.getInt(10));
-			v.setVideoPath(rs.getString(11));
-			v.setAdminId(rs.getInt(12));
-			v.setUploadDate(rs.getString(13));
-			v.setVideoReview(rs.getString(14));
-			v.setDomainId(rs.getInt(15));
-			v.setHomeTopStatus(rs.getString(16));
-			v.setIntroduction(rs.getString(17));
-			v.setViews(rs.getInt(18));
-			v.setSave(rs.getInt(19));
-			v.setPicture(rs.getBytes(20));
+				v.setVideoId(rs.getInt(1));
+				v.setVideoName(rs.getString(2));
+				v.setVideoType(rs.getString(3));
+				v.setVideoYear(rs.getInt(4));
+				v.setVideoArea(rs.getString(5));
+				v.setVideoDirector(rs.getString(6));
+				v.setVideoActor(rs.getString(7));
+				v.setVideoLength(rs.getInt(8));
+				v.setVideoSeason(rs.getInt(9));
+				v.setVideoEpisode(rs.getInt(10));
+				v.setVideoPath(rs.getString(11));
+				v.setAdminId(rs.getInt(12));
+				v.setUploadDate(rs.getString(13));
+				v.setVideoReview(rs.getString(14));
+				v.setDomainId(rs.getInt(15));
+				v.setHomeTopStatus(rs.getString(16));
+				v.setIntroduction(rs.getString(17));
+				v.setViews(rs.getInt(18));
+				v.setSave(rs.getInt(19));
+				v.setPicture(rs.getBytes(20));
 
-			videos.add(v);
+				videos.add(v);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-	} catch (Exception e) {
-		e.printStackTrace();
+		return videos;
 	}
-	return videos;
-}
 
 //透過影片編號找影片（繼續觀看）
-@Override
-public List<Video> selectMovieContinue5(String videoType,Integer memberId) {
+	@Override
+	public List<Video> selectMovieContinue5(String videoType, Integer memberId) {
 
-	List<Video> videos = new ArrayList<Video>();
+		List<Video> videos = new ArrayList<Video>();
 
-	try (Connection connection = DriverManager.getConnection(url, user, password);
-			PreparedStatement preparedStatement = connection.prepareStatement(sqlContinue5)) {
-		preparedStatement.setString(1, videoType);
-		preparedStatement.setInt(2, memberId);
+		try (Connection connection = DriverManager.getConnection(url, user, password);
+				PreparedStatement preparedStatement = connection.prepareStatement(sqlContinue5)) {
+			preparedStatement.setString(1, videoType);
+			preparedStatement.setInt(2, memberId);
 
-		ResultSet rs = preparedStatement.executeQuery();
+			ResultSet rs = preparedStatement.executeQuery();
 
-		while (rs.next()) {
-			Video v = new Video();
+			while (rs.next()) {
+				Video v = new Video();
 
-			v.setVideoId(rs.getInt(1));
-			v.setVideoName(rs.getString(2));
-			v.setVideoType(rs.getString(3));
-			v.setVideoYear(rs.getInt(4));
-			v.setVideoArea(rs.getString(5));
-			v.setVideoDirector(rs.getString(6));
-			v.setVideoActor(rs.getString(7));
-			v.setVideoLength(rs.getInt(8));
-			v.setVideoSeason(rs.getInt(9));
-			v.setVideoEpisode(rs.getInt(10));
-			v.setVideoPath(rs.getString(11));
-			v.setAdminId(rs.getInt(12));
-			v.setUploadDate(rs.getString(13));
-			v.setVideoReview(rs.getString(14));
-			v.setDomainId(rs.getInt(15));
-			v.setHomeTopStatus(rs.getString(16));
-			v.setIntroduction(rs.getString(17));
-			v.setViews(rs.getInt(18));
-			v.setSave(rs.getInt(19));
-			v.setPicture(rs.getBytes(20));
+				v.setVideoId(rs.getInt(1));
+				v.setVideoName(rs.getString(2));
+				v.setVideoType(rs.getString(3));
+				v.setVideoYear(rs.getInt(4));
+				v.setVideoArea(rs.getString(5));
+				v.setVideoDirector(rs.getString(6));
+				v.setVideoActor(rs.getString(7));
+				v.setVideoLength(rs.getInt(8));
+				v.setVideoSeason(rs.getInt(9));
+				v.setVideoEpisode(rs.getInt(10));
+				v.setVideoPath(rs.getString(11));
+				v.setAdminId(rs.getInt(12));
+				v.setUploadDate(rs.getString(13));
+				v.setVideoReview(rs.getString(14));
+				v.setDomainId(rs.getInt(15));
+				v.setHomeTopStatus(rs.getString(16));
+				v.setIntroduction(rs.getString(17));
+				v.setViews(rs.getInt(18));
+				v.setSave(rs.getInt(19));
+				v.setPicture(rs.getBytes(20));
 
-			videos.add(v);
+				videos.add(v);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-	} catch (Exception e) {
-		e.printStackTrace();
+		return videos;
 	}
-	return videos;
-}
 
 //透過瀏覽次數 收藏次數 評分篩選影片(熱門推薦)
-@Override
-public List<Video> selectRecommendedMovie5(String videoType) {
+	@Override
+	public List<Video> selectRecommendedMovie5(String videoType) {
 
-	List<Video> videos = new ArrayList<Video>();
+		List<Video> videos = new ArrayList<Video>();
 
-	try (Connection connection = DriverManager.getConnection(url, user, password);
-			PreparedStatement preparedStatement = connection.prepareStatement(sqlRecommended5)) {
-		preparedStatement.setString(1, videoType);
+		try (Connection connection = DriverManager.getConnection(url, user, password);
+				PreparedStatement preparedStatement = connection.prepareStatement(sqlRecommended5)) {
+			preparedStatement.setString(1, videoType);
 
-		ResultSet rs = preparedStatement.executeQuery();
+			ResultSet rs = preparedStatement.executeQuery();
 
-		while (rs.next()) {
-			Video v = new Video();
+			while (rs.next()) {
+				Video v = new Video();
 
-			v.setVideoId(rs.getInt(1));
-			v.setVideoName(rs.getString(2));
-			v.setVideoType(rs.getString(3));
-			v.setVideoYear(rs.getInt(4));
-			v.setVideoArea(rs.getString(5));
-			v.setVideoDirector(rs.getString(6));
-			v.setVideoActor(rs.getString(7));
-			v.setVideoLength(rs.getInt(8));
-			v.setVideoSeason(rs.getInt(9));
-			v.setVideoEpisode(rs.getInt(10));
-			v.setVideoPath(rs.getString(11));
-			v.setAdminId(rs.getInt(12));
-			v.setUploadDate(rs.getString(13));
-			v.setVideoReview(rs.getString(14));
-			v.setDomainId(rs.getInt(15));
-			v.setHomeTopStatus(rs.getString(16));
-			v.setIntroduction(rs.getString(17));
-			v.setViews(rs.getInt(18));
-			v.setSave(rs.getInt(19));
-			v.setPicture(rs.getBytes(20));
+				v.setVideoId(rs.getInt(1));
+				v.setVideoName(rs.getString(2));
+				v.setVideoType(rs.getString(3));
+				v.setVideoYear(rs.getInt(4));
+				v.setVideoArea(rs.getString(5));
+				v.setVideoDirector(rs.getString(6));
+				v.setVideoActor(rs.getString(7));
+				v.setVideoLength(rs.getInt(8));
+				v.setVideoSeason(rs.getInt(9));
+				v.setVideoEpisode(rs.getInt(10));
+				v.setVideoPath(rs.getString(11));
+				v.setAdminId(rs.getInt(12));
+				v.setUploadDate(rs.getString(13));
+				v.setVideoReview(rs.getString(14));
+				v.setDomainId(rs.getInt(15));
+				v.setHomeTopStatus(rs.getString(16));
+				v.setIntroduction(rs.getString(17));
+				v.setViews(rs.getInt(18));
+				v.setSave(rs.getInt(19));
+				v.setPicture(rs.getBytes(20));
 
-			videos.add(v);
+				videos.add(v);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-	} catch (Exception e) {
-		e.printStackTrace();
+		return videos;
 	}
-	return videos;
-}
 
 //加入片單
-	public int insertVideo(Integer videoId,Integer memberId) {
-		try(Connection connection = DriverManager.getConnection(url, user, password);
+	public int insertVideo(Integer videoId, Integer memberId) {
+		System.out.println("insertVideo");
+		try (Connection connection = DriverManager.getConnection(url, user, password);
 				PreparedStatement preparedStatement = connection.prepareStatement(sqlInsert)) {
 			preparedStatement.setInt(1, videoId);
 			preparedStatement.setInt(2, memberId);
-//			return preparedStatement.executeUpdate();
+			return preparedStatement.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return -1;
 	}
+
+	// 首頁
+//	透過首頁置頂篩選影片照片（熱門影片）
+	@Override
+	public List<Video> selectTopMovie(String homeTopStatus) {
+
+		List<Video> videos = new ArrayList<Video>();
+
+		try (Connection connection = DriverManager.getConnection(url, user, password);
+				PreparedStatement preparedStatement = connection.prepareStatement(sqlIndexTopStatus);) {
+			preparedStatement.setString(1, homeTopStatus);
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				Video v = new Video();
+
+				v.setVideoId(rs.getInt(1));
+				v.setVideoName(rs.getString(2));
+				v.setVideoType(rs.getString(3));
+				v.setVideoYear(rs.getInt(4));
+				v.setVideoArea(rs.getString(5));
+				v.setVideoDirector(rs.getString(6));
+				v.setVideoActor(rs.getString(7));
+				v.setVideoLength(rs.getInt(8));
+				v.setVideoSeason(rs.getInt(9));
+				v.setVideoEpisode(rs.getInt(10));
+				v.setVideoPath(rs.getString(11));
+				v.setAdminId(rs.getInt(12));
+				v.setUploadDate(rs.getString(13));
+				v.setVideoReview(rs.getString(14));
+				v.setDomainId(rs.getInt(15));
+				v.setHomeTopStatus(rs.getString(16));
+				v.setIntroduction(rs.getString(17));
+				v.setViews(rs.getInt(18));
+				v.setSave(rs.getInt(19));
+				v.setPicture(rs.getBytes(20));
+
+				videos.add(v);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return videos;
+	}
+
+//	透過上架時間篩選影片（最新上線）
+	@Override
+	public List<Video> selectLastOnline() {
+
+		List<Video> videos = new ArrayList<Video>();
+
+		try (Connection connection = DriverManager.getConnection(url, user, password);
+				PreparedStatement preparedStatement = connection.prepareStatement(sqlIndexUpLoad)) {
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				Video v = new Video();
+
+				v.setVideoId(rs.getInt(1));
+				v.setVideoName(rs.getString(2));
+				v.setVideoType(rs.getString(3));
+				v.setVideoYear(rs.getInt(4));
+				v.setVideoArea(rs.getString(5));
+				v.setVideoDirector(rs.getString(6));
+				v.setVideoActor(rs.getString(7));
+				v.setVideoLength(rs.getInt(8));
+				v.setVideoSeason(rs.getInt(9));
+				v.setVideoEpisode(rs.getInt(10));
+				v.setVideoPath(rs.getString(11));
+				v.setAdminId(rs.getInt(12));
+				v.setUploadDate(rs.getString(13));
+				v.setVideoReview(rs.getString(14));
+				v.setDomainId(rs.getInt(15));
+				v.setHomeTopStatus(rs.getString(16));
+				v.setIntroduction(rs.getString(17));
+				v.setViews(rs.getInt(18));
+				v.setSave(rs.getInt(19));
+				v.setPicture(rs.getBytes(20));
+
+				videos.add(v);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return videos;
+	}
+
+//	透過上架時間和評分篩選影片（最新電影top10）
+	@Override
+	public List<Video> selectMovieTop10() {
+
+		List<Video> videos = new ArrayList<Video>();
+
+		try (Connection connection = DriverManager.getConnection(url, user, password);
+				PreparedStatement preparedStatement = connection.prepareStatement(sqlIndexUpLoadTop10)) {
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				Video v = new Video();
+
+				v.setVideoId(rs.getInt(1));
+				v.setVideoName(rs.getString(2));
+				v.setVideoType(rs.getString(3));
+				v.setVideoYear(rs.getInt(4));
+				v.setVideoArea(rs.getString(5));
+				v.setVideoDirector(rs.getString(6));
+				v.setVideoActor(rs.getString(7));
+				v.setVideoLength(rs.getInt(8));
+				v.setVideoSeason(rs.getInt(9));
+				v.setVideoEpisode(rs.getInt(10));
+				v.setVideoPath(rs.getString(11));
+				v.setAdminId(rs.getInt(12));
+				v.setUploadDate(rs.getString(13));
+				v.setVideoReview(rs.getString(14));
+				v.setDomainId(rs.getInt(15));
+				v.setHomeTopStatus(rs.getString(16));
+				v.setIntroduction(rs.getString(17));
+				v.setViews(rs.getInt(18));
+				v.setSave(rs.getInt(19));
+				v.setPicture(rs.getBytes(20));
+
+				videos.add(v);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return videos;
+	}
+
+//	透過影片編號找影片（繼續觀看）
+	@Override
+	public List<Video> selectMovieContinue(Integer memberId) {
+
+		List<Video> videos = new ArrayList<Video>();
+
+		try (Connection connection = DriverManager.getConnection(url, user, password);
+				PreparedStatement preparedStatement = connection.prepareStatement(sqlIndexContinue)) {
+			preparedStatement.setInt(1, memberId);
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				Video v = new Video();
+
+				v.setVideoId(rs.getInt(1));
+				v.setVideoName(rs.getString(2));
+				v.setVideoType(rs.getString(3));
+				v.setVideoYear(rs.getInt(4));
+				v.setVideoArea(rs.getString(5));
+				v.setVideoDirector(rs.getString(6));
+				v.setVideoActor(rs.getString(7));
+				v.setVideoLength(rs.getInt(8));
+				v.setVideoSeason(rs.getInt(9));
+				v.setVideoEpisode(rs.getInt(10));
+				v.setVideoPath(rs.getString(11));
+				v.setAdminId(rs.getInt(12));
+				v.setUploadDate(rs.getString(13));
+				v.setVideoReview(rs.getString(14));
+				v.setDomainId(rs.getInt(15));
+				v.setHomeTopStatus(rs.getString(16));
+				v.setIntroduction(rs.getString(17));
+				v.setViews(rs.getInt(18));
+				v.setSave(rs.getInt(19));
+				v.setPicture(rs.getBytes(20));
+
+				videos.add(v);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return videos;
+	}
+
+//	透過瀏覽次數 收藏次數 評分篩選影片(熱門推薦)
+	@Override
+	public List<Video> selectRecommendedMovie() {
+
+		List<Video> videos = new ArrayList<Video>();
+
+		try (Connection connection = DriverManager.getConnection(url, user, password);
+				PreparedStatement preparedStatement = connection.prepareStatement(sqlIndexRecommended)) {
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				Video v = new Video();
+
+				v.setVideoId(rs.getInt(1));
+				v.setVideoName(rs.getString(2));
+				v.setVideoType(rs.getString(3));
+				v.setVideoYear(rs.getInt(4));
+				v.setVideoArea(rs.getString(5));
+				v.setVideoDirector(rs.getString(6));
+				v.setVideoActor(rs.getString(7));
+				v.setVideoLength(rs.getInt(8));
+				v.setVideoSeason(rs.getInt(9));
+				v.setVideoEpisode(rs.getInt(10));
+				v.setVideoPath(rs.getString(11));
+				v.setAdminId(rs.getInt(12));
+				v.setUploadDate(rs.getString(13));
+				v.setVideoReview(rs.getString(14));
+				v.setDomainId(rs.getInt(15));
+				v.setHomeTopStatus(rs.getString(16));
+				v.setIntroduction(rs.getString(17));
+				v.setViews(rs.getInt(18));
+				v.setSave(rs.getInt(19));
+				v.setPicture(rs.getBytes(20));
+
+				videos.add(v);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return videos;
+	}
+
+	// 透過上架時間篩選影片（最新上線）
+	@Override
+	public List<Video> selectLastOnline5() {
+
+		List<Video> videos = new ArrayList<Video>();
+
+		try (Connection connection = DriverManager.getConnection(url, user, password);
+				PreparedStatement preparedStatement = connection.prepareStatement(sqlIndexUpLoad5)) {
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				Video v = new Video();
+
+				v.setVideoId(rs.getInt(1));
+				v.setVideoName(rs.getString(2));
+				v.setVideoType(rs.getString(3));
+				v.setVideoYear(rs.getInt(4));
+				v.setVideoArea(rs.getString(5));
+				v.setVideoDirector(rs.getString(6));
+				v.setVideoActor(rs.getString(7));
+				v.setVideoLength(rs.getInt(8));
+				v.setVideoSeason(rs.getInt(9));
+				v.setVideoEpisode(rs.getInt(10));
+				v.setVideoPath(rs.getString(11));
+				v.setAdminId(rs.getInt(12));
+				v.setUploadDate(rs.getString(13));
+				v.setVideoReview(rs.getString(14));
+				v.setDomainId(rs.getInt(15));
+				v.setHomeTopStatus(rs.getString(16));
+				v.setIntroduction(rs.getString(17));
+				v.setViews(rs.getInt(18));
+				v.setSave(rs.getInt(19));
+				v.setPicture(rs.getBytes(20));
+
+				videos.add(v);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return videos;
+	}
+
+	// 透過上架時間和評分篩選影片（最新電影top10）
+	@Override
+	public List<Video> selectMovieTop105() {
+
+		List<Video> videos = new ArrayList<Video>();
+
+		try (Connection connection = DriverManager.getConnection(url, user, password);
+				PreparedStatement preparedStatement = connection.prepareStatement(sqlIndexUpLoadTop105)) {
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				Video v = new Video();
+
+				v.setVideoId(rs.getInt(1));
+				v.setVideoName(rs.getString(2));
+				v.setVideoType(rs.getString(3));
+				v.setVideoYear(rs.getInt(4));
+				v.setVideoArea(rs.getString(5));
+				v.setVideoDirector(rs.getString(6));
+				v.setVideoActor(rs.getString(7));
+				v.setVideoLength(rs.getInt(8));
+				v.setVideoSeason(rs.getInt(9));
+				v.setVideoEpisode(rs.getInt(10));
+				v.setVideoPath(rs.getString(11));
+				v.setAdminId(rs.getInt(12));
+				v.setUploadDate(rs.getString(13));
+				v.setVideoReview(rs.getString(14));
+				v.setDomainId(rs.getInt(15));
+				v.setHomeTopStatus(rs.getString(16));
+				v.setIntroduction(rs.getString(17));
+				v.setViews(rs.getInt(18));
+				v.setSave(rs.getInt(19));
+				v.setPicture(rs.getBytes(20));
+
+				videos.add(v);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return videos;
+	}
+
+	// 透過影片編號找影片（繼續觀看）
+	@Override
+	public List<Video> selectMovieContinue5(Integer memberId) {
+
+		List<Video> videos = new ArrayList<Video>();
+
+		try (Connection connection = DriverManager.getConnection(url, user, password);
+				PreparedStatement preparedStatement = connection.prepareStatement(sqlIndexContinue5)) {
+			preparedStatement.setInt(1, memberId);
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				Video v = new Video();
+
+				v.setVideoId(rs.getInt(1));
+				v.setVideoName(rs.getString(2));
+				v.setVideoType(rs.getString(3));
+				v.setVideoYear(rs.getInt(4));
+				v.setVideoArea(rs.getString(5));
+				v.setVideoDirector(rs.getString(6));
+				v.setVideoActor(rs.getString(7));
+				v.setVideoLength(rs.getInt(8));
+				v.setVideoSeason(rs.getInt(9));
+				v.setVideoEpisode(rs.getInt(10));
+				v.setVideoPath(rs.getString(11));
+				v.setAdminId(rs.getInt(12));
+				v.setUploadDate(rs.getString(13));
+				v.setVideoReview(rs.getString(14));
+				v.setDomainId(rs.getInt(15));
+				v.setHomeTopStatus(rs.getString(16));
+				v.setIntroduction(rs.getString(17));
+				v.setViews(rs.getInt(18));
+				v.setSave(rs.getInt(19));
+				v.setPicture(rs.getBytes(20));
+
+				videos.add(v);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return videos;
+	}
+
+	// 透過瀏覽次數 收藏次數 評分篩選影片(熱門推薦)
+	@Override
+	public List<Video> selectRecommendedMovie5() {
+
+		List<Video> videos = new ArrayList<Video>();
+
+		try (Connection connection = DriverManager.getConnection(url, user, password);
+				PreparedStatement preparedStatement = connection.prepareStatement(sqlIndexRecommended5)) {
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				Video v = new Video();
+
+				v.setVideoId(rs.getInt(1));
+				v.setVideoName(rs.getString(2));
+				v.setVideoType(rs.getString(3));
+				v.setVideoYear(rs.getInt(4));
+				v.setVideoArea(rs.getString(5));
+				v.setVideoDirector(rs.getString(6));
+				v.setVideoActor(rs.getString(7));
+				v.setVideoLength(rs.getInt(8));
+				v.setVideoSeason(rs.getInt(9));
+				v.setVideoEpisode(rs.getInt(10));
+				v.setVideoPath(rs.getString(11));
+				v.setAdminId(rs.getInt(12));
+				v.setUploadDate(rs.getString(13));
+				v.setVideoReview(rs.getString(14));
+				v.setDomainId(rs.getInt(15));
+				v.setHomeTopStatus(rs.getString(16));
+				v.setIntroduction(rs.getString(17));
+				v.setViews(rs.getInt(18));
+				v.setSave(rs.getInt(19));
+				v.setPicture(rs.getBytes(20));
+
+				videos.add(v);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return videos;
+	}
+
+	// 搜尋bar
+	@Override
+	public List<Video> searchMovie(String videoName) {
+		List<Video> videos = new ArrayList<Video>();
+
+		try (Connection connection = DriverManager.getConnection(url, user, password);
+				PreparedStatement preparedStatement = connection.prepareStatement(sqlIndexSearch)) {
+
+			preparedStatement.setString(1, videoName);
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				Video v = new Video();
+
+				v.setVideoId(rs.getInt(1));
+				v.setVideoName(rs.getString(2));
+				v.setVideoType(rs.getString(3));
+				v.setVideoYear(rs.getInt(4));
+				v.setVideoArea(rs.getString(5));
+				v.setVideoDirector(rs.getString(6));
+				v.setVideoActor(rs.getString(7));
+				v.setVideoLength(rs.getInt(8));
+				v.setVideoSeason(rs.getInt(9));
+				v.setVideoEpisode(rs.getInt(10));
+				v.setVideoPath(rs.getString(11));
+				v.setAdminId(rs.getInt(12));
+				v.setUploadDate(rs.getString(13));
+				v.setVideoReview(rs.getString(14));
+				v.setDomainId(rs.getInt(15));
+				v.setHomeTopStatus(rs.getString(16));
+				v.setIntroduction(rs.getString(17));
+				v.setViews(rs.getInt(18));
+				v.setSave(rs.getInt(19));
+				v.setPicture(rs.getBytes(20));
+
+				videos.add(v);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return videos;
+	}
+
+//		取出電影及戲劇封面照片
+	// 搜尋bar
+	@Override
+	public Video searchAllImg(Integer videoId) {
+		
+		Video video  =null;
+
+		try (Connection connection = DriverManager.getConnection(url, user, password);
+				PreparedStatement preparedStatement = connection.prepareStatement(sqlSearchVideoImg)) {
+
+			preparedStatement.setInt(1, videoId);
+
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while (rs.next()) {
+				video  = new Video();
+
+				video.setPicture(rs.getBytes(1));
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return video;
+	}
+
 }
-	

@@ -163,7 +163,8 @@
                         <div class="nav-item dropdown">
                             <button type="button" class="btn dropdown-toggle" id="navbarDropdownUserLink"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="../img/user.webp" alt="" style="width: 40px; height: 40px;">
+                                <!-- <img src="../img/user.webp" alt="" style="width: 40px; height: 40px;"> -->
+                                <img src="" alt="" id="userImg" style="width: 40px;height: 40px;">
                             </button>
                             <!-- user下拉選單 -->
                             <ul class="dropdown-menu dropdown-menu-end mt-2" style="opacity: 80%;"
@@ -254,8 +255,8 @@
         <div class="container mt-5">
             <ul class="footer_detail d-flex justify-content-center list-unstyled">
                 <li class="px-2"><a href="../index/qaIndex.html">常見問題</a></li>
-                <li class="px-2"><a href="../index/copyright.html">版權聲明</a></li>
-                <li class="px-2"><a href="../index/instruction.html">使用說明</a></li>
+                <li class="px-2"><a href="../index/privacyAndTerms.html">隱私權</a></li>
+            <li class="px-2"><a href="../index/legalNotices.html">法律聲明</a></li>
                 <li class="px-2"><a href="../index/aboutUs.html">關於我們</a></li>
             </ul>
             <span class="d-flex justify-content-center">Copyright© 2023 Ocean.All rights reserved.</span>
@@ -270,6 +271,11 @@
             crossorigin="anonymous"></script>
 
         <script>
+            //=================================從session取得memberId======================================//
+            const memberId = sessionStorage.getItem("memberId");
+
+            //=================================搜尋使用者img======================================//
+            document.getElementById("userImg").setAttribute("src", "http://localhost:8080/Ocean/web/controller/selectMemberImgController?memberId=" + memberId );
 
             //==============================================動態生成景點列表============================================================//
 
@@ -409,67 +415,67 @@
                 }
             });
 
-            //=====================================================SEARCH FUNCTION============================================================//
+             //=================================SEARCH Video FUNCTION======================================//
 
-            let lastSearchText = '';
-            $(document).ready(function () {
-                $("#searchButton").click(function () {
-                    $("#searchInput").focus();
-                });
+        let lastSearchText = '';
+        $(document).ready(function () {
+            $("#searchButton").click(function () {
+                $("#searchInput").focus();
             });
+        });
 
-            const searchInput = document.getElementById("searchInput");
-            const sv = document.getElementById('searchVideo');
+        const searchInput = document.getElementById("searchInput");
+        const sv = document.getElementById('searchVideo');
 
-            searchInput.addEventListener("keypress", function (e) {
+        searchInput.addEventListener("keypress", function (e) {
 
-                if (e.keyCode === 13) {
-                    const searchText = searchInput.value.trim();
+            if (e.keyCode === 13) {
+                const searchText = searchInput.value.trim();
 
-                    if (searchText === '') {
-                        sv.innerHTML = '';
-                        return;
-                    }
-
-                    // 先清空之前的結果
+                if (searchText === '') {
                     sv.innerHTML = '';
+                    return;
+                }
 
-                    // 更新上一次的搜尋內容
-                    lastSearchText = searchText;
+                // 清空之前搜尋的結果
+                sv.innerHTML = '';
 
-                    $.ajax({
-                        url: "/Ocean/web/controller/favoriteMapSearchController", // 資料請求的網址
-                        type: "POST",
-                        dataType: "json",
-                        data: JSON.stringify({
-                            videoName: searchText
-                        }),
-                        success: function (data) {
-                            let starRatings = []; // 用來存放每一筆資料的星星數量
+                // 更新上一次的搜尋內容
+                lastSearchText = searchText;
 
-                            for (let i in data) {
-                                console.log(data);
+                $.ajax({
+                    url: "/Ocean/web/controller/indexSearchVideoController",
+                    type: "POST",
+                    dataType: "json",
+                    data: JSON.stringify({
+                        videoName: searchText
+                    }),
+                    success: function (data) {
 
-                                // 將字串轉換為數字
-                                const videoReview = parseInt(data[i].VideoReview, 10); // 假設 data[i].VideoReview 是一個範圍為 "1" 到 "5" 的字串
+                        let starRatings = []; // 用來存放每一筆資料的星星數量
 
-                                // 將星星數量放入陣列
-                                starRatings.push(videoReview);
+                        for (let i in data) {
 
-                                // 生成星星 icon
-                                let starsHtml = '';
-                                for (let j = 1; j <= 5; j++) {
-                                    const starClass = j <= videoReview ? 'bi bi-star-fill checked' : 'bi bi-star';
-                                    starsHtml += `<i class="${starClass}" data-rating="${j}" style="color:#81D8D2"></i>`;
-                                }
+                            // 將字串轉換為數字
+                            const videoReview = parseInt(data[i].VideoReview, 10); // 假設 data[i].VideoReview 是一個範圍為 "1" 到 "5" 的字串
 
-                                let card = document.createElement('div');
-                                card.classList.add('card');
-                                card.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-                                card.innerHTML = `
+                            // 將星星數量放入陣列
+                            starRatings.push(videoReview);
+
+                            // 生成星星 icon
+                            let starsHtml = '';
+                            for (let j = 1; j <= 5; j++) {
+                                const starClass = j <= videoReview ? 'bi bi-star-fill checked' : 'bi bi-star';
+                                starsHtml += `<i class="${starClass}" data-rating="${j}" style="color:#81D8D2"></i>`;
+                            }
+
+                            let card = document.createElement('div');
+                            card.classList.add('card');
+                            card.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+                            card.innerHTML = `
                             <div class="row g-0">
                                 <div class="col-md-4">
-                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSneeWcVqMfMeHC0tLaVFfwcjAgPpRq6jaXYg&usqp=CAU" alt="..." style="width: 150px; height: 100px;">
+                                    <img src="http://localhost:8080/Ocean/web/controller/selectVideoImgController?videoId=${data[i].videoId}" alt="..." style="width: 150px; height: 100px;">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body text-left ms-2">
@@ -479,31 +485,31 @@
                                 </div>
                             </div>
                         `;
-                                sv.appendChild(card);
-                            }
+                            sv.appendChild(card);
                         }
-                    })
-                }
-            });
+                    }
+                })
+            }
+        });
 
-            // 在搜尋欄失去焦點時檢查是否需要清空搜尋結果
-            searchInput.addEventListener("blur", function () {
-                const searchText = searchInput.value.trim();
-                if (searchText === '') {
-                    sv.innerHTML = '';
-                }
-            });
+        // 在搜尋欄失去焦點時檢查是否需要清空搜尋結果
+        searchInput.addEventListener("blur", function () {
+            const searchText = searchInput.value.trim();
+            if (searchText === '') {
+                sv.innerHTML = '';
+            }
+        });
 
-            // 在搜尋欄重新獲得焦點時檢查是否需要重新顯示上一次的搜尋結果
-            searchInput.addEventListener("focus", function () {
-                const searchText = searchInput.value.trim();
-                if (searchText === '' && lastSearchText !== '') {
-                    searchInput.value = lastSearchText;
-                    // 觸發 Enter 鍵事件，重新顯示上一次的搜尋結果
-                    const enterEvent = new KeyboardEvent("keypress", { keyCode: 13 });
-                    searchInput.dispatchEvent(enterEvent);
-                }
-            }); 
+        // 在搜尋欄重新獲得焦點時檢查是否需要重新顯示上一次的搜尋結果
+        searchInput.addEventListener("focus", function () {
+            const searchText = searchInput.value.trim();
+            if (searchText === '' && lastSearchText !== '') {
+                searchInput.value = lastSearchText;
+                // 觸發 Enter 鍵事件，重新顯示上一次的搜尋結果
+                const enterEvent = new KeyboardEvent("keypress", { keyCode: 13 });
+                searchInput.dispatchEvent(enterEvent);
+            }
+        });
 
             //=====================================================頁籤功能==============================================================//
 
