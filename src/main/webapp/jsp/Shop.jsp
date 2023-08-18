@@ -9,7 +9,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<jsp:include page="/jsp/pluginsJs.jsp"></jsp:include>
+<jsp:include page="/jsp/xxx.jsp"></jsp:include>
 <title>Ocean</title>
 <meta name="description" content="">
 <meta name="viewport"
