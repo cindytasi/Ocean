@@ -102,6 +102,38 @@
 		.card {
 			background: transparent;
 		}
+
+
+		#input_div {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			/* height: 100vh; */
+			/* 這將讓 <div> 佔滿整個畫面高度 */
+		}
+
+		#input_div>div {
+			margin-bottom: 10px;
+		}
+
+		#input_div img {
+			width: 10%;
+			height: auto;
+		}
+
+		
+
+		#input_div input,
+		#input_div button {
+			padding: 5px;
+			width: 200px;
+			/* 調整輸入框和按鈕的寬度，以適應表單 */
+		}
+
+		#img_logo {
+			justify-content: center;
+		}
 	</style>
 
 
@@ -171,7 +203,8 @@
 									<li><a class="dropdown-item" href="../index/myAchieve.html">我的成就</a></li>
 									<li><a class="dropdown-item" href="../index/myOrder.html">我的訂單</a></li>
 									<li><a class="dropdown-item" href="../favourites/favourites.html">我的片單</a></li>
-									<li><a class="dropdown-item" href="../memberwatchduration/MemberWatchDuration.html">觀看紀錄</a></li>
+									<li><a class="dropdown-item"
+											href="../memberwatchduration/MemberWatchDuration.html">觀看紀錄</a></li>
 									<li>
 										<hr class="dropdown-divider">
 									</li>
@@ -186,16 +219,15 @@
 
 
 	<div id="input_div">
-		<img src="logo.png" alt="Ocean Logo" style="width: 10%; height: 10%;">
+		<img id="img_logo" src="logo.png" alt="Ocean Logo" style="width: 10%; height: 10%;">
 		<div>
 			<label id="Ocaen_input">Ocaen 會員登入</label>
 		</div>
 		<div>
-			<label class="text-color">email:<input type="text" name="email" id="email" class="input_text"></label>
+			<label >email:<input type="text" name="email" id="email" class="input_text"></label>
 		</div>
 		<div>
-			<label class="text-color">密碼:<input type="password" name="password" id="password"
-					class="input_text"></label>
+			<label >密碼:<input type="password" name="password" id="password" class="input_text"></label>
 		</div>
 		<div>
 			<button id="login_button" type="button" class="btn btn-primary">登入</button>
