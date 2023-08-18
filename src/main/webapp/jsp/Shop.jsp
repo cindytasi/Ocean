@@ -9,7 +9,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<jsp:include page="/jsp/xxx.jsp"></jsp:include>
+<script type="text/javascript" src="<c:url value="/js/jquery/jquery-3.7.0.min.js"/>"></script>
 <title>Ocean</title>
 <meta name="description" content="">
 <meta name="viewport"
