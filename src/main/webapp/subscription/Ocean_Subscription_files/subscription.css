@@ -1,0 +1,30 @@
+
+
+
+
+
+.credit-card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+}
+
+#card-number{
+    color: black;
+}
+
+input[type="text"]:focus {
+    border-color: #007bff;
+}
+
+

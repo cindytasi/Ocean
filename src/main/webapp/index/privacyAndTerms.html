@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ocean</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<style>
+    /* 修改預設 */
+    :root {
+        --bs-blue: #81D8D0;
+    }
+
+    /* 頁面背景色 */
+    body {
+        background: #000;
+        background-image: url("/img/waves_4.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+
+    /* 清單 */
+    .navbar-dark .navbar-nav .nav-link:focus,
+    .navbar-dark .navbar-nav .nav-link:hover {
+        color: var(--bs-blue)
+    }
+
+    .navbar {
+        background: #000;
+    }
+
+    /* search */
+    .bi {
+        color: #fff;
+        font-size: 25px;
+    }
+
+    .bi:hover {
+        color: #81D8D0;
+    }
+
+    /* 下拉選單 */
+    .dropdown-item:hover {
+        font-size: 20px;
+        color: rgb(9, 163, 130);
+    }
+
+    /* search icon */
+    .bi {
+        color: #fff;
+        font-size: 25px;
+    }
+
+    .bi:hover {
+        color: #81D8D0;
+    }
+
+    /* footer */
+    .footer_detail li>a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .footer_detail li>a:hover {
+        color: var(--bs-blue);
+    }
+</style>
+
+<body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top mb-5">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+                <!-- logo -->
+                <div class="logo d-flex">
+                    <a class="navbar-brand" href="../index/oceanIndex.html">
+                        <img src="../logo/logo_-_.png" alt="Ocean Logo" style="width: 50px;height: 50px;">
+                    </a>
+                    <!-- search -->
+                    <div class="input-group my-auto w-50 dropdown">
+                        <input type="text" class="form-control dropdown-toggle" id="searchInput"
+                            placeholder="Search" aria-label="Search" aria-describedby="basic-addon2"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-outline-secondary" type="button" id="searchButton">
+                            <i class="bi bi-search"></i>
+                        </button>
+                        <!-- search影片List -->
+                        <ul class="searchMovie dropdown-menu" aria-labelledby="searchInput"
+                            style="width: 400px; height: 100px;background-color: rgba(0, 0, 0, 0.5);"
+                            id="searchVideo">
+                        </ul>
+                    </div>
+                </div>
+                <!-- 導覽列 -->
+                <div class="list align-items-center">
+                    <ul class="navbar-nav">
+                        <!-- 首頁 -->
+                        <li class="nav-item">
+                            <a class="nav-link active" href="../index/oceanIndex.html">首頁</a>
+                        </li>
+                        <!-- 電影 -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index/movieIndex.html">電影</a>
+                        </li>
+                        <!-- 影集 -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index/seriesIndex.html">影集</a>
+                        </li>
+                        <!-- 藝人商品 -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index/productIndex.html">藝人商品</a>
+                        </li>
+                        <!-- 收藏地圖 -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index/favoriteMapIndex.html">收藏地圖</a>
+                        </li>
+                        <!--user  -->
+                        <div class="nav-item dropdown">
+                            <button type="button" class="btn dropdown-toggle" id="navbarDropdownUserLink"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <!-- <img src="/img/user.webp" alt="" style="width: 40px; height: 40px;"> -->
+                                <img src="" alt="" id="userImg" style="width: 40px;height: 40px;">
+                            </button>
+                            <!-- user下拉選單 -->
+                            <ul class="dropdown-menu dropdown-menu-end mt-2" style="opacity: 80%;"
+                                aria-labelledby="navbarDropdownUserLink">
+                                <li><a class="dropdown-item" href="/aacountIndex.html">帳戶</a></li>
+                                <li><a class="dropdown-item" href="/accountDetail.html">基本資料</a></li>
+                                <li><a class="dropdown-item" href="/myAchieve.html">我的成就</a></li>
+                                <li><a class="dropdown-item" href="/myOrder.html">我的訂單</a></li>
+                                <li><a class="dropdown-item" href="/myList.html">我的片單</a></li>
+                                <li><a class="dropdown-item" href="/watchHistory.html">觀看紀錄</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="/signOut.html">登出</a></li>
+                            </ul>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- privacyAndTerms -->
+    <div class="privacyAndTerms">
+        <div class="aboutUsPic text-center mb-4">
+            <img src="../logo/logo_-_.png" alt="">
+        </div>
+        <section>
+            <h2 class="text-center text-light" style="font-size: 35px;">隱私權和條款</h2>
+            <hr style="color: white;">
+            <div class="oceanContent text-left col-lg-6 m-auto text-light">
+                    <p>歡迎來到  <span style="color: #81D8D0;font-weight: bold;">Ocean</span>  資源網站（下稱「體驗」）！本《隱私權和條款》文件（下稱「條款」）說明本體驗的隱私權做法和條款。</p>
+                    <p>您必須年滿十三 (13) 歲才能與本體驗互動。本體驗、其內容及其服務（統稱「全部體驗」）均僅作參考用途。本體驗的提供者為 <span style="color: #81D8D0;font-weight: bold;">Ocean</span>。</p>
+                    <p>資訊收集與使用</p>
+                    <p>本體驗無須註冊。</p>
+                    <p>當您與我們互動時，系統可能會自動收集某些資訊。例如：您的電腦作業系統類型、裝置和軟體特點（例如：類型和設定）、參照連結網址 (referral URL)、IP 位址（這可讓我們知道您的概略位置）、網頁瀏覽或您與活動的互動之統計資料、瀏覽器和標準網頁伺服器紀錄資訊。我們透過 Cookie、像素標記和網路信標等技術收集這些資訊。這些資訊是支援內部營運之用，例如進行研究和分析以處理體驗的效能問題，以及生成供我們使用的彙總或去識別化報告。</p>
+                    <p>本體驗可能會使用您的智慧型裝置上的客戶端和應用程式，以提供您選項來透過電郵、社群或其他分享應用程式分享資訊。社群外掛元件（包括 Facebook、Twitter、Instagram 和 Pinterest 提供的外掛程式）可讓您在這些平台上分享資訊。社群外掛元件和社群應用程式由該社群網站自行管理，並受其使用條款和隱私權政策的約束。</p>
+                    <p>本體驗的用途</p>
+                    <p>本體驗和任何相關內容或活動僅供您個人使用，不可用於商業目的。在您使用本體驗期間，我們授予您有限、非專屬、不得轉讓的授權來存取本體驗的內容與活動。除上述有限授權外，我們不向您轉讓任何權利、所有權或利益。您同意不公開播放本體驗內容。所有網路連線費用由您自行承擔。</p>
+                    <p>未經 <span style="color: #81D8D0;font-weight: bold;">Ocean</span> 及其授權者的書面許可，您同意不存檔、下載（因個人使用而須進行的快取除外）、重製、散布、修改、展示、公開播放、出版、授權、製作衍生作品、出售或使用本體驗中的內容和資訊，或是從本體驗或透過本體驗取得的內容和資訊。您亦同意不：規避、移除、更改、停用、降級或妨礙本體驗的任何內容保護措施；使用任何機器人 (robot)、網路蜘蛛 (spider)、擷取程式或其他自動方式來存取本體驗；反編譯、反向工程或解譯透過本體驗取得的任何軟體、其他產品或程式；插入任何程式碼或產品或以任何方式操控本體驗的內容；或使用任何資料探勘、資料收集或資料擷取方法。此外，您同意不透過上傳、發佈、寄電郵或其他方式傳送或傳輸任何旨在干擾、破壞或限制，與本體驗相關的任何電腦軟體、硬體或電信設備功能的資料，包括所有軟體病毒或任何電腦程式碼、檔案或程式。</p>
+                    <p>本體驗（包含本體驗提供的所有內容）均受著作權、商業機密或其他智慧財產法律及條約保障。<span style="color: #81D8D0;font-weight: bold;">Ocean</span> 是 <span style="color: #81D8D0;font-weight: bold;">Ocean</span> 的註冊商標。</p>
+                    <p>使用、進入或瀏覽本體驗，即代表您接受並同意本文條款。若您不接受本文條款和/或本文條款的任何更新內容，請勿使用本體驗。</p>         
+            </div>
+        </section>
+    </div>
+
+    <!-- 頁尾 -->
+    <div class="container pt-5 ">
+        <ul class="footer_detail d-flex justify-content-center list-unstyled">
+            <li class="px-2"><a href="../index/qaIndex.html">常見問題</a></li>
+            <li class="px-2"><a href="../index/privacyAndTerms.html">隱私權</a></li>
+            <li class="px-2"><a href="../index/legalNotices.html">法律聲明</a></li>
+            <li class="px-2"><a href="../index/aboutUs.html">關於我們</a></li>
+        </ul>
+        <span class="d-flex justify-content-center">Copyright© 2023 Ocean.All rights reserved.</span>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        //=================================從session取得memberId======================================//
+        const memberId = sessionStorage.getItem("memberId");
+
+        //=================================搜尋使用者img======================================//
+        document.getElementById("userImg").setAttribute("src", "http://localhost:8080/Ocean/web/controller/selectMemberImgController?memberId=" + memberId);
+
+        //=========================SEARCH FUNCTION==================================//
+         //=================================SEARCH Video FUNCTION======================================//
+
+         let lastSearchText = '';
+        $(document).ready(function () {
+            $("#searchButton").click(function () {
+                $("#searchInput").focus();
+            });
+        });
+
+        const searchInput = document.getElementById("searchInput");
+        const sv = document.getElementById('searchVideo');
+
+        searchInput.addEventListener("keypress", function (e) {
+
+            if (e.keyCode === 13) {
+                const searchText = searchInput.value.trim();
+
+                if (searchText === '') {
+                    sv.innerHTML = '';
+                    return;
+                }
+
+                // 清空之前搜尋的結果
+                sv.innerHTML = '';
+
+                // 更新上一次的搜尋內容
+                lastSearchText = searchText;
+
+                $.ajax({
+                    url: "/Ocean/web/controller/indexSearchVideoController",
+                    type: "POST",
+                    dataType: "json",
+                    data: JSON.stringify({
+                        videoName: searchText
+                    }),
+                    success: function (data) {
+
+                        let starRatings = []; // 用來存放每一筆資料的星星數量
+
+                        for (let i in data) {
+
+                            // 將字串轉換為數字
+                            const videoReview = parseInt(data[i].VideoReview, 10); // 假設 data[i].VideoReview 是一個範圍為 "1" 到 "5" 的字串
+
+                            // 將星星數量放入陣列
+                            starRatings.push(videoReview);
+
+                            // 生成星星 icon
+                            let starsHtml = '';
+                            for (let j = 1; j <= 5; j++) {
+                                const starClass = j <= videoReview ? 'bi bi-star-fill checked' : 'bi bi-star';
+                                starsHtml += `<i class="${starClass}" data-rating="${j}" style="color:#81D8D2"></i>`;
+                            }
+
+                            let card = document.createElement('div');
+                            card.classList.add('card');
+                            card.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+                            card.innerHTML = `
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="http://localhost:8080/Ocean/web/controller/selectVideoImgController?videoId=${data[i].videoId}" alt="..." style="width: 150px; height: 100px;">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body text-left ms-2">
+                                        <h4 class="card-text" style="color: white;">${data[i].videoName}</h4>
+                                        <div class="stars" style="color: white;">${starsHtml}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                            sv.appendChild(card);
+                        }
+                    }
+                })
+            }
+        });
+
+        // 在搜尋欄失去焦點時檢查是否需要清空搜尋結果
+        searchInput.addEventListener("blur", function () {
+            const searchText = searchInput.value.trim();
+            if (searchText === '') {
+                sv.innerHTML = '';
+            }
+        });
+
+        // 在搜尋欄重新獲得焦點時檢查是否需要重新顯示上一次的搜尋結果
+        searchInput.addEventListener("focus", function () {
+            const searchText = searchInput.value.trim();
+            if (searchText === '' && lastSearchText !== '') {
+                searchInput.value = lastSearchText;
+                // 觸發 Enter 鍵事件，重新顯示上一次的搜尋結果
+                const enterEvent = new KeyboardEvent("keypress", { keyCode: 13 });
+                searchInput.dispatchEvent(enterEvent);
+            }
+        });
+    </script>
+</body>
+
+</html>
