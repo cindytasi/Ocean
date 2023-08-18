@@ -260,127 +260,149 @@
                             <div class="product-data-tab tab-style-3">
                                 <div class="nav nav-tabs product-data-tab__head mb--35 mb-sm--25" id="product-tab" role="tablist">
                                     <a class="product-data-tab__link nav-link active" id="nav-description-tab" data-toggle="tab" href="#nav-description" role="tab" aria-selected="true"> 
-                                        <span>Description</span>
-                                    </a>
-                                    <a class="product-data-tab__link nav-link" id="nav-info-tab" data-toggle="tab" href="#nav-info" role="tab" aria-selected="true">
-                                        <span>Additional Information</span>
-                                    </a>
-                                    <a class="product-data-tab__link nav-link" id="nav-reviews-tab" data-toggle="tab" href="#nav-reviews" role="tab" aria-selected="true">
-                                        <span>Reviews(1)</span>
-                                    </a>
-                                </div>
-                                <div class="tab-content product-data-tab__content" id="product-tabContent">
-                                    <div class="tab-pane fade show active" id="nav-description" role="tabpanel" aria-labelledby="nav-description-tab">
-                                        <div class="product-description">
-                                            <p>Lorem ipsum dolor sit amet, consec do eiusmod tincididunt ut labore et dolore magna aliqua. Ut enim ad minim veniaLo ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla paExcepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. iatis unde omnis iste natus error sit voluptatem accusantium </p>
+                                        <span>商品描述</span>
+                                    </a> <a
+										class="product-data-tab__link nav-link" id="nav-info-tab"
+										data-toggle="tab" href="#nav-info" role="tab"
+										aria-selected="true"> <span>洗滌說明 </span>
+									</a> <a class="product-data-tab__link nav-link"
+										id="nav-reviews-tab" data-toggle="tab" href="#nav-reviews"
+										role="tab" aria-selected="true"> <span>Reviews(1)</span>
+									</a>
+								</div>
+								<div class="tab-content product-data-tab__content"
+									id="product-tabContent">
+									<div class="tab-pane fade show active" id="nav-description"
+										role="tabpanel" aria-labelledby="nav-description-tab">
+										<div class="product-description">
+											<div>
+												<p>*實品顏色依單品照為主</p>
+												<p>聚丙烯腈纖維 75% 尼龍 25%</p>
+												<p>素材產地 / 中國</p>
+												<p>加工產地 / 中國</p>
+												<p>
+													造型木紋釦/V領寬鬆版型/涼感針織紗線<br>
+													<br>商品長度/適中<br>商品版型/適中<br>商品厚薄/適中<br>商品彈性/佳<br>
+													<br>*深色布料因穿著時接觸人體溫度及洗滌後有脫色及染劑移染狀況，第一次下水脫色為正常現象<br>*此款材質特性，不宜使用衣架吊掛，建議平放/避免摩擦<br>*針織材質吸濕性較一般材質大，故洗滌後些微縮水屬正常現象<br>*請避免手錶、飾品或者包包小零件勾住針織網眼
+												</p>
+											</div>
 
-                                            <p>Lorem ipsum dolor sit amet, consec do eiusmod tincididunt ut labore et dolore magna aliqua. Ut enim ad minim veniaLo ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-                                            
-                                            <h5 class="product-description__heading">Characteristics :</h5>
-                                            <ul>
-                                                <li><i class="ti-arrow-right"></i><span>Rsit amet, consectetur adipisicing elit, sed do eiusmod tempor inc.</span></li>
-                                                <li><i class="ti-arrow-right"></i><span>sunt in culpa qui officia deserunt mollit anim id est laborum. </span></li>
-                                                <li><i class="ti-arrow-right"></i><span>Lorem ipsum dolor sit amet, consec do eiusmod tincididu. </span></li>
-                                            </ul>
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
-                                        <div class="table-content table-responsive">
-                                            <table class="table shop_attributes">
-                                                <tbody>
-                                                    <tr>
-                                                        <th>Weight</th>
-                                                        <td>57 kg</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Dimensions</th>
-                                                        <td>160 × 152 × 110 cm</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Color</th>
-                                                        <td>
-                                                            <a href="shop-sidebar.html">Black</a>,
-                                                            <a href="shop-sidebar.html">Gray</a>,
-                                                            <a href="shop-sidebar.html">Red</a>,
-                                                            <a href="shop-sidebar.html">Violet</a>,
-                                                            <a href="shop-sidebar.html">Yellow</a>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="nav-reviews" role="tabpanel" aria-labelledby="nav-reviews-tab">
-                                        <div class="product-reviews">
-                                            <h3 class="review__title">1 review for Black Blazer</h3>
-                                            <ul class="review__list">
-                                                <li class="review__item">
-                                                    <div class="review__container">                                                   
-                                                        <img src="<c:url value="/img/others/comment-1.jpg"/>" alt="Review Avatar" class="review__avatar">
-                                                        <div class="review__text">
-                                                            <div class="d-flex flex-sm-row flex-column justify-content-between">
-                                                                <div class="review__meta">
-                                                                    <strong class="review__author">John Snow </strong>
-                                                                    <span class="review__dash">-</span>
-                                                                    <span class="review__published-date">November 20, 2018</span>
-                                                                </div>
-                                                                <div class="product-rating">
-                                                                    <div class="star-rating star-five">
-                                                                        <span>Rated <strong class="rating">5.00</strong> out of 5</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <p class="review__description">Aliquam egestas libero ac turpis pharetra, in vehicula lacus scelerisque. Vestibulum ut sem laoreet, feugiat tellus at, hendrerit arcu.</p>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                            <div class="review-form-wrapper">
-                                                <div class="row">
-                                                    <div class="col-lg-8">
-                                                        <span class="reply-title">Add a review</span>
-                                                        <form action="#" class="form pr--30">
-                                                            <div class="form-notes mb--20">
-                                                                <p>Your email address will not be published. Required fields are marked <span class="required">*</span></p>
-                                                            </div>
-                                                            <div class="form__group mb--10 pb--1">
-                                                                <label class="form__label d-block" >Your Ratings</label>
-                                                                <div class="rating">
-                                                                    <span><i class="fa fa-star"></i></span>
-                                                                    <span><i class="fa fa-star"></i></span>
-                                                                    <span><i class="fa fa-star"></i></span>
-                                                                    <span><i class="fa fa-star"></i></span>
-                                                                    <span><i class="fa fa-star"></i></span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form__group mb--10">
-                                                                <label class="form__label d-block" for="email">Your Review<span class="required">*</span></label>
-                                                                <textarea name="review" id="review" class="form__input form__input--textarea"></textarea>
-                                                            </div>
-                                                            <div class="form__group mb--20">
-                                                                <label class="form__label d-block" for="name">Name<span class="required">*</span></label>
-                                                                <input type="text" name="name" id="name" class="form__input">
-                                                            </div>
-                                                            <div class="form__group mb--20">
-                                                                <label class="form__label d-block" for="email">Email<span class="required">*</span></label>
-                                                                <input type="email" name="email" id="email" class="form__input">
-                                                            </div>
-                                                            <div class="form__group">
-                                                                <div class="form-row">
-                                                                    <div class="col-12">
-                                                                        <input type="submit" value="Submit Now" class="btn-submit">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
+										</div>
+									</div>
+									<div class="tab-pane" id="nav-info" role="tabpanel"
+										aria-labelledby="nav-info-tab">
+										<div class="table-content table-responsive">
+											<table class="table shop_attributes">
+												<tbody>
+													<tr>
+														<th>Weight</th>
+														<td>57 kg</td>
+													</tr>
+													<tr>
+														<th>Dimensions</th>
+														<td>160 × 152 × 110 cm</td>
+													</tr>
+													<tr>
+														<th>Color</th>
+														<td><a href="shop-sidebar.html">Black</a>, <a
+															href="shop-sidebar.html">Gray</a>, <a
+															href="shop-sidebar.html">Red</a>, <a
+															href="shop-sidebar.html">Violet</a>, <a
+															href="shop-sidebar.html">Yellow</a></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+									<div class="tab-pane fade" id="nav-reviews" role="tabpanel"
+										aria-labelledby="nav-reviews-tab">
+										<div class="product-reviews">
+											<h3 class="review__title">1 review for Black Blazer</h3>
+											<ul class="review__list">
+												<li class="review__item">
+													<div class="review__container">
+														<img src="<c:url value="/img/others/comment-1.jpg"/>"
+															alt="Review Avatar" class="review__avatar">
+														<div class="review__text">
+															<div
+																class="d-flex flex-sm-row flex-column justify-content-between">
+																<div class="review__meta">
+																	<strong class="review__author">John Snow </strong> <span
+																		class="review__dash">-</span> <span
+																		class="review__published-date">November 20,
+																		2018</span>
+																</div>
+																<div class="product-rating">
+																	<div class="star-rating star-five">
+																		<span>Rated <strong class="rating">5.00</strong>
+																			out of 5
+																		</span>
+																	</div>
+																</div>
+															</div>
+															<p class="review__description">Aliquam egestas libero
+																ac turpis pharetra, in vehicula lacus scelerisque.
+																Vestibulum ut sem laoreet, feugiat tellus at, hendrerit
+																arcu.</p>
+														</div>
+													</div>
+												</li>
+											</ul>
+											<div class="review-form-wrapper">
+												<div class="row">
+													<div class="col-lg-8">
+														<span class="reply-title">Add a review</span>
+														<form action="#" class="form pr--30">
+															<div class="form-notes mb--20">
+																<p>
+																	Your email address will not be published. Required
+																	fields are marked <span class="required">*</span>
+																</p>
+															</div>
+															<div class="form__group mb--10 pb--1">
+																<label class="form__label d-block">Your Ratings</label>
+																<div class="rating">
+																	<span><i class="fa fa-star"></i></span> <span><i
+																		class="fa fa-star"></i></span> <span><i
+																		class="fa fa-star"></i></span> <span><i
+																		class="fa fa-star"></i></span> <span><i
+																		class="fa fa-star"></i></span>
+																</div>
+															</div>
+															<div class="form__group mb--10">
+																<label class="form__label d-block" for="email">Your
+																	Review<span class="required">*</span>
+																</label>
+																<textarea name="review" id="review"
+																	class="form__input form__input--textarea"></textarea>
+															</div>
+															<div class="form__group mb--20">
+																<label class="form__label d-block" for="name">Name<span
+																	class="required">*</span></label> <input type="text"
+																	name="name" id="name" class="form__input">
+															</div>
+															<div class="form__group mb--20">
+																<label class="form__label d-block" for="email">Email<span
+																	class="required">*</span></label> <input type="email"
+																	name="email" id="email" class="form__input">
+															</div>
+															<div class="form__group">
+																<div class="form-row">
+																	<div class="col-12">
+																		<input type="submit" value="Submit Now"
+																			class="btn-submit">
+																	</div>
+																</div>
+															</div>
+														</form>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
                         </div>
                     </div>
                     <div class="row">
