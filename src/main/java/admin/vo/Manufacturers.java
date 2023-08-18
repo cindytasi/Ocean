@@ -2,20 +2,14 @@ package admin.vo;
 
 import java.io.Serializable;
 import java.math.BigInteger;
-import java.sql.Timestamp;
-import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 
-import lombok.Data;
-
 @Entity
-@Data
 public class Manufacturers implements Serializable{
 	
 	/**
@@ -70,7 +64,92 @@ public class Manufacturers implements Serializable{
 	public Manufacturers() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	
-	
+
+	public Integer getComId() {
+		return comId;
+	}
+
+	public void setComId(Integer comId) {
+		this.comId = comId;
+	}
+
+	public String getComAccount() {
+		return comAccount;
+	}
+
+	public void setComAccount(String comAccount) {
+		this.comAccount = comAccount;
+	}
+
+	public String getComPassword() {
+		return comPassword;
+	}
+
+	public void setComPassword(String comPassword) {
+		this.comPassword = comPassword;
+	}
+
+	public Integer getAccess() {
+		return access;
+	}
+
+	public void setAccess(Integer access) {
+		this.access = access;
+	}
+
+	public BigInteger getBankAccount() {
+		return bankAccount;
+	}
+
+	public void setBankAccount(BigInteger bankAccount) {
+		this.bankAccount = bankAccount;
+	}
+
+	public String getUniformNumbers() {
+		return uniformNumbers;
+	}
+
+	public void setUniformNumbers(String uniformNumbers) {
+		this.uniformNumbers = uniformNumbers;
+	}
+
+	public String getAddr() {
+		return addr;
+	}
+
+	public void setAddr(String addr) {
+		this.addr = addr;
+	}
+
+	public String getPhoneNumbers() {
+		return phoneNumbers;
+	}
+
+	public void setPhoneNumbers(String phoneNumbers) {
+		this.phoneNumbers = phoneNumbers;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPrincipal() {
+		return principal;
+	}
+
+	public void setPrincipal(String principal) {
+		this.principal = principal;
+	}
+
+	public String getBankNum() {
+		return bankNum;
+	}
+
+	public void setBankNum(String bankNum) {
+		this.bankNum = bankNum;
+	}
 }

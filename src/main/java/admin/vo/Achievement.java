@@ -5,10 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import lombok.Data;
-
 @Entity
-@Data
 public class Achievement {
 	
 	@Id
@@ -30,5 +27,36 @@ public class Achievement {
 		this.domainId = domainId;
 		this.achievementThresholdHours = achievementThresholdHours;
 	}
-	
+
+	public Integer getAchievementId() {
+		return achievementId;
+	}
+
+	public void setAchievementId(Integer achievementId) {
+		this.achievementId = achievementId;
+	}
+
+	public String getAchievementName() {
+		return achievementName;
+	}
+
+	public void setAchievementName(String achievementName) {
+		this.achievementName = achievementName;
+	}
+
+	public Integer getDomainId() {
+		return domainId;
+	}
+
+	public void setDomainId(Integer domainId) {
+		this.domainId = domainId;
+	}
+
+	public Integer getAchievementThresholdHours() {
+		return achievementThresholdHours;
+	}
+
+	public void setAchievementThresholdHours(Integer achievementThresholdHours) {
+		this.achievementThresholdHours = achievementThresholdHours;
+	}
 }

@@ -5,10 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import lombok.Data;
-
 @Entity
-@Data
 public class Member {
 	
 	@Id
@@ -30,6 +27,36 @@ public class Member {
 		this.userId = userId;
 		this.childMember = childMember;
 	}
-	
-	
+
+	public Integer getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(Integer memberId) {
+		this.memberId = memberId;
+	}
+
+	public String getMemberName() {
+		return memberName;
+	}
+
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
+	}
+
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+
+	public Integer getChildMember() {
+		return childMember;
+	}
+
+	public void setChildMember(Integer childMember) {
+		this.childMember = childMember;
+	}
 }

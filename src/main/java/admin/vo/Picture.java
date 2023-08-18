@@ -6,10 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 
-import lombok.Data;
-
 @Entity
-@Data
 public class Picture {
 
 	@Id
@@ -30,7 +27,28 @@ public class Picture {
 		this.videoId = videoId;
 		this.picture = picture;
 	}
-	
-	
-	
+
+	public Integer getPictureId() {
+		return pictureId;
+	}
+
+	public void setPictureId(Integer pictureId) {
+		this.pictureId = pictureId;
+	}
+
+	public Integer getVideoId() {
+		return videoId;
+	}
+
+	public void setVideoId(Integer videoId) {
+		this.videoId = videoId;
+	}
+
+	public byte[] getPicture() {
+		return picture;
+	}
+
+	public void setPicture(byte[] picture) {
+		this.picture = picture;
+	}
 }

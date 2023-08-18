@@ -6,13 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-import lombok.Data;
 
 @Entity
-@Data
 public class UserSubsId {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,5 +31,60 @@ public class UserSubsId {
 		this.plans = plans;
 		this.expirationDate = expirationDate;
 	}
-	
+
+	public Integer getUserSubsId() {
+		return userSubsId;
+	}
+
+	public void setUserSubsId(Integer userSubsId) {
+		this.userSubsId = userSubsId;
+	}
+
+	public Double getOrderTotal() {
+		return orderTotal;
+	}
+
+	public void setOrderTotal(Double orderTotal) {
+		this.orderTotal = orderTotal;
+	}
+
+	public Date getSubscriptionDate() {
+		return subscriptionDate;
+	}
+
+	public void setSubscriptionDate(Date subscriptionDate) {
+		this.subscriptionDate = subscriptionDate;
+	}
+
+	public Integer getPayFlowType() {
+		return payFlowType;
+	}
+
+	public void setPayFlowType(Integer payFlowType) {
+		this.payFlowType = payFlowType;
+	}
+
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+
+	public Integer getPlans() {
+		return plans;
+	}
+
+	public void setPlans(Integer plans) {
+		this.plans = plans;
+	}
+
+	public Date getExpirationDate() {
+		return expirationDate;
+	}
+
+	public void setExpirationDate(Date expirationDate) {
+		this.expirationDate = expirationDate;
+	}
 }
