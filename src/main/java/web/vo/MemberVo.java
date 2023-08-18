@@ -2,7 +2,9 @@ package web.vo;
 
 import java.util.Arrays;
 
-public class MemberVo{
+import core.vo.CoreVo;
+
+public class MemberVo extends CoreVo{
 
 	private Integer memberId;
 	private String memberName;

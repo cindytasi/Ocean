@@ -1,15 +1,20 @@
 package web.service;
 
-import web.dao.impl.MemberDaoImpl;
-import web.vo.MemberVo;
+import java.util.List;
 
-public class MemberService {
+import javax.servlet.http.Part;
+
+import web.dao.MemberDao;
+import web.vo.MemberVo;
+import web.vo.UserVo;
+
+public interface MemberService {
+
+	MemberVo addNewMember(MemberVo memberVo);
 	
-	private static MemberDaoImpl memberDaoImpl = new MemberDaoImpl();
+	List<MemberVo> selectMember(MemberVo memberVo);
 	
-	public MemberVo selectMemberImg(Integer memberId) {
-		
-		MemberVo memberVo = memberDaoImpl.selectMemberImg(memberId);
-		return memberVo;
-	}
+	void memberImage(Part profilePicture);
+	
+	void fileImageDelet(Part profilePicture);
 }
