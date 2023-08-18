@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=BIG5"
-	pageEncoding="BIG5"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
@@ -9,8 +9,9 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
+<!-- æŠŠjQureyçµ±ä¸€åŒ¯é€²ä¾† -->
 <jsp:include page="/jsp/pluginsJs.jsp"></jsp:include>
-<title>Zakas - Fashion eCommerce Bootstrap 4 Template</title>
+<title>Ocean</title>
 <meta name="description" content="">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -19,6 +20,8 @@
 	type="image/x-icon">
 <link rel="apple-touch-icon" href="<c:url value="/img/icon.png"/>">
 
+
+<script type="text/javascript" src="<c:url value="/js/checkoutToOrder.js"/>"></script>
 <!-- ************************* CSS Files ************************* -->
 
 <!-- Vendor CSS -->
@@ -56,14 +59,55 @@ select {
 	font-weight: 500;
 }
 
+.table thead th, .table th {
+	text-transform: uppercase;
+	padding: 13px 13px;
+	letter-spacing: 1px;
+	font-weight: 400;
+	font-size: 16px;
+	border: 0px solid #eeeeee;
+	vertical-align: middle;
+}
 
+.order-table thead th {
+	color: #111111;
+	padding: 0;
+}
+
+.order-table thead th {
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.order-table {
+	border-collapse: separate;
+	border-spacing: 0;
+	width: 100%;
+}
+
+.order-table th, .order-table td {
+	padding: 1px;
+	border: none;
+	position: relative;
+}
+
+.order-table .comIdOne td {
+	padding-top: 0;
+}
+
+.order-table tfoot th, .order-table tfoot td {
+	padding: 5px;
+	border-top: none;
+	background-color: #f2f2f2;
+}
 </style>
 
 </head>
 
 <body>
-<!-- Header Start -->
+	<!-- Header Start -->
 	<header class="header">
+		<input type="hidden" value='${productJson}' />
 		<jsp:include page="/jsp/SelectBar.jsp"></jsp:include>
 		<div class="header-inner fixed-header"
 			style="background-color: #deefed;">
@@ -75,60 +119,60 @@ select {
 								<ul class="mainmenu">
 									<li class="mainmenu__item menu-item-has-children"><a
 										href="<c:url value="/ShopServlet?type=AllProduct"/>"
-										class="mainmenu__link"> <span class="mm-text">©Ò¦³°Ó«~</span>
+										class="mainmenu__link"> <span class="mm-text">æ‰€æœ‰å•†å“</span>
 									</a></li>
 
 									<li class="mainmenu__item menu-item-has-children"><a
 										href="<c:url value="/ShopServlet?type=Women"/>"
-										class="mainmenu__link"> <span class="mm-text">¤k¸Ë</span>
+										class="mainmenu__link"> <span class="mm-text">å¥³è£</span>
 									</a>
 										<ul class="sub-menu"">
 											<li><a
 												href="<c:url value="/ShopServlet?type=WomenTop"/>"> <span
-													class="mm-text">¤W¦ç Top</span>
+													class="mm-text">ä¸Šè¡£ Top</span>
 											</a></li>
 											<li><a
 												href="<c:url value="/ShopServlet?type=WomenBottom"/>"> <span
-													class="mm-text">¤U¨­ Bottom</span>
+													class="mm-text">ä¸‹èº« Bottom</span>
 											</a></li>
 										</ul></li>
 
 									<li class="mainmenu__item menu-item-has-children"><a
 										href="<c:url value="/ShopServlet?type=Men"/>"
-										class="mainmenu__link"> <span class="mm-text">¨k¸Ë</span>
+										class="mainmenu__link"> <span class="mm-text">ç”·è£</span>
 									</a>
 										<ul class="sub-menu">
 											<li><a href="<c:url value="/ShopServlet?type=MenTop"/>">
-													<span class="mm-text">¤W¦ç Top</span>
+													<span class="mm-text">ä¸Šè¡£ Top</span>
 											</a></li>
 											<li><a
 												href="<c:url value="/ShopServlet?type=MenBottom"/>"> <span
-													class="mm-text">¤U¨­ Bottom</span>
+													class="mm-text">ä¸‹èº« Bottom</span>
 											</a></li>
 										</ul></li>
 
 
 									<li class="mainmenu__item menu-item-has-children"><a
 										href="<c:url value="/ShopServlet?type=Shoes"/>"
-										class="mainmenu__link"> <span class="mm-text">¾c¤l</span>
+										class="mainmenu__link"> <span class="mm-text">é‹å­</span>
 									</a>
 										<ul class="sub-menu">
 											<li><a
 												href="<c:url value="/ShopServlet?type=WomenShoes"/>"> <span
-													class="mm-text">¤k¾c women's shoes</span>
+													class="mm-text">å¥³é‹ women's shoes</span>
 											</a></li>
 											<li><a
 												href="<c:url value="/ShopServlet?type=MenShoes"/>"> <span
-													class="mm-text">¨k¾c Men's shoes</span>
+													class="mm-text">ç”·é‹ Men's shoes</span>
 											</a></li>
 										</ul></li>
 									<li class="mainmenu__item menu-item-has-children"><a
 										href="<c:url value="/ShopServlet?type=Accessories"/>"
-										class="mainmenu__link"> <span class="mm-text">¹¢«~</span>
+										class="mainmenu__link"> <span class="mm-text">é£¾å“</span>
 									</a></li>
 									<li class="mainmenu__item menu-item-has-children"><a
 										href="<c:url value="/ShopServlet?type=Others"/>"
-										class="mainmenu__link"> <span class="mm-text">¨ä¥L©PÃä</span>
+										class="mainmenu__link"> <span class="mm-text">å…¶ä»–å‘¨é‚Š</span>
 									</a></li>
 
 									<div class="errMsg" style="display: inline-block">
@@ -170,27 +214,12 @@ select {
 
 	<!-- Main Wrapper Start -->
 	<div class="wrapper">
-		
-		
-		
+
+
+
 
 		<!-- Breadcrumb area Start -->
-		<div class="breadcrumb-area bg-color ptb--90" data-bg-color="#f6f6f6">
-			<div class="container">
-				<div class="row">
-					<div class="col-12">
-						<div
-							class="d-flex justify-content-between align-items-center flex-sm-row flex-column">
-							<h1 class="page-title">Checkout</h1>
-							<ul class="breadcrumb">
-								<li><a href="index.html">Home</a></li>
-								<li class="current"><span>Checkout</span></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+
 		<!-- Breadcrumb area End -->
 
 		<!-- Main Content Wrapper Start -->
@@ -198,313 +227,231 @@ select {
 			<div class="page-content-inner">
 				<div class="container">
 					<div class="row pt--50 pt-md--40 pt-sm--20">
-						<div class="col-12">
-							<!-- User Action Start -->
-							<div class="user-actions user-actions__coupon">
-								<div class="message-box mb--30">
-									<p>
-										<i class="fa fa-exclamation-circle"></i> Have A Coupon? <a
-											class="expand-btn" href="#coupon_info">Click Here To
-											Enter Your Code.</a>
-									</p>
-								</div>
-								<div id="coupon_info" class="user-actions__form hide-in-default">
-									<form action="#" class="form">
-										<p>If you have a coupon code, please apply it below.</p>
-										<div class="form__group d-sm-flex">
-											<input type="text" name="coupon" id="coupon"
-												class="form__input form__input--2 mr--20 mr-xs--0"
-												placeholder="Coupon Code">
-											<button type="submit"
-												class="btn btn-small btn-bg-red btn-color-white btn-hover-2">Apply
-												Coupon</button>
-										</div>
-									</form>
-								</div>
-							</div>
-							<!-- User Action End -->
-						</div>
+						<div class="col-12"></div>
 					</div>
 					<div class="row pb--80 pb-md--60 pb-sm--40">
 						<!-- Checkout Area Start -->
-						<div class="col-lg-6">
-							<div class="checkout-title mt--10">
-								<h2>¶ñ¼g¹B°e¸ê®Æ</h2>
-							</div>
-							<div class="checkout-form">
-								<form action="#" class="form form--checkout">
-									<div class="form-row mb--20">
-										<div class="form__group col-md-6 mb-sm--30">
-											<label for="billing_fname" class="form__label form__label--2">©m¦W<span
-												class="required">*</span></label> <input type="text"
-												name="billing_fname" id="billing_fname"
-												class="form__input form__input--2">
-										</div>
-
-									</div>
-									<div class="form-row mb--20">
-										<div class="form__group col-12">
-											<label for="billing_phone" class="form__label form__label--2">¤â¾÷<span
-												class="required">*</span></label> <input type="text"
-												name="billing_phone" id="billing_phone"
-												class="form__input form__input--2">
-										</div>
-									</div>
-									<li style="list-style-type: none;"><label
-										for="billing_phone" class="form__label form__label--2">¦a§}<span
-											class="required">*</span></label>
-										<div>
-											<div class="clearfix">
-												<div class="float-left mb-2 mr-2">
-													<div class="controls-float">
-														<select name="city" aria-invalid="false"
-															style="color: #707070"
-															class="floatLabel text select-icon valid form__input form__input--2">
-															<option value="»O¥_¥«">»O¥_¥«</option>
-															<option value="°ò¶©¥«">°ò¶©¥«</option>
-															<option value="·s¥_¥«">·s¥_¥«</option>
-															<option value="©yÄõ¿¤">©yÄõ¿¤</option>
-															<option value="·s¦Ë¥«">·s¦Ë¥«</option>
-															<option value="·s¦Ë¿¤">·s¦Ë¿¤</option>
-															<option value="®ç¶é¥«">®ç¶é¥«</option>
-															<option value="­]®ß¿¤">­]®ß¿¤</option>
-															<option value="»O¤¤¥«">»O¤¤¥«</option>
-															<option value="¹ü¤Æ¿¤">¹ü¤Æ¿¤</option>
-															<option value="«n§ë¿¤">«n§ë¿¤</option>
-															<option value="¹Å¸q¥«">¹Å¸q¥«</option>
-															<option value="¹Å¸q¿¤">¹Å¸q¿¤</option>
-															<option value="¶³ªL¿¤">¶³ªL¿¤</option>
-															<option value="»O«n¥«">»O«n¥«</option>
-															<option value="°ª¶¯¥«">°ª¶¯¥«</option>
-															<option value="¼ê´ò¿¤">¼ê´ò¿¤</option>
-															<option value="«ÌªF¿¤">«ÌªF¿¤</option>
-															<option value="»OªF¿¤">»OªF¿¤</option>
-															<option value="ªá½¬¿¤">ªá½¬¿¤</option>
-															<option value="ª÷ªù¿¤">ª÷ªù¿¤</option>
-															<option value="³s¦¿¿¤">³s¦¿¿¤</option>
-														</select>
-													</div>
-												</div>
-												<div class="float-left mb-2">
-													<div class="controls-float">
-														<select name="district" aria-invalid="false"
-															style="color: #707070"
-															class="floatLabel text select-icon valid  form__input form__input--2"><option
-																value="¸U¨½°Ï">207 ¸U¨½°Ï</option>
-															<option value="ª÷¤s°Ï">208 ª÷¤s°Ï</option>
-															<option value="ªO¾ô°Ï">220 ªO¾ô°Ï</option>
-															<option value="¦Á¤î°Ï">221 ¦Á¤î°Ï</option>
-															<option value="²`§|°Ï">222 ²`§|°Ï</option>
-															<option value="¥ÛŞä°Ï">223 ¥ÛŞä°Ï</option>
-															<option value="·çªÚ°Ï">224 ·çªÚ°Ï</option>
-															<option value="¥­·Ë°Ï">226 ¥­·Ë°Ï</option>
-															<option value="Âù·Ë°Ï">227 Âù·Ë°Ï</option>
-															<option value="°^¼d°Ï">228 °^¼d°Ï</option>
-															<option value="·s©±°Ï">231 ·s©±°Ï</option>
-															<option value="©WªL°Ï">232 ©WªL°Ï</option>
-															<option value="¯Q¨Ó°Ï">233 ¯Q¨Ó°Ï</option>
-															<option value="¥Ã©M°Ï">234 ¥Ã©M°Ï</option>
-															<option value="¤¤©M°Ï">235 ¤¤©M°Ï</option>
-															<option value="¤g«°°Ï">236 ¤g«°°Ï</option>
-															<option value="¤T®l°Ï">237 ¤T®l°Ï</option>
-															<option value="¾ğªL°Ï">238 ¾ğªL°Ï</option>
-															<option value="Åaºq°Ï">239 Åaºq°Ï</option>
-															<option value="¤T­«°Ï">241 ¤T­«°Ï</option>
-															<option value="·s²ø°Ï">242 ·s²ø°Ï</option>
-															<option value="®õ¤s°Ï">243 ®õ¤s°Ï</option>
-															<option value="ªL¤f°Ï">244 ªL¤f°Ï</option>
-															<option value="Äª¬w°Ï">247 Äª¬w°Ï</option>
-															<option value="¤­ªÑ°Ï">248 ¤­ªÑ°Ï</option>
-															<option value="¤K¨½°Ï">249 ¤K¨½°Ï</option>
-															<option value="²H¤ô°Ï">251 ²H¤ô°Ï</option>
-															<option value="¤TªÛ°Ï">252 ¤TªÛ°Ï</option>
-															<option value="¥Ûªù°Ï">253 ¥Ûªù°Ï</option></select>
-													</div>
-													<input name="zipcode" placeholder="¶l»¼°Ï¸¹" type="hidden"
-														value="221">
-												</div>
-											</div>
-											<div class="clearfix">
-												<div>
-													<div class="controls-float">
-														<input type="text" name="address" placeholder="½Ğ¿é¤J¦a§}"
-															required="required" class="form__input form__input--2">
-														<label for="address"></label>
-													</div>
-												</div>
-											</div>
-										</div></li>
-
-
-
-									<div class="form-row mb--20">
-										<div class="form__group col-12">
-											<label for="billing_email" class="form__label form__label--2">Email</label>
-											<input type="email" name="billing_email" id="billing_email"
-												class="form__input form__input--2">
-										</div>
-									</div>
-
-
-									<div class="cart-section">
-										<div class="checkout-title mt--10">
-											<h2>°t°e¸ê°T</h2>
-										</div>										
-										<ul class="formstyle--horizontal formstyle">
-											<li><label class="title">°t°e®É¬q</label> <select
-												name="ArriveTime"
-												class="floatLabel form-control select-icon valid form__input form__input--2"
-												aria-invalid="false"><option value="0"
-														selected="selected">¤£«ü©w</option>
-													<option value="1">8~13®É</option>
-													<option value="2">14~18®É</option></select></li>
-											<li>
-												<!---->
-											</li>
-											<li><label class="title ">µo²¼</label>
-												<div class="row with-small-gap">
-													<div class="col">
-														<div class="controls-float">
-															<select id="invoice-chose" name="InvoiceType"
-																class="floatLabel form-control select-icon valid form__input form__input--2"
-																aria-invalid="false"><option index="0"
-																	value="1">¹q¤lµo²¼ E-invoice</option>
-																<option index="1" value="2">¹q¤lµo²¼(¤â¾÷¸ü¨ã)
-																	E-Invoice carrier</option>
-																<option index="2" value="3">®½ÃØµo²¼ Donation
-																	Invoice</option>
-																<option index="3" value="4">²Î½s(¤½¥q¤á)µo²¼ Company
-																	Tax ID number Invoice</option></select>
-														</div>
-														<div id="invoice-selected" class="h6">
-															<!---->
-															<div>
-																<div class="mt-2">
-																	<input id="invoice-mobile-code"
-																		name="InvoiceMobileCode" type="text" class="text form__input form__input--2">
-																</div>
-															</div>
-															<!---->
-															<!---->
-															<div class="pt-2 lh-15">
-																®Ö­ã¤å¸¹¡G¥_°Ï°êµ|¥_¿¤¤T¦r²Ä1050754970¸¹ <br>¡°¨Ì²Î¤@µo²¼¨Ï¥Î¿ìªk³W©w¡Gµo²¼¤@¸g¶}¥ß¤£±o¥ô·N§ó§ï©Î§ï¶}µo²¼¡C
-															</div>
-														</div>
-													</div>
-												</div></li>
-										</ul>
-									</div>
-
-
-
-
-								</form>
-							</div>
-						</div>
-						<div class="col-xl-5 offset-xl-1 col-lg-6 mt-md--40">
+						<div class="col mt-md--40">
 							<div class="order-details">
 								<div class="checkout-title mt--10">
-									<h2>­q³æ©ú²Ó</h2>
+									<h2>è¨‚å–®æ˜ç´°</h2>
 								</div>
 								<div class="table-content table-responsive mb--30">
 									<table class="table order-table order-table-2">
 										<thead>
 											<tr>
-												<th >°Ó«~¸ê°T</th>
-												<th>ÃC¦â</th>
-												<th>¤Ø¤o</th>
-												<th>¼Æ¶q</th>
-												<th class="text-right">ª÷ÃB</th>
+												<th><strong>å•†å“è³‡è¨Š</strong></th>
+												<th><strong>é¡è‰²</strong></th>
+												<th><strong>å°ºå¯¸</strong></th>
+												<th><strong>æ•¸é‡</strong></th>
+												<th class="text-right"><strong>é‡‘é¡</strong></th>
+											</tr>
+											<tr class="comIdOne">
+												<td colspan="8"><hr></td>
 											</tr>
 										</thead>
 										<tbody>
+										<c:forEach var="productList" items="${productList}">
 											<tr>
-												<th>µÎ¾A¥é³Â¦è¸Ë¥~®M</th>
-												<th>§ö</th>
-												<th>S</th>
-												<th>1</th>
-												<td class="text-right">NT.1280.0</td>
+												<th>${productList.prodName}</th>
+												<th>${productList.selectedColor}</th>
+												<th>${productList.selectedSize}</th>
+												<th>${productList.quantityValue}</th>
+												<td class="text-right">NT.${productList.price}</td>
 											</tr>
-											<tr>
-												<th>³y«¬«e¶}Ğ®ª½µ©¤û¥J¿Ç <strong><span>&#10005;</span>1</strong>
-												</th>
-												<td class="text-right">NT.1680.0</td>
+										</c:forEach>	
+											<tr class="comIdOne">
+												<td colspan="8"><hr></td>
 											</tr>
+
 										</tbody>
 										<tfoot>
-											<tr class="cart-subtotal">
-												<th>Subtotal</th>
-												<td class="text-right">$56.00</td>
-											</tr>
-											<tr class="shipping">
-												<th>Shipping</th>
-												<td class="text-right"><span>Flat Rate; $20.00</span></td>
+
+											<tr class="Items">
+												<th>å•†å“ä»¶æ•¸</th>
+												<th></th>
+												<th></th>
+												<th></th>
+												<td class="text-right"><span class="Items-ammount">${checkoutVo.itemCountText}</span></td>
 											</tr>
 											<tr class="order-total">
-												<th>Order Total</th>
-												<td class="text-right"><span
-													class="order-total-ammount">$56.00</span></td>
+												<th>ç¸½é‡‘é¡</th>
+												<th></th>
+												<th></th>
+												<th></th>
+												<td class="text-right"><span class="Items-ammount">${checkoutVo.totalAmountText}</span></td>
+											</tr>
+											<tr class="shipping">
+												<th>é‹è²»</th>
+												<th></th>
+												<th></th>
+												<th></th>
+												<td class="text-right"><span class="shipping-ammount">${checkoutVo.shippingCostText}</span></td>
+											</tr>
+											<tr class="Payable">
+												<th>æ‡‰ä»˜é‡‘é¡</th>
+												<th></th>
+												<th></th>
+												<th></th>
+												<td class="text-right"><span class="Payable-ammount">${checkoutVo.payableAmountText}</span></td>
 											</tr>
 										</tfoot>
 									</table>
 								</div>
-								<div class="checkout-payment">
-									<form action="#" class="payment-form">
-										<div class="payment-group mb--10">
-											<div class="payment-radio">
-												<input type="radio" value="bank" name="payment-method"
-													id="bank" checked> <label class="payment-label"
-													for="cheque">Direct Bank Transfer</label>
-											</div>
-											<div class="payment-info" data-method="bank">
-												<p>Make your payment directly into our bank account.
-													Please use your Order ID as the payment reference. Your
-													order will not be shipped until the funds have cleared in
-													our account.</p>
-											</div>
-										</div>
-										<div class="payment-group mb--10">
-											<div class="payment-radio">
-												<input type="radio" value="cheque" name="payment-method"
-													id="cheque"> <label class="payment-label"
-													for="cheque"> cheque payments </label>
-											</div>
-											<div class="payment-info cheque hide-in-default"
-												data-method="cheque">
-												<p>Please send a check to Store Name, Store Street,
-													Store Town, Store State / County, Store Postcode.</p>
+							</div>
+						</div>
+						<div class="col-lg-12">
+							<div class="order-details">
+								<div class="checkout-title mt--10">
+									<h2>å¡«å¯«é‹é€è³‡æ–™</h2>
+								</div>
+								<div class="checkout-form">
+								
+									<form id="mainForm" action="<c:url value="/OrdersServlet"/>" method="post">
+									<input type="hidden" name="productJson" value='${productJson}' />
+									<input type="hidden" name="checkoutJson" value='${checkoutJson}' />
+									<input id="transportInfoJson" type="hidden" name="transportInfoJson">								
+										<div class="form-row mb--20">
+											<div class="form__group col-md-6 mb-sm--30">
+												<label for="billing_fname"
+													class="form__label form__label--2">å§“å<span
+													class="required">*</span></label> <input type="text"
+													name="billing_fname" id="billing_fname"
+													class="form__input form__input--2">
 											</div>
 										</div>
-										<div class="payment-group mb--10">
-											<div class="payment-radio">
-												<input type="radio" value="cash" name="payment-method"
-													id="cash"> <label class="payment-label" for="cash">
-													CASH ON DELIVERY </label>
-											</div>
-											<div class="payment-info cash hide-in-default"
-												data-method="cash">
-												<p>Pay with cash upon delivery.</p>
+										<div class="form-row mb--20">
+											<div class="form__group col-12">
+												<label for="billing_phone"
+													class="form__label form__label--2">æ‰‹æ©Ÿ<span
+													class="required">*</span></label> <input type="text"
+													name="billing_phone" id="billing_phone"
+													class="form__input form__input--2">
 											</div>
 										</div>
-										<div class="payment-group mt--20">
-											<p class="mb--15">Your personal data will be used to
-												process your order, support your experience throughout this
-												website, and for other purposes described in our privacy
-												policy.</p>
-											<button type="submit"
-												class="btn btn-fullwidth btn-bg-red btn-color-white btn-hover-2">Place
-												Order</button>
+										<li style="list-style-type: none;"><label
+											for="billing_phone" class="form__label form__label--2">åœ°å€<span
+												class="required">*</span></label>
+											<div>
+												<div class="clearfix">
+													<div class="float-left mb-2 mr-2">
+														<div class="controls-float">
+															<select name="city" aria-invalid="false"
+																style="color: #707070"
+																class="floatLabel text select-icon valid form__input form__input--2">
+																<option value="è‡ºåŒ—å¸‚">è‡ºåŒ—å¸‚</option>
+																<option value="åŸºéš†å¸‚">åŸºéš†å¸‚</option>
+																<option value="æ–°åŒ—å¸‚">æ–°åŒ—å¸‚</option>
+																<option value="å®œè˜­ç¸£">å®œè˜­ç¸£</option>
+																<option value="æ–°ç«¹å¸‚">æ–°ç«¹å¸‚</option>
+																<option value="æ–°ç«¹ç¸£">æ–°ç«¹ç¸£</option>
+																<option value="æ¡ƒåœ’å¸‚">æ¡ƒåœ’å¸‚</option>
+																<option value="è‹—æ —ç¸£">è‹—æ —ç¸£</option>
+																<option value="è‡ºä¸­å¸‚">è‡ºä¸­å¸‚</option>
+																<option value="å½°åŒ–ç¸£">å½°åŒ–ç¸£</option>
+																<option value="å—æŠ•ç¸£">å—æŠ•ç¸£</option>
+																<option value="å˜‰ç¾©å¸‚">å˜‰ç¾©å¸‚</option>
+																<option value="å˜‰ç¾©ç¸£">å˜‰ç¾©ç¸£</option>
+																<option value="é›²æ—ç¸£">é›²æ—ç¸£</option>
+																<option value="è‡ºå—å¸‚">è‡ºå—å¸‚</option>
+																<option value="é«˜é›„å¸‚">é«˜é›„å¸‚</option>
+																<option value="æ¾æ¹–ç¸£">æ¾æ¹–ç¸£</option>
+																<option value="å±æ±ç¸£">å±æ±ç¸£</option>
+																<option value="è‡ºæ±ç¸£">è‡ºæ±ç¸£</option>
+																<option value="èŠ±è“®ç¸£">èŠ±è“®ç¸£</option>
+																<option value="é‡‘é–€ç¸£">é‡‘é–€ç¸£</option>
+																<option value="é€£æ±Ÿç¸£">é€£æ±Ÿç¸£</option>
+															</select>
+														</div>
+													</div>
+													<div class="float-left mb-2">
+														<div class="controls-float">
+															<select name="district" aria-invalid="false"
+																style="color: #707070"
+																class="floatLabel text select-icon valid  form__input form__input--2"><option
+																	value="è¬é‡Œå€">207 è¬é‡Œå€</option>
+																<option value="é‡‘å±±å€">208 é‡‘å±±å€</option>
+																<option value="æ¿æ©‹å€">220 æ¿æ©‹å€</option>
+																<option value="æ±æ­¢å€">221 æ±æ­¢å€</option>
+																<option value="æ·±å‘å€">222 æ·±å‘å€</option>
+																<option value="çŸ³ç¢‡å€">223 çŸ³ç¢‡å€</option>
+																<option value="ç‘èŠ³å€">224 ç‘èŠ³å€</option>
+																<option value="å¹³æºªå€">226 å¹³æºªå€</option>
+																<option value="é›™æºªå€">227 é›™æºªå€</option>
+																<option value="è²¢å¯®å€">228 è²¢å¯®å€</option>
+																<option value="æ–°åº—å€">231 æ–°åº—å€</option>
+																<option value="åªæ—å€">232 åªæ—å€</option>
+																<option value="çƒä¾†å€">233 çƒä¾†å€</option>
+																<option value="æ°¸å’Œå€">234 æ°¸å’Œå€</option>
+																<option value="ä¸­å’Œå€">235 ä¸­å’Œå€</option>
+																<option value="åœŸåŸå€">236 åœŸåŸå€</option>
+																<option value="ä¸‰å³½å€">237 ä¸‰å³½å€</option>
+																<option value="æ¨¹æ—å€">238 æ¨¹æ—å€</option>
+																<option value="é¶¯æ­Œå€">239 é¶¯æ­Œå€</option>
+																<option value="ä¸‰é‡å€">241 ä¸‰é‡å€</option>
+																<option value="æ–°èŠå€">242 æ–°èŠå€</option>
+																<option value="æ³°å±±å€">243 æ³°å±±å€</option>
+																<option value="æ—å£å€">244 æ—å£å€</option>
+																<option value="è˜†æ´²å€">247 è˜†æ´²å€</option>
+																<option value="äº”è‚¡å€">248 äº”è‚¡å€</option>
+																<option value="å…«é‡Œå€">249 å…«é‡Œå€</option>
+																<option value="æ·¡æ°´å€">251 æ·¡æ°´å€</option>
+																<option value="ä¸‰èŠå€">252 ä¸‰èŠå€</option>
+																<option value="çŸ³é–€å€">253 çŸ³é–€å€</option></select>
+														</div>
+														<input name="zipcode" placeholder="éƒµéå€è™Ÿ" type="hidden"
+															value="221">
+													</div>
+												</div>
+												<div class="clearfix">
+													<div>
+														<div class="controls-float">
+															<input type="text" name="address" placeholder="è«‹è¼¸å…¥åœ°å€"
+																required="required" class="form__input form__input--2">
+															<label for="address"></label>
+														</div>
+													</div>
+												</div>
+											</div></li>
+										<div class="form-row mb--20">
+											<div class="form__group col-12">
+												<label for="billing_email"
+													class="form__label form__label--2">Email</label> <input
+													type="email" name="billing_email" id="billing_email"
+													class="form__input form__input--2">
+											</div>
+										</div>
+										<div class="checkout-payment">
+											<div class="payment-group mb--10">
+												<div class="payment-radio">
+													<input type="radio" value="fax" name="delivery-method" checked > <label>å®…é…</label>
+												</div>
+											</div>
+											<div class="payment-group mb--10">
+												<div class="payment-radio">
+													<input type="radio" value="cheque" name="payment-method"
+														id="cheque"> <label class="payment-label"
+														for="cheque"> è²¨åˆ°ä»˜æ¬¾ </label>
+												</div>
+											</div>
+											<div class="payment-group mb--10">
+												<div class="payment-radio">
+													<input type="radio" value="cash" name="payment-method"
+														id="cash"> <label class="payment-label" for="cash">
+														ç·šä¸Šåˆ·å¡ </label>
+												</div>
+											</div>
+											<div class="payment-group mt--20">
+												<p class="mb--15"
+													style="font-size: 20px; font-weight: bold;">Notice</p>
+												<p>â€»ä¸‹å–®å‰è«‹å†æ¬¡ç¢ºèªæ‚¨çš„è³¼è²·æ˜ç´°åŠé…é€è³‡è¨Šï¼Œè¨‚å–®æˆç«‹å¾Œç„¡æ³•ç•°å‹•è¨‚å–®å…§å®¹</p>
+												<input id="submitBtn" type="button" value="Place Order"
+													class="btn btn-fullwidth btn-bg-red btn-color-white btn-hover-2"></input>
+											</div>
 										</div>
 									</form>
 								</div>
 							</div>
-						</div>
-						<!-- Checkout Area End -->
-						<div class="cart-buttons">
-							<a class="btn btn--l" href="/zh-tw/checkout"><span
-								class="d-inline-block align-middle">PREV</span></a> <input
-								class="btn btn--black btn--l btn-next" id="btn-go-checkoutbtn"
-								type="submit" value="NEXT >">
 						</div>
 					</div>
 				</div>
