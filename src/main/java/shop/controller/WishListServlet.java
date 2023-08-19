@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
 
@@ -13,6 +14,7 @@ import com.google.gson.Gson;
 
 import shop.service.SelectOrdersService;
 import shop.service.WishListService;
+import web.vo.UserVo;
 
 
 @WebServlet("/WishListServlet")
@@ -24,7 +26,11 @@ public class WishListServlet extends HttpServlet {
 	}
 	
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		String userId = "1"; // 假設userid=1 (設一個假資料)	
+		//拿userId
+		HttpSession session = req.getSession();
+		UserVo userVo= (UserVo)session.getAttribute("userVo");	
+		String userId = String.valueOf(userVo.getUserId());
+		
 		String colorType= req.getParameter("colorType");
 		String prodName= req.getParameter("prodName");
 		String price= req.getParameter("price");

@@ -130,14 +130,17 @@ a, button, .user-info-menu, .banner-box .banner-info, .banner-box .banner-hover-
 					<div class="list">
 						<ul class="navbar-nav align-items-center justify-content-end">
 							<!-- 首頁 -->
+							
 							<li class="nav-item"><a class="nav-link active"
-								href="/oceanIndex.html">首頁</a></li>
+								href="<c:url value="/index/oceanIndex.html"/>">首頁</a></li>
 							<!-- 電影 -->
+							
 							<li class="nav-item"><a class="nav-link"
-								href="/movieIndex.html">電影</a></li>
+								href="<c:url value="/index/movieIndex.html"/>">電影</a></li>
 							<!-- 影集 -->
+							
 							<li class="nav-item"><a class="nav-link"
-								href="/seriesIndex.html">影集</a></li>
+								href="<c:url value="/index/seriesIndex.html"/>">影集</a></li>
 							<!-- 藝人商品 -->
 							<li class="nav-item">
 							
@@ -148,7 +151,7 @@ a, button, .user-info-menu, .banner-box .banner-info, .banner-box .banner-hover-
 								
 							<!-- 收藏地圖 -->
 							<li class="nav-item"><a class="nav-link"
-								href="/favoriteMapIndex.html">收藏地圖</a></li>
+								href="<c:url value="/index/favoriteMapIndex.html"/>">收藏地圖</a></li>
 							<!--user  -->
 							<div class="col-xl-2 col-lg-3 col-9 text-right align-item-center">
 								<ul class="header-toolbar d-flex">

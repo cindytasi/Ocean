@@ -25,6 +25,7 @@ import shop.vo.ApiConstants;
 import shop.vo.BaseAPIResult;
 import shop.vo.Product;
 import shop.vo.ShopCartVo;
+import web.vo.UserVo;
 
 /**
  * Servlet implementation class ShopCartServlet
@@ -56,11 +57,11 @@ public class AddToCartServlet extends HttpServlet {
 //===================用try-with-resources 可以自動關閉=============
 		JedisPool pool = JedisUtil.getJedisPool(); 
 		try (Jedis jedis = pool.getResource();){
-			
-			
-				//========先判斷購物車裡有沒有商品=============
-						
-			String userId = "1"; // 假設userid=1 (設一個假資料)								
+			//先拿userId
+			HttpSession session = request.getSession();
+			UserVo userVo= (UserVo)session.getAttribute("userVo");
+			String userId = String.valueOf(userVo.getUserId());
+			//========先判斷購物車裡有沒有商品=============
 			String cart = jedis.get(shopCartRedisKey + ":" + userId);
 			Gson gson = new Gson();
 			List<ShopCartVo> shopCartVoList = gson.fromJson(cart, new TypeToken<List<ShopCartVo>>(){}.getType());
