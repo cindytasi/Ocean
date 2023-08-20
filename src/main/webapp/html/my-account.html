@@ -232,6 +232,44 @@
 		/* 數字小於1時隱藏圖案 */
 	}
 </style>
+<style>
+
+
+#footerID {
+	background: #000;
+	background-image: url("../img/waves_5.jpg");
+	color: #81D8D0;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;	
+}
+.footer_detail li>a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer_detail li>a:hover {
+    color: var(--bs-blue);
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 3%;
+    background-color: #000;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    width: 4rem;
+    height: 5rem;
+}
+
+.card {
+    background: transparent;
+}
+
+</style>
 </head>
 
 
@@ -283,7 +321,7 @@
 	
 									<li class="header-toolbar__item my-auto"><a href="/Ocean/ShopCartDetailServlet" class="header-toolbar__btn mini-cart-btn"> <i
 											class="flaticon flaticon-shopping-cart"></i><sup
-											class="mini-cart-count">${cartSize}</sup>
+											class="mini-cart-count"></sup>
 										</a></li>
 	
 									<li class="header-toolbar__item my-auto"><a href="#searchForm"
@@ -603,76 +641,27 @@
         </div>
         <!-- Main Content Wrapper Start -->
 
-        <!-- Footer Start-->
-        <footer class="footer">
-            <div class="footer-top bg-color ptb--50" data-bg-color="#f6f6f6">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-9 text-center">
-                            <div class="footer-widget mb--50">
-                                <div class="textwidget">
-                                    <img src="/Ocean/img/logo/logo.png" alt="Logo">
-                                </div>
-                            </div>
-                            <div class="footer-widget mb--50 pb--1">
-                                <ul class="footer-menu">
-                                    <li><a href="">About Us</a></li>
-                                    <li><a href="">Terms &amp; Conditions</a></li>
-                                    <li><a href="">Policy</a></li>
-                                    <li><a href="">Help</a></li>
-                                    <li><a href="">Contact Us</a></li>
-                                </ul>
-                            </div>
-                            <div class="footer-widget">
-                                <!-- Social Icons Start Here -->
-                                <ul class="social">
-                                    <li class="social__item">
-                                        <a href="https://plus.google.com/" class="social__link google-plus">
-                                            <span>Google Plus</span>
-                                            <i class="fa fa-google-plus"></i>
-                                        </a>
-                                    </li>
-                                    <li class="social__item">
-                                        <a href="https://facebook.com/" class="social__link facebook">
-                                            <span>facebook</span>
-                                            <i class="fa fa-facebook"></i>
-                                        </a>
-                                    </li>
-                                    <li class="social__item">
-                                        <a href="https://pinterest.com" class="social__link pinterest">
-                                            <span>pinterest</span>
-                                            <i class="fa fa-pinterest-p"></i>
-                                        </a>
-                                    </li>
-                                    <li class="social__item">
-                                        <a href="youtube.com" class="social__link twitter">
-                                            <span>twitter</span>
-                                            <i class="fa fa-twitter"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <!-- Social Icons End Here -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom bg-color ptb--25" data-bg-color="#e7e7e7">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-sm-6 text-sm-left text-center mb-xs--10">
-                            <p class="copyright-text"><a href="index.html">Zakas</a> &copy; 2019 all rights reserved</p>
-                        </div>
-                        <div class="col-sm-6 text-sm-right text-center">
-                            <figure>
-                                <img src="/Ocean/img/others/payment.png" alt="payment">
-                            </figure>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <!-- Footer End-->
+       <!-- Footer Start-->
+		<footer class="footer" id="footerID">
+			<div class="footer-bottom bg-color">
+				<div class="container">
+					<div class="row align-items-center">
+						<div class="container mt-5">
+							<ul
+								class="footer_detail d-flex justify-content-center list-unstyled">
+								<li class="px-2"><a href="../index/qaIndex.html">常見問題</a></li>
+								<li class="px-2"><a href="../index/copyright.html">版權聲明</a></li>
+								<li class="px-2"><a href="../index/instruction.html">使用說明</a></li>
+								<li class="px-2"><a href="../index/aboutUs.html">關於我們</a></li>
+							</ul>
+							<span class="d-flex justify-content-center">Copyright©
+								2023 Ocean.All rights reserved.</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!-- Footer End-->
 
         <!-- Mini Cart Start -->
         <aside class="mini-cart" id="miniCart">

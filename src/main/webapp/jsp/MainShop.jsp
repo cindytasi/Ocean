@@ -30,7 +30,40 @@
 
 <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
 
+<style>
 
+#footerID {
+	background: #000;
+	background-image: url("./img/waves_5.jpg");
+	color: #81D8D0;
+
+}
+.footer_detail li>a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer_detail li>a:hover {
+    color: var(--bs-blue);
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 3%;
+    background-color: #000;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    width: 4rem;
+    height: 5rem;
+}
+
+.card {
+    background: transparent;
+}
+
+</style>
 <style type="text/css">
 .checked {
 	background-color: gainsboro;
@@ -295,54 +328,7 @@
 			<!-- Slider area End -->
 			<div class="banner-area">
 				<div class="container-fluid p-0">
-					<div class="row no-gutters">
-						<div class="col-md-6">
-							<div class="banner-box">
-								<div
-									class="banner-inner banner-hover-2 banner-info-over-img banner-info-center">
-									<figure class="banner-image">
-										<img src="<c:url value="/img/banner/banner-24.jpg"/>"
-											alt="Banner">
-									</figure>
-									<div class="banner-info">
-										<div class="banner-info--inner text-center">
-											<h2 class="heading__primary color--white mb--20">
-												<span class="heading__primary--main">For Women</span>
-											</h2>
-											<a href="<c:url value="/ShopServlet?type=Women"/>">Shop
-												Now <i class="fa fa-angle-double-right"></i>
-											</a>
-										</div>
-									</div>
-									<a href="<c:url value="/ShopServlet?type=Women"/>"
-										class="banner-link"></a>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="banner-box">
-								<div
-									class="banner-inner banner-hover-2 banner-info-over-img banner-info-center">
-									<figure class="banner-image">
-										<img src="<c:url value="/img/banner/banner-23.jpg"/>"
-											alt="Banner">
-									</figure>
-									<div class="banner-info">
-										<div class="banner-info--inner text-center">
-											<h2 class="heading__primary color--white mb--20">
-												<span class="heading__primary--main">For Men</span>
-											</h2>
-											<a href="<c:url value="/ShopServlet?type=Men"/>">Shop Now
-												<i class="fa fa-angle-double-right"></i>
-											</a>
-										</div>
-									</div>
-									<a href="<c:url value="/ShopServlet?type=Men"/>"
-										class="banner-link"></a>
-								</div>
-							</div>
-						</div>
-					</div>
+					
 				</div>
 			</div>
 			<!-- Product Tab area Start -->
@@ -403,15 +389,14 @@
 								<div
 									class="banner-inner banner-bg-shape banner-info-over-img banner-info-center">
 									<figure class="banner-image">
-										<img src="<c:url value="/img/banner/banner-1.jpg"/>"
+										<img src="<c:url value="/ImageSevlet?id=3&photo_data=2"/>"
 											alt="Banner">
 									</figure>
 									<div class="banner-info">
 										<div class="banner-info--inner text-center">
 											<p class="banner-title-1 color--white">Up Coming Discount</p>
-											<p class="banner-title-2 color--white mb--20 mb-lg--10">On
-												Winter Clothing</p>
-											<a href="shop.html" class="btn banner-btn">Shop Now <i
+											<p class="banner-title-2 color--white mb--20 mb-lg--10">For Women</p>
+											<a href="<c:url value="/ShopServlet?type=Wonmen"/>">Shop Now<i
 												class="fa fa-angle-double-right"></i></a>
 										</div>
 									</div>
@@ -424,15 +409,14 @@
 								<div
 									class="banner-inner banner-bg-shape banner-info-over-img banner-info-center">
 									<figure class="banner-image">
-										<img src="<c:url value="/img/banner/banner-2.jpg"/>"
+										<img src="<c:url value="/ImageSevlet?id=6&photo_data=2"/>"
 											alt="Banner">
 									</figure>
 									<div class="banner-info">
 										<div class="banner-info--inner text-center">
 											<p class="banner-title-1 color--white">Up Coming Discount</p>
-											<p class="banner-title-2 color--white mb--20 mb-lg--10">On
-												Winter Clothing</p>
-											<a href="shop.html" class="btn banner-btn">Shop Now <i
+											<p class="banner-title-2 color--white mb--20 mb-lg--10">For Men</p>
+											<a href="<c:url value="/ShopServlet?type=Men"/>">Shop Now<i
 												class="fa fa-angle-double-right"></i></a>
 										</div>
 									</div>
@@ -448,38 +432,7 @@
 			<!-- Method area Start -->
 			<section class="method-area bg-color ptb--80 mb--95"
 				data-bg-color="#f6f6f6">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-3 col-sm-6 mb-md--50">
-							<div class="method-box">
-								<i class="flaticon flaticon-two-circling-arrows"></i>
-								<h4>90 days return</h4>
-								<p>3 days for free return</p>
-							</div>
-						</div>
-						<div class="col-lg-3 col-sm-6 mb-md--50">
-							<div class="method-box">
-								<i class="flaticon flaticon-paper-plane"></i>
-								<h4>Free Shipping</h4>
-								<p>Free shipping on order</p>
-							</div>
-						</div>
-						<div class="col-lg-3 col-sm-6 mb-xs--50">
-							<div class="method-box">
-								<i class="flaticon flaticon-support"></i>
-								<h4>Proffesional Support</h4>
-								<p>info@company.com</p>
-							</div>
-						</div>
-						<div class="col-lg-3 col-sm-6">
-							<div class="method-box">
-								<i class="flaticon flaticon-present"></i>
-								<h4>Gift Card</h4>
-								<p>Gift Card On Purchage</p>
-							</div>
-						</div>
-					</div>
-				</div>
+				
 			</section>
 			<!-- Method area End -->
 
@@ -490,72 +443,26 @@
 		<!-- Main Content Wrapper End -->
 
 		<!-- Footer Start-->
-		<footer class="footer">
-			<div class="footer-top bg-color ptb--50" data-bg-color="#f6f6f6">
-				<div class="container">
-					<div class="row justify-content-center">
-						<div class="col-lg-9 text-center">
-							<div class="footer-widget mb--50">
-								<div class="textwidget">
-									<img src="<c:url value="/img/logo/logo.png"/>" alt="Logo">
-								</div>
-							</div>
-							<div class="footer-widget mb--50 pb--1">
-								<ul class="footer-menu">
-									<li><a href="">About Us</a></li>
-									<li><a href="">Terms &amp; Conditions</a></li>
-									<li><a href="">Policy</a></li>
-									<li><a href="">Help</a></li>
-									<li><a href="">Contact Us</a></li>
-								</ul>
-							</div>
-							<div class="footer-widget">
-								<!-- Social Icons Start Here -->
-								<ul class="social">
-									<li class="social__item"><a
-										href="https://plus.google.com/"
-										class="social__link google-plus"> <span>Google Plus</span>
-											<i class="fa fa-google-plus"></i>
-									</a></li>
-									<li class="social__item"><a href="https://facebook.com/"
-										class="social__link facebook"> <span>facebook</span> <i
-											class="fa fa-facebook"></i>
-									</a></li>
-									<li class="social__item"><a href="https://pinterest.com"
-										class="social__link pinterest"> <span>pinterest</span> <i
-											class="fa fa-pinterest-p"></i>
-									</a></li>
-									<li class="social__item"><a href="youtube.com"
-										class="social__link twitter"> <span>twitter</span> <i
-											class="fa fa-twitter"></i>
-									</a></li>
-								</ul>
-								<!-- Social Icons End Here -->
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="footer-bottom bg-color ptb--25" data-bg-color="#e7e7e7">
+		<footer class="footer" id="footerID">
+			<div class="footer-bottom bg-color ptb--25">
 				<div class="container">
 					<div class="row align-items-center">
-						<div class="col-sm-6 text-sm-left text-center mb-xs--10">
-							<p class="copyright-text">
-								<a href="index.html">Zakas</a> &copy; 2019 all rights reserved
-							</p>
-						</div>
-						<div class="col-sm-6 text-sm-right text-center">
-							<figure>
-								<img src="<c:url value="/img/others/payment.png"/>"
-									alt="payment">
-							</figure>
+						<div class="container mt-5">
+							<ul
+								class="footer_detail d-flex justify-content-center list-unstyled">
+								<li class="px-2"><a href="../index/qaIndex.html">常見問題</a></li>
+								<li class="px-2"><a href="../index/copyright.html">版權聲明</a></li>
+								<li class="px-2"><a href="../index/instruction.html">使用說明</a></li>
+								<li class="px-2"><a href="../index/aboutUs.html">關於我們</a></li>
+							</ul>
+							<span class="d-flex justify-content-center">Copyright©
+								2023 Ocean.All rights reserved.</span>
 						</div>
 					</div>
 				</div>
 			</div>
 		</footer>
 		<!-- Footer End-->
-
 
 
 		<!-- Mini Cart Start -->

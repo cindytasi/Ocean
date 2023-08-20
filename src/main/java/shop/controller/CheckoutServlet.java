@@ -47,7 +47,6 @@ public class CheckoutServlet extends HttpServlet {
 		
 		
 		String checkoutJson =  request.getParameter("checkoutJson");
-		//List<CheckoutVo> checkoutList = gson.fromJson(checkoutJson, new TypeToken<List<CheckoutVo>>() {}.getType());
 		CheckoutVo checkoutVo = gson.fromJson(checkoutJson, CheckoutVo.class);
 		
 		request.setAttribute("productJson", productJson);

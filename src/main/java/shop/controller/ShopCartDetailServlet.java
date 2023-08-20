@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -28,6 +29,7 @@ import shop.vo.ApiConstants;
 import shop.vo.BaseAPIResult;
 import shop.vo.Product;
 import shop.vo.ShopCartVo;
+import web.vo.UserVo;
 
 
 @WebServlet("/ShopCartDetailServlet")
@@ -40,11 +42,13 @@ public class ShopCartDetailServlet extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-
+		
 		JedisPool pool = JedisUtil.getJedisPool();
 		try (Jedis jedis = pool.getResource();) {
-
-			String userId = "1"; // 假設userid=1 (設一個假資料)
+			HttpSession session = req.getSession();
+			UserVo userVo= (UserVo)session.getAttribute("userVo");	
+			String userId = String.valueOf(userVo.getUserId());
+			
 			String cart = jedis.get(Constant.shopCartRedisKey + ":" + userId);
 			Gson gson = new Gson();
 			List<ShopCartVo> shopCartVoList = gson.fromJson(cart, new TypeToken<List<ShopCartVo>>() {

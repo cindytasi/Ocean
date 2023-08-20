@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
@@ -16,6 +17,7 @@ import shop.dao.SelectOrdersDao;
 import shop.service.SelectOrdersService;
 import shop.vo.OrderDetailVO;
 import shop.vo.OrderVO;
+import web.vo.UserVo;
 
 @WebServlet("/SelectOrdersServlet")
 public class SelectOrdersServlet extends HttpServlet {
@@ -33,10 +35,9 @@ public class SelectOrdersServlet extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		HttpSession session = request.getSession();
-//		Object userIdObj = session.getAttribute("userId"); // 取得 userId 属性，返回的是 Object 类型
-//		String userId = null;
-		String userId ="1"; //先設一個假的id
+		HttpSession session = request.getSession();
+		UserVo userVo= (UserVo)session.getAttribute("userVo");	
+		String userId = String.valueOf(userVo.getUserId());
 		
 		
         response.setContentType("application/json");
