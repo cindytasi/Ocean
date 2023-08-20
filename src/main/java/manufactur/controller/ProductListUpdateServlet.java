@@ -67,7 +67,7 @@ public class ProductListUpdateServlet extends HttpServlet {
             
             // 根據需要處理更新後的產品數據
            
-            String redirectUrl = "/Ocean/jsp/test4.html"; // 更新後重定向的URL
+            String redirectUrl = "/Ocean/jsp/ProductSuccess.html"; // 更新後重定向的URL
             res.sendRedirect(redirectUrl);
         } catch (Exception e) {
             e.printStackTrace();

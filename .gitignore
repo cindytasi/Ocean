@@ -17,6 +17,7 @@ buildNumber.properties
 .classpath
 .settings/
 src/main/webapp/test2.html
+<<<<<<< HEAD
 src/main/java/admin/controller/MemberController.java
 src/main/java/admin/controller/UserSubsIdController.java
 src/main/java/admin/controller/Achievement/AchievementDeleteController.java
@@ -152,3 +153,6 @@ src/main/webapp/img/img/images2.jpeg
 src/main/webapp/img/img/images3.jpeg
 src/main/webapp/img/img/images4.jpeg
 src/main/webapp/img/img/images5.jpeg
+=======
+src/main/webapp/movie/HerryPotter.mp4
+>>>>>>> sky

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        /* 其他 CSS 样式 */
+        body {
+            background-color: #363434;
+            color: #fff;
+            /* Optional: Set the text color to white for contrast */
+        }
+
+        /* Other CSS styles go here */
+
+        h3 {
+            margin-top: 100px;
+            /* Adjust the value to move the h3 element down */
+            margin-left: 50px;
+            height: 40px;
+
+        }
+
+
+        .btn-group-vertical .btn {
+            background-color: #363333;
+            /* 將按鈕的底色設置為淺灰色 (#777) */
+            color: #fff;
+            /* 設置按鈕文字顏色為白色 */
+        }
+
+
+        .custom-border {
+            border: 1px solid white;
+            /* 設定白色的邊框 */
+            border-radius: 5px;
+            /* 設定邊框圓角 */
+            padding: 20px;
+            /* 調整邊框內的間距 */
+            margin: 20px auto;
+            /* 自動置中並增加垂直間距 */
+            max-width: 500px;
+            /* 設定最大寬度 */
+        }
+
+        .preview_img {
+            max-width: 100px;
+            /* 调整图片的最大宽度 */
+            margin-right: 20px;
+            /* 调整图片与信息之间的间距 */
+        }
+
+        /* .item-info {
+            flex: 1;
+            /* 让信息占据剩余的空间 */
+        /* }  */
+        /* 修改預設 */
+        :root {
+            --bs-blue: #81D8D0;
+        }
+
+        /* 頁面背景色 */
+        body {
+            background: #000;
+            background-image: url("/img/waves_4.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+
+        /* 清單 */
+        .navbar-dark .navbar-nav .nav-link:focus,
+        .navbar-dark .navbar-nav .nav-link:hover {
+            color: var(--bs-blue)
+        }
+
+        .navbar {
+            background: #000;
+        }
+
+        /* search */
+        .bi {
+            color: #fff;
+            font-size: 25px;
+        }
+
+        .bi:hover {
+            color: #81D8D0;
+        }
+
+        /* 下拉選單 */
+        .dropdown-item:hover {
+            font-size: 20px;
+            color: rgb(9, 163, 130);
+        }
+
+        /* search icon */
+        .bi {
+            color: #fff;
+            font-size: 25px;
+        }
+
+        .bi:hover {
+            color: #81D8D0;
+        }
+
+        /* footer */
+        .footer_detail li>a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .footer_detail li>a:hover {
+            color: var(--bs-blue);
+        }
+
+
+        .foamtitle h3 {
+            color: white;
+        }
+
+
+        #videoPlayer {
+            max-width: 500px;
+            max-height: 300px;
+        }
+        .small-image {
+        width: 100px;
+        height: 100px;
+    }
+
+    
+
+    </style>
+</head>
+
+<body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top mb-5">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+                <!-- logo -->
+                <div class="logo d-flex">
+                    <a class="navbar-brand" href="/oceanIndex.html">
+                        <img src="../logo/logo_-_.png" alt="Ocean Logo" style="width: 50px;height: 50px;">
+                    </a>
+                    <!-- search -->
+                    <div class="input-group my-auto w-50" dropdown>
+                        <input type="text" class="form-control dropdown-toggle" id="searchInput" placeholder="Search"
+                            aria-label="Search" aria-describedby="basic-addon2" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                        <button class="btn btn-outline-secondary" type="button" id="searchButton">
+                            <i class="bi bi-search"></i>
+                        </button>
+                        <!-- search影片List -->
+                        <ul class="searchMovie dropdown-menu" aria-labelledby="searchInput"
+                            style="width: 400px; height: 100px;background-color: rgba(0, 0, 0, 0.5);" id="searchVideo">
+                        </ul>
+                    </div>
+                </div>
+                <!-- 導覽列 -->
+                <div class="list align-items-center">
+                    <ul class="navbar-nav">
+                        <!-- 首頁 -->
+                        <li class="nav-item">
+                            <a class="nav-link active" href="../index/oceanIndex.html">首頁</a>
+                        </li>
+                        <!-- 電影 -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index/movieIndex.html">電影</a>
+                        </li>
+                        <!-- 影集 -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index/seriesIndex.html">影集</a>
+                        </li>
+                        <!-- 藝人商品 -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Ocean/MainShopServlet">藝人商品</a>
+                        </li>
+                        <!-- 收藏地圖 -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index/favoriteMapIndex.html">收藏地圖</a>
+                        </li>
+                        <!--user  -->
+                        <div class="nav-item dropdown">
+                            <button type="button" class="btn dropdown-toggle" id="navbarDropdownUserLink"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <!-- <img src="/img/user.webp" alt="" style="width: 40px; height: 40px;"> -->
+                                <img src="" alt="" id="userImg" style="width: 40px;height: 40px;">
+                            </button>
+                            <!-- user下拉選單 -->
+                            <ul class="dropdown-menu dropdown-menu-end mt-2" style="opacity: 80%;"
+                                aria-labelledby="navbarDropdownUserLink">
+                                <li><a class="dropdown-item" href="../index/aacountIndex.html">帳戶</a></li>
+                                <li><a class="dropdown-item" href="../index/accountDetail.html">基本資料</a></li>
+                                <li><a class="dropdown-item" href="../index/myAchieve.html">我的成就</a></li>
+                                <li><a class="dropdown-item" href="../index/myOrder.html">我的訂單</a></li>
+                                <li><a class="dropdown-item" href="../index/myList.html">我的片單</a></li>
+                                <li><a class="dropdown-item" href="../index/watchHistory.html">觀看紀錄</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="../index/signOut.html">登出</a></li>
+                            </ul>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="foamtitle container">
+        <h3>廠商後台</h3>
+    </div>
+
+    <div class="foamlist container">
+        <div class="mainfoam  left d-flex justify-content-between">
+            <div class="btn btn-group-vertical">
+                <button type="button" class="btn btn-dark"><a href="ProductListupdate.html">商品列表</a></button>
+                <button type="button" class="btn btn-dark"><a href="ProductInsert.html">上架商品</a></button>
+                <button type="button" class="btn btn-dark"><a href="ProductNone.html">商品置入</a></button>
+                <!-- <button type="button" class="btn btn-dark">審核明細</button> -->
+            </div>
+    
+            <!-- 影片列表 -->
+            <div class="dropdown text-center">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    影片列表
+                </button>
+                <ul class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="#" onclick="playVideo('video.mp4')">搜尋....</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="playVideo('video1.mp4')">少年法庭</a></li>
+                    <li><a class="dropdown-item" href="#"onclick="playVideo('video2.mp4')">復仇者聯盟</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="playVideo('video3.mp4')">海賊王</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="playVideo('HerryPotter.mp4')">哈利波特</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="playVideo('video5.mp4')">德魯納酒店</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="playVideo('video6.mp4')">魷魚遊戲</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+            
+
+            <div class="d-flex justify-content-center">
+                <video id="videoPlayer" controls style="display: none;"></video>
+            </div>
+            
+
+  
+   
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center"> <!-- 將內容設為水平置中 -->
+                <label for="productlist" class="col-sm-2 col-form-label">商品1</label>
+                <div class="col-sm-6 mx-auto"> <!-- 使用 mx-auto 來水平置中 -->
+                    <img id="productImage1" src="" alt="商品圖片" class="small-image">
+                    <select class="form-select" aria-label="Default select example" name="specType1" id="specType1">
+                        <option selected>開啟選擇商品</option>
+                        <option value="1">搜尋</option>
+                        <option value="1">接骨木魔杖</option>
+                        <option value="1">光輪2000</option>
+                        <option value="1">哈利的眼鏡</option>
+                        <option value="1">圍巾</option>
+                        <option value="2">鳳凰的眼淚</option>
+                        <option value="3"data-image="../movie/typeHat.jpg">分類帽</option>
+                        <option value="4" data-image="../movie/wizardRode.jpg">巫師袍</option>
+                        <option value="5">其他...</option>
+                    </select>
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne1" aria-expanded="true" aria-controls="collapseOne"style="font-size: 3px; padding: 4px;">
+                                    商品詳細訊息
+                                </button>
+                            </h2>
+                            <div id="collapseOne1" class="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <div class="accordion-body" style="font-size: 6px; padding: 4px;color: black;"> <!-- 调整字体大小和内边距 -->
+                                    <strong>商品名稱</strong> 分類帽 <strong>商品分類</strong> 帽子  <strong>商品尺寸</strong> F <strong>商品價格</strong> 599<strong>商品性別</strong> 其他性別 <strong>商品庫存</strong> 50 <strong>商品顏色</strong> brown 
+                                </div>
+                            </div>
+                        </div>
+                        
+                </div>
+            </div>
+        </div>
+    
+        <div class="row justify-content-center">
+            <div class="col-sm-8 text-center">
+                <div class="input-group input-group-sm mb-5 mx-auto"> <!-- 使用 mx-auto 來水平置中 -->
+                    <span class="input-group-text" id="inputGroup-sizing-sm">商品置入時間軸</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="HH:mm:ss">
+                </div>
+            </div>
+        </div>
+        
+        
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center"> <!-- 將內容設為水平置中 -->
+                <label for="productlist" class="col-sm-2 col-form-label">商品2</label>
+                <div class="col-sm-6 mx-auto"> <!-- 使用 mx-auto 來水平置中 -->
+                    <img id="productImage2" src="" alt="商品圖片" class="small-image">
+                    <select class="form-select" aria-label="Default select example" name="specType2" id="specType2">
+                        <option selected>開啟選擇商品</option>
+                        <option value="1">搜尋</option>
+                        <option value="1">接骨木魔杖</option>
+                        <option value="1">光輪2000</option>
+                        <option value="1">哈利的眼鏡</option>
+                        <option value="1">圍巾</option>
+                        <option value="2">鳳凰的眼淚</option>
+                        <option value="3"data-image="../movie/typeHat.jpg">分類帽</option>
+                        <option value="4" data-image="../movie/wizardRode.jpg">巫師袍</option>
+                        <option value="5">其他...</option>
+                    </select>
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"style="font-size: 3px; padding: 4px;">
+                                    商品詳細訊息
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <div class="accordion-body" style="font-size: 6px; padding: 4px;color: black;"> <!-- 调整字体大小和内边距 -->
+                                    <strong>商品名稱</strong> 巫師袍 <strong>商品分類</strong> 衣服  <strong>商品尺寸</strong> XL <strong>商品價格</strong> 1000<strong>商品性別</strong> 其他性別<strong>商品庫存</strong> 33<strong>商品顏色</strong> black
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-sm-8 text-center">
+                <div class="input-group input-group-sm mb-5 mx-auto"> <!-- 使用 mx-auto 來水平置中 -->
+                    <span class="input-group-text" id="inputGroup-sizing-sm">商品置入時間軸</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="HH:mm:ss">
+                </div>
+            </div>
+        </div>
+        
+
+
+        <div class="fixed-bottom mb-2 me-2"> <!-- 使用 fixed-bottom 类将按钮固定在页面的底部右下角 -->
+            <button type="button" class="btn btn-primary btn-lg"id="submitButton">送出</button>
+        </div>
+        
+
+
+   <!-- 照片呈現 -->
+        <script>
+           
+            var specTypeSelect1 = document.getElementById('specType1');
+            var productImage1 = document.getElementById('productImage1');
+            
+            var specTypeSelect2 = document.getElementById('specType2');
+            var productImage2 = document.getElementById('productImage2');
+        
+          
+            specTypeSelect1.addEventListener('change', function() {
+               
+                var selectedValue = specTypeSelect1.value;
+        
+               
+                if (selectedValue === '3') {
+                    productImage1.src = '../movie/typeHat.jpg';
+                } else if (selectedValue === '4') {
+                    productImage1.src = '../movie/wizardRode.jpg';
+                } else {
+                   
+                    productImage1.src = 'default.jpg';
+                }
+            });
+        
+            specTypeSelect2.addEventListener('change', function() {
+                
+                var selectedValue = specTypeSelect2.value;
+        
+               
+                if (selectedValue === '3') {
+                    productImage2.src = '../movie/typeHat.jpg';
+                } else if (selectedValue === '4') {
+                    productImage2.src = '../movie/wizardRode.jpg';
+                } else {
+                    
+                    productImage2.src = 'default.jpg';
+                }
+            });
+        </script>
+        
+
+
+
+
+                     
+<!-- 影片播放 -->
+            <script>
+                function playVideo(videoFileName) {
+                    const videoPlayer = document.getElementById('videoPlayer');
+                    const videoPath = '../movie/HerryPotter.mp4' ; // 替換成實際影片文件的路徑
+                   console.log(videoPlayer.src);
+                    videoPlayer.src = videoPath;
+                    videoPlayer.style.display = 'block';
+                    videoPlayer.play();
+                }
+            </script>
+<!-- 送出 -->
+<script>
+    var submitButton = document.getElementById('submitButton');
+
+   
+    submitButton.addEventListener('click', function() {
+        
+        window.location.href = "/Ocean/jsp/ProductSuccess.html";
+    });
+</script>
+
+
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.1/dist/umd/popper.min.js"
+                integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN"
+                crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"
+                integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/"
+                crossorigin="anonymous"></script>
+
+</body>
+
+</html>
+
+
+
+
+
