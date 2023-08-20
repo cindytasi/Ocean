@@ -121,7 +121,7 @@ a, button, .user-info-menu, .banner-box .banner-info, .banner-box .banner-hover-
 					id="navbarNavDropdown">
 					<!-- logo -->
 					<div class="logo d-flex">
-						<a class="navbar-brand" href="/oceanIndex.html"> <img
+						<a class="navbar-brand" href="./index/oceanIndex.html"> <img
 							src="<c:url value="/img/logo/logo_-_.png"/>" alt="Ocean Logo"
 							style="width: 50px; height: 50px;">
 						</a>
@@ -172,8 +172,10 @@ a, button, .user-info-menu, .banner-box .banner-info, .banner-box .banner-hover-
 									</a></li>
 									<li class="header-toolbar__item user-info"><a href=""
 										class="header-toolbar__btn"> <!--<i class="flaticon flaticon-user"></i> -->
-											<img src="<c:url value="img/logo/user.webp"/>"
-											style="width: 85%; height: 100%;"/>
+<%-- 											<img src="<c:url value="img/logo/user.webp"/>" --%>
+<!-- 											style="width: 85%; height: 100%;"/> -->
+									<img src="" alt="" style="width: 40px; height: 40px;" id="userImg">
+									
 									</a>
 										<ul class="user-info-menu">
 											<li><a href="my-account.html" style="font-size:16px">帳戶</a></li>
