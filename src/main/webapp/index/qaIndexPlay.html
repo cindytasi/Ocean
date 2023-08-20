@@ -149,7 +149,7 @@
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="/signOut.html">登出</a></li>
+                                <li id="logout"><a href="#" class="dropdown-item">登出</a></li>
                             </ul>
                         </div>
                     </ul>
@@ -436,13 +436,13 @@
         integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    <script src="../index/js/nav.js"></script>
     <script>
         //=================================從session取得memberId======================================//
-        const memberId = sessionStorage.getItem("memberId");
+        const memberId = sessionStorage.getItem("memberIdValue");
 
         //=================================搜尋使用者img======================================//
-        document.getElementById("userImg").setAttribute("src", "http://localhost:8080/Ocean/web/controller/selectMemberImgController?memberId=" + memberId);
+        document.getElementById("userImg").setAttribute("src", "http://localhost:8080/Ocean/web/controller/SelectMemberImageController?member_id=" + memberId);
 
         $(document).ready(function () {
             $("#searchButton").click(function () {

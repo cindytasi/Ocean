@@ -83,16 +83,15 @@
                     </a>
                     <!-- search -->
                     <div class="input-group my-auto w-50 dropdown">
-                        <input type="text" class="form-control dropdown-toggle" id="searchInput"
-                            placeholder="Search" aria-label="Search" aria-describedby="basic-addon2"
-                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <input type="text" class="form-control dropdown-toggle" id="searchInput" placeholder="Search"
+                            aria-label="Search" aria-describedby="basic-addon2" data-bs-toggle="dropdown"
+                            aria-expanded="false">
                         <button class="btn btn-outline-secondary" type="button" id="searchButton">
                             <i class="bi bi-search"></i>
                         </button>
                         <!-- search影片List -->
                         <ul class="searchMovie dropdown-menu" aria-labelledby="searchInput"
-                            style="width: 400px; height: 100px;background-color: rgba(0, 0, 0, 0.5);"
-                            id="searchVideo">
+                            style="width: 400px; height: 100px;background-color: rgba(0, 0, 0, 0.5);" id="searchVideo">
                         </ul>
                     </div>
                 </div>
@@ -138,7 +137,7 @@
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="/signOut.html">登出</a></li>
+                                <li id="logout"><a href="#" class="dropdown-item">登出</a></li>
                             </ul>
                         </div>
                     </ul>
@@ -191,6 +190,7 @@
         <span class="d-flex justify-content-center">Copyright© 2023 Ocean.All rights reserved.</span>
     </div>
 
+    <script src="../index/js/nav.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
         crossorigin="anonymous"></script>
@@ -198,10 +198,10 @@
 
     <script>
         //=================================從session取得memberId======================================//
-        const memberId = sessionStorage.getItem("memberId");
+        const memberId = sessionStorage.getItem("memberIdValue");
 
         //=================================搜尋使用者img======================================//
-        document.getElementById("userImg").setAttribute("src", "http://localhost:8080/Ocean/web/controller/selectMemberImgController?memberId=" + memberId);
+        document.getElementById("userImg").setAttribute("src", "http://localhost:8080/Ocean/web/controller/SelectMemberImageController?member_id=" + memberId);
 
         //=========================SEARCH FUNCTION==================================//
         //=================================SEARCH Video FUNCTION======================================//

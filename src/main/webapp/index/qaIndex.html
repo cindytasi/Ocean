@@ -149,7 +149,7 @@
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="../index/signOut.html">登出</a></li>
+                                <li id="logout"><a href="#" class="dropdown-item">登出</a></li>
                             </ul>
                         </div>
                     </ul>
@@ -422,11 +422,11 @@
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
+    <script src="../index/js/nav.js"></script>
 
     <script>
         //=================================從session取得memberId======================================//
-        const memberId = sessionStorage.getItem("memberId");
+        const memberId = sessionStorage.getItem("memberIdValue");
 
         //=================================SEARCH Video FUNCTION======================================//
 
