@@ -105,8 +105,6 @@
         .card {
             background: transparent;
         }
-
-        
     </style>
 
 </head>
@@ -166,7 +164,7 @@
                             <div class="nav-item dropdown">
                                 <button type="button" class="btn dropdown-toggle" id="navbarDropdownUserLink"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="../img/user.webp" alt="" style="width: 40px; height: 40px;">
+                                    <img src="" alt="" style="width: 40px; height: 40px;" id="userImg">
                                 </button>
                                 <!-- user下拉選單 -->
                                 <ul class="dropdown-menu dropdown-menu-end mt-2" style="opacity: 80%;"
@@ -176,7 +174,8 @@
                                     <li><a class="dropdown-item" href="../index/myAchieve.html">我的成就</a></li>
                                     <li><a class="dropdown-item" href="../index/myOrder.html">我的訂單</a></li>
                                     <li><a class="dropdown-item" href="../favourites/favourites.html">我的片單</a></li>
-                                    <li><a class="dropdown-item" href="../memberwatchduration/MemberWatchDuration.html">觀看紀錄</a></li>
+                                    <li><a class="dropdown-item"
+                                            href="../memberwatchduration/MemberWatchDuration.html">觀看紀錄</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
@@ -213,7 +212,8 @@
                 </div>
             </div>
             <div class="item mb-5">
-                <img src="img/800px-Harry_potter_and_the_deathly_hallows_part2_2011_movie_poster.jpg" alt="" style="width: 100%;">
+                <img src="img/800px-Harry_potter_and_the_deathly_hallows_part2_2011_movie_poster.jpg" alt=""
+                    style="width: 100%;">
                 <div class="star-icon">
                     <i class="bi bi-star-fill" id="star" data-item-id="item-4"></i>
                 </div>
@@ -254,7 +254,7 @@
                     <i class="bi bi-star-fill" id="star" data-item-id="item-6"></i>
                 </div>
             </div>
-        
+
         </div>
     </div>
 
@@ -282,7 +282,12 @@
 <script src="js/favourites.js"></script>
 
 <script>
-   
+    //=================================從session取得memberId======================================//
+    const memberId = sessionStorage.getItem("memberIdValue");
+
+    //=================================搜尋使用者img======================================//
+    document.getElementById("userImg").setAttribute("src", "http://localhost:8080/Ocean/web/controller/SelectMemberImageController?member_id=" + memberId);
+//=================================將影片類別轉中文======================================//
 
 </script>
 

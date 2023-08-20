@@ -330,8 +330,7 @@
 										</a></li>
 									<li class="header-toolbar__item user-info"><a href="" class="header-toolbar__btn">
 											<!--<i class="flaticon flaticon-user"></i> -->
-											<img src="/Ocean/img/logo/user.webp"
-											style="width: 85%; height: 100%;"/>
+                                            <img src="" alt="" style="width: 40px; height: 40px;" id="userImg">
 										</a>
 										<ul class="user-info-menu">
 											<li><a href="my-account.html" style="font-size:16px">帳戶</a></li>
@@ -873,6 +872,16 @@
     <!-- Main JS -->
     <script src="/Ocean/js/main.js"></script>
 
+    <script>
+
+		//=================================從session取得memberId======================================//
+		const memberId = sessionStorage.getItem("memberIdValue");
+
+		//=================================搜尋使用者img======================================//
+		document.getElementById("userImg").setAttribute("src", "http://localhost:8080/Ocean/web/controller/SelectMemberImageController?member_id=" + memberId);
+        //=================================將影片類別轉中文======================================//
+		
+	</script>
 </body>
 
 </html>
