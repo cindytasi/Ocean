@@ -39,6 +39,10 @@ public class MemberDaoImpl implements MemberDao {
 		final String sql = "insert INTO Ocean.Member (memberName, userId, childMember,  memberPassword , profilePicture) "
 				+ "values( ?, ?, ?, ? , ?)";
 		final String path = "/Users/J_s_Kai/Desktop/memberImage/";
+//		Mac用
+//		final String path = "C:\\memberImage\\";
+//		Windows用
+		
 		String fileName = null;
 		File directory = new File(path);
 		File[] files = directory.listFiles();
