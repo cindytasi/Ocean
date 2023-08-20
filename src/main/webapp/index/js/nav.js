@@ -71,7 +71,7 @@
 
 
 		fetch('/Ocean/web/controller/LogoutContorller"');
-		location.href = 'http://localhost:8080/Ocean/index.html';
+		location.href = 'http://localhost:8080/Ocean/index/oceanIndexLog.html';
 	});
 
 	function getContextPath() {

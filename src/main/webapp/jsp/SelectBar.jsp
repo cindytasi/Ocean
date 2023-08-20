@@ -4,6 +4,7 @@
 
 <script type="text/javascript" src="<c:url value="/js/jquery/jquery-3.7.0.min.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/js/selectBar.js"/>"></script>
+<script type="text/javascript" src="<c:url value="./index/js/nav.js"/>"></script>
 <!-- Header Start -->
 
 <style>
@@ -121,7 +122,7 @@ a, button, .user-info-menu, .banner-box .banner-info, .banner-box .banner-hover-
 					id="navbarNavDropdown">
 					<!-- logo -->
 					<div class="logo d-flex">
-						<a class="navbar-brand" href="/oceanIndex.html"> <img
+						<a class="navbar-brand" href="./index/oceanIndex.html"> <img
 							src="<c:url value="/img/logo/logo_-_.png"/>" alt="Ocean Logo"
 							style="width: 50px; height: 50px;">
 						</a>
@@ -174,16 +175,17 @@ a, button, .user-info-menu, .banner-box .banner-info, .banner-box .banner-hover-
 										class="header-toolbar__btn"> <!--<i class="flaticon flaticon-user"></i> -->
 											<img src="<c:url value="img/logo/user.webp"/>"
 											style="width: 85%; height: 100%;"/>
+									
 									</a>
 										<ul class="user-info-menu">
-											<li><a href="my-account.html" style="font-size:16px">帳戶</a></li>
-											<li><a href="cart.html" style="font-size:16px">基本資料</a></li>
-											<li><a href="checkout.html" style="font-size:16px">我的成就</a></li>
+											<li><a href="/Ocean/subscription/Ocean_Subscription.html" style="font-size:16px">帳戶</a></li>
+											<li><a href="/Ocean/edit/edit.html" style="font-size:16px">基本資料</a></li>
+<!-- 											<li><a href="checkout.html" style="font-size:16px">我的成就</a></li> -->
 											<li><a href="/Ocean/html/my-account.html" style="font-size:16px">我的訂單</a></li>
-											<li><a href="order-tracking.html" style="font-size:16px">我的片單</a></li>
-											<li><a href="compare.html" style="font-size:16px">觀看紀錄</a></li>
+											<li><a href="/Ocean/favourites/favourites.html" style="font-size:16px">我的片單</a></li>
+											<li><a href="/Ocean/memberwatchduration/MemberWatchDuration.html" style="font-size:16px">觀看紀錄</a></li>
 											<li><hr></li>
-											<li><a href="compare.html" style="font-size:16px">登出</a></li>
+											<li id="logout"><a href="#" class="dropdown-item">登出</a></li>
 										</ul></li>
 
 									<li class="header-toolbar__item d-lg-none"><a href="#"

@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(function() {
 	// 綁定按鈕的click事件
 
 	const memberName = document.querySelector('#memberName');
@@ -10,7 +10,7 @@ $(document).ready(function () {
 
 
 	let childMember_value = false;
-	$('#childMember').on('change', function () {
+	$('#childMember').on('change', function() {
 		console.log(this.checked);
 		if (this.checked) {
 			childMember_value = true;
@@ -19,7 +19,7 @@ $(document).ready(function () {
 		}
 	});
 
-	$("#btn_new_member").click(function () {
+	$("#btn_new_member").click(function() {
 
 		console.log('aaaaa');
 		// 在這裡執行fetch請求
@@ -66,9 +66,17 @@ $(document).ready(function () {
 			method: 'POST',
 			body: formData
 		}).then(response => response.json())
-			.then(res => {
-				console.log(res);
-				alert(res);
+			.then(body => {
+				const { successful, message } = body;
+				console.log(successful);
+				if (successful) {
+					
+//					msg.textContent = message;
+					location.href = 'http://localhost:8080/Ocean/member/member.html';
+
+				} else {
+//					msg.textContent = message;
+				}
 			});
 	});
 	// });
@@ -78,7 +86,7 @@ $(document).ready(function () {
 	// 選取相關的元素
 
 	// 當選擇文件時的處理
-	uploadBtn.on('change', function (e) {
+	uploadBtn.on('change', function(e) {
 		console.log("aaaaa");
 		const file = e.target.files[0]; // 獲取選擇的文件
 		uploadFile(file); // 執行上傳文件的函式
@@ -88,7 +96,7 @@ $(document).ready(function () {
 	function uploadFile(file) {
 		const reader = new FileReader(); // 創建一個 FileReader 物件來讀取文件
 
-		reader.onload = function () {
+		reader.onload = function() {
 			previewImage.attr('src', reader.result); // 設定預覽圖片的來源
 		}
 
