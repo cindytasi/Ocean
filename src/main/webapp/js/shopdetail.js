@@ -4,7 +4,7 @@ $(document).ready(function() {
 
 
 	//-------------------------點選不同顏色就會換圖片--------------------------------------	
-
+	
 	//綁定color按鈕
 	$(".colorBtn").click(function() {
 		let color = $(this).attr("color"); //抓color按鈕裡面color的value Ex:粉
@@ -114,7 +114,7 @@ $(document).ready(function() {
 		})
 	});
 
-
+	resetQuantityAndButtons();
 	//----------------讓加號 減號可以正常發揮-----------	
 	$(".qtybutton").click(function() {
 		var inputElement = $("#qty");

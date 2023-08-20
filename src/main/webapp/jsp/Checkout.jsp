@@ -138,6 +138,7 @@ select {
 </head>
 
 <body>
+
 	<!-- Header Start -->
 	<header class="header">
 		<input type="hidden" value='${productJson}' />
@@ -339,11 +340,13 @@ select {
 									<h2>填寫運送資料</h2>
 								</div>
 								<div class="checkout-form">
-								
-									<form id="mainForm" action="<c:url value="/OrdersServlet"/>" method="post">
-									<input type="hidden" name="productJson" value='${productJson}' />
-									<input type="hidden" name="checkoutJson" value='${checkoutJson}' />
-									<input id="transportInfoJson" type="hidden" name="transportInfoJson">								
+
+									<form id="mainForm" action="<c:url value="/OrdersServlet"/>"
+										method="post">
+										<input type="hidden" name="productJson" value='${productJson}' />
+										<input type="hidden" name="checkoutJson"
+											value='${checkoutJson}' /> <input id="transportInfoJson"
+											type="hidden" name="transportInfoJson">
 										<div class="form-row mb--20">
 											<div class="form__group col-md-6 mb-sm--30">
 												<label for="billing_fname"
@@ -457,7 +460,8 @@ select {
 										<div class="checkout-payment">
 											<div class="payment-group mb--10">
 												<div class="payment-radio">
-													<input type="radio" value="fax" name="delivery-method" checked > <label>宅配</label>
+													<input type="radio" value="fax" name="delivery-method"
+														checked> <label>宅配</label>
 												</div>
 											</div>
 											<div class="payment-group mb--10">
@@ -481,6 +485,7 @@ select {
 												<input id="submitBtn" type="button" value="Place Order"
 													class="btn btn-fullwidth btn-bg-red btn-color-white btn-hover-2"></input>
 											</div>
+
 										</div>
 									</form>
 								</div>
