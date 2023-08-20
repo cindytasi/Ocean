@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        /* 其他 CSS 样式 */
+        /* body {
+            background-color: #363434;
+            color: #fff; */
+            /* Optional: Set the text color to white for contrast */
+        /* } */
+
+        /* Other CSS styles go here */
+
+        h3 {
+            margin-top: 100px;
+            /* Adjust the value to move the h3 element down */
+            margin-left: 50px;
+            height: 40px;
+
+        }
+
+
+        .btn-group-vertical .btn {
+            background-color: #363333;
+            /* 將按鈕的底色設置為淺灰色 (#777) */
+            color: #fff;
+            /* 設置按鈕文字顏色為白色 */
+        }
+
+
+       
+
+        .preview_img {
+            max-width: 100px;
+            /* 调整图片的最大宽度 */
+            margin-right: 20px;
+            /* 调整图片与信息之间的间距 */
+        }
+
+        
+
+
+
+/* 修改預設 */
+:root {
+        --bs-blue: #81D8D0;
+    }
+
+    /* 頁面背景色 */
+    body {
+        background: #000;
+        background-image: url("/img/waves_4.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+
+    /* 清單 */
+    .navbar-dark .navbar-nav .nav-link:focus,
+    .navbar-dark .navbar-nav .nav-link:hover {
+        color: var(--bs-blue)
+    }
+
+    .navbar {
+        background: #000;
+    }
+
+    /* search */
+    .bi {
+        color: #fff;
+        font-size: 25px;
+    }
+
+    .bi:hover {
+        color: #81D8D0;
+    }
+
+    /* 下拉選單 */
+    .dropdown-item:hover {
+        font-size: 20px;
+        color: rgb(9, 163, 130);
+    }
+
+    /* search icon */
+    .bi {
+        color: #fff;
+        font-size: 25px;
+    }
+
+    .bi:hover {
+        color: #81D8D0;
+    }
+
+    /* footer */
+    .footer_detail li>a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .footer_detail li>a:hover {
+        color: var(--bs-blue);
+    }
+
+
+    .foamtitle h3 {
+        color: white;
+    }
+
+
+    label {
+    color: white;
+}
+
+
+
+
+    </style>
+      <script>
+        function previewImage(inputId, previewId) {
+            var input = document.getElementById(inputId);
+            var previewHolder = document.getElementById(previewId);
+            previewHolder.innerHTML = ''; 
+
+            var files = input.files;
+            for (var i = 0; i < files.length; i++) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var img = document.createElement("img");
+                    img.src = e.target.result;
+                    img.style.width = "100px"; 
+                    img.style.height = "100px";
+                    previewHolder.appendChild(img);
+                };
+                reader.readAsDataURL(files[i]);
+            }
+        }
+
+       
+        function triggerFileInput(inputId) {
+            document.getElementById(inputId).click();
+        }
+    </script>
+</head>
+
+<body>
+<!-- navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top mb-5">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+            <!-- logo -->
+            <div class="logo d-flex">
+                <a class="navbar-brand" href="/oceanIndex.html">
+                    <img src="../logo/logo_-_.png" alt="Ocean Logo" style="width: 50px;height: 50px;">
+                </a>
+                <!-- search -->
+                <div class="input-group my-auto w-50" dropdown>
+                    <input type="text" class="form-control dropdown-toggle" id="searchInput"
+                            placeholder="Search" aria-label="Search" aria-describedby="basic-addon2"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-outline-secondary" type="button" id="searchButton">
+                            <i class="bi bi-search"></i>
+                        </button>
+                        <!-- search影片List -->
+                        <ul class="searchMovie dropdown-menu" aria-labelledby="searchInput"
+                            style="width: 400px; height: 100px;background-color: rgba(0, 0, 0, 0.5);"
+                            id="searchVideo">
+                        </ul>
+                    </div>
+                </div>
+                <!-- 導覽列 -->
+                <div class="list align-items-center">
+                    <ul class="navbar-nav">
+                        <!-- 首頁 -->
+                        <li class="nav-item">
+                            <a class="nav-link active" href="../index/oceanIndex.html">首頁</a>
+                        </li>
+                        <!-- 電影 -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index/movieIndex.html">電影</a>
+                        </li>
+                        <!-- 影集 -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index/seriesIndex.html">影集</a>
+                        </li>
+                        <!-- 藝人商品 -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Ocean/MainShopServlet">藝人商品</a>
+                        </li>
+                        <!-- 收藏地圖 -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index/favoriteMapIndex.html">收藏地圖</a>
+                        </li>
+                        <!--user  -->
+                        <div class="nav-item dropdown">
+                            <button type="button" class="btn dropdown-toggle" id="navbarDropdownUserLink"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <!-- <img src="/img/user.webp" alt="" style="width: 40px; height: 40px;"> -->
+                                <img src="" alt="" id="userImg" style="width: 40px;height: 40px;">
+                            </button>
+                            <!-- user下拉選單 -->
+                            <ul class="dropdown-menu dropdown-menu-end mt-2" style="opacity: 80%;"
+                                aria-labelledby="navbarDropdownUserLink">
+                                <li><a class="dropdown-item" href="../index/aacountIndex.html">帳戶</a></li>
+                                <li><a class="dropdown-item" href="../index/accountDetail.html">基本資料</a></li>
+                                <li><a class="dropdown-item" href="../index/myAchieve.html">我的成就</a></li>
+                                <li><a class="dropdown-item" href="../index/myOrder.html">我的訂單</a></li>
+                                <li><a class="dropdown-item" href="../index/myList.html">我的片單</a></li>
+                                <li><a class="dropdown-item" href="../index/watchHistory.html">觀看紀錄</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="../index/signOut.html">登出</a></li>
+                            </ul>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+<div class="foamtitle container">
+    <h3>廠商後台</h3>
+</div>  
+
+
+    <div class="foamlist container">
+        <div class="mainfoam  left d-flex">
+            <div class="bts d-flex flex-column">
+                <button type="button" class="btn btn-dark "><a href="ProductListupdate.html">商品列表</a></button>
+                <button type="button" class="btn btn-dark"><a href="ProductInsert.html">上架商品</a></button>
+                <button type="button" class="btn btn-dark"><a href="ProductNone.html">商品置入</a></button>
+                <!-- <button type="button" class="btn btn-dark">審核明細</button> -->
+            </div>
+        </div>
+    </div>       
+
+
+
+
+<form action="/Ocean/ProductsOnShelvesServlet" method="post"enctype="multipart/form-data"  >
+        <div class="products">
+            <div class="produceInfo d-flex flex-column mx-auto text-center">
+                <div class="col-md-4 mx-auto">
+                    <div class="form-group">
+                        <label for="upFiles1">商品照片1:</label>
+                        <input id="upFiles1" name="image1" type="file" class="form-control" multiple="multiple" onchange="previewImage('upFiles1', 'preview1');" />
+                        <span id="upFiles1.errors" class="error"></span>
+                        <div id="preview1"></div>
+                    </div>
+                </div>
+                <div class="col-md-4 mx-auto">
+                    <div class="form-group">
+                        <label for="upFiles2">商品照片2:</label>
+                        <input id="upFiles2" name="image2" type="file" class="form-control" multiple="multiple" onchange="previewImage('upFiles2', 'preview2');" />
+                        <span id="upFiles2.errors" class="error"></span>
+                        <div id="preview2"></div>
+                    </div>
+                </div>
+                <div class="col-md-4 mx-auto">
+                    <div class="form-group">
+                        <label for="upFiles3">商品照片3:</label>
+                        <input id="upFiles3" name="image3" type="file" class="form-control" multiple="multiple" onchange="previewImage('upFiles3', 'preview3');" />
+                        <span id="upFiles3.errors" class="error"></span>
+                        <div id="preview3"></div>
+                    </div>
+                </div>
+                <div class="col-md-4 mx-auto"> 
+                    <div class="form-group"> 
+                        <label for="upFiles4">商品照片4:</label>
+                        <input id="upFiles4" name="image4" type="file" class="form-control" multiple="multiple" onchange="previewImage('upFiles4', 'preview4');" />
+                        <span id="upFiles4.errors" class="error"></span>
+                        <div id="preview4"></div>
+                    </div>
+                </div>
+            </div>
+        
+            <input id="p_file" type="file" style="display: none;">
+            <div id="image-preview-container"></div>
+        
+            <!-- <button onclick="triggerFileInput('p_file')">选择文件并预览</button> -->
+<div class="name-container d-flex justify-content-center" style="border: 1px solid white;"> <!-- 新增的 div 包裹商品名稱 -->
+  
+    <div class="col-sm-10">
+      <label for="productName" class="col-sm-2 col-form-label">商品名稱</label>
+      <div class="col-sm-10">  
+        <input type="text" class="form-control" name="productName" id="productName" autocomplete="off">
+      </div>
+      <label for="specType" class="col-sm-2 col-form-label">商品分類</label>
+      <div class="col-sm-10">
+          <!-- <input type="text" class="form-control" id="specType"> -->
+      
+      
+          <select class="form-select" aria-label="Default select example" name="specType" id="specType">
+          <option selected>開啟選擇類別</option>
+          <option value="1">衣服</option>
+          <option value="2">褲子</option>
+          <option value="3">鞋子</option>
+          <option value="4">飾品</option>
+          <option value="5">其他</option>
+
+
+          </select>
+      </div>
+      
+      <label for="sizeType" class="col-sm-2 col-form-label">商品尺寸</label>
+      <div class="col-sm-10">
+          <input type="text" class="form-control" name="sizeType" id="sizeType" autocomplete="off">
+      </div>
+      <label for="price" class="col-sm-2 col-form-label">商品價錢</label>
+      <div class="col-sm-10">
+          <input type="text" class="form-control" name="price" id="price" autocomplete="off">
+      </div>
+      <label for="inStock" class="col-sm-2 col-form-label">商品庫存</label>
+      <div class="col-sm-10">
+          <input type="text" class="form-control" name="inStock" id="inStock" autocomplete="off">
+      </div>
+      <label for="colorType" class="col-sm-2 col-form-label">商品顏色</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control"   name="colorType" id="colorType" autocomplete="off">
+      </div>
+      <label for="videoName" class="col-sm-2 col-form-label">影片名稱</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control"   name="videoName" id="videoName" autocomplete="off">
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="gender" id="male" value=1>
+        <label class="form-check-label" for="male">
+            男性
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="gender" id="female" value=0>
+        <label class="form-check-label" for="female">
+            女性
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="gender" id="other" value=2>
+        <label class="form-check-label" for="other">
+            無性別
+        </label>
+      </div>
+      <div class="right-aligned">
+      <input type="submit" class="btn btn-warning"name="keepBtn"id="keepBtn"/>上架
+      
+      </div>
+  
+    </div>
+</form>
+
+    
+      </div>        
+  </div>
+
+</div>
+
+
+  
+
+  
+
+      
+    
+      <script>
+
+      
+        
+        
+        
+              </script>
+      
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.1/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
+</body>
+</html>

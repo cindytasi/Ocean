@@ -8,13 +8,14 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <style>
         /* 其他 CSS 样式 */
-        body {
+        /* body {
             background-color: #363434;
-            color: #fff;
+            color: #fff; */
             /* Optional: Set the text color to white for contrast */
-        }
+        /* } */
 
         /* Other CSS styles go here */
 
@@ -35,22 +36,7 @@
         }
 
 
-        /* .name-container .right-aligned {
-            text-align: right;
-            /* 讓內容向右對齊 */
-        /* } */
-
-
-        /* .item-container {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            /* 调整商品与信息之间的间距 */
-            /* border: 3px solid #fff; */
-            /* 白色細線邊框 */
-            /* padding: 10px; */
-            /* 內部間距，使白色邊框不會貼得太緊 */
-        /* } */ 
+       
 
         .preview_img {
             max-width: 100px;
@@ -59,10 +45,81 @@
             /* 调整图片与信息之间的间距 */
         }
 
-        /* .item-info {
-            flex: 1;
-            /* 让信息占据剩余的空间 */
-        /* }  */
+        
+
+
+
+/* 修改預設 */
+:root {
+        --bs-blue: #81D8D0;
+    }
+
+    /* 頁面背景色 */
+    body {
+        background: #000;
+        background-image: url("/img/waves_4.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+
+    /* 清單 */
+    .navbar-dark .navbar-nav .nav-link:focus,
+    .navbar-dark .navbar-nav .nav-link:hover {
+        color: var(--bs-blue)
+    }
+
+    .navbar {
+        background: #000;
+    }
+
+    /* search */
+    .bi {
+        color: #fff;
+        font-size: 25px;
+    }
+
+    .bi:hover {
+        color: #81D8D0;
+    }
+
+    /* 下拉選單 */
+    .dropdown-item:hover {
+        font-size: 20px;
+        color: rgb(9, 163, 130);
+    }
+
+    /* search icon */
+    .bi {
+        color: #fff;
+        font-size: 25px;
+    }
+
+    .bi:hover {
+        color: #81D8D0;
+    }
+
+    /* footer */
+    .footer_detail li>a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .footer_detail li>a:hover {
+        color: var(--bs-blue);
+    }
+
+
+    .foamtitle h3 {
+        color: white;
+    }
+
+
+
+
+
+
+
     </style>
 </head>
 
@@ -74,83 +131,90 @@
             <!-- logo -->
             <div class="logo d-flex">
                 <a class="navbar-brand" href="/oceanIndex.html">
-                    <img src="https://cdn.discordapp.com/attachments/1111587335419740274/1129318479376429158/logo_-_.png" alt="Ocean Logo" style="width: 50px;height: 50px;">
+                    <img src="../logo/logo_-_.png" alt="Ocean Logo" style="width: 50px;height: 50px;">
                 </a>
                 <!-- search -->
-                <div class="input-group my-auto w-50">
-                    <input type="text" class="form-control" id="searchInput" placeholder="Search"
-                        aria-label="Search" aria-describedby="basic-addon2">
-                    <button class="btn btn-outline-secondary" type="button" id="searchButton">
-                        <i class="bi bi-search"></i>
-                    </button>
-                </div>
-            </div>
-            <!-- 導覽列 -->
-            <div class="list">
-                <ul class="navbar-nav align-items-center">
-                    <!-- 首頁 -->
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/oceanIndex.html">首頁</a>
-                    </li>
-                    <!-- 電影 -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="/movieIndex.html">電影</a>
-                    </li>
-                    <!-- 影集 -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="/seriesIndex.html">影集</a>
-                    </li>
-                    <!-- 藝人商品 -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="/productIndex.html">藝人商品</a>
-                    </li>
-                    <!-- 收藏地圖 -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="/favoriteMapIndex.html">收藏地圖</a>
-                    </li>
-                    <!--user  -->
-                    <div class="nav-item dropdown">
-                        <button type="button" class="btn dropdown-toggle" id="navbarDropdownUserLink"
+                <div class="input-group my-auto w-50" dropdown>
+                    <input type="text" class="form-control dropdown-toggle" id="searchInput"
+                            placeholder="Search" aria-label="Search" aria-describedby="basic-addon2"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="/img/user.webp" alt="" style="width: 40px; height: 40px;">
+                        <button class="btn btn-outline-secondary" type="button" id="searchButton">
+                            <i class="bi bi-search"></i>
                         </button>
-                       <!-- user下拉選單 -->
-                        <ul class="dropdown-menu dropdown-menu-end mt-2" style="opacity: 80%;"
-                            aria-labelledby="navbarDropdownUserLink">
-                            <li><a class="dropdown-item" href="/aacountIndex.html">帳戶</a></li>
-                            <li><a class="dropdown-item" href="/accountDetail.html">基本資料</a></li>
-                            <li><a class="dropdown-item" href="/myAchieve.html">我的成就</a></li>
-                            <li><a class="dropdown-item" href="/myOrder.html">我的訂單</a></li>
-                            <li><a class="dropdown-item" href="/myList.html">我的片單</a></li>
-                            <li><a class="dropdown-item" href="/watchHistory.html">觀看紀錄</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="/signOut.html">登出</a></li>
+                        <!-- search影片List -->
+                        <ul class="searchMovie dropdown-menu" aria-labelledby="searchInput"
+                            style="width: 400px; height: 100px;background-color: rgba(0, 0, 0, 0.5);"
+                            id="searchVideo">
                         </ul>
                     </div>
-                </ul>
+                </div>
+                <!-- 導覽列 -->
+                <div class="list align-items-center">
+                    <ul class="navbar-nav">
+                        <!-- 首頁 -->
+                        <li class="nav-item">
+                            <a class="nav-link active" href="../index/oceanIndex.html">首頁</a>
+                        </li>
+                        <!-- 電影 -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index/movieIndex.html">電影</a>
+                        </li>
+                        <!-- 影集 -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index/seriesIndex.html">影集</a>
+                        </li>
+                        <!-- 藝人商品 -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Ocean/MainShopServlet">藝人商品</a>
+                        </li>
+                        <!-- 收藏地圖 -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index/favoriteMapIndex.html">收藏地圖</a>
+                        </li>
+                        <!--user  -->
+                        <div class="nav-item dropdown">
+                            <button type="button" class="btn dropdown-toggle" id="navbarDropdownUserLink"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <!-- <img src="/img/user.webp" alt="" style="width: 40px; height: 40px;"> -->
+                                <img src="" alt="" id="userImg" style="width: 40px;height: 40px;">
+                            </button>
+                            <!-- user下拉選單 -->
+                            <ul class="dropdown-menu dropdown-menu-end mt-2" style="opacity: 80%;"
+                                aria-labelledby="navbarDropdownUserLink">
+                                <li><a class="dropdown-item" href="../index/aacountIndex.html">帳戶</a></li>
+                                <li><a class="dropdown-item" href="../index/accountDetail.html">基本資料</a></li>
+                                <li><a class="dropdown-item" href="../index/myAchieve.html">我的成就</a></li>
+                                <li><a class="dropdown-item" href="../index/myOrder.html">我的訂單</a></li>
+                                <li><a class="dropdown-item" href="../index/myList.html">我的片單</a></li>
+                                <li><a class="dropdown-item" href="../index/watchHistory.html">觀看紀錄</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="../index/signOut.html">登出</a></li>
+                            </ul>
+                        </div>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-</nav> 
+    </nav>
 
 <div class="foamtitle container">
     <h3>廠商後台</h3>
 </div>  
 <div class="check container" style="margin-left: 20%;">
-    <button type="button" class="btn btn-outline-secondary"><a href="test.html">已上架</a></button>
-    <button type="button" class="btn btn-outline-secondary">待審核</button>
+    <button type="button" class="btn btn-outline-secondary"><a href="ProductListupdate.html">已上架</a></button>
+    <!-- <button type="button" class="btn btn-outline-secondary">待審核</button> -->
 </div>
 
     <div class="foamlist container">
         <div class="mainfoam  left d-flex">
             <div class="btn">
-                <button type="button" class="btn btn-dark "><a href="test2.html">商品列表</a></button>
-                <button type="button" class="btn btn-dark"><a href="test.html">上架商品</a></button>
+                <button type="button" class="btn btn-dark "><a href="ProductListupdate.html">商品列表</a></button>
+                <button type="button" class="btn btn-dark"><a href="ProductInsert.html">上架商品</a></button>
                 <br>
-                <button type="button" class="btn btn-dark">商品置入</button>
-                <button type="button" class="btn btn-dark">審核明細</button>
+                <button type="button" class="btn btn-dark"><a href="ProductNone.html">商品置入</a></button>
+                <!-- <button type="button" class="btn btn-dark">審核明細</button> -->
             </div>
                 <div id="product" class="foamdetail container">
                     商品一
@@ -186,7 +250,7 @@
                             </div>
                             <div class="right-aligned">
                                 <button type="button" class="btn btn-warning">編輯</button>
-                                <button type="button" class="btn btn-info">下架</button>
+                                <!-- <button type="button" class="btn btn-info">下架</button> -->
                             </div>
                         </div>
                     </div>
@@ -198,11 +262,11 @@
             </div>  
               
         </div>
-        <div id="pagination" class="d-flex justify-content-center">
+        <!-- <div id="pagination" class="d-flex justify-content-center">
             <button id="prevButton">上一頁</button>
             <select id="pageNumberSelect"></select>
             <button id="nextButton">下一頁</button>
-        </div>
+        </div> -->
     </div> <!-- 其他 HTML 结构 -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
@@ -254,7 +318,7 @@
                                 var nameLabel = document.createElement("label");
                                 nameLabel.className = "col-sm-2 col-form-label";
                                 nameLabel.textContent = "商品名稱";
-                               
+                                nameLabel.style.color = "white"; // 設定字體顏色為白色
 
                                 var nameInput = document.createElement("input");
                                 nameInput.type = "text"; // 修改為文本輸入框
@@ -266,7 +330,7 @@
                                 var categoryLabel = document.createElement("label");
                                 categoryLabel.className = "col-sm-2 col-form-label";
                                 categoryLabel.textContent = "商品分類";                
-
+                                categoryLabel.style.color = "white"; // 設定字體顏色為白色
                                 var categorySelect = document.createElement("select");
                                 categorySelect.className = "form-select";
                                 categorySelect.setAttribute("aria-label", "Default select example");
@@ -310,6 +374,7 @@
                                 var sizeLabel = document.createElement("label");
                                 sizeLabel.className = "col-sm-2 col-form-label";
                                 sizeLabel.textContent = "商品尺寸";
+                                sizeLabel.style.color = "white"; // 設定字體顏色為白色
                                 // sizeLabel.hidden = true; // 設置為隱藏狀態
                                 var sizeInput = document.createElement("input");
                                 sizeInput.type = "text"; // 修改為文本輸入框
@@ -322,7 +387,7 @@
                                 var priceLabel = document.createElement("label");
                                 priceLabel.className = "col-sm-2 col-form-label";
                                 priceLabel.textContent = "價格";
-
+                            priceLabel.style.color = "white"; // 設定字體顏色為白色
                                 var priceInput = document.createElement("input");
                                 priceInput.type = "number"; // 設定輸入類型為數字
                                 priceInput.className = "form-control";
@@ -335,7 +400,7 @@
                                var colorTypeLabel = document.createElement("label");
                                colorTypeLabel.className = "col-sm-2 col-form-label";
                                colorTypeLabel.textContent = "顏色";
-
+                               colorTypeLabel.style.color = "white"; // 設定字體顏色為白色
                                 var colorTypeInput = document.createElement("input");
                                 colorTypeInput.type = "text";
                                 colorTypeInput.className = "form-control";
@@ -410,7 +475,7 @@
                                 var stockLabel = document.createElement("label");
                                 stockLabel.className = "col-sm-2 col-form-label";
                                 stockLabel.textContent = "商品庫存";
-                                
+                                stockLabel.style.color = "white"; // 設定字體顏色為白色
 
                                 var stockInput = document.createElement("input");
                                 stockInput.type = "number"; // 修改為數字輸入框
@@ -434,6 +499,7 @@ maleRadio.className = "form-check-input";
 maleRadio.name = "gender";
 maleRadio.id = "male"+ i;
 maleRadio.value = 1; // 男性的值
+
 if(genderValue == 1){
     console.log("1");
     maleRadio.checked = true;
@@ -442,6 +508,7 @@ var maleLabel = document.createElement("label");
 maleLabel.className = "form-check-label";
 maleLabel.htmlFor = "male"+ i ;
 maleLabel.textContent = "男性";
+maleLabel.style.color = "white"; // 設定字體顏色為白色
 //maleRadio.value = 1; // 男性的值
 // if (genderValue === 1) {
 //     maleRadio.checked = true; // 如果性別值為 1，選中男性選項
@@ -463,6 +530,7 @@ var femaleLabel = document.createElement("label");
 femaleLabel.className = "form-check-label";
 femaleLabel.htmlFor = "female"+ i;
 femaleLabel.textContent = "女性";
+femaleLabel.style.color = "white"; // 設定字體顏色為白色
 //femaleRadio.value = 0; // 女性的值
 // if (genderValue == 0) {
 //     femaleRadio.checked = true; // 如果性別值為 0，選中女性選項
@@ -483,6 +551,7 @@ var otherLabel = document.createElement("label");
 otherLabel.className = "form-check-label";
 otherLabel.htmlFor = "other"+ i;
 otherLabel.textContent = "無性別";
+otherLabel.style.color = "white"; // 設定字體顏色為白色
    // otherRadio.value = 2; // 無性別的值
 // if (genderValue === 2) {
 //     otherRadio.checked = true; // 如果性別值為 2，選中無性別選項
@@ -554,10 +623,10 @@ genderContainer.appendChild(otherLabel);
                                 editButton.className = "btn btn-warning edit-button";
                                 editButton.textContent = "編輯";
 
-                                var removeButton = document.createElement("button");
-                                removeButton.type = "button";
-                                removeButton.className = "btn btn-info";
-                                removeButton.textContent = "下架";
+                                // var removeButton = document.createElement("button");
+                                // removeButton.type = "button";
+                                // removeButton.className = "btn btn-info";
+                                // removeButton.textContent = "下架";
 
 
 
@@ -575,18 +644,19 @@ genderContainer.appendChild(otherLabel);
                                 itemInfo.appendChild(sizeInput);
                                 itemInfo.appendChild(priceLabel);
                                 itemInfo.appendChild(priceInput);
-                              itemInfo.appendChild(genderContainer);
+                                itemInfo.appendChild(genderContainer);
                                 itemInfo.appendChild(stockLabel);
                                 itemInfo.appendChild(stockInput);
-                                itemInfo.appendChild(editButton);
-                                itemInfo.appendChild(removeButton);
-                                // itemInfo.appendChild(specTypeInput);
                                 itemInfo.appendChild(colorTypeLabel);
                                 itemInfo.appendChild(colorTypeInput);
+                                itemInfo.appendChild(editButton);
+                               
+                                // itemInfo.appendChild(specTypeInput);
+                                
                                 // itemContainer.appendChild(img);
                                 itemContainer.appendChild(itemInfo);
 
-                             
+                                itemContainer.style.marginBottom = "70px"; // 你可以調整外邊距的大小
                                 
                                 itemInfo.appendChild(comIdInput);
                                 itemInfo.appendChild(addedTimeInput);
@@ -701,7 +771,7 @@ genderContainer.appendChild(otherLabel);
                 // $("#colorType").text(data.colorType);
                 // ... 其他相關元素的更新
                 
-                window.location.href = "/Ocean/jsp/test4.html";
+                window.location.href = "/Ocean/jsp/ProductSuccess.html";
                 console.log("Product ID " + productId + " updated successfully.");
             },
                 error: function(xhr, status, error) {

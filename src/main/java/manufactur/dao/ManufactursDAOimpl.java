@@ -72,7 +72,7 @@ public class ManufactursDAOimpl implements ManufactursDAO {
 	  //最普通的select全部    //給已上價商品列表用    
 	@Override
 	public List<Product> selectAll() {
-		final String sql = "select * from ProductInformation ";
+		final String sql = "select * from ProductInformation where comId = 5";
 		try (
 				//這個drivermanager僅供測試用
 				Connection conn = DriverManager.getConnection(url,user,password);
