@@ -195,29 +195,28 @@
         <div id="map" style="height: 400px;"></div>
 
         <!-- 頁籤容器 -->
-        <div class="tabs mt-2">
-            <ul class="nav nav-tabs flex-row-reverse" id="myTab" role="tablist">
+        <!-- <div class="tabs mt-2">
+            <ul class="nav nav-tabs flex-row-reverse" id="myTab" role="tablist"> -->
                 <!-- 頁籤 -->
-                <li class="nav-item" role="presentation">
+                <!-- <li class="nav-item" role="presentation">
                     <button class="nav-link bg-light active" id="add-tab" type="button" role="tab" aria-controls="add"
                         aria-selected="true">
                         <i class="fa-solid fa-plus" style="color: #81D8D0; font-size: 20px;"></i>
                     </button>
                 </li>
             </ul>
-            <div class="tab-content flex-row-reverse" id="myTabContent">
+            <div class="tab-content flex-row-reverse" id="myTabContent"> -->
                 <!-- 頁籤內容 -->
-                <div class="tab-pane fade show active mt-2" id="add" role="tabpanel" aria-labelledby="add-tab">
+                <!-- <div class="tab-pane fade show active mt-2" id="add" role="tabpanel" aria-labelledby="add-tab"> -->
                     <!-- 新增頁籤表單 -->
-                    <form id="addTabForm">
-
+                    <!-- <form id="addTabForm">
                     </form>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <!-- 景點list -->
-        <div id="attractionList" class="mb-5">
+        <div id="attractionList" class="mb-5 mt-3">
             <!-- <div class="attractionCard1 card flex-row" style="width: 100%;">
                 <img src="https://i0.wp.com/post.medicalnewstoday.com/wp-content/uploads/sites/3/2019/02/GettyImages-629363759_header-1024x575.jpg?w=1155&h=1528"
                     style="width: 10%;" class="card-img-top" alt="...">
@@ -294,7 +293,7 @@
 
                         att.innerHTML += `
                         <div class="attractionCard${i} card flex-row" style="width: 100%;" id="attractionCard">
-                            <img src="https://i0.wp.com/post.medicalnewstoday.com/wp-content/uploads/sites/3/2019/02/GettyImages-629363759_header-1024x575.jpg?w=1155&h=1528"
+                            <img src="http://localhost:8080/Ocean/web/controller/AttractionImgController?attractionId=${data[i].attractionId}"
                             style="width: 10%;" class="card-img-top" alt="...">
                             <div class="card-body" id="attractionDetail${i}">
                                 <p class="card-text"> ${data[i].attractionName}</p>
@@ -304,7 +303,7 @@
                             <div class="card-btn d-flex">
                                 <div class="booking my-auto me-4">
                                     <button type="button" class="btn" style="background-color: #000;">
-                                        <a href = "${data[i].googleMapLink}" style="text-decoration:none;color:#81D8D0">預約</a>    
+                                        <a href = "${data[i].googleMapLink}" style="text-decoration:none;color:#81D8D0">官網</a>    
                                     </button>
                                 </div>
                                 <div class="like my-auto" >

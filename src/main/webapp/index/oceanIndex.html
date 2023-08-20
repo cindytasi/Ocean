@@ -416,7 +416,6 @@
     .explore-button span {
         display: inline-block;
         position: absolute;
-        top: 30%;
         left: 100%;
         padding-left: 10px;
         white-space: nowrap;
@@ -792,6 +791,19 @@
         z-index: 1;
         /* 確保按鈕在影片上方 */
     }
+
+    .topMovie>.pic>.playButtonWrapper {
+        position: absolute;
+        top: 90%;
+        left: 90%;
+        transform: translate(-50%, -50%);
+        background-color: transparent;
+        border: 1px solid white;
+        border-radius: 50%;
+        /* padding: 5px; */
+        cursor: pointer;
+        z-index: 1;
+    }
 </style>
 
 <body>
@@ -865,6 +877,7 @@
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
+                                    <li><a class="dropdown-item" href="../login/login.html">登入</a></li>
                                     <li><a class="dropdown-item" href="../index/signOut.html">登出</a></li>
                                 </ul>
                             </div>
@@ -903,8 +916,8 @@
 
     <!-- 最新上線 -->
     <div class="title text-start mt-5 container-fluid d-flex align-items-center">
-        <h3 class="ps-4" style="color: #fff; margin: 0;">最新上線</h3>
-        <a href="#" class="explore-button" data-bs-toggle="modal" data-bs-target="#exploreModal">
+        <h3 class="ps-4 mb-3" style="color: #fff; margin: 0;">最新上線</h3>
+        <a href="#" class="explore-button mb-3" data-bs-toggle="modal" data-bs-target="#exploreModal">
             <i class="bi bi-chevron-right" style="color: #81D8D0;"></i>
             <span style="color: #81D8D0;font-weight: bold;">探索全部</span>
         </a>
@@ -1024,12 +1037,12 @@
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script> -->
 
     <script>
-
         //=================================從session取得memberId======================================//
-        const memberId = sessionStorage.getItem("memberId");
+        const memberId = sessionStorage.getItem("memberIdValue");
 
+        console.log("memberId :" + memberId);
         //=================================搜尋使用者img======================================//
-        document.getElementById("userImg").setAttribute("src", "http://localhost:8080/Ocean/web/controller/selectMemberImgController?memberId=" + memberId);
+        document.getElementById("userImg").setAttribute("src", "http://localhost:8080/Ocean/web/controller/SelectMemberImageController?member_id=" + memberId);
 
         //=================================將影片類別轉中文======================================//
 
@@ -1106,17 +1119,19 @@
                             card.classList.add('card');
                             card.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
                             card.innerHTML = `
+                            <a href="#" style="text-decoration:none">
                             <div class="row g-0">
                                 <div class="col-md-4">
                                     <img src="http://localhost:8080/Ocean/web/controller/selectVideoImgController?videoId=${data[i].videoId}" alt="..." style="width: 150px; height: 100px;">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body text-left ms-2">
-                                        <h4 class="card-text" style="color: white;">${data[i].videoName}</h4>
+                                        <h4 class="card-text text-none" style="color: white;">${data[i].videoName}</h4>
                                         <div class="stars" style="color: white;">${starsHtml}</div>
                                     </div>
                                 </div>
                             </div>
+                            </a>
                         `;
                             sv.appendChild(card);
                         }
@@ -1166,6 +1181,7 @@
         });
 
         //============================================熱門影片=======================================================//
+        // <img src="http://localhost:8080/Ocean/web/controller/selectVideoImgController?videoId=${data[i].videoId}" class="d-block w-100" alt="...">
 
         $.ajax({
             url: "/Ocean/web/controller/indexVideoController",
@@ -1175,23 +1191,55 @@
                 type: "topMovie"
             }),
             success: function (data) {
-
                 let vidTop = document.getElementById('topMovie');
+                let playButton = document.getElementsByClassName('playButton');
                 let isActive = true; // 控制是否加上 active 類別
 
                 for (let i in data) {
                     const activeClass = isActive ? 'active' : ''; // 根據 isActive 加上 active 類別
 
                     vidTop.innerHTML += `
-                <div class="topMovie carousel-item ratio ratio-21x9 ${activeClass}">
-                    <img src="http://localhost:8080/Ocean/web/controller/selectVideoImgController?videoId=${data[i].videoId}" class="d-block w-100" alt="...">
+                <div class="topMovie carousel-item ratio ratio-21x9  video-item ${activeClass}">
+                    <div class="pic">
+                        <video id="topVideo${i}" height="100%" width="100%" 
+                            controlsList="nodownload noplaybackrate nofullscreen" disablePictureInPicture
+                            poster="http://localhost:8080/Ocean/web/controller/selectVideoImgController?videoId=${data[i].videoId}">
+                            <source src="${data[i].videoPath}" type="video/mp4" />
+                        </video>
+                        <button class="playButtonWrapper" id="playButtonWrapper" data-video-id="${i}" style="background-color: transparent;border: 3px solid white;border-radius: 50%;">
+                            <i class="bi bi-play-fill" style="color: #81D8D0;font-size:30px;position:relative"></i>
+                        </button>
+                    </div>
                 </div>
             `;
 
                     isActive = false; // 第一個項目加上 active 後，設定為 false，以後的項目不再加上 active
                 }
+
+                // 添加事件委托
+                vidTop.addEventListener('click', function (event) {
+
+                    const target = event.target.closest('.playButtonWrapper');
+
+                    if (target) {
+                        const videoId = target.dataset.videoId;
+                        const videoElement = document.getElementById(`topVideo${videoId}`);
+                        if (videoElement.paused) {
+                            videoElement.play();
+                            target.innerHTML = '<i class="bi bi-pause-fill" style="color: #81D8D0;font-size:30px"></i>';
+                        } else {
+                            videoElement.pause();
+                            target.innerHTML = '<i class="bi bi-play-fill" style="color: #81D8D0;font-size:30px"></i>';
+                            videoElement.reload();
+                        }
+                    }
+                });
             }
         });
+
+
+
+
 
 
         //============================================最新上線=======================================================//
@@ -1262,58 +1310,58 @@
                         </div>
                     </a>
                 `);
-                handleVideoControls(i, data[i]);
-                        
-            }
-        }
-    });
+                        handleVideoControls(i, data[i]);
 
-    function handleVideoControls(index, videoData) {
-        const video = $(`#myVideo${index}`)[0];
-        const muteButton = $(`#lastOnlineList .video-item:eq(${index}) .muteButton`)[0];
-        const muteIcon = $(`#lastOnlineList .video-item:eq(${index}) .muteIcon`)[0];
-        const overlayContainer = $(`#lastOnlineList .video-item:eq(${index}) .overlay`)[0];
+                    }
+                }
+            });
 
-        let isPlaying = false;
+            function handleVideoControls(index, videoData) {
+                const video = $(`#myVideo${index}`)[0];
+                const muteButton = $(`#lastOnlineList .video-item:eq(${index}) .muteButton`)[0];
+                const muteIcon = $(`#lastOnlineList .video-item:eq(${index}) .muteIcon`)[0];
+                const overlayContainer = $(`#lastOnlineList .video-item:eq(${index}) .overlay`)[0];
 
-        $(video).mouseenter(function () {
-            if (!isPlaying) {
-                video.play().then(() => {
-                    isPlaying = true;
+                let isPlaying = false;
+
+                $(video).mouseenter(function () {
+                    if (!isPlaying) {
+                        video.play().then(() => {
+                            isPlaying = true;
+                        });
+                    }
+                });
+
+                $(overlayContainer).mouseleave(function () {
+                    if (isPlaying) {
+                        video.pause();
+                        video.currentTime = 0; // 將影片時間重設為 0，以實現重新播放效果
+                        isPlaying = false;
+                    }
+                });
+
+                $(muteButton).click(function () {
+                    toggleMute(video, muteIcon);
+                });
+
+                video.addEventListener('play', function () {
+                    setTimeout(function () {
+                        if (!isHovered) {
+                            video.pause();
+                        }
+                    }, 20000);
                 });
             }
-        });
 
-        $(overlayContainer).mouseleave(function () {
-            if (isPlaying) {
-                video.pause();
-                video.currentTime = 0; // 將影片時間重設為 0，以實現重新播放效果
-                isPlaying = false;
+            function toggleMute(video, muteIcon) {
+                video.muted = !video.muted;
+                if (video.muted) {
+                    $(muteIcon).removeClass('bi-volume-up-fill').addClass('bi-volume-mute-fill');
+                } else {
+                    $(muteIcon).removeClass('bi-volume-mute-fill').addClass('bi-volume-up-fill');
+                }
             }
         });
-
-        $(muteButton).click(function () {
-            toggleMute(video, muteIcon);
-        });
-
-        video.addEventListener('play', function () {
-            setTimeout(function () {
-                if (!isHovered) {
-                    video.pause();
-                }
-            }, 20000);
-        });
-    }
-
-    function toggleMute(video, muteIcon) {
-        video.muted = !video.muted;
-        if (video.muted) {
-            $(muteIcon).removeClass('bi-volume-up-fill').addClass('bi-volume-mute-fill');
-        } else {
-            $(muteIcon).removeClass('bi-volume-mute-fill').addClass('bi-volume-up-fill');
-        }
-    }
-});
 
 
 
@@ -1328,7 +1376,6 @@
 
 
         //=========================================探索全部（最新上線）===================================================//
-
         $.ajax({
             url: "/Ocean/web/controller/indexVideoController",
             type: "POST",
@@ -1353,7 +1400,7 @@
                     }
 
                     vidSeeAll.innerHTML += `
-                                <a href="#animals" class="exploreModalItem item" style="width:20%">
+                    <a href="#animals" class="exploreModalItem item" style="width:20%">
                             <img src="http://localhost:8080/Ocean/web/controller/selectVideoImgController?videoId=${data[i].videoId}" alt="Animals" style="height:138px;width:100%">
                             <div class="overlay">
                                 <div class="card card-overlay">
@@ -1388,10 +1435,11 @@
                                 </div>
                             </div>
                         </a>
-                        `
+                        `;
                 }
             }
-        })
+        });
+
 
         //============================================最新電影top10=======================================================//
         $.ajax({

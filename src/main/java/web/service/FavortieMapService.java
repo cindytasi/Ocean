@@ -5,6 +5,7 @@ import java.util.List;
 import web.dao.impl.FavoriteMapImpl;
 import web.vo.FavoriteMap;
 import web.vo.Video;
+import web.vo.attraction;
 
 public class FavortieMapService {
 
@@ -32,6 +33,12 @@ public class FavortieMapService {
 	        e.printStackTrace();
 	        return false;
 	    }
+	}
+	
+	public attraction attractionImg(Integer attractionId) {
+		
+		attraction attraction = favoriteMapImpl.attractionImg(attractionId);
+		return attraction;
 	}
 
 }

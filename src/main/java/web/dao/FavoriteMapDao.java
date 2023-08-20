@@ -4,6 +4,7 @@ import java.util.List;
 
 import web.vo.FavoriteMap;
 import web.vo.Video;
+import web.vo.attraction;
 
 public interface FavoriteMapDao {
 
@@ -20,5 +21,7 @@ public interface FavoriteMapDao {
 	
 	
 //	新增頁籤名稱到資料庫
+	
+	public attraction attractionImg(Integer attractionId);
 	
 }

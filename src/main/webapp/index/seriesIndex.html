@@ -777,6 +777,33 @@
         #continueModal .infoType p {
             margin-top: 0.25rem;
         }
+
+        .video-button {
+        position: absolute;
+        top: 50%;
+        left: 90%;
+        transform: translate(-50%, -50%);
+        background-color: transparent;
+        border: 1px solid white;
+        border-radius: 50%;
+        /* padding: 5px; */
+        cursor: pointer;
+        z-index: 1;
+        /* 確保按鈕在影片上方 */
+    }
+
+     .topMovie>.pic>.playButtonWrapper {
+        position: absolute;
+        top: 90%;
+        left: 90%;
+        transform: translate(-50%, -50%);
+        background-color: transparent;
+        border: 1px solid white;
+        border-radius: 50%;
+        /* padding: 5px; */
+        cursor: pointer;
+        z-index: 1;
+    }
     </style>
 </head>
 
@@ -1286,6 +1313,7 @@
             success: function (data) {
 
                 let vidTop = document.getElementById('topMovie');
+                let playButton = document.getElementsByClassName('playButton');
                 let isActive = true; // 控制是否加上 active 類別
 
                 for (let i in data) {
@@ -1293,17 +1321,43 @@
 
                     vidTop.innerHTML += `
                 <div class="topMovie carousel-item ratio ratio-21x9 ${activeClass}">
-                    <img src="http://localhost:8080/Ocean/web/controller/selectVideoImgController?videoId=${data[i].videoId}" class="d-block w-100" alt="...">
+                    <div class="pic">
+                        <video id="topVideo${i}" height="100%" width="100%" 
+                            controlsList="nodownload noplaybackrate nofullscreen" disablePictureInPicture
+                            poster="http://localhost:8080/Ocean/web/controller/selectVideoImgController?videoId=${data[i].videoId}">
+                            <source src="${data[i].videoPath}" type="video/mp4" />
+                        </video>
+                        <button class="playButtonWrapper" id="playButtonWrapper" data-video-id="${i}" style="background-color: transparent;border: 3px solid white;border-radius: 50%;">
+                            <i class="bi bi-play-fill" style="color: #81D8D0;font-size:30px;position:relative"></i>
+                        </button>
+                    </div>
                 </div>
             `;
 
                     isActive = false; // 第一個項目加上 active 後，設定為 false，以後的項目不再加上 active
                 }
+                 // 添加事件委托
+                vidTop.addEventListener('click', function (event) {
+
+                    const target = event.target.closest('.playButtonWrapper');
+
+                    if (target) {
+                        const videoId = target.dataset.videoId;
+                        const videoElement = document.getElementById(`topVideo${videoId}`);
+                        if (videoElement.paused) {
+                            videoElement.play();
+                            target.innerHTML = '<i class="bi bi-pause-fill" style="color: #81D8D0;font-size:30px"></i>';
+                        } else {
+                            videoElement.pause();
+                            target.innerHTML = '<i class="bi bi-play-fill" style="color: #81D8D0;font-size:30px"></i>';
+                            videoElement.reload();
+                        }
+                    }
+                });
             }
         });
 
         //=========================================篩選器（國家）===================================================//
-
         // 在點擊事件中獲取所選值並將其傳遞給AJAX請求
         $(".dropdown-menu").on("click", "a.dropdown-item", function (event) {
             event.preventDefault();
@@ -1376,7 +1430,7 @@
                     }
                 }
             })
-        })
+        });
 
         //================================================篩選器（類型）========================================================//
 
@@ -1547,6 +1601,7 @@
         });
 
         //============================================最新上線=======================================================//
+        $(document).ready(function () {
         $.ajax({
             url: "/Ocean/web/controller/videoListController",
             type: "POST",
@@ -1573,12 +1628,20 @@
                     }
 
                     vidLastOnline5.innerHTML += `
-                                    <a href="#animals" class="item me-2" style="width:20%">
+                                    <a href="#animals" class="item me-2 video-item" style="width:20%">
                         <img src="http://localhost:8080/Ocean/web/controller/selectVideoImgController?videoId=${data[i].videoId}" alt="Animals" style="height:138px;width:100%">
                         <div class="overlay">
                             <div class="card card-overlay">
                                 <div class="pic">
-                                    <img src="../img/LUPIN_S2_16X9_EN-US.jpg" alt="" class="card-img-top">
+                                    <video id="myVideo${i}" width="100%" height="200" autoplay muted
+                                        controlsList="nodownload noplaybackrate nofullscreen" disablePictureInPicture
+                                        poster="../img/LUPIN_S2_16X9_EN-US.jpg">
+                                        <source src="${data[i].videoPath}" type="video/mp4" />
+                                    </video>
+                                    <button class="muteButton video-button"
+                                        style="background-color: transparent;border: 1px solid white;border-radius: 50%;">
+                                        <i class="muteIcon bi bi-volume-mute-fill" style="color: #81D8D0;"></i>
+                                    </button>
                                 </div>
                                 <div class="overlay-content">
                                     <div class="card-body"
@@ -1588,7 +1651,7 @@
                                         ${starsHtml}
                                         <div class="info d-flex">
                                             <p class="card-text me-3 my-auto">${data[i].videoName}</p>
-                                           ${data[i].videoSeason > 1
+                                        ${data[i].videoSeason > 1
                             ? `<p class="card-text my-auto" style="color: rgb(91, 91, 91);letter-spacing: 2px">共${data[i].videoSeason}季</p>`
                             : `<p class="card-text my-auto" style="color: rgb(91, 91, 91);letter-spacing: 2px">共${data[i].videoEpisode}集</p>`
                         }
@@ -1602,9 +1665,61 @@
                         </div>
                     </a>
                         `;
+                        handleVideoControls(i, data[i]);
                 }
             }
         });
+        function handleVideoControls(index, videoData) {
+        const video = $(`#myVideo${index}`)[0];
+        const muteButton = $(`#lastOnlineList .video-item:eq(${index}) .muteButton`)[0];
+        const muteIcon = $(`#lastOnlineList .video-item:eq(${index}) .muteIcon`)[0];
+        const overlayContainer = $(`#lastOnlineList .video-item:eq(${index}) .overlay`)[0];
+
+        let isPlaying = false;
+let isHovered = false;
+
+        $(video).mouseenter(function () {
+            if (!isPlaying) {
+                video.play().then(() => {
+                    isPlaying = true;
+                });
+            }
+        });
+
+        $(overlayContainer).mouseleave(function () {
+            if (isPlaying) {
+                video.pause();
+                video.currentTime = 0; // 將影片時間重設為 0，以實現重新播放效果
+                isPlaying = false;
+            }
+        });
+
+$(document).on('click', '.muteButton', function () {
+        const index = $(this).closest('.video-item').index();
+        const video = $(`#myVideo${index}`)[0];
+        const muteIcon = $(this).find('.muteIcon')[0];
+        toggleMute(video, muteIcon);
+    });
+
+
+        video.addEventListener('play', function () {
+    setTimeout(function () {
+        if (!isHovered) {
+            video.pause();
+        }
+    }, 20000);
+        });
+    }
+
+    function toggleMute(video, muteIcon) {
+        video.muted = !video.muted;
+        if (video.muted) {
+            $(muteIcon).removeClass('bi-volume-up-fill').addClass('bi-volume-mute-fill');
+        } else {
+            $(muteIcon).removeClass('bi-volume-mute-fill').addClass('bi-volume-up-fill');
+        }
+    }
+});
 
         //=========================================探索全部（最新上線）===================================================//
 

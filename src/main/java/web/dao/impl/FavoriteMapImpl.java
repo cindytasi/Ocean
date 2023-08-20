@@ -30,6 +30,8 @@ public class FavoriteMapImpl implements FavoriteMapDao {
 	//透過景點id刪除收藏地圖中的景點
 	private String sqlDelete = "delete from FavoriteMap where memberId = ? and attractionId = ?;";
 	
+	private String sqlAttImg = "select attractionId,attractionPic from attraction where attractionId = ?;";
+	
 	
 //	public static void main(String[] args) {
 //		String xx = "%";
@@ -132,4 +134,25 @@ public class FavoriteMapImpl implements FavoriteMapDao {
 	        e.printStackTrace();
 	    }
 	}
+	
+	public attraction attractionImg(Integer attractionId) {
+		
+		attraction attraction = null;
+		
+		try (Connection connection = DriverManager.getConnection(url, user, password);
+		         PreparedStatement preparedStatement = connection.prepareStatement(sqlAttImg)) {
+		        preparedStatement.setInt(1, attractionId);
+		        ResultSet rs = preparedStatement.executeQuery();
+				
+				while (rs.next()) {
+					attraction = new attraction();
+					
+					attraction.setAttractionPic(rs.getBytes(2));
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return attraction;
+		}
+
 }
