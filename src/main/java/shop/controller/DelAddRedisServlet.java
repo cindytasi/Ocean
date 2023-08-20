@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -25,6 +26,7 @@ import shop.vo.ApiConstants;
 import shop.vo.BaseAPIResult;
 import shop.vo.Product;
 import shop.vo.ShopCartVo;
+import web.vo.UserVo;
 
 @WebServlet("/DelAddRedisServlet")
 public class DelAddRedisServlet extends HttpServlet {
@@ -57,7 +59,11 @@ public class DelAddRedisServlet extends HttpServlet {
 		Map map = new HashMap();// 用來裝要response的result
 		JedisPool pool = JedisUtil.getJedisPool();
 		try (Jedis jedis = pool.getResource();) {
-			String userId = "1"; // 假設userid=1 (設一個假資料)
+			//拿userId
+			HttpSession session = request.getSession();
+			UserVo userVo = (UserVo) session.getAttribute("userVo");
+			String userId = String.valueOf(userVo.getUserId());
+			
 			String cart = jedis.get(shopCartRedisKey + ":" + userId);
 			String cartkey = shopCartRedisKey + ":" + userId;// 拿到redis 該userId購物車的key
 			Gson gson = new Gson();
