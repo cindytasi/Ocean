@@ -1026,11 +1026,10 @@
     <script>
 
         //=================================從session取得memberId======================================//
-        const memberId = sessionStorage.getItem("memberId");
+        const memberId = sessionStorage.getItem("memberIdValue");
 
         //=================================搜尋使用者img======================================//
-        document.getElementById("userImg").setAttribute("src", "http://localhost:8080/Ocean/web/controller/selectMemberImgController?memberId=" + memberId);
-
+        document.getElementById("userImg").setAttribute("src", "http://localhost:8080/Ocean/web/controller/SelectMemberImageController?member_id=" + memberId);
         //=================================將影片類別轉中文======================================//
 
         const domainIdMappings = {
