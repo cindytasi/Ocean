@@ -335,11 +335,11 @@
 					<div class="list">
 						<ul class="navbar-nav align-items-center justify-content-end">
 							<!-- 首頁 -->
-							<li class="nav-item"><a class="nav-link active" href="/Ocean/oceanIndex.html">首頁</a></li>
+							<li class="nav-item"><a class="nav-link active" href="../index/oceanIndex.html">首頁</a></li>
 							<!-- 電影 -->
-							<li class="nav-item"><a class="nav-link" href="/Ocean/movieIndex.html">電影</a></li>
+							<li class="nav-item"><a class="nav-link" href="../index/movieIndex.html">電影</a></li>
 							<!-- 影集 -->
-							<li class="nav-item"><a class="nav-link" href="/Ocean/seriesIndex.html">影集</a></li>
+							<li class="nav-item"><a class="nav-link" href="../index/seriesIndex.html">影集</a></li>
 							<!-- 藝人商品 -->
 							<li class="nav-item">
 	
@@ -349,7 +349,7 @@
 	
 	
 							<!-- 收藏地圖 -->
-							<li class="nav-item"><a class="nav-link" href="/Ocean/favoriteMapIndex.html">收藏地圖</a></li>
+							<li class="nav-item"><a class="nav-link" href="../index/favoriteMapIndex.html">收藏地圖</a></li>
 							<!--user  -->
 							<div class="col-xl-2 col-lg-3 col-9 text-right align-item-center">
 								<ul class="header-toolbar d-flex">
@@ -368,7 +368,7 @@
 										</a></li>
 									<li class="header-toolbar__item user-info"><a href="" class="header-toolbar__btn">
 											<!--<i class="flaticon flaticon-user"></i> -->
-											<img src="" alt="" style="width: 40px; height: 40px;" id="userImg">
+                                            <img src="../img/user.webp" style="width: 85%; height: 100%;"/>										</a>
 										</a>
 										<ul class="user-info-menu">
 											<li><a href="my-account.html" style="font-size:16px">帳戶</a></li>
@@ -818,7 +818,7 @@
 		const memberId = sessionStorage.getItem("memberIdValue");
 
 		//=================================搜尋使用者img======================================//
-		document.getElementById("userImg").setAttribute("src", "http://localhost:8080/Ocean/web/controller/SelectMemberImageController?member_id=" + memberId);
+		// document.getElementById("userImg").setAttribute("src", "http://localhost:8080/Ocean/web/controller/SelectMemberImageController?member_id=" + memberId);
         //=================================將影片類別轉中文======================================//
 		
 	</script>
