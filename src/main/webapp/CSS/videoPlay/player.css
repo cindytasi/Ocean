@@ -1,0 +1,339 @@
+
+.video-container {
+    max-width: 640px;
+    margin: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+  }
+  
+  video {
+    width: 640px;
+    height: 360px;
+  }
+  
+
+  body {
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  width: 600px;
+  margin: 10px;
+  background-color: #333;
+  padding: 10px;
+  border-radius: 5px; /* 設定圓弧邊角 */
+}
+
+.tabs {
+  display: flex;
+  justify-content: flex-start; /* 靠左對齊 */
+  border-bottom: 1px solid gray;
+}
+
+.tab-button {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 3px 10px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 10px; /* 設定圓弧邊角 */
+  margin-right: 2px; /* 設定相鄰的距離 */
+}
+
+.tab-button.active {
+  background-color: #11DFBA;
+  color: black;
+}
+
+.tab-content {
+  background-color: #333;
+  color: white;
+  padding: 5px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.sub-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.movie-info {
+  margin-top: 10px;
+}
+
+
+
+
+.right-sidebar {
+  width: 15px;
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  position: fixed; /* 固定位置 */
+  top: 150px; /* 距離頂部的距離 */
+  right: 10px; /* 距離右側的距離 */
+  border-radius: 10px; /* 圓角邊角 */
+}
+
+.right-sidebar h3 {
+  margin: 0;
+  /* padding: 10px 0; */
+  border-bottom: 1px solid gray;
+}
+
+.right-sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.right-sidebar li {
+  padding: 5px 0;
+  border-bottom: 1px solid white;
+}
+
+.right-sidebar button {
+  background-color: black;
+  color: white;
+  border: none;
+  /* padding: 5px 10px; */
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.right-sidebar button:hover {
+  background-color: #444;
+}
+
+.movie-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #333;
+  color: white;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.movie-info h2 {
+  margin: 0 0 10px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.movie-info div {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.movie-info p {
+  flex-basis: 100%;
+  padding: 5px;
+  margin: 0;
+}
+
+.movie-info p strong {
+  display: inline-block;
+  width: auto;
+}
+
+.product-info {
+  display: flex;
+  align-items: center;
+}
+
+/* 商品圖片容器的樣式 */
+.product-img-container {
+  display: flex;
+  align-items: center;
+}
+
+/* 商品詳細資訊的樣式 */
+.product-details {
+  margin-left: 20px;
+  /* display: flex;
+  flex-direction: column; */
+}
+
+.product-img {
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.product-title {
+  font-size: 18px; /* 設定名稱字型大小 */
+  font-weight: bold; /* 設定名稱粗體 */
+}
+
+.product-style,
+.product-spec {
+  display: block;
+  padding: 5px 0;
+}
+
+.product-quantity {
+  display: flex;
+  align-items: center;
+}
+
+.quantity-btn {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 0 5px;
+}
+
+.add-to-cart-btn {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.attraction-info {
+  display: flex;
+  align-items: center;
+}
+
+/* attraction圖片容器的樣式 */
+.attraction-img-container {
+  display: flex;
+  align-items: center;
+}
+
+/* attraction詳細資訊的樣式 */
+.attraction-details {
+  margin-left: 20px;
+  /* display: flex;
+  flex-direction: column; */
+}
+
+.attraction-img {
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.attraction-title {
+  font-size: 18px; /* 設定名稱字型大小 */
+  font-weight: bold; /* 設定名稱粗體 */
+}
+
+.attraction-style,
+.attraction-spec {
+  display: block;
+  padding: 5px 0;
+}
+
+.heart-icon {
+  margin-left: 5px; /* 調整愛心圖案與景點名稱的間距 */
+  cursor: pointer; /* 設定游標為手指型態 */
+}
+
+.heart-icon.active {
+  color: red; /* 設定愛心圖案為紅色 */
+}
+
+.heart-video {
+  margin-left: 5px; /* 調整愛心圖案與景點名稱的間距 */
+  cursor: pointer; /* 設定游標為手指型態 */
+}
+
+.heart-video.active {
+  color: red; /* 設定愛心圖案為紅色 */
+}
+.atthearticon{
+  margin-left: 5px; /* 調整愛心圖案與景點名稱的間距 */
+  cursor: pointer; /* 設定游標為手指型態 */
+}
+.atthearticon.active {
+  color: red; /* 設定愛心圖案為紅色 */
+}
+
+
+/* 美食容器的樣式 */
+.food-container {
+  display: flex; /* 使用 flexbox 進行排列 */
+  align-items: center; /* 垂直置中 */
+}
+
+/* 美食圖片的樣式 */
+.food-img {
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
+  margin-bottom: 10px;
+  /* 其他樣式設定，您可以根據需求自行調整 */
+}
+
+/* 美食資訊的樣式 */
+.food-info {
+  display: flex;
+  align-items: center;
+}
+
+/* 美食名稱的樣式 */
+.food-name {
+  font-size: 18px; /* 設定名稱字型大小 */
+  font-weight: bold; /* 設定名稱粗體 */
+}
+
+/* 商品圖片容器的樣式 */
+.food-img-container {
+  display: flex;
+  align-items: center;
+}
+
+/* 商品詳細資訊的樣式 */
+.food-details {
+  margin-left: 20px;
+  /* display: flex;
+  flex-direction: column; */
+}
+
+.food-style,
+.food-spec {
+  display: block;
+  padding: 5px 0;
+}
+/* ------------------------------------- */
+
+@keyframes borderFlash {
+  0% {
+    border-color: transparent;
+  }
+  50% {
+    border-color: gold; /* 或者您想要的邊框顏色 */
+  }
+  100% {
+    border-color: transparent;
+  }
+}
+
+#productButton.flashing {
+  animation: borderFlash 2s infinite; /* 調整持續時間和次數 */
+  border: 2px solid transparent; /* 初始化邊框為透明 */
+}
+
+#foodButton.flashing {
+  animation: borderFlash 2s infinite; /* 調整持續時間和次數 */
+  border: 2px solid transparent; /* 初始化邊框為透明 */
+}

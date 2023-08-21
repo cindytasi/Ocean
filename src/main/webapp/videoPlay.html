@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="title"></title>
+
+    <link rel="stylesheet" href="./CSS/videoPlay/default.css">
+
+    <link rel="stylesheet" href="./CSS/videoPlay/player.css">
+
+    <!-- <link rel="stylesheet" href="./CSS/videoPlay/mediaControls.css"> -->
+</head>
+
+<body>
+    <header>
+        <img alt="" src="./logo.png">
+        <h1>Ocean</h1>
+        <div class="left-aligned">
+            <input type="text">
+            <button class="search-button">搜尋</button>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">影集</a></li>
+                <li><a href="#">電影</a></li>
+                <li><a href="#">藝人商品</a></li>
+                <li><a href="#">收藏地圖</a></li>
+                <li class="dropdown">
+                    <a href="#">會員</a>
+                    <span id="userId" style="display: none;">1</span>
+                    <span id="memberId" style="display: none;">1</span>
+                    <div class="dropdown-content">
+                        <a href="#">基本資料</a>
+                        <a href="#">我的片單</a>
+                        <a href="#">觀看紀錄</a>
+                        <a href="#">訂單資訊</a>
+                        <a href="#">成就</a>
+                        <a href="#">登出</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="video-container" style="border: 5px #11DFBA; width: 640px; height: 360;">
+        <video controls id="videoPlayer" nodownload>
+            <source src="" type='video/mp4' />
+        </video>
+    </div>
+
+    <div id="videoInfoArea" class="container">
+
+        <div class="tabs">
+            <div class="tab-button active" onclick="showTab('movieInfo')">電影資訊</div>
+            <div class="tab-button" onclick="showTab('product')" id="productButton">商品</div>
+            <div class="tab-button" onclick="showTab('attraction')" id="attractionTab">景點</div>
+            <!-- <div class="tab-button" onclick="showTab('food')" id="foodButton">食物</div>　 -->
+            <span class="heart-video">&#10084;</span>
+            <div class="additional-info" style="float: right;">　評分：
+                <span id="review"></span>
+                <span class="stars" onclick="rateMovie(1)">&#9733;</span>
+                <span class="stars" onclick="rateMovie(2)">&#9733;</span>
+                <span class="stars" onclick="rateMovie(3)">&#9733;</span>
+                <span class="stars" onclick="rateMovie(4)">&#9733;</span>
+                <span class="stars" onclick="rateMovie(5)">&#9733;</span>
+                　觀看次數 : <span class="view-count" id="viewCount"></span>
+            </div>
+        </div>
+        <!-- 影片資訊 -->
+        <div class="tab-content" id="movieInfo">
+            <h3 class="sub-title" id="videoName"></h3>
+            <div class="movie-info">
+                <div class="movie-details">
+                    <p><strong id="videoType"></strong></p>
+                    <p><strong id="videoYear">年份 : </strong></p>
+                    <p><strong id="videoArea">地區 : </strong></p>
+                    <p><strong id="director">導演 : </strong></p>
+                    <p><strong id="actor">主演 : </strong></p>
+                    <p><strong id="videoLength">片長 : </strong></p>
+                </div>
+                <div class="season-details">
+                    <p><strong id="videoSeason">季數 : </strong></p>
+                    <p><strong id="videoEpisode">集數 : </strong></p>
+                    <p><strong id="domainName">領域 : </strong></p>
+                </div>
+                <div class="introduction">
+                    <p><strong id="introduction">簡介 : </strong></p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="right-sidebar">
+            <h3>購物車</h3>
+            <ul id="cartList">
+                <!-- 這裡會動態添加商品 -->
+            </ul>
+            <button type="button" id="checkoutButton"
+                style="display: none; float: right; background-color: #11DFBA; color: black;">結帳</button>
+        </div>
+
+        <!-- 商品資訊 -->
+        <div class="tab-content" id="product" style="display:none;">
+            <div style="color: white; display: block;" id="noProduct">暫時沒有商品!</div>
+            <div class="product-info" id="productinfo">
+                <!-- 動態生成 -->
+            </div>
+        </div>
+        <!-- 景點資訊 -->
+        <div class="tab-content" id="attraction" style="display:none;">
+            <div class="attraction-container" id="attractionInfo">
+                <!-- 動態生成 -->
+            </div>
+        </div>
+
+        <!-- <div class="tab-content" id="food" style="display:none;">
+            <div style="color: white; display: block;" id="noFood">暫時沒有商品!</div>
+            <div class="food-info" id="foodinfo">
+                <div class="food-img-container" >
+                    <img class="food-img" id="foodImg" src="" alt="美食圖片">
+                    <div class="food-details">
+                        <span class="food-name" id="foodName"></span>
+                        <span class="food-style" id="foodType"></span>
+                        <span class="food-spec" id="foodInfo"></span>
+                        $<span id="foodPrice"></span>
+                        <div style="display: none;">
+                            <span id="foodProductId"></span>
+                            <span id="foodComId"></span>
+                            <span id="foodReview"></span>
+                        </div>
+                        <span class="right">
+                            <button class="minus-btn" type="button" onclick="foodAdjustQuantity(-1)">-</button>
+                            <input type="text" id="foodQuantity" value="1" style="max-width: 20px;">
+                            <button class="add-btn" type="button" onclick="foodAdjustQuantity(1)">+</button>
+                            <button class="add-to-cart-btn" onclick="foodAddToCart()">加入購物車</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+
+
+    <footer>
+        <ul>
+            <li><a href="#">常見問題</a></li>
+            <li><a href="#">版權聲明</a></li>
+            <li><a href="#">使用說明</a></li>
+            <li><a href="#">關於我們</a></li>
+        </ul>
+    </footer>
+
+    <script src="./JS/videoPlay/videoPlay.js"></script>
+    <script src="./JS/videoPlay/Video-API.js"></script>
+</body>
+
+</html>

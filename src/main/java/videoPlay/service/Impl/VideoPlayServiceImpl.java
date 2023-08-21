@@ -41,7 +41,7 @@ public class VideoPlayServiceImpl implements VideoPlayService,CoreService{
 	}
 	//查詢影片資訊、標記時間戳的商品、景點
 	@Override
-	public String selectById(Integer videoId) {
+	public Video selectVideoById(Integer videoId) {
 		beginTransaction();
 		try {
 			Video vi = vd.selectById(videoId);
@@ -60,48 +60,16 @@ public class VideoPlayServiceImpl implements VideoPlayService,CoreService{
 			videoInfo.setVideoReview(vi.getVideoReview());
 			videoInfo.setVideoType(vi.getVideoType());
 			videoInfo.setViews(vi.getViews());
-			
-			//先取得所有與關聯的商品
-			List<ProductLink> pl = vd.selectProductTimeById(videoId);
-			
-			List<ProductInformation> pri = new ArrayList<ProductInformation>();
-			for(int i=0;i<pl.size();i++) {
-				ProductInformation tmp = new ProductInformation();
-				//再利用關聯商品的Id查詢商品後存到商品清單
-				tmp = pid.selectById(pl.get(i).getProductId());
-				if(tmp != null) {
-					pri.add(tmp);
-				}
-			}
-			//先取得有關聯的景點
-			List<VideoAttraction> va = vd.selectVideoAttraction(videoId);
-			List<Attraction> att = new ArrayList<Attraction>();
-			int[] sec = new int[va.size()];
-			for(int i=0;i<va.size();i++) {
-				Attraction tmp = new Attraction();
-				//再用Id取得景點資訊
-				tmp = vd.selectAttractionById(va.get(i).getAttractionId());
-				if(tmp!= null) {
-					att.add(tmp);
-				}
-				sec[i] = va.get(i).getLocationTimestamp();
-			}
-			
-			Object[] obj = new Object[5];
-			obj[0] = videoInfo;
-			obj[1] = pl;
-			obj[2] = pri;
-			obj[3] = att;
-			obj[4] = sec;
-			String tojson = gson.toJson(obj);
+
+			String tojson = gson.toJson(videoInfo);
 			System.out.println(tojson);
 			commit();
-			return tojson;
+			return videoInfo;
 		} catch (Exception e) {
 			
 			e.printStackTrace();
 			rollback();
-			return "查無資料";
+			return null;
 		}
 	}
 	
@@ -261,6 +229,100 @@ public class VideoPlayServiceImpl implements VideoPlayService,CoreService{
 			e.printStackTrace();
 			rollback();
 			return BigDecimal.valueOf(0);
+		}
+	}
+	
+	//查詢影片相關產品
+	@Override
+	public String selectProductByVideoId(Integer videoId) {
+		beginTransaction();
+		try {
+			//取得有關聯的商品
+			List<ProductLink> pl = vd.selectProductTimeById(videoId);
+			
+			List<ProductInformation> pri = new ArrayList<ProductInformation>();
+			for(int i=0;i<pl.size();i++) {
+				ProductInformation tmp = new ProductInformation();
+				//再利用關聯商品的Id查詢商品後存到商品清單
+				tmp = pid.selectById(pl.get(i).getProductId());
+				if(tmp != null) {
+					pri.add(tmp);
+				}
+			}
+			String productInfo = gson.toJson(pri);
+			commit();
+			return productInfo;
+		} catch (Exception e) {
+			e.printStackTrace();
+			rollback();
+			return "查無商品";
+		}
+	}
+	
+	
+	//查詢影片相關景點資訊
+	@Override
+	public String selectAttractionByVideoId(Integer videoId) {
+		beginTransaction();
+		try {
+			//取得有關聯的景點
+			List<VideoAttraction> va = vd.selectVideoAttraction(videoId);
+			List<Attraction> att = new ArrayList<Attraction>();
+			for(int i=0;i<va.size();i++) {
+				Attraction tmp = new Attraction();
+				//再用Id取得景點資訊
+				tmp = vd.selectAttractionById(va.get(i).getAttractionId());
+				if(tmp!= null) {
+					att.add(tmp);
+				}
+//			sec[i] = va.get(i).getLocationTimestamp();
+			}
+			String attInfo = gson.toJson(att);
+			commit();
+			return attInfo;
+		} catch (Exception e) {
+			e.printStackTrace();
+			rollback();
+			return "沒有景點";
+		}
+	}
+	
+	//查詢影片景點時間戳
+	@Override
+	public String selectAttractionTimeByVideoId(Integer VideoId) {
+		beginTransaction();
+		try {
+			List<VideoAttraction> va = vd.selectVideoAttraction(VideoId);
+			int[] sec = new int[va.size()];
+			for(int i=0;i<va.size();i++) {
+				sec[i] = va.get(i).getLocationTimestamp();
+			}
+			String secToJson = gson.toJson(sec);
+			commit();
+			return secToJson;
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			rollback();
+			return "沒有景點";
+		}
+	}
+	@Override
+	public String selectProductTimeByVideoId(Integer videoId) {
+		beginTransaction();
+		try {
+			List<ProductLink> list = vd.selectProductTimeById(videoId);
+			int[] sec = new int[list.size()];
+			for(int i=0;i<list.size();i++) {
+				sec[i] = list.get(i).getLinkTimestamp();
+			}
+			String secToJson = gson.toJson(sec);
+			commit();
+			return secToJson;
+		} catch (Exception e) {
+			e.printStackTrace();
+			rollback();
+			return "沒有商品";
 		}
 	}
 

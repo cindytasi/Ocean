@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 
 @Entity
 public class ProductInformation {
@@ -22,6 +23,8 @@ public class ProductInformation {
 //	reviewTime
 	private Double price;
 	private String videoName;
+//	@JoinColumn(name="productImgId")
+//	private ProductLink productLink;
 	private Integer productImgId;
 //	inStock
 	private Integer gender;

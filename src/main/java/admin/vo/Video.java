@@ -46,7 +46,7 @@ public class Video {
 	public Video(Integer videoId, String videoName, String videoType, Integer videoYear, String videoArea,
 			String videoDirector, String videoActor, Integer videoLength, Integer videoSeason, Integer videoEpisode,
 			Date uploadDate, BigDecimal VideoReview, Integer domainId, String Introduction, Integer views,
-			Integer save) {
+			Integer save,String videoPath) {
 		super();
 		this.videoId = videoId;
 		this.videoName = videoName;
@@ -64,6 +64,7 @@ public class Video {
 		this.Introduction = Introduction;
 		this.views = views;
 		this.save = save;
+		this.videoPath = videoPath;
 	}
 
 	public Video(Integer videoId, String videoName, String videoType, Integer videoYear, String videoArea,

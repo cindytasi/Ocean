@@ -2,6 +2,7 @@ package videoPlay.dao.Impl;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -27,7 +28,7 @@ public class VideoPlayDaoImpl implements VideoPlayDao {
 	//影片Id查詢影片詳細資訊
 	@Override
 	public Video selectById(Integer id) {
-		String hql = "SELECT new admin.vo.Video(videoId, videoName, videoType, videoYear, videoArea, videoDirector, videoActor, videoLength, videoSeason, videoEpisode, uploadDate, VideoReview, domainId, Introduction, views, save) FROM Video WHERE videoId = :videoId";
+		String hql = "SELECT new admin.vo.Video(videoId, videoName, videoType, videoYear, videoArea, videoDirector, videoActor, videoLength, videoSeason, videoEpisode, uploadDate, VideoReview, domainId, Introduction, views, save,videoPath) FROM Video WHERE videoId = :videoId";
 		Query<Video> query = getSession().createQuery(hql, Video.class);
 		query.setParameter("videoId", id);
 		return query.getSingleResult();
@@ -36,7 +37,7 @@ public class VideoPlayDaoImpl implements VideoPlayDao {
 	//影片Id取得所有綁定時間戳的商品
 	@Override
 	public List<ProductLink> selectProductTimeById(Integer id) {
-		String hql = "SELECT new videoPlay.vo.ProductLink(productLinkId,linkTimestamp,productId) FROM ProductLink WHERE videoId = :videoId";
+		String hql = "SELECT new videoPlay.vo.ProductLink(productLinkId,linkTimestamp,productId) FROM ProductLink WHERE videoId = :videoId order by linkTimestamp";
 		Query<ProductLink> query = getSession().createQuery(hql, ProductLink.class);
 		query.setParameter("videoId", id);
 		return query.list();
@@ -79,10 +80,10 @@ public class VideoPlayDaoImpl implements VideoPlayDao {
 		if(adn ==null) {
 			AchievementDuration newADN = new AchievementDuration();
 			newADN.setApk(ad.getApk());
-			newADN.setWatchDuration(ad.getWatchDuration());
+			newADN.setWatchDuration(1);
 			getSession().save(newADN);
 		}else {
-			adn.setWatchDuration(ad.getWatchDuration()+1);
+			adn.setWatchDuration(adn.getWatchDuration()+1);
 			getSession().update(adn);
 		}
 		return "1";
@@ -146,10 +147,10 @@ public class VideoPlayDaoImpl implements VideoPlayDao {
 		Root<FavoriteMap> root = query.from(FavoriteMap.class);
 		query.select(root);
 		query.where(
-				criteriaBuilder.equal(root.get("attraction").get("attractionId"),fap.getAttraction()),
-				criteriaBuilder.equal(root.get("member").get("memberId"),fap.getMember())
+				criteriaBuilder.equal(root.get("attraction").get("attractionId"),fap.getAttraction().getAttractionId()),
+				criteriaBuilder.equal(root.get("member").get("memberId"),fap.getMember().getMemberId())
 				);
-		FavoriteMap tmp = getSession().createQuery(query).getSingleResult();
+		FavoriteMap tmp = getSession().createQuery(query).uniqueResult();
 		if(tmp ==null) {
 			Member member = getSession().get(Member.class, fap.getMember().getMemberId());
 			Attraction at = getSession().get(Attraction.class, fap.getAttraction().getAttractionId());
@@ -157,6 +158,8 @@ public class VideoPlayDaoImpl implements VideoPlayDao {
 				FavoriteMap fp = new FavoriteMap();
 				fp.setAttraction(at);
 				fp.setMember(member);
+				Date date = new Date(System.currentTimeMillis());
+				fp.setLastModifiedDate(date);
 				getSession().save(fp);
 			}
 		}
@@ -179,10 +182,10 @@ public class VideoPlayDaoImpl implements VideoPlayDao {
 		Root<FavoriteMap> root = query.from(FavoriteMap.class);
 		query.select(root);
 		query.where(
-				criteriaBuilder.equal(root.get("attractionId").get("attractionId"),fap.getAttraction()),
-				criteriaBuilder.equal(root.get("memberId").get("memberId"),fap.getMember())
+				criteriaBuilder.equal(root.get("attractionId").get("attractionId"),fap.getAttraction().getAttractionId()),
+				criteriaBuilder.equal(root.get("memberId").get("memberId"),fap.getMember().getMemberId())
 				);
-		FavoriteMap tmp = getSession().createQuery(query).getSingleResult();
+		FavoriteMap tmp = getSession().createQuery(query).uniqueResult();
 		if(tmp !=null) {
 			Member member = getSession().get(Member.class, fap.getMember().getMemberId());
 			Attraction at = getSession().get(Attraction.class, fap.getAttraction().getAttractionId());

@@ -20,19 +20,14 @@ public class AttractionServiceImpl implements AttractionService,CoreService{
 		gson = new Gson();
 	}
 	@Override
-	public String selectAttractionImg(String[] attractionId) {
+	public String selectAttractionImg(Integer attractionId) {
 		beginTransaction();
 		try {
-			List<Attraction> img = new ArrayList<Attraction>();
-			for(int i=0;i<attractionId.length;i++) {
-				int j = Integer.valueOf(attractionId[i]);
-				Attraction tmp = ado.selectAttractionImgById(j);
-				if(tmp!=null) {
-					img.add(tmp);
-				}
-			}
-//			Attraction tmp = ado.selectAttractionImgById(attractionId);
-			String toJson = gson.toJson(img);
+			Attraction img = ado.selectAttractionImgById(attractionId);
+					
+				String toJson = gson.toJson(img);
+			
+			
 			commit();
 			return toJson;
 		} catch (Exception e) {

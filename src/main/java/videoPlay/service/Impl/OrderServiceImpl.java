@@ -1,5 +1,6 @@
 package videoPlay.service.Impl;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 import admin.util.CoreService;
@@ -24,7 +25,7 @@ public class OrderServiceImpl implements OrderService, CoreService {
 	public String insertToOrder(Orders order, OrderDetail odd) {
 		beginTransaction();
 		try {
-			Date now = new Date(System.currentTimeMillis());
+			Timestamp now = new Timestamp(System.currentTimeMillis());
 			order.setOrderDate(now);
 			order.setPayFlowType(1);
 			order.setStatusCode(1);
@@ -33,9 +34,24 @@ public class OrderServiceImpl implements OrderService, CoreService {
 			ods = order;
 			od.insertOrder(ods);
 			
-			String res = "";
+//			String res = "";
 			odd.setOrderId(ods.getOrderId());
 			odd.setOrderDetailCode(1);
+			odd.setPayable(0.0);
+			odd.setShippingTextValue("");
+			odd.setFullName("");
+			odd.setPhone("");
+			odd.setAddress("");
+			odd.setEmail("");
+			odd.setProductSize("");
+			odd.setProductColor("");
+			odd.setProductName("");
+			odd.setItemsQuantity(0);
+			odd.setShipping(0);
+			odd.setDeliveryMethod("");
+			odd.setPaymentMethod("");
+			odd.setSubtotal(0.0);
+			
 			OrderDetail odls = new OrderDetail();
 			odls = odd;
 			odo.insertOrderDetail(odls);

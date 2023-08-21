@@ -23,28 +23,22 @@ public class GetAttractionImg extends HttpServlet{
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
-		resp.setHeader("Access-Control-Allow-Origin", "*"); // 允許來自所有網域的請求
-		resp.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE"); // 允許的 HTTP 方法
-		resp.setHeader("Access-Control-Allow-Headers", "Content-Type"); // 允許的請求Header
-		resp.setHeader("Access-Control-Allow-Credentials", "true"); // 是否允許帶有憑證的請求
-		resp.setCharacterEncoding("utf-8");
-		StringBuilder sb = new StringBuilder();
-		BufferedReader reader = req.getReader();
-		String line;
-		while ((line = reader.readLine()) != null) {
-			sb.append(line);
-		}
-		String tmp = sb.toString();
-		tmp = tmp.substring(17,tmp.length()-2);
-		String[] tmp2 = tmp.split(",");
-//		String id = tmp2[1].substring(0,tmp2[1].length()-1);
-//		System.out.println(tmp2.toString());
-		String img = as.selectAttractionImg(tmp2);
 		
-		resp.setContentType("application/json");
-		resp.getWriter().write(img);
+		resp.setCharacterEncoding("utf-8");
+		Integer tmp = Integer.parseInt(req.getParameter("attractionId"));
+		
+		String img = "";
+		if(tmp!=null) {
+			
+			System.out.println(tmp);
+			img = as.selectAttractionImg(tmp);
+			
+			resp.setContentType("application/json");
+			resp.getWriter().write(img);
+		}
+		
 	}
 
 }

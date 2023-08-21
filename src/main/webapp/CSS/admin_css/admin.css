@@ -2,11 +2,11 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #333;
+    background-color: #000000;
 }
 
 header {
-    background-color: #333;
+    background-color: #000000;
     color: #fff;
     padding: 20px;
     display: flex;
@@ -15,7 +15,7 @@ header {
 
 .sidebar {
     width: 110px;
-    background-color: #333;
+    background-color: #000000;
     color: #fff;
     padding: 5px;
     float: left;
@@ -226,7 +226,7 @@ select option {
 
 
 footer {
-    background-color: #333;
+    background-color: #000000;
     color: #fff;
     padding: 20px;
     text-align: center;

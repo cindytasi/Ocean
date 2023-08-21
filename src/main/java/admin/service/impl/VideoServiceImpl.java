@@ -21,7 +21,8 @@ import admin.vo.Picture;
 import admin.vo.Video;
 
 public class VideoServiceImpl implements VideoService, CoreService {
-	private static final String CONVERTED_DIRECTORY = "/THA102_WebApp/ocean/src/main/webapp/Videos";
+	private static final String tomcatBase = System.getProperty("catalina.base");
+	private static final String CONVERTED_DIRECTORY = String.format("%s/webapps/videos", tomcatBase);
 	private static final String PICFILE_DIRECTORY = "/path/to/upload/directory/pic";
 	private VideoDao viDao;
 	private Gson gson;
@@ -80,6 +81,7 @@ public class VideoServiceImpl implements VideoService, CoreService {
 		beginTransaction();
 		try {
 			// 建立影片暫存檔
+			System.out.println(CONVERTED_DIRECTORY);
 			File videoFile = new File(CONVERTED_DIRECTORY + File.separator + videoInfo.getVideoName() + File.separator
 					+ videoInfo.getVideoName() + ".mp4");
 			if (!videoFile.exists()) {
@@ -126,7 +128,7 @@ public class VideoServiceImpl implements VideoService, CoreService {
 
 	// 獲取影片的片長
 	private long getVideoDuration(String videoPath) throws IOException, InterruptedException {
-		ProcessBuilder processBuilder = new ProcessBuilder("\"C:\\THA102_WebApp\\ocean\\src\\main\\webapp\\ffmpeg.exe\"", "-i",
+		ProcessBuilder processBuilder = new ProcessBuilder("C:/Users/T14 Gen 3/Desktop/ffmpeg.exe", "-i",
 				videoPath);
 		Process process = processBuilder.start();
 		process.waitFor();

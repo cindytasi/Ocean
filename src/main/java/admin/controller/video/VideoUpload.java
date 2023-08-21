@@ -66,6 +66,8 @@ public class VideoUpload extends HttpServlet {
 		video.setIntroduction(Introduction);
 		video.setVideoType(getPartValue(req.getPart("videoType")));
 		video.setAdminId(1);
+		video.setViews(0);
+		video.setSave(0);
 		String res = vs.uploadVideo(imgFilePart, picFilePart, video);
 		
 		resp.setContentType("text/plain");

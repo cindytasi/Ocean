@@ -2,9 +2,19 @@ package videoPlay.service;
 
 import java.math.BigDecimal;
 
+import admin.vo.Video;
+
 public interface VideoPlayService {
 
-	String selectById(Integer videoId);
+	Video selectVideoById(Integer videoId);
+	
+	String selectProductByVideoId(Integer videoId);
+	
+	String selectProductTimeByVideoId(Integer videoId);
+	
+	String selectAttractionByVideoId(Integer videoId);
+	
+	String selectAttractionTimeByVideoId(Integer VideoId);
 	
 	Integer TimesWatched(Integer videoId);
 	

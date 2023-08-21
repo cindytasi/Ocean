@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+  "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+  "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+<!-- 		本機非JNDI -->
+		<!-- <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property> -->
+		<!-- <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/JAVA_FRAMEWORK</property> -->
+		<!-- <property name="hibernate.connection.username">root</property> -->
+		<!-- <property name="hibernate.connection.password">password</property> -->
+
+<!-- server JNDI -->
+		<property name="hibernate.connection.datasource">java:comp/env/jdbc/javaFramework</property>
+		
+		<property name="hibernate.current_session_context_class">thread</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.format_sql">true</property>
+		<property name="hibernate.highlight_sql">true</property>
+
+		<mapping class="admin.vo.Manufacturers" />
+		<mapping class="admin.vo.Achievement" />
+		<mapping class="admin.vo.User" />
+		<mapping class="admin.vo.Member" />
+		<mapping class="admin.vo.UserSubsId"/>
+		<mapping class="admin.vo.UserAchievementDuration"/>
+		<mapping class="admin.vo.Video"/>
+		<mapping class="admin.vo.Picture"/>
+		<mapping class="videoPlay.vo.ProductInformation"/>
+		<mapping class="videoPlay.vo.ProductLink"/>
+		<mapping class="videoPlay.vo.ProductImg"/>
+		<mapping class="videoPlay.vo.Orders"/>
+		<mapping class="videoPlay.vo.OrderDetail"/>
+		<mapping class="videoPlay.vo.MemberWatchDuration"/>
+		<mapping class="videoPlay.vo.AchievementDuration"/>
+		<mapping class="videoPlay.vo.Favourites"/>
+		<mapping class="videoPlay.vo.FavoriteMap"/>
+		<mapping class="videoPlay.vo.VideoAttraction"/>
+		<mapping class="videoPlay.vo.VideoReviewRecord"/>
+		<mapping class="videoPlay.vo.Attraction"/>
+	</session-factory>
+</hibernate-configuration>
