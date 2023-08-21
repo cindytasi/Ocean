@@ -337,3 +337,9 @@
   animation: borderFlash 2s infinite; /* 調整持續時間和次數 */
   border: 2px solid transparent; /* 初始化邊框為透明 */
 }
+
+#attractionTab.flashing{
+  animation: borderFlash 2s infinite; /* 調整持續時間和次數 */
+  border: 2px solid transparent; /* 初始化邊框為透明 */
+}
+

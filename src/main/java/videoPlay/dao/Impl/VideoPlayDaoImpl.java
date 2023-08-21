@@ -1,7 +1,6 @@
 package videoPlay.dao.Impl;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -9,6 +8,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 import admin.vo.Member;
@@ -177,23 +177,24 @@ public class VideoPlayDaoImpl implements VideoPlayDao {
 	//景點刪除最愛
 	@Override
 	public String deleteFavoriteMap(FavoriteMap fap) {
-		CriteriaBuilder criteriaBuilder = getSession().getCriteriaBuilder();
+		Session session = getSession();
+		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
 		CriteriaQuery<FavoriteMap> query = criteriaBuilder.createQuery(FavoriteMap.class);
 		Root<FavoriteMap> root = query.from(FavoriteMap.class);
-		query.select(root);
+//		query.select(root);
 		query.where(
-				criteriaBuilder.equal(root.get("attractionId").get("attractionId"),fap.getAttraction().getAttractionId()),
-				criteriaBuilder.equal(root.get("memberId").get("memberId"),fap.getMember().getMemberId())
+				criteriaBuilder.equal(root.get("attraction").get("attractionId"), fap.getAttraction().getAttractionId()),
+				criteriaBuilder.equal(root.get("member").get("memberId"), fap.getMember().getMemberId())
 				);
-		FavoriteMap tmp = getSession().createQuery(query).uniqueResult();
+		FavoriteMap tmp = session.createQuery(query).uniqueResult();
 		if(tmp !=null) {
-			Member member = getSession().get(Member.class, fap.getMember().getMemberId());
-			Attraction at = getSession().get(Attraction.class, fap.getAttraction().getAttractionId());
+			Member member = session.get(Member.class, fap.getMember().getMemberId());
+			Attraction at = session.get(Attraction.class, fap.getAttraction().getAttractionId());
 			if(member!=null && at!=null) {
 				FavoriteMap fp = new FavoriteMap();
 				fp.setAttraction(at);
 				fp.setMember(member);
-				getSession().delete(fp);
+				session.delete(fp);
 			}
 		}
 		return "1";

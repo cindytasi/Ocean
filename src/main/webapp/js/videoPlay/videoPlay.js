@@ -40,6 +40,7 @@ fetch(`/Ocean/videoInfo?videoId=${id}`)
         document.querySelector("#introduction").innerHTML += videoInfo.Introduction;
         document.querySelector("#review").innerHTML += parseInt(review);
         document.querySelector("#viewCount").innerHTML += videoInfo.views;
+        rateMovie(reviewScore);//顯示評分
     })
     ;
 
@@ -48,7 +49,7 @@ const userId = document.querySelector("#userId").innerHTML;
 
 
 
-rateMovie(reviewScore);//顯示評分
+
 
 // 獲取頁籤按鈕和頁籤內容的元素
 const tabButtons = document.querySelectorAll('.tab-button');
@@ -637,6 +638,7 @@ player.addEventListener("timeupdate", function () {
                 </div>
             </div>
         `;
+        document.querySelector("#noAttraction").style.display = "none";
         document.querySelector("#attractionTab").classList.add('flashing');
             setTimeout(() => {
                 document.querySelector("#attractionTab").classList.remove('flashing');
