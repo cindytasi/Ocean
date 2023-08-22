@@ -36,7 +36,7 @@ public class AdminLogin extends HttpServlet{
         }else {
         	HttpSession session = req.getSession();
         	session.setAttribute("adminName", avo.getAdminName());
-        	resp.sendRedirect("/Ocean/admin.html");
+        	resp.sendRedirect("/Ocean/admin/admin.html");
         }
 	}
 
