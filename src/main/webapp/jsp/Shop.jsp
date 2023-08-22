@@ -340,13 +340,13 @@
 							</div>
 							<nav class="pagination-wrap">
 								<ul class="pagination">
-									<li><a href="#" class="prev page-number"><i
-											class="fa fa-angle-double-left"></i></a></li>
-									<li><span class="current page-number">1</span></li>
-									<li><a href="#" class="page-number">2</a></li>
-									<li><a href="#" class="page-number">3</a></li>
-									<li><a href="#" class="next page-number"><i
-											class="fa fa-angle-double-right"></i></a></li>
+<!-- 									<li><a href="#" class="prev page-number"><i -->
+<!-- 											class="fa fa-angle-double-left"></i></a></li> -->
+<!-- 									<li><span class="current page-number">1</span></li> -->
+<!-- 									<li><a href="#" class="page-number">2</a></li> -->
+<!-- 									<li><a href="#" class="page-number">3</a></li> -->
+<!-- 									<li><a href="#" class="next page-number"><i -->
+<!-- 											class="fa fa-angle-double-right"></i></a></li> -->
 								</ul>
 							</nav>
 						</div>
