@@ -173,7 +173,7 @@ a, button, .user-info-menu, .banner-box .banner-info, .banner-box .banner-hover-
 									</a></li>
 									<li class="header-toolbar__item user-info"><a href=""
 										class="header-toolbar__btn"> <!--<i class="flaticon flaticon-user"></i> -->
-											<img src="<c:url value="img/logo/user.webp"/>"
+											<img src="<c:url value="img/user.png"/>"
 											style="width: 85%; height: 100%;"/>
 									
 									</a>

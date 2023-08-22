@@ -104,7 +104,7 @@
 			background: transparent;
 		}
 
-		#input_div {
+		#centeredDiv  {
 			display: flex;
 			flex-direction: column;
 			align-items: center;
@@ -113,16 +113,16 @@
 			/* 這將讓 <div> 佔滿整個畫面高度 */
 		}
 
-		#input_div>div {
+		#centeredDiv >div {
 			margin-bottom: 10px;
 		}
 
-		#input_div img {
+		#centeredDiv  img {
 			width: 10%;
 			height: auto;
 		}
 
-		#input_div label {
+		#centeredDiv  label {
 			display: inline-block;
 			width: 120px;
 			/* 調整標籤的寬度，以適應表單 */
@@ -130,8 +130,8 @@
 			margin-right: 10px;
 		}
 
-		#input_div input,
-		#input_div button {
+		#centeredDiv  input,
+		#centeredDiv  button {
 			padding: 5px;
 			width: 200px;
 			/* 調整輸入框和按鈕的寬度，以適應表單 */
@@ -140,6 +140,7 @@
 		#img_logo {
 			justify-content: center;
 		}
+
 	</style>
 
 </head>
@@ -153,7 +154,7 @@
 				<div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
 					<!-- logo -->
 					<div class="logo d-flex">
-						<a class="navbar-brand" href="../index/oceanIndex.html">
+						<a class="navbar-brand" href="http://localhost:8080/Ocean/">
 							<img src="../login/logo_-_.png" alt="Ocean Logo" style="width: 50px;height: 50px;">
 						</a>
 						<!-- search -->
@@ -176,24 +177,24 @@
 						<ul class="navbar-nav align-items-center">
 							<!-- 首頁 -->
 							<li class="nav-item">
-								<a class="nav-link active" href="../index/oceanIndex.html">首頁</a>
+								<a class="nav-link active" href="http://localhost:8080/Ocean/">首頁</a>
 							</li>
 							<!-- 電影 -->
-							<li class="nav-item">
+							<!-- <li class="nav-item">
 								<a class="nav-link" href="/movieIndex.html">電影</a>
-							</li>
+							</li> -->
 							<!-- 影集 -->
-							<li class="nav-item">
+							<!-- <li class="nav-item">
 								<a class="nav-link" href="../index/movieIndex.html">影集</a>
-							</li>
+							</li> -->
 							<!-- 藝人商品 -->
 							<li class="nav-item">
 								<a class="nav-link" href="/Ocean/MainShopServlet">藝人商品</a>
 							</li>
 							<!-- 收藏地圖 -->
-							<li class="nav-item">
+							<!-- <li class="nav-item">
 								<a class="nav-link" href="../index/productIndex.html">收藏地圖</a>
-							</li>
+							</li> -->
 							<!--user  -->
 							<div class="nav-item dropdown">
 								<button type="button" class="btn dropdown-toggle" id="navbarDropdownUserLink"
@@ -224,8 +225,10 @@
 	</div>
 
 
-	<div>
+	<div id="centeredDiv">
 
+		<img id="img_logo" src="../login/logo_-_.png" alt="Ocean Logo" style="width: 10%; height: 10%;">
+		<br>
 		<div>
 			<label for="username">使用者名稱: </label> <input type="text" name="username" id="username">
 		</div>

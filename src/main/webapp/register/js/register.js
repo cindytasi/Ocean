@@ -82,15 +82,19 @@
 			.then(resp => resp.json())
 			.then(body => {
 				const { successful, message } = body;
+				console.log(successful);
 				if (successful) {
+					console.log("5jijoakjfla");
 					for (let input of inputs) {
 						input.disabled = true;
 					}
 					btn1.disabled = true;
-//					msg.className = 'info';
 					msg.textContent = message;
+					setTimeout(function() {
+						console.log("Attempting to redirect...");
+						window.location.replace('http://localhost:8080/Ocean/login/login.html');
+					}, 3000);
 				} else {
-//					msg.className = 'error';
 					msg.textContent = message;
 				}
 			});

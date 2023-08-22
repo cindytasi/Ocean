@@ -37,14 +37,14 @@ public class UserServiceImpl implements UserService {
 	public UserVo register(UserVo userVo) {
 		
 		if(duplicateregister(userVo.getEmail())) {
-			userVo.setMessage("帳號重複");
+			userVo.setMessage("email重複");
 			userVo.setSuccessful(false);
 			return  userVo;
 		}else {
 			
 			if(userdao.insert(userVo) > -1) {
 				userVo.setMessage("註冊成功");
-				userVo.setSuccessful(false);
+				userVo.setSuccessful(true);
 				return userVo;
 			}
 			userVo.setMessage("註冊失敗");

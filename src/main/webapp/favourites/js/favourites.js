@@ -94,29 +94,29 @@ let lastSearchText = '';
 
     //=================================我的片單======================================//
 
-    $.ajax({
-        url: "/Ocean/web/controller/indexVideoListController",
-        type: "POST",
-        dataType: "json",
-        data: JSON.stringify({
-            type: "lastOnline"
-        }),
-        success: function (data) {
+    // $.ajax({
+    //     url: "/Ocean/web/controller/indexVideoListController",
+    //     type: "POST",
+    //     dataType: "json",
+    //     data: JSON.stringify({
+    //         type: "lastOnline"
+    //     }),
+    //     success: function (data) {
 
-            let vidItems = document.getElementById('videoItems');
+    //         let vidItems = document.getElementById('videoItems');
 
-            for (let i in data) {
-                vidItems.innerHTML += `
-                    <div class="item mb-2">
-                        <img src="/img/1616574201-3511996999-g_n.jpg" alt="" style="width: 100%;">
-                        <div class="star-icon">
-                            <i class="bi bi-star-fill" id="star"></i>
-                        </div>
-                    </div>
-                `;
-            }
-        }
-    });
+    //         for (let i in data) {
+    //             vidItems.innerHTML += `
+    //                 <div class="item mb-2">
+    //                     <img src="/img/1616574201-3511996999-g_n.jpg" alt="" style="width: 100%;">
+    //                     <div class="star-icon">
+    //                         <i class="bi bi-star-fill" id="star"></i>
+    //                     </div>
+    //                 </div>
+    //             `;
+    //         }
+    //     }
+    // });
 
     //=================================移除影片======================================//
     const videoitems = document.querySelector('.videoitems');
