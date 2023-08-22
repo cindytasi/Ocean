@@ -107,7 +107,7 @@ public class ProductsOnShelvesServlet extends HttpServlet {
 		            productimg.setImg3(imageList.get(2));
 		            productimg.setImg4(imageList.get(3));
 		            
-	            product.setComId(1);
+	            product.setComId(5);
 	            product.setPrice(price);
 	            product.setProductName(productName);
 	            product.setSpecType(specType);
@@ -122,7 +122,7 @@ public class ProductsOnShelvesServlet extends HttpServlet {
 	            Product product1 = dao.insertNum(product,productimg);
 	            System.out.println(productName);//測試用
 	            System.out.println(product1.getMessage());
-	            String redirectUrl = "/Ocean/jsp/test4.html"; // 设置重定向的目标 URL
+	            String redirectUrl = "/Ocean/jsp/ProductSuccess.html"; // 设置重定向的目标 URL
 	            res.sendRedirect(redirectUrl); // 
 //	            // 執行 ManufacturServiceimpl 的 insertNum 方法，並將回傳的 Product 物件用於錯誤判斷
 //	            Product products = new ManufacturServiceimpl().insertNum(product);
@@ -145,7 +145,8 @@ public class ProductsOnShelvesServlet extends HttpServlet {
 		  } catch (IOException | ServletException e) {
 			    e.printStackTrace();
 			    res.getWriter().println("Error: " + e.getMessage());
-			    res.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR); // 設置 500 錯誤狀態碼
+		    res.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR); // 設置 500 錯誤狀態碼
+			   
 			} catch (ClassNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

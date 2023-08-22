@@ -42,7 +42,6 @@ $(document).ready(function () {
             // 在這裡處理fetch請求的回應
             const { memberId, memberName, childMember, profilePicture } = body;
             let list_html = '';
-            let profilePicture_URL = [];
 
             for (let i in body) {
                 // const memberId = new Array();
@@ -69,12 +68,12 @@ $(document).ready(function () {
 
                 // 遍歷回應的每個項目，動態生成HTML結構
                 list_html += '<li class="profile">';
-                list_html += '<a href="http://localhost:8080/Ocean/index.html">'
+                list_html += '<a href="http://localhost:8080/Ocean/index/oceanIndex.html">'
                 list_html += '<div class="img_div">';
                 list_html += '<img src="http://localhost:8080/Ocean/web/controller/SelectMemberImageController?member_id=' + memberId + '" alt="Member image" class="member_image">';
                 // list_html += '<img src="img/images' + sessionStorage.getItem('memberId${i}') + '.jpeg" alt="Member image" class="member_image">';
                 list_html += '<i class="memberId_i" data-member-id="' + sessionStorage.getItem('memberId${i}') + ' "></i>';
-                list_html += '<span>' + body[i].memberName + sessionStorage.getItem('memberId${i}') + '</span>';
+                list_html += '<span>' + body[i].memberName + '</span>';
                 list_html += '</div>';
                 list_html += '</a>';
                 list_html += '</li>';

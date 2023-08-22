@@ -151,7 +151,7 @@
                             </li>
                             <!-- 藝人商品 -->
                             <li class="nav-item">
-                                <a class="nav-link" href="../index/seriesIndex.html">藝人商品</a>
+                                <a class="nav-link" href="/Ocean/MainShopServlet">藝人商品</a>
                             </li>
                             <!-- 收藏地圖 -->
                             <li class="nav-item">
@@ -161,7 +161,8 @@
                             <div class="nav-item dropdown">
                                 <button type="button" class="btn dropdown-toggle" id="navbarDropdownUserLink"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="../img/user.webp" alt="" style="width: 40px; height: 40px;">
+                                    <!-- <img src="../img/user.webp" alt="" style="width: 40px; height: 40px;"> -->
+                                    <img src="./img/image2-removebg-preview.png" alt="" style="width: 40px; height: 40px;" id="userImg">
                                 </button>
                                 <!-- user下拉選單 -->
                                 <ul class="dropdown-menu dropdown-menu-end mt-2" style="opacity: 80%;"
@@ -174,7 +175,8 @@
                                     <li><a class="dropdown-item" href="../index/myAchieve.html">我的成就</a></li>
                                     <li><a class="dropdown-item" href="../index/myOrder.html">我的訂單</a></li>
                                     <li><a class="dropdown-item" href="favourites/favourites.html">我的片單</a></li>
-                                    <li><a class="dropdown-item" href="./memberwatchduration/MemberWatchDuration.html">觀看紀錄</a></li>
+                                    <li><a class="dropdown-item"
+                                            href="./memberwatchduration/MemberWatchDuration.html">觀看紀錄</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
@@ -195,6 +197,14 @@
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
         crossorigin="anonymous"></script>
     <script src="index/js/nav.js"></script>
+
+    <!-- <script>
+        //=================================從session取得memberId======================================//
+        const memberId = sessionStorage.getItem("memberIdValue");
+
+        //=================================搜尋使用者img======================================//
+        document.getElementById("userImg").setAttribute("src", "http://localhost:8080/Ocean/web/controller/SelectMemberImageController?member_id=" + memberId);
+    </script> -->
 
 </body>
 

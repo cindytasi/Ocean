@@ -1,9 +1,9 @@
 $(document).ready(function() {
 	updateCartTotals();
 
-	
+
 	$(".quantity").append('<div class="dec qtybutton" type="minus">-</div><div class="inc qtybutton" type="add">+</div>');
-	
+
 
 
 
@@ -70,7 +70,7 @@ $(document).ready(function() {
 
 
 	//------------------------------------------刪除單筆資料------------------------------------------------------------------------//	
-	
+
 	$(".toDoAction").on("click", function() {
 		var $row = $(this).closest(".productInfo");
 		var $comRow = $row.prevAll(".comIdOne").first(); // 查找前面最近的兄弟元素
@@ -142,125 +142,125 @@ $(document).ready(function() {
 
 	//------------------------------------------刪除整個購物車資料------------------------------------------------------------------------//	    
 
-$(".cart-form__btn").on("click", function() {
-    // 彈出詢問窗口
-    var confirmed = confirm("確定要清空購物車嗎?");
-    var type = $(".cart-form__btn").data("type");
-    
-    // 如果用户確認清空購物車
-    if (confirmed) {
-        // 刪除所有動態生成的商品列
-        //$("tbody.productAll").remove();
-        
-        $.ajax({
-            url: "/Ocean/DelAddRedisServlet",
-            method: "POST",
-            data: {
-                productId: null,
-                productcomId: null,
-                inStock: 0,
-                productImgId: null,
-                prodName: null,
-                selectedColor: null,
-                selectedSize: null,
-                quantityValue: 0,
-                price: 0,
-                type: type
-            },
-            success: function(response) {
-                console.log("有成功進來Alldelete");
-                if (response.status === 1) {
-                    if (response.data.type === "Alldelete") {
-                        $("tbody.productAll").remove();
-                        console.log("有成功進來並要執行remove()");
-                    }
-                    var cartSize = response.data.shopcartSize;
-                    console.log('Cart Size: ' + cartSize);
-                    $(".mini-cart-count")[0].innerText = cartSize;
+	$(".cart-form__btn").on("click", function() {
+		// 彈出詢問窗口
+		var confirmed = confirm("確定要清空購物車嗎?");
+		var type = $(".cart-form__btn").data("type");
 
-                    var cartSize = response.data.shopcartSize;
+		// 如果用户確認清空購物車
+		if (confirmed) {
+			// 刪除所有動態生成的商品列
+			//$("tbody.productAll").remove();
 
-                    // 檢查數字是否小於1，如果是，隱藏綠色圖案
-                    if (cartSize < 1) {
-                        $(".mini-cart-count").css("display", "none");
-                    }
+			$.ajax({
+				url: "/Ocean/DelAddRedisServlet",
+				method: "POST",
+				data: {
+					productId: null,
+					productcomId: null,
+					inStock: 0,
+					productImgId: null,
+					prodName: null,
+					selectedColor: null,
+					selectedSize: null,
+					quantityValue: 0,
+					price: 0,
+					type: type
+				},
+				success: function(response) {
+					console.log("有成功進來Alldelete");
+					if (response.status === 1) {
+						if (response.data.type === "Alldelete") {
+							$("tbody.productAll").remove();
+							console.log("有成功進來並要執行remove()");
+						}
+						var cartSize = response.data.shopcartSize;
+						console.log('Cart Size: ' + cartSize);
+						$(".mini-cart-count")[0].innerText = cartSize;
 
-                    updateCartTotals();
-                } else {
-                    alert("刪除操作失敗：" + response.description);
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error("沒有收到回應:" + error);
-            }
-        });
-    }else{
-		console.log("取消刪除購物車");
-	}
-});
+						var cartSize = response.data.shopcartSize;
+
+						// 檢查數字是否小於1，如果是，隱藏綠色圖案
+						if (cartSize < 1) {
+							$(".mini-cart-count").css("display", "none");
+						}
+
+						updateCartTotals();
+					} else {
+						alert("刪除操作失敗：" + response.description);
+					}
+				},
+				error: function(xhr, status, error) {
+					console.error("沒有收到回應:" + error);
+				}
+			});
+		} else {
+			console.log("取消刪除購物車");
+		}
+	});
 
 
-//	//清空購物車
-//	$(".cart-form__btn").on("click", function() {
-//		// 彈出詢問窗口
-//		var confirmed = confirm("確定要清空購物車嗎?");
-//		var type = $(".cart-form__btn").data("type");
-//		// 如果用户確認清空購物車
-//		if (confirmed) {
-//			// 刪除所有動態生成的商品列			
-//			//$("tbody.productAll").remove();
-//
-//		}
-//
-//		$.ajax({
-//			url: "/Ocean/DelAddRedisServlet",
-//			method: "POST",
-//			data: {
-//
-//				productId: null,
-//				productcomId: null,
-//				inStock: 0,
-//				productImgId: null,
-//				prodName: null,
-//				selectedColor: null,
-//				selectedSize: null,
-//				quantityValue: 0,
-//				price: 0,
-//				type: type
-//			},
-//			success: function(response) {
-//				console.log("有成功進來Alldelete");
-//				if (response.status === 1) {
-//
-//					if (response.data.type === "Alldelete") {
-//						$("tbody.productAll").remove();
-//						console.log("有成功進來並要執行remove()");
-//					}
-//					var cartSize = response.data.shopcartSize;
-//					console.log('Cart Size: ' + cartSize);
-//					$(".mini-cart-count")[0].innerText = cartSize;
-//
-//					var cartSize = response.data.shopcartSize;
-//
-//					// 檢查數字是否小於1，如果是，隱藏綠色圖案
-//					if (cartSize < 1) {
-//						$(".mini-cart-count").css("display", "none");
-//					}
-//
-//
-//					updateCartTotals();
-//
-//				} else {
-//					alert("刪除操作失敗：" + response.description);
-//				}
-//
-//			},
-//			error: function(xhr, status, error) {
-//				console.error("沒有收到回應:" + error);
-//			}
-//		});
-//
-//	});
+	//	//清空購物車
+	//	$(".cart-form__btn").on("click", function() {
+	//		// 彈出詢問窗口
+	//		var confirmed = confirm("確定要清空購物車嗎?");
+	//		var type = $(".cart-form__btn").data("type");
+	//		// 如果用户確認清空購物車
+	//		if (confirmed) {
+	//			// 刪除所有動態生成的商品列			
+	//			//$("tbody.productAll").remove();
+	//
+	//		}
+	//
+	//		$.ajax({
+	//			url: "/Ocean/DelAddRedisServlet",
+	//			method: "POST",
+	//			data: {
+	//
+	//				productId: null,
+	//				productcomId: null,
+	//				inStock: 0,
+	//				productImgId: null,
+	//				prodName: null,
+	//				selectedColor: null,
+	//				selectedSize: null,
+	//				quantityValue: 0,
+	//				price: 0,
+	//				type: type
+	//			},
+	//			success: function(response) {
+	//				console.log("有成功進來Alldelete");
+	//				if (response.status === 1) {
+	//
+	//					if (response.data.type === "Alldelete") {
+	//						$("tbody.productAll").remove();
+	//						console.log("有成功進來並要執行remove()");
+	//					}
+	//					var cartSize = response.data.shopcartSize;
+	//					console.log('Cart Size: ' + cartSize);
+	//					$(".mini-cart-count")[0].innerText = cartSize;
+	//
+	//					var cartSize = response.data.shopcartSize;
+	//
+	//					// 檢查數字是否小於1，如果是，隱藏綠色圖案
+	//					if (cartSize < 1) {
+	//						$(".mini-cart-count").css("display", "none");
+	//					}
+	//
+	//
+	//					updateCartTotals();
+	//
+	//				} else {
+	//					alert("刪除操作失敗：" + response.description);
+	//				}
+	//
+	//			},
+	//			error: function(xhr, status, error) {
+	//				console.error("沒有收到回應:" + error);
+	//			}
+	//		});
+	//
+	//	});
 
 
 
@@ -281,7 +281,7 @@ $(".cart-form__btn").on("click", function() {
 			totalPrice += unitPrice * oldValue; // 加总总金额
 		});
 
-		
+
 		// 更新商品件数和总金额
 		$(".cart-calculator__item--value span:eq(0)").text(totalItems + " 件");
 		$(".cart-calculator__item--value span:eq(1)").text("NT." + totalPrice.toFixed(0));
@@ -296,7 +296,7 @@ $(".cart-form__btn").on("click", function() {
 		// 更新应付金额
 		var payableAmount = totalPrice + shippingCost;
 		$(".order-total .money").text("NT." + payableAmount.toFixed(0));
-		
+
 		// 返回 totalItems 和 totalPrice
 		return {
 			totalItems: totalItems,
@@ -304,7 +304,7 @@ $(".cart-form__btn").on("click", function() {
 			shippingCost: shippingCost,
 			payableAmount: payableAmount
 		};
-		
+
 	}
 
 
@@ -327,8 +327,8 @@ $(".cart-form__btn").on("click", function() {
 			let quantityValue = $(item).attr("quantityValue");
 			let inStock = $(item).attr("inStock");
 			let total = parseFloat(price) * quantityValue;
-			
-			
+
+
 			let product = {
 				productcomId: productcomId,
 				productId: productId,
@@ -354,23 +354,23 @@ $(".cart-form__btn").on("click", function() {
 		var totalItems = totals.totalItems;  //商品總件數
 		var totalPrice = totals.totalPrice;  //總金額
 		var shippingCost = totals.shippingCost;	//運費
-		var	payableAmount = totals.payableAmount;  //應付金額
+		var payableAmount = totals.payableAmount;  //應付金額
 		var itemCountText = $(".cart-calculator__item--value:eq(0) span").text().trim();
 		var totalAmountText = $(".cart-calculator__item--value:eq(1) span").text().trim();
 		var shippingCostText = $(".shipping-cost").text().trim();
 		var payableAmountText = $(".cart-calculator__item--value:eq(3) span.money").text().trim();
 		var shippingTextValue = $(".shipping-text").text();
-		
+
 		let checkout = {
 			totalItems: totalItems,
 			totalPrice: totalPrice,
 			shippingCost: shippingCost,
 			payableAmount: payableAmount,
-			itemCountText: itemCountText,   
-			totalAmountText: totalAmountText, 
-			shippingCostText: shippingCostText, 
+			itemCountText: itemCountText,
+			totalAmountText: totalAmountText,
+			shippingCostText: shippingCostText,
 			payableAmountText: payableAmountText,
-			shippingTextValue: shippingTextValue  
+			shippingTextValue: shippingTextValue
 		}
 		//checkoutArray.push(checkout);
 		var checkoutJson = JSON.stringify(checkout)
@@ -385,7 +385,7 @@ $(".cart-form__btn").on("click", function() {
 		}
 	});
 
-		
+
 });
 
 

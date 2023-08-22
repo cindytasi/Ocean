@@ -38,7 +38,39 @@
     <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
   	
 		<script type="text/javascript" src="<c:url value="/js/shopdetail.js"/>"></script>
-	
+<style>
+
+#footerID {
+	background: #000;
+	background-image: url("./img/waves_5.jpg");
+	color: #81D8D0;
+}
+.footer_detail li>a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer_detail li>a:hover {
+    color: var(--bs-blue);
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 3%;
+    background-color: #000;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    width: 4rem;
+    height: 5rem;
+}
+
+.card {
+    background: transparent;
+}
+
+</style>	
 
 </head>
 
@@ -179,7 +211,7 @@
                                             </div>
                                             <div class="product-gallery__actions">
                                                 <button class="action-btn btn-zoom-popup"><i class="fa fa-eye"></i></button>
-                                                <a href="https://www.youtube.com/watch?v=Rp19QD2XIGM" class="action-btn video-popup"><i class="fa fa-play"></i></a>
+<!--                                                 <a href="https://www.youtube.com/watch?v=Rp19QD2XIGM" class="action-btn video-popup"><i class="fa fa-play"></i></a> -->
                                             </div>
                                         </div>
                                     </div>
@@ -267,7 +299,7 @@
 										aria-selected="true"> <span>洗滌說明 </span>
 									</a> <a class="product-data-tab__link nav-link"
 										id="nav-reviews-tab" data-toggle="tab" href="#nav-reviews"
-										role="tab" aria-selected="true"> <span>Reviews(1)</span>
+										role="tab" aria-selected="true"> <span>尺寸指南</span>
 									</a>
 								</div>
 								<div class="tab-content product-data-tab__content"
@@ -296,21 +328,19 @@
 											<table class="table shop_attributes">
 												<tbody>
 													<tr>
-														<th>Weight</th>
-														<td>57 kg</td>
+														<p>
+														<p>1.深淺色請分開洗滌，以避免造成互相移染。</p>
+														<p>2.請放入大小適中之細網洗衣袋細中弱速水洗，以保持商品型態。</p>
+														<p>3.洗滌時，水溫請低於30℃；請使用中性洗劑；請勿浸泡。</p>
+														<p>4.請勿使用漂白劑、螢光增白劑及衣物柔軟劑，以免破壞布料。</p>
+														<p>5.不可濕放，以免衣物染色；請弱速輕脫水，不可烘乾，以免衣物縮水。</p>
+														<p>6.清洗後請快速調整商品型態並平放陰乾即可，不可擰扭，勿直接曝曬於陽光下</p>
+														<p>7.不可熨燙。</p>
+														<p>8.穿著時，請留意避免與配件包包等他物接觸摩擦。</p>
+														<p>9.毛衣外套/特殊立體針織毛衣/長毛類針織毛衣等商品建議送專業乾洗 。</p>
+														</p>
 													</tr>
-													<tr>
-														<th>Dimensions</th>
-														<td>160 × 152 × 110 cm</td>
-													</tr>
-													<tr>
-														<th>Color</th>
-														<td><a href="shop-sidebar.html">Black</a>, <a
-															href="shop-sidebar.html">Gray</a>, <a
-															href="shop-sidebar.html">Red</a>, <a
-															href="shop-sidebar.html">Violet</a>, <a
-															href="shop-sidebar.html">Yellow</a></td>
-													</tr>
+
 												</tbody>
 											</table>
 										</div>
@@ -318,87 +348,99 @@
 									<div class="tab-pane fade" id="nav-reviews" role="tabpanel"
 										aria-labelledby="nav-reviews-tab">
 										<div class="product-reviews">
-											<h3 class="review__title">1 review for Black Blazer</h3>
-											<ul class="review__list">
-												<li class="review__item">
-													<div class="review__container">
-														<img src="<c:url value="/img/others/comment-1.jpg"/>"
-															alt="Review Avatar" class="review__avatar">
-														<div class="review__text">
-															<div
-																class="d-flex flex-sm-row flex-column justify-content-between">
-																<div class="review__meta">
-																	<strong class="review__author">John Snow </strong> <span
-																		class="review__dash">-</span> <span
-																		class="review__published-date">November 20,
-																		2018</span>
-																</div>
-																<div class="product-rating">
-																	<div class="star-rating star-five">
-																		<span>Rated <strong class="rating">5.00</strong>
-																			out of 5
-																		</span>
-																	</div>
+
+											<div class="modal-content">
+												<div class="modal-header">
+													<a href="#" data-dismiss="modal" class="r-lightbox__close"></a>
+												</div>
+												<div class="modal-body">
+													<div>
+														<div class="size-guide">
+
+															<div class="size-guide__section sg_sizeChart">
+																<h2>SIZE CHART 平鋪尺寸表 (CM)</h2>
+																<div class="size-guide__content" style="">
+																	<!--尺寸表開始-->
+																	<table>
+																		<tbody>
+																			<tr>
+																				<td width="100">SIZE (CM)</td>
+																				<td width="80">S</td>
+																				<td width="80">M</td>
+																				<td width="80">L</td>
+																				<td width="80">F</td>
+																				<td><br></td>
+																			</tr>
+																			<tr>
+																				<td>肩寬</td>
+																				<td>33</td>
+																				<td>34.5</td>
+																				<td>36</td>
+																				<td>-</td>
+																				<td class="etc" rowspan="7"><img
+																					src="https://image.mercci22.tw/sizereport/top_01.gif"
+																					class="fr-fic fr-dii"></td>
+																			</tr>
+																			<tr>
+																				<td>胸寬</td>
+																				<td>38</td>
+																				<td>40.5</td>
+																				<td>43</td>
+																				<td>-</td>
+																			</tr>
+																			<tr>
+																				<td>下擺寬(羅紋)</td>
+																				<td>33</td>
+																				<td>35.5</td>
+																				<td>38</td>
+																				<td>-</td>
+																			</tr>
+																			<tr>
+																				<td>袖長</td>
+																				<td>13.5</td>
+																				<td>14.5</td>
+																				<td>15.5</td>
+																				<td>-</td>
+																			</tr>
+																			<tr>
+																				<td>袖口寬(羅紋)</td>
+																				<td>15</td>
+																				<td>16</td>
+																				<td>17</td>
+																				<td>-</td>
+																			</tr>
+																			<tr>
+																				<td>衣長</td>
+																				<td>42</td>
+																				<td>44</td>
+																				<td>46</td>
+																				<td>-</td>
+																			</tr>
+																			<tr>
+																				<td>重量g</td>
+																				<td>167</td>
+																				<td>167</td>
+																				<td>167</td>
+																				<td>-</td>
+																			</tr>
+																			<tr>
+																				<td class="etc" colspan="6">1肩寬 2胸圍 3下擺寬 4袖長
+																					5袖口寬 6衣長 <br> <br>※尺寸表會因布料彈性、水洗處理、測量起訖點等因素，
+																					<br>與實際商品尺寸略有誤差，誤差尺寸±2cm， <br>在國際驗貨標準範圍都是屬於可接受範圍，並不屬於瑕疵。
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																	<!--尺寸表結束-->
 																</div>
 															</div>
-															<p class="review__description">Aliquam egestas libero
-																ac turpis pharetra, in vehicula lacus scelerisque.
-																Vestibulum ut sem laoreet, feugiat tellus at, hendrerit
-																arcu.</p>
+
+
 														</div>
-													</div>
-												</li>
-											</ul>
-											<div class="review-form-wrapper">
-												<div class="row">
-													<div class="col-lg-8">
-														<span class="reply-title">Add a review</span>
-														<form action="#" class="form pr--30">
-															<div class="form-notes mb--20">
-																<p>
-																	Your email address will not be published. Required
-																	fields are marked <span class="required">*</span>
-																</p>
-															</div>
-															<div class="form__group mb--10 pb--1">
-																<label class="form__label d-block">Your Ratings</label>
-																<div class="rating">
-																	<span><i class="fa fa-star"></i></span> <span><i
-																		class="fa fa-star"></i></span> <span><i
-																		class="fa fa-star"></i></span> <span><i
-																		class="fa fa-star"></i></span> <span><i
-																		class="fa fa-star"></i></span>
-																</div>
-															</div>
-															<div class="form__group mb--10">
-																<label class="form__label d-block" for="email">Your
-																	Review<span class="required">*</span>
-																</label>
-																<textarea name="review" id="review"
-																	class="form__input form__input--textarea"></textarea>
-															</div>
-															<div class="form__group mb--20">
-																<label class="form__label d-block" for="name">Name<span
-																	class="required">*</span></label> <input type="text"
-																	name="name" id="name" class="form__input">
-															</div>
-															<div class="form__group mb--20">
-																<label class="form__label d-block" for="email">Email<span
-																	class="required">*</span></label> <input type="email"
-																	name="email" id="email" class="form__input">
-															</div>
-															<div class="form__group">
-																<div class="form-row">
-																	<div class="col-12">
-																		<input type="submit" value="Submit Now"
-																			class="btn-submit">
-																	</div>
-																</div>
-															</div>
-														</form>
 													</div>
 												</div>
 											</div>
+
 										</div>
 									</div>
 								</div>
@@ -434,49 +476,6 @@
                                                 <a href="<c:url value="/ShopDetailServlet?productName=${randomProductList.productName}&color=${randomProductList.colorType}"/>">                                                
                                                     <img src="<c:url value="/ImageSevlet?id=${randomProductList.productImgId}&photo_data=1"/>" alt="Product">
                                                 </a>
-                                                <div class="zakas-product-action">
-                                                    <div class="product-action d-flex">
-                                                        <div class="product-size">
-                                                            <a href="" class="action-btn">
-                                                                <span class="current">XL</span>
-                                                            </a>
-                                                            <div class="product-size-swatch">
-                                                                <span class="product-size-swatch-btn variation-btn">
-                                                                    L
-                                                                </span>
-                                                                <span class="product-size-swatch-btn variation-btn">
-                                                                    M
-                                                                </span>
-                                                                <span class="product-size-swatch-btn variation-btn">
-                                                                    S
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-color">
-                                                            <a href="" class="action-btn">
-                                                                <span class="current abbey">Abbey</span>
-                                                            </a>
-                                                            <div class="product-color-swatch">
-                                                                <span class="product-color-swatch-btn blue variation-btn">
-                                                                    Blue
-                                                                </span>
-                                                                <span class="product-color-swatch-btn copper variation-btn">
-                                                                    Copper
-                                                                </span>
-                                                                <span class="product-color-swatch-btn old-rose variation-btn">
-                                                                    Old Rose
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <a href="wishlist.html" class="action-btn">
-                                                            <i class="flaticon flaticon-like"></i>
-                                                        </a>
-                                                        <a data-toggle="modal" data-target="#productModal" class="action-btn quick-view">
-                                                            <i class="flaticon flaticon-eye"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                              
                                             </figure>
                                             <div class="product-info">
                                                 <h3 class="product-title mb--15">
@@ -503,77 +502,27 @@
         <!-- Main Content Wrapper End -->
 
 
-        <!-- Footer Start-->
-        <footer class="footer">
-            <div class="footer-top bg-color ptb--50" data-bg-color="#f6f6f6">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-9 text-center">
-                            <div class="footer-widget mb--50">
-                                <div class="textwidget">                                
-                                    <img src="<c:url value="/img/logo/logo.png"/>" alt="Logo">
-                                </div>
-                            </div>
-                            <div class="footer-widget mb--50 pb--1">
-                                <ul class="footer-menu">
-                                    <li><a href="">About Us</a></li>
-                                    <li><a href="">Terms &amp; Conditions</a></li>
-                                    <li><a href="">Policy</a></li>
-                                    <li><a href="">Help</a></li>
-                                    <li><a href="">Contact Us</a></li>
-                                </ul>
-                            </div>
-                            <div class="footer-widget">
-                                <!-- Social Icons Start Here -->
-                                <ul class="social">
-                                    <li class="social__item">
-                                        <a href="https://plus.google.com/" class="social__link google-plus">
-                                            <span>Google Plus</span>
-                                            <i class="fa fa-google-plus"></i>
-                                        </a>
-                                    </li>
-                                    <li class="social__item">
-                                        <a href="https://facebook.com/" class="social__link facebook">
-                                            <span>facebook</span>
-                                            <i class="fa fa-facebook"></i>
-                                        </a>
-                                    </li>
-                                    <li class="social__item">
-                                        <a href="https://pinterest.com" class="social__link pinterest">
-                                            <span>pinterest</span>
-                                            <i class="fa fa-pinterest-p"></i>
-                                        </a>
-                                    </li>
-                                    <li class="social__item">
-                                        <a href="youtube.com" class="social__link twitter">
-                                            <span>twitter</span>
-                                            <i class="fa fa-twitter"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <!-- Social Icons End Here -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom bg-color ptb--25" data-bg-color="#e7e7e7">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-sm-6 text-sm-left text-center mb-xs--10">
-                            <p class="copyright-text"><a href="index.html">Zakas</a> &copy; 2019 all rights reserved</p>
-                        </div>
-                        <div class="col-sm-6 text-sm-right text-center">
-                            <figure>                            
-                                <img src="<c:url value="/img/others/payment.png"/>" alt="payment">
-                            </figure>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <!-- Footer End-->
-
+       <!-- Footer Start-->
+		<footer class="footer" id="footerID">
+			<div class="footer-bottom bg-color ptb--25">
+				<div class="container">
+					<div class="row align-items-center">
+						<div class="container mt-5">
+							<ul
+								class="footer_detail d-flex justify-content-center list-unstyled">
+								<li class="px-2"><a href="../index/qaIndex.html">常見問題</a></li>
+								<li class="px-2"><a href="../index/copyright.html">版權聲明</a></li>
+								<li class="px-2"><a href="../index/instruction.html">使用說明</a></li>
+								<li class="px-2"><a href="../index/aboutUs.html">關於我們</a></li>
+							</ul>
+							<span class="d-flex justify-content-center">Copyright©
+								2023 Ocean.All rights reserved.</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!-- Footer End-->
         
 
         

@@ -1,213 +1,322 @@
 <!DOCTYPE html>
 <!-- saved from url=(0068)http://127.0.0.1:5500/src/main/webapp/subscription/subscription.html -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ocean_Subscription</title>
-    <link href="./Ocean_Subscription_files/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-    <link rel="stylesheet" href="./Ocean_Subscription_files/nav.css">
-    <link rel="stylesheet" href="./Ocean_Subscription_files/subscription.css">
+    <link href="./Ocean_Subscription_files/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+
+    <style>
+        /* 修改預設 */
+        :root {
+            --bs-blue: #81D8D0;
+        }
+
+        /* 頁面背景色 */
+        body {
+            background: #000;
+            background-image: url("../index/img/waves_4.jpg");
+        }
+
+        /* 清單 */
+        .navbar-dark .navbar-nav .nav-link:focus,
+        .navbar-dark .navbar-nav .nav-link:hover {
+            color: var(--bs-blue)
+        }
+
+        .navbar {
+            background: #000;
+        }
+
+        /* search */
+        .bi {
+            color: #fff;
+            font-size: 25px;
+        }
+
+        .bi:hover {
+            color: #81D8D0;
+        }
+
+        /* 下拉選單 */
+        .dropdown-item:hover {
+            font-size: 20px;
+            color: rgb(9, 163, 130);
+        }
+
+        .videoitems>.item img:hover {
+            border: 5px solid #81D8D0;
+        }
+
+        .videoitems {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: -0.5%;
+            margin-right: -0.5%;
+        }
+
+        .item {
+            width: 20%;
+            padding: 0 0.5%;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .star-icon {
+            position: absolute;
+            top: 0;
+            right: 3px;
+            padding: 4px;
+            font-size: 35px;
+        }
+
+        #star {
+            color: #81D8D0;
+        }
+
+        /* ======================================footer==================================== */
+        .footer_detail li>a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .footer_detail li>a:hover {
+            color: var(--bs-blue);
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 3%;
+            background-color: #000;
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            width: 4rem;
+            height: 5rem;
+        }
+
+        .card {
+            background: transparent;
+        }
+
+        .payment-title {
+            width: 100%;
+            text-align: center;
+            color: #81D8D0;
+        }
+
+        .form-container .field-container:first-of-type {
+            grid-area: name;
+            color: #81D8D0;
+        }
+
+        .form-container .field-container:nth-of-type(2) {
+            grid-area: number;
+            color: #81D8D0;
+        }
+
+        .form-container .field-container:nth-of-type(3) {
+            grid-area: expiration;
+            color: #81D8D0;
+        }
+
+        .form-container .field-container:nth-of-type(4) {
+            grid-area: security;
+            color: #81D8D0;
+        }
+
+        .field-container input {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .field-container {
+            position: relative;
+        }
+
+        .form-container {
+            display: grid;
+            grid-column-gap: 10px;
+            grid-template-columns: auto auto;
+            grid-template-rows: 90px 90px 90px;
+            grid-template-areas: "name name""number number""expiration security";
+            max-width: 400px;
+            padding: 20px;
+        }
+
+        label {
+            padding-bottom: 5px;
+            font-size: 13px;
+        }
+
+        input {
+            margin-top: 3px;
+            padding: 15px;
+            font-size: 16px;
+            width: 100%;
+            border-radius: 3px;
+            border: 1px solid #dcdcdc;
+        }
+
+        .ccicon {
+            height: 38px;
+            position: absolute;
+            right: 6px;
+            top: calc(50% - 17px);
+            width: 60px;
+        }
+
+        #crade {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            /* 保證父容器高度滿頁面 */
+        }
+    </style>
 
 </head>
 
 <body>
 
-    <!-- <div id="text_subscription">
-        <section class="subscription-details">
-            <h2>訂閱詳細信息</h2>
-            <p>你正在訂閱Ocean影音串流服務。</p>
-            <p>訂閱費用：$1270 / 1年</p>
-        </section>
-        <section class="terms-and-conditions">
-            <h2>合約條款與條件</h2>
-            <p>在訂閱Ocean影音串流服務前，請仔細閱讀以下條款與條件：</p>
-            <ul>
-                <li>訂閱有效期為一年，自付款日起計算。</li>
-                <li>訂閱費用為 $1270 美元。</li>
-                <li>訂閱自動續訂，除非在到期前取消。</li>
-                <li>取消訂閱需要提前 30 天通知。</li>
-                <li>訂閱費用不予退還。</li>
-            </ul>
-        </section>
-
+    <!--header  -->
+    <div class="navAndMovie sticky-top">
+        <!-- navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+                    <!-- logo -->
+                    <div class="logo d-flex">
+                        <a class="navbar-brand" href="../index/oceanIndex.html">
+                            <img src="../login/logo_-_.png" alt="Ocean Logo" style="width: 50px;height: 50px;">
+                        </a>
+                        <!-- search -->
+                        <div class="input-group my-auto w-50 dropdown">
+                            <input type="text" class="form-control dropdown-toggle" id="searchInput"
+                                placeholder="Search" aria-label="Search" aria-describedby="basic-addon2"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <button class="btn btn-outline-secondary" type="button" id="searchButton">
+                                <i class="bi bi-search"></i>
+                            </button>
+                            <!-- search影片List -->
+                            <ul class="searchMovie dropdown-menu" aria-labelledby="searchInput"
+                                style="width: 400px; height: 100px;background-color: rgba(0, 0, 0, 0.5);"
+                                id="searchVideo">
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- 導覽列 -->
+                    <div class="list">
+                        <ul class="navbar-nav align-items-center">
+                            <!-- 首頁 -->
+                            <li class="nav-item">
+                                <a class="nav-link active" href="./index/oceanIndex.html">首頁</a>
+                            </li>
+                            <!-- 電影 -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="./index/movieIndex.htmlß">電影</a>
+                            </li>
+                            <!-- 影集 -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="../index/movieIndex.html">影集</a>
+                            </li>
+                            <!-- 藝人商品 -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="../index/seriesIndex.html">藝人商品</a>
+                            </li>
+                            <!-- 收藏地圖 -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="../index/productIndex.html">收藏地圖</a>
+                            </li>
+                            <!--user  -->
+                            <div class="nav-item dropdown">
+                                <button type="button" class="btn dropdown-toggle" id="navbarDropdownUserLink"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="" alt="" style="width: 40px; height: 40px;" id="userImg">
+                                </button>
+                                <!-- user下拉選單 -->
+                                <ul class="dropdown-menu dropdown-menu-end mt-2" style="opacity: 80%;"
+                                    aria-labelledby="navbarDropdownUserLink">
+                                    <li><a class="dropdown-item" href="../subscription/Ocean_Subscription.html">帳戶</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="../edit/edit.html">基本資料</a></li>
+                                    <!-- <li><a class="dropdown-item" href="../index/myAchieve.html">我的成就</a></li> -->
+                                    <li><a class="dropdown-item" href="../html/my-account.html">我的訂單</a></li>
+                                    <li><a class="dropdown-item" href="../favourites/favourites.html">我的片單</a></li>
+                                    <li><a class="dropdown-item"
+                                            href="../memberwatchduration/MemberWatchDuration.html">觀看紀錄</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li id="login" class="dropdown-item"><a href="./login/login.html">登入</a></li>
+                                    <li id="logout"><a class="dropdown-item" href="#">登出</a></li>
+                                </ul>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
     </div>
-    <footer id="text_footer">
-        <p>請確保在訂閱前閱讀並理解我們的條款與條件。</p>
-        <p>簽字：</p>
-        <p>日期：</p>
-        <button type="button">確認</button>
-    </footer> -->
-
-    <nav class="nav nav-3">
-        <a href="http://127.0.0.1:5500/src/main/webapp/subscription/subscription.html">
-            <img class="logo" src="./Ocean_Subscription_files/logo.png" alt="">
-        </a>
-        <a href="http://127.0.0.1:5500/src/main/webapp/subscription/subscription.html" class="btn-logout text-underline">Sign Out</a>
-    </nav>
-    <form action="http://127.0.0.1:5500/src/main/webapp/subscription/index.html" class="main-container margin-inline">
-        <h2>step 3 of 3</h2>
-        <h1 class="margin-bottom-1">Set Up your Wallet</h1>
-        <div class="wallet">
-            <!-- Dana -->
-
-            <input class="wallet-input" type="radio" name="radiowal" id="dana" checked="">
-
-            <div class="wallet-bg dana margin-right">
-                <label class="wallet-label" for="dana">dana</label>
-            </div>
-
-            <div class="wallet-content margin-bottom-1 margin-top-1">
-                <p>Enter your DANA mobile number.</p>
-            </div>
-
-            <!-- Gopay -->
-
-            <input class="wallet-input" type="radio" name="radiowal" id="gopay">
-
-            <div class="wallet-bg gopay margin-right">
-                <label class="wallet-label" for="gopay">gopay</label>
-            </div>
-
-            <div class="wallet-content margin-top-1 margin-bottom-1">
-                <p>Enter your GoPay mobile number.</p>
-            </div>
-
-            <!-- Ovo -->
-
-            <input class="wallet-input" type="radio" name="radiowal" id="ovo">
-
-            <div class="wallet-bg ovo">
-                <label class="wallet-label" for="ovo">ovo</label>
-            </div>
-
-            <div class="wallet-content margin-top-1 margin-bottom-1">
-                <p>Enter your OVO mobile number.</p>
-            </div>
-        </div>
-        <div class="credit-card">
-            <input type="text" id="card-number" placeholder="信用卡號">
+    <div id="crade">
+        <div class="payment-title">
+            <h1>付款資訊</h1>
         </div>
 
-        <div class="input-container">
-            <div class="input">
-                <div class="phone">
-                    <img class="flag" src="./Ocean_Subscription_files/Flag_of_Indonesia.svg" alt="">
-                    <span class="text-phone">+62</span>
-                </div>
-
-                <input class="input-field input-field-phone" type="text" id="input" placeholder="password" pattern="^([+]\d{2}[ ])?\d{11,13}$" autocomplete="off" maxlength="13" required="">
-
-                <label for="input" class="input-label input-label-phone label-size">Mobile Number</label>
-
-                <p class="text-error">Please enter a valid mobile number.</p>
+        <div class="form-container">
+            <div class="field-container">
+                <label for="name">姓名</label>
+                <input id="name" maxlength="20" type="text">
             </div>
+            <div class="field-container">
+                <label for="cardnumber">卡號</label>
+                <input id="cardnumber" type="text" pattern="[0-9]*" inputmode="numeric">
+                <svg id="ccicon" class="ccicon" width="750" height="471" viewBox="0 0 750 471" version="1.1"
+                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
-            <a class="btn btn-change margin-block margin-inline" href="http://127.0.0.1:5500/src/main/webapp/subscription/subscription.html">
-                <div class="change">
-                    <p class="text-change">IDR186,000/month</p>
-                    <p class="text-change-1">Premium Plan</p>
-                </div>
-                <p class="text-change-2">Change</p>
-            </a>
-
-            <div class="processed margin-bottom">
-                <p class="text-terms">
-                    By checking the checkbox below, you agree to our <span class="text-terms-1">Terms of Use, Privacy
-                        Statement, </span>and that you are over 18. Netflix will automatically continue your membership
-                    and charge the membership fee
-                    (currently IDR186,000/month) to your payment method until you cancel. You may cancel at any time to
-                    avoid future charges.
-                </p>
+                </svg>
             </div>
-
-            <div class="agreement">
-                <input class="agree-input" type="checkbox" name="" id="agree" required="">
-                <label class="agree-label" for="agree">I agree.</label>
-                <p class="agree-alert">You must anknowledge that you have read and agree to the Terms of Use to
-                    continue.</p>
+            <div class="field-container">
+                <label for="expirationdate">到期日 (mm/yy)</label>
+                <input id="expirationdate" type="text" pattern="[0-9]*" inputmode="numeric">
             </div>
-
-            <button type="submit" class="btn-wide margin-top-1 margin-inline">Start Membership</button>
-        </div>
-    </form>
-
-    <footer class="footer footer-gray margin-top-1">
-        <div class="footer-container margin-inline">
-            <p class="text-gray">
-                Questions? <br>
-                Call 007-803-321-2130
-            </p>
-            <div class="links">
-                <ul class="">
-                    <li><a class="text-terms text-underline" href="http://127.0.0.1:5500/src/main/webapp/subscription/subscription.html">FAQ</a></li>
-                    <li><a class="text-terms text-underline" href="http://127.0.0.1:5500/src/main/webapp/subscription/subscription.html">Cookie Preferences</a></li>
-                </ul>
-
-                <ul>
-                    <li><a class="text-terms text-underline" href="http://127.0.0.1:5500/src/main/webapp/subscription/subscription.html">Help Center</a></li>
-                    <li><a class="text-terms text-underline" href="http://127.0.0.1:5500/src/main/webapp/subscription/subscription.html">Corporate Information</a></li>
-                </ul>
-
-                <a class="text-terms text-underline" href="http://127.0.0.1:5500/src/main/webapp/subscription/subscription.html">Terms of Use</a>
-
-                <a class="text-terms text-underline" href="http://127.0.0.1:5500/src/main/webapp/subscription/subscription.html">Privacy</a>
-            </div>
-
-            <div class="language">
-                <select class="language-select" onchange="location=this.value;">
-                    <option value="english" selected="">English</option>
-                    <option value="">Bahasa Indonesia</option>
-                </select>
-                <div class="language-icon">
-                    <i class="fas fa-globe globe"></i>
-                    <i class="fas fa-chevron-down chevron"></i>
-                </div>
+            <div class="field-container">
+                <label for="securitycode">安全碼</label>
+                <input id="securitycode" type="text" pattern="[0-9]*" inputmode="numeric">
             </div>
         </div>
-    </footer>
 
-    <script src="./Ocean_Subscription_files/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-    <script src="./Ocean_Subscription_files/nav.js"></script>
+        <div>
+            <button id="btn1" type="button" class="btn btn-primary">送出</button>
+        </div>
+    </div>
 
-<!-- Code injected by live-server -->
-<script>
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-					}
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-	// ]]>
-</script>
+    <!-- 頁尾 -->
+    <div class="container mt-5">
+        <ul class="footer_detail d-flex justify-content-center list-unstyled">
+            <li class="px-2"><a href="../index/qaIndex.html">常見問題</a></li>
+            <li class="px-2"><a href="../index/copyright.html">版權聲明</a></li>
+            <li class="px-2"><a href="../index/instruction.html">使用說明</a></li>
+            <li class="px-2"><a href="../index/aboutUs.html">關於我們</a></li>
+        </ul>
+        <span class="d-flex justify-content-center">Copyright© 2023 Ocean.All rights reserved.</span>
+    </div>
 
+    <script>
+        //=================================從session取得memberId======================================//
+        const memberId = sessionStorage.getItem("memberIdValue");
 
+        //=================================搜尋使用者img======================================//
+        document.getElementById("userImg").setAttribute("src", "http://localhost:8080/Ocean/web/controller/SelectMemberImageController?member_id=" + memberId);
+    //=================================將影片類別轉中文======================================//
 
-</body></html>
+    </script>
+</body>
+
+</html>

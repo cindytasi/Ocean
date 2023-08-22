@@ -52,8 +52,10 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.selectMemberById(userIdInteger);
 	}
 
-	private static final String PICFILE_DIRECTORY = "/Users/J_s_Kai/Desktop/memberImage/";
-
+//	private static final String PICFILE_DIRECTORY = "/Users/J_s_Kai/Desktop/memberImage/";
+//	Mac用
+	private static final String PICFILE_DIRECTORY = "C:\\memberImage\\";
+//	Windows用
 	@Override
 	public void memberImage(Part profilePicture) {
 

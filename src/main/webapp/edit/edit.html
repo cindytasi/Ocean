@@ -137,7 +137,7 @@
 			/* 調整輸入框和按鈕的寬度，以適應表單 */
 		}
 
-		#img_logo{
+		#img_logo {
 			justify-content: center;
 		}
 	</style>
@@ -189,7 +189,7 @@
 							</li>
 							<!-- 藝人商品 -->
 							<li class="nav-item">
-								<a class="nav-link" href="../index/seriesIndex.html">藝人商品</a>
+								<a class="nav-link" href="/Ocean/MainShopServlet">藝人商品</a>
 							</li>
 							<!-- 收藏地圖 -->
 							<li class="nav-item">
@@ -199,23 +199,23 @@
 							<div class="nav-item dropdown">
 								<button type="button" class="btn dropdown-toggle" id="navbarDropdownUserLink"
 									data-bs-toggle="dropdown" aria-expanded="false">
-									<img src="../img/user.webp" alt="" style="width: 40px; height: 40px;">
+									<img src="" alt="" style="width: 40px; height: 40px;" id="userImg">
 								</button>
 								<!-- user下拉選單 -->
 								<ul class="dropdown-menu dropdown-menu-end mt-2" style="opacity: 80%;"
 									aria-labelledby="navbarDropdownUserLink">
-									<li><a class="dropdown-item" href="../index/aacountIndex.html">帳戶</a></li>
-									<li><a class="dropdown-item" href="./edit.html">基本資料</a></li>
-									<li><a class="dropdown-item" href="../index/myAchieve.html">我的成就</a></li>
-									<li><a class="dropdown-item" href="../index/myOrder.html">我的訂單</a></li>
+									<li><a class="dropdown-item" href="../subscription/Ocean_Subscription.html">帳戶</a>
+									</li>
+									<li><a class="dropdown-item" href="../edit/edit.html">基本資料</a></li>
+									<!-- <li><a class="dropdown-item" href="../index/myAchieve.html">我的成就</a></li> -->
+									<li><a class="dropdown-item" href="../html/my-account.html">我的訂單</a></li>
 									<li><a class="dropdown-item" href="../favourites/favourites.html">我的片單</a></li>
 									<li><a class="dropdown-item"
 											href="../memberwatchduration/MemberWatchDuration.html">觀看紀錄</a></li>
 									<li>
 										<hr class="dropdown-divider">
 									</li>
-									<li id="logout"><a class="dropdown-item"
-											href="http://localhost:8080/Ocean/index.html">登出</a></li>
+									<li id="logout"><a href="#" class="dropdown-item">登出</a></li>
 								</ul>
 							</div>
 						</ul>
@@ -233,13 +233,13 @@
 			<label for="email">email: </label><input type="text" name="email" id="email" disabled />
 		</div>
 		<div>
-			<label for="password">舊密碼: </label> <input type="text" name="oPassword" id="oPassword" />
+			<label for="password">舊密碼: </label> <input type="password" name="oPassword" id="oPassword" />
 		</div>
 		<div>
-			<label for="password">新密碼: </label> <input type="text" name="nPassword" id="nPassword" />
+			<label for="password">新密碼: </label> <input type="password" name="nPassword" id="nPassword" />
 		</div>
 		<div>
-			<label for="confirmPassword">確認密碼: </label> <input type="text" name="confirmPassword"
+			<label for="confirmPassword">確認密碼: </label> <input type="password" name="confirmPassword"
 				id="confirmPassword" />
 		</div>
 		<div>
@@ -261,6 +261,16 @@
 		crossorigin="anonymous"></script>
 	<script src="../index/js/nav.js"></script>
 	<script src="js/edit.js"></script>
+
+	<script>
+		//=================================從session取得memberId======================================//
+		const memberId = sessionStorage.getItem("memberIdValue");
+
+		//=================================搜尋使用者img======================================//
+		document.getElementById("userImg").setAttribute("src", "http://localhost:8080/Ocean/web/controller/SelectMemberImageController?member_id=" + memberId);
+	//=================================將影片類別轉中文======================================//
+
+	</script>
 </body>
 
 </html>

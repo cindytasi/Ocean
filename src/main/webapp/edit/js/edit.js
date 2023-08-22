@@ -103,15 +103,17 @@
 			.then(resp => resp.json())
 			.then(body => {
 				const { successful, message, nickname: nicknameValue } = body;
+				console.log(successful);
 				if (successful) {
 					msg.className = 'info';
-					sessionStorage.setItem('nickname', nicknameValue);
-					currentUser.textContent = nicknameValue;
 					oPassword.value = '';
 					nPassword.value = '';
 					confirmPassword.value = '';
-					nickname.value = nicknameValue;
 					btn1.disabled = true;
+					setTimeout(function() {
+						console.log("Attempting to redirect...");
+						window.location.replace('http://localhost:8080/Ocean/index/oceanIndex.html');
+					}, 3000);
 				} else {
 					msg.className = 'error';
 				}

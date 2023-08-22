@@ -103,6 +103,44 @@
 		.card {
 			background: transparent;
 		}
+
+		#centeredDiv  {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			/* height: 100vh; */
+			/* 這將讓 <div> 佔滿整個畫面高度 */
+		}
+
+		#centeredDiv >div {
+			margin-bottom: 10px;
+		}
+
+		#centeredDiv  img {
+			width: 10%;
+			height: auto;
+		}
+
+		#centeredDiv  label {
+			display: inline-block;
+			width: 120px;
+			/* 調整標籤的寬度，以適應表單 */
+			text-align: right;
+			margin-right: 10px;
+		}
+
+		#centeredDiv  input,
+		#centeredDiv  button {
+			padding: 5px;
+			width: 200px;
+			/* 調整輸入框和按鈕的寬度，以適應表單 */
+		}
+
+		#img_logo {
+			justify-content: center;
+		}
+
 	</style>
 
 </head>
@@ -116,7 +154,7 @@
 				<div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
 					<!-- logo -->
 					<div class="logo d-flex">
-						<a class="navbar-brand" href="../index/oceanIndex.html">
+						<a class="navbar-brand" href="http://localhost:8080/Ocean/">
 							<img src="../login/logo_-_.png" alt="Ocean Logo" style="width: 50px;height: 50px;">
 						</a>
 						<!-- search -->
@@ -139,24 +177,24 @@
 						<ul class="navbar-nav align-items-center">
 							<!-- 首頁 -->
 							<li class="nav-item">
-								<a class="nav-link active" href="../index/oceanIndex.html">首頁</a>
+								<a class="nav-link active" href="http://localhost:8080/Ocean/">首頁</a>
 							</li>
 							<!-- 電影 -->
-							<li class="nav-item">
+							<!-- <li class="nav-item">
 								<a class="nav-link" href="/movieIndex.html">電影</a>
-							</li>
+							</li> -->
 							<!-- 影集 -->
-							<li class="nav-item">
+							<!-- <li class="nav-item">
 								<a class="nav-link" href="../index/movieIndex.html">影集</a>
-							</li>
+							</li> -->
 							<!-- 藝人商品 -->
 							<li class="nav-item">
-								<a class="nav-link" href="../index/seriesIndex.html">藝人商品</a>
+								<a class="nav-link" href="/Ocean/MainShopServlet">藝人商品</a>
 							</li>
 							<!-- 收藏地圖 -->
-							<li class="nav-item">
+							<!-- <li class="nav-item">
 								<a class="nav-link" href="../index/productIndex.html">收藏地圖</a>
-							</li>
+							</li> -->
 							<!--user  -->
 							<div class="nav-item dropdown">
 								<button type="button" class="btn dropdown-toggle" id="navbarDropdownUserLink"
@@ -171,11 +209,12 @@
 									<li><a class="dropdown-item" href="../index/myAchieve.html">我的成就</a></li>
 									<li><a class="dropdown-item" href="../index/myOrder.html">我的訂單</a></li>
 									<li><a class="dropdown-item" href="../favourites/favourites.html">我的片單</a></li>
-									<li><a class="dropdown-item" href="../memberwatchduration/MemberWatchDuration.html">觀看紀錄</a></li>
+									<li><a class="dropdown-item"
+											href="../memberwatchduration/MemberWatchDuration.html">觀看紀錄</a></li>
 									<li>
 										<hr class="dropdown-divider">
 									</li>
-									<li id="logout"><a class="dropdown-item" href="../index.html">登出</a></li>
+									<li id="logout"><a href="#" class="dropdown-item">登出</a></li>
 								</ul>
 							</div>
 						</ul>
@@ -186,8 +225,10 @@
 	</div>
 
 
-	<div>
+	<div id="centeredDiv">
 
+		<img id="img_logo" src="../login/logo_-_.png" alt="Ocean Logo" style="width: 10%; height: 10%;">
+		<br>
 		<div>
 			<label for="username">使用者名稱: </label> <input type="text" name="username" id="username">
 		</div>
@@ -226,6 +267,8 @@
 		crossorigin="anonymous"></script>
 	<script src="js/register.js"></script>
 	<script src="../index/js/nav.js"></script>
+
+
 
 </body>
 

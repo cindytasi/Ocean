@@ -4,6 +4,7 @@
 
 <script type="text/javascript" src="<c:url value="/js/jquery/jquery-3.7.0.min.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/js/selectBar.js"/>"></script>
+<script type="text/javascript" src="<c:url value="./index/js/nav.js"/>"></script>
 <!-- Header Start -->
 
 <style>
@@ -121,7 +122,7 @@ a, button, .user-info-menu, .banner-box .banner-info, .banner-box .banner-hover-
 					id="navbarNavDropdown">
 					<!-- logo -->
 					<div class="logo d-flex">
-						<a class="navbar-brand" href="/oceanIndex.html"> <img
+						<a class="navbar-brand" href="./index/oceanIndex.html"> <img
 							src="<c:url value="/img/logo/logo_-_.png"/>" alt="Ocean Logo"
 							style="width: 50px; height: 50px;">
 						</a>
@@ -130,14 +131,17 @@ a, button, .user-info-menu, .banner-box .banner-info, .banner-box .banner-hover-
 					<div class="list">
 						<ul class="navbar-nav align-items-center justify-content-end">
 							<!-- 首頁 -->
+							
 							<li class="nav-item"><a class="nav-link active"
-								href="/oceanIndex.html">首頁</a></li>
+								href="<c:url value="/index/oceanIndex.html"/>">首頁</a></li>
 							<!-- 電影 -->
+							
 							<li class="nav-item"><a class="nav-link"
-								href="/movieIndex.html">電影</a></li>
+								href="<c:url value="/index/movieIndex.html"/>">電影</a></li>
 							<!-- 影集 -->
+							
 							<li class="nav-item"><a class="nav-link"
-								href="/seriesIndex.html">影集</a></li>
+								href="<c:url value="/index/seriesIndex.html"/>">影集</a></li>
 							<!-- 藝人商品 -->
 							<li class="nav-item">
 							
@@ -148,7 +152,7 @@ a, button, .user-info-menu, .banner-box .banner-info, .banner-box .banner-hover-
 								
 							<!-- 收藏地圖 -->
 							<li class="nav-item"><a class="nav-link"
-								href="/favoriteMapIndex.html">收藏地圖</a></li>
+								href="<c:url value="/index/favoriteMapIndex.html"/>">收藏地圖</a></li>
 							<!--user  -->
 							<div class="col-xl-2 col-lg-3 col-9 text-right align-item-center">
 								<ul class="header-toolbar d-flex">
@@ -169,18 +173,19 @@ a, button, .user-info-menu, .banner-box .banner-info, .banner-box .banner-hover-
 									</a></li>
 									<li class="header-toolbar__item user-info"><a href=""
 										class="header-toolbar__btn"> <!--<i class="flaticon flaticon-user"></i> -->
-											<img src="<c:url value="img/logo/user.webp"/>"
+											<img src="<c:url value="img/user.png"/>"
 											style="width: 85%; height: 100%;"/>
+									
 									</a>
 										<ul class="user-info-menu">
-											<li><a href="my-account.html" style="font-size:16px">帳戶</a></li>
-											<li><a href="cart.html" style="font-size:16px">基本資料</a></li>
-											<li><a href="checkout.html" style="font-size:16px">我的成就</a></li>
+											<li><a href="/Ocean/subscription/Ocean_Subscription.html" style="font-size:16px">帳戶</a></li>
+											<li><a href="/Ocean/edit/edit.html" style="font-size:16px">基本資料</a></li>
+<!-- 											<li><a href="checkout.html" style="font-size:16px">我的成就</a></li> -->
 											<li><a href="/Ocean/html/my-account.html" style="font-size:16px">我的訂單</a></li>
-											<li><a href="order-tracking.html" style="font-size:16px">我的片單</a></li>
-											<li><a href="compare.html" style="font-size:16px">觀看紀錄</a></li>
+											<li><a href="/Ocean/favourites/favourites.html" style="font-size:16px">我的片單</a></li>
+											<li><a href="/Ocean/memberwatchduration/MemberWatchDuration.html" style="font-size:16px">觀看紀錄</a></li>
 											<li><hr></li>
-											<li><a href="compare.html" style="font-size:16px">登出</a></li>
+											<li id="logout"><a href="#" class="dropdown-item">登出</a></li>
 										</ul></li>
 
 									<li class="header-toolbar__item d-lg-none"><a href="#"

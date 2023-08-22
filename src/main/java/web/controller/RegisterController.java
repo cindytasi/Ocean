@@ -34,6 +34,7 @@ public class RegisterController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 //		System.out.println("RegisterController");
+		req.setCharacterEncoding("UTF-8");
 		UserVo userVo = json2Pojo(req, UserVo.class);
 		
 		if (userVo== null) {
