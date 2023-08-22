@@ -5,17 +5,20 @@ import java.util.List;
 import org.hibernate.Session;
 
 import admin.util.HibernateUtil;
+import admin.vo.AdminVo;
 
 
 public interface AdminDao<T> {
 	
-	List<T> selectAll();					//查全部
+	AdminVo checkLogin(AdminVo avo);				//確認登入
 	
-	T selectById(Integer id); 				//ID查詢單筆
+	List<T> selectAll();							//查全部
 	
-	T selectOne(String tag);				//關鍵字查詢單筆
+	T selectById(Integer id); 						//ID查詢單筆
 	
-	String insert(T obj);					//新增單筆
+	T selectOne(String tag);						//關鍵字查詢單筆
+	
+	String insert(T obj);							//新增單筆
 	
 	String update(Integer id,String updatePassword);//更新管理員密碼
 	

@@ -121,7 +121,7 @@ function serchToUpdate() {
 											<option value="動漫">動漫</option>
 											<option value="驚悚劇">驚悚劇</option>
 											<option value="愛情劇">愛情劇</option>
-											<option value="科幻劇">科幻劇</option>
+											<option value="奇幻劇">奇幻劇</option>
 											<option value="懸疑劇">懸疑劇</option>
 											<option value="科幻劇">科幻劇</option>
 											<option value="動作劇">動作劇</option>
@@ -210,7 +210,7 @@ function serchToUpdate() {
 				    <option value="動漫">動漫</option>
 				    <option value="驚悚劇">驚悚劇</option>
 				    <option value="愛情劇">愛情劇</option>
-				    <option value="科幻劇">科幻劇</option>
+				    <option value="奇幻劇">奇幻劇</option>
 				    <option value="懸疑劇">懸疑劇</option>
 				    <option value="科幻劇">科幻劇</option>
 				    <option value="動作劇">動作劇</option>

@@ -19,6 +19,8 @@ public class AdminDaoImpl implements AdminDao<AdminVo> {
 
 	private DataSource ds;
 	
+	//確認登入
+	final private String checkLogin = "SELECT adminId,adminName,adminAccount FROM Ocean.adminTable WHERE adminAccount = ? AND adminPassword = ?;";
 	//查全部語法
 	final private String serchAllQuery = "SELECT adminId,adminName,adminAccount FROM Ocean.adminTable;";
 	//新增語法
@@ -39,6 +41,31 @@ public class AdminDaoImpl implements AdminDao<AdminVo> {
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
+	}
+					//確認登入
+	@Override
+	public AdminVo checkLogin(AdminVo avo) {
+		AdminVo admin = new AdminVo();
+		try (Connection conn = ds.getConnection();
+				PreparedStatement ps = conn.prepareStatement(checkLogin);
+				) {
+						//放入ID
+			ps.setString(1, avo.getAdminAccount());
+			ps.setString(2, avo.getAdminPassword());
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+						//將結果放入物件
+				admin.setAdminId(rs.getInt("adminId"));
+				admin.setAdminName(rs.getString("adminName"));
+				admin.setAdminAccount(rs.getString("adminAccount"));
+//				admin.setAdminPassword(rs.getString("adminPassword"));
+			}
+			return admin;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		
 	}
 
 	@Override		//查全部
@@ -166,5 +193,7 @@ public class AdminDaoImpl implements AdminDao<AdminVo> {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 
 }

@@ -5,6 +5,9 @@ import admin.vo.AdminVo;
 //管理員service介面
 
 public interface AdminService {
+	
+	public AdminVo checkLogin(AdminVo adVo);			//登入確認
+	
 	public String findAll();						//查全部
 	
 	public String insert(AdminVo adVo);				//新增

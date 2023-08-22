@@ -84,6 +84,11 @@ public class AdminServiceImpl implements AdminService {
 		
 		return adminD.selectOne(account);
 	}
+	@Override
+	public AdminVo checkLogin(AdminVo adVo) {
+		
+		return adminD.checkLogin(adVo);
+	}
 
 	
 }
