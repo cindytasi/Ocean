@@ -211,7 +211,7 @@
                                             </div>
                                             <div class="product-gallery__actions">
                                                 <button class="action-btn btn-zoom-popup"><i class="fa fa-eye"></i></button>
-                                                <a href="https://www.youtube.com/watch?v=Rp19QD2XIGM" class="action-btn video-popup"><i class="fa fa-play"></i></a>
+<!--                                                 <a href="https://www.youtube.com/watch?v=Rp19QD2XIGM" class="action-btn video-popup"><i class="fa fa-play"></i></a> -->
                                             </div>
                                         </div>
                                     </div>

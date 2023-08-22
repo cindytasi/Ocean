@@ -36,6 +36,8 @@ public class ShopDetailServlet extends HttpServlet {
     }  
      
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		
+		req.setCharacterEncoding("UTF-8");
 		String productName = req.getParameter("productName");
 		String color = req.getParameter("color");
 		
