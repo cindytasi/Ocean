@@ -128,7 +128,9 @@ public class VideoServiceImpl implements VideoService, CoreService {
 
 	// 獲取影片的片長
 	private long getVideoDuration(String videoPath) throws IOException, InterruptedException {
-		ProcessBuilder processBuilder = new ProcessBuilder("C:/Users/T14 Gen 3/Desktop/ffmpeg.exe", "-i",
+//		ProcessBuilder processBuilder = new ProcessBuilder("C:/Users/T14 Gen 3/Desktop/ffmpeg.exe", "-i",
+//				videoPath);
+		ProcessBuilder processBuilder = new ProcessBuilder("/Users/J_s_Kai/Desktop/Ocean_Workspace/Ocean/src/main/webapp/admin/ffmpeg.exe", "-i",
 				videoPath);
 		Process process = processBuilder.start();
 		process.waitFor();
